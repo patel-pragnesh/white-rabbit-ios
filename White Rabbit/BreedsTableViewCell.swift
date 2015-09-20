@@ -8,7 +8,10 @@
 
 import UIKit
 
-class BreedsTableViewCell: UITableViewCell {
+class BreedsTableViewCell: PFTableViewCell {
+
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var thumbnailImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

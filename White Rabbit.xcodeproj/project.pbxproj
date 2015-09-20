@@ -7,13 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED274C2D1BABFF0A00A31375 /* SheltersMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */; };
+		ED274C2F1BAC0E2500A31375 /* Shelter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C2E1BAC0E2500A31375 /* Shelter.swift */; };
+		ED274C311BAC181E00A31375 /* SheltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */; };
+		ED274C331BACA8A600A31375 /* SheltersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */; };
+		ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */; };
+		ED323F961BAAAFF400576C04 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED323F951BAAAFF400576C04 /* ParseUI.framework */; };
+		ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */; };
+		ED692D671BACECED00C52562 /* ShelterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */; };
+		ED9760C61BAA231300EE3BBF /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */; };
+		ED9760CB1BAA256300EE3BBF /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */; };
+		ED9760CC1BAA256300EE3BBF /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760C81BAA256300EE3BBF /* FBAudienceNetwork.framework */; };
+		ED9760CD1BAA256300EE3BBF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760C91BAA256300EE3BBF /* FBSDKCoreKit.framework */; };
+		ED9760CE1BAA256300EE3BBF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760CA1BAA256300EE3BBF /* FBSDKLoginKit.framework */; };
+		ED9760D31BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */; };
 		EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */; };
-		EDE6D4361BA7B2BC00C7AC8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4351BA7B2BC00C7AC8C /* ViewController.swift */; };
+		EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */; };
 		EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */; };
 		EDE6D43B1BA7B2BC00C7AC8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */; };
 		EDE6D43E1BA7B2BC00C7AC8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */; };
 		EDE6D4491BA7B2BD00C7AC8C /* White_RabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4481BA7B2BD00C7AC8C /* White_RabbitTests.swift */; };
 		EDE6D4541BA7B2BD00C7AC8C /* White_RabbitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4531BA7B2BD00C7AC8C /* White_RabbitUITests.swift */; };
+		EDE6D4631BA7B2DB00C7AC8C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4611BA7B2DB00C7AC8C /* Bolts.framework */; };
+		EDE6D4641BA7B2DB00C7AC8C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4621BA7B2DB00C7AC8C /* Parse.framework */; };
+		EDE6D4671BA7B3D100C7AC8C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4661BA7B3D100C7AC8C /* AudioToolbox.framework */; };
+		EDE6D4691BA7B3DD00C7AC8C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4681BA7B3DD00C7AC8C /* CFNetwork.framework */; };
+		EDE6D46B1BA7B3E800C7AC8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D46A1BA7B3E800C7AC8C /* CoreGraphics.framework */; };
+		EDE6D46D1BA7B3F000C7AC8C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D46C1BA7B3F000C7AC8C /* CoreLocation.framework */; };
+		EDE6D46F1BA7B3FA00C7AC8C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D46E1BA7B3FA00C7AC8C /* QuartzCore.framework */; };
+		EDE6D4711BA7B40400C7AC8C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4701BA7B40400C7AC8C /* Security.framework */; };
+		EDE6D4731BA7B40D00C7AC8C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4721BA7B40D00C7AC8C /* StoreKit.framework */; };
+		EDE6D4751BA7B41900C7AC8C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4741BA7B41900C7AC8C /* SystemConfiguration.framework */; };
+		EDE6D4771BA7B42800C7AC8C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4761BA7B42800C7AC8C /* libz.tbd */; };
+		EDE6D4791BA7B43500C7AC8C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */; };
+		EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */; };
+		EDE96F6A1BAB97DA008B5131 /* BreedsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE96F691BAB97DA008B5131 /* BreedsTableViewCell.swift */; };
+		EDF00D731BAD466500FE4B48 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D721BAD466500FE4B48 /* CameraViewController.swift */; };
+		EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */; };
+		EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +65,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersMapViewController.swift; sourceTree = "<group>"; };
+		ED274C2E1BAC0E2500A31375 /* Shelter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shelter.swift; sourceTree = "<group>"; };
+		ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersTableViewController.swift; sourceTree = "<group>"; };
+		ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersTableViewCell.swift; sourceTree = "<group>"; };
+		ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedsTableViewController.swift; sourceTree = "<group>"; };
+		ED323F951BAAAFF400576C04 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedDetailViewController.swift; sourceTree = "<group>"; };
+		ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewController.swift; sourceTree = "<group>"; };
+		ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
+		ED9760C81BAA256300EE3BBF /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		ED9760C91BAA256300EE3BBF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		ED9760CA1BAA256300EE3BBF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		ED9760CF1BAA27AE00EE3BBF /* White Rabbit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "White Rabbit-Bridging-Header.h"; sourceTree = "<group>"; };
+		ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		EDE6D4301BA7B2BC00C7AC8C /* White Rabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White Rabbit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EDE6D4351BA7B2BC00C7AC8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EDE6D4381BA7B2BC00C7AC8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDE6D43D1BA7B2BC00C7AC8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +93,23 @@
 		EDE6D44F1BA7B2BD00C7AC8C /* White RabbitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "White RabbitUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6D4531BA7B2BD00C7AC8C /* White_RabbitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = White_RabbitUITests.swift; sourceTree = "<group>"; };
 		EDE6D4551BA7B2BD00C7AC8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDE6D4611BA7B2DB00C7AC8C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		EDE6D4621BA7B2DB00C7AC8C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		EDE6D4661BA7B3D100C7AC8C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EDE6D4681BA7B3DD00C7AC8C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		EDE6D46A1BA7B3E800C7AC8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EDE6D46C1BA7B3F000C7AC8C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EDE6D46E1BA7B3FA00C7AC8C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EDE6D4701BA7B40400C7AC8C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EDE6D4721BA7B40D00C7AC8C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EDE6D4741BA7B41900C7AC8C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EDE6D4761BA7B42800C7AC8C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EDE96F691BAB97DA008B5131 /* BreedsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedsTableViewCell.swift; sourceTree = "<group>"; };
+		EDF00D721BAD466500FE4B48 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +117,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED323F961BAAAFF400576C04 /* ParseUI.framework in Frameworks */,
+				EDE6D4791BA7B43500C7AC8C /* libsqlite3.tbd in Frameworks */,
+				EDE6D4771BA7B42800C7AC8C /* libz.tbd in Frameworks */,
+				EDE6D4751BA7B41900C7AC8C /* SystemConfiguration.framework in Frameworks */,
+				EDE6D4731BA7B40D00C7AC8C /* StoreKit.framework in Frameworks */,
+				EDE6D4711BA7B40400C7AC8C /* Security.framework in Frameworks */,
+				ED9760CC1BAA256300EE3BBF /* FBAudienceNetwork.framework in Frameworks */,
+				EDE6D46F1BA7B3FA00C7AC8C /* QuartzCore.framework in Frameworks */,
+				EDE6D46D1BA7B3F000C7AC8C /* CoreLocation.framework in Frameworks */,
+				EDE6D46B1BA7B3E800C7AC8C /* CoreGraphics.framework in Frameworks */,
+				EDE6D4691BA7B3DD00C7AC8C /* CFNetwork.framework in Frameworks */,
+				ED9760CD1BAA256300EE3BBF /* FBSDKCoreKit.framework in Frameworks */,
+				EDE6D4671BA7B3D100C7AC8C /* AudioToolbox.framework in Frameworks */,
+				EDE6D4641BA7B2DB00C7AC8C /* Parse.framework in Frameworks */,
+				EDE6D4631BA7B2DB00C7AC8C /* Bolts.framework in Frameworks */,
+				ED9760D31BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework in Frameworks */,
+				ED9760CE1BAA256300EE3BBF /* FBSDKLoginKit.framework in Frameworks */,
+				ED9760C61BAA231300EE3BBF /* ParseFacebookUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +158,7 @@
 		EDE6D4271BA7B2BC00C7AC8C = {
 			isa = PBXGroup;
 			children = (
+				EDE6D4651BA7B2E500C7AC8C /* Frameworks */,
 				EDE6D4321BA7B2BC00C7AC8C /* White Rabbit */,
 				EDE6D4471BA7B2BD00C7AC8C /* White RabbitTests */,
 				EDE6D4521BA7B2BD00C7AC8C /* White RabbitUITests */,
@@ -97,12 +179,25 @@
 		EDE6D4321BA7B2BC00C7AC8C /* White Rabbit */ = {
 			isa = PBXGroup;
 			children = (
-				EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */,
-				EDE6D4351BA7B2BC00C7AC8C /* ViewController.swift */,
 				EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */,
+				EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */,
+				EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */,
+				ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */,
+				EDE96F691BAB97DA008B5131 /* BreedsTableViewCell.swift */,
+				ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */,
+				EDF00D721BAD466500FE4B48 /* CameraViewController.swift */,
+				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
+				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
+				ED274C2E1BAC0E2500A31375 /* Shelter.swift */,
+				ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */,
+				ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */,
+				ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */,
+				ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
 				EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */,
 				EDE6D43F1BA7B2BC00C7AC8C /* Info.plist */,
+				EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */,
+				ED9760CF1BAA27AE00EE3BBF /* White Rabbit-Bridging-Header.h */,
 			);
 			path = "White Rabbit";
 			sourceTree = "<group>";
@@ -123,6 +218,32 @@
 				EDE6D4551BA7B2BD00C7AC8C /* Info.plist */,
 			);
 			path = "White RabbitUITests";
+			sourceTree = "<group>";
+		};
+		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */,
+				ED9760C81BAA256300EE3BBF /* FBAudienceNetwork.framework */,
+				ED9760C91BAA256300EE3BBF /* FBSDKCoreKit.framework */,
+				ED9760CA1BAA256300EE3BBF /* FBSDKLoginKit.framework */,
+				EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */,
+				EDE6D4761BA7B42800C7AC8C /* libz.tbd */,
+				EDE6D4741BA7B41900C7AC8C /* SystemConfiguration.framework */,
+				EDE6D4721BA7B40D00C7AC8C /* StoreKit.framework */,
+				EDE6D4701BA7B40400C7AC8C /* Security.framework */,
+				EDE6D46E1BA7B3FA00C7AC8C /* QuartzCore.framework */,
+				EDE6D46C1BA7B3F000C7AC8C /* CoreLocation.framework */,
+				EDE6D46A1BA7B3E800C7AC8C /* CoreGraphics.framework */,
+				EDE6D4681BA7B3DD00C7AC8C /* CFNetwork.framework */,
+				EDE6D4661BA7B3D100C7AC8C /* AudioToolbox.framework */,
+				EDE6D4611BA7B2DB00C7AC8C /* Bolts.framework */,
+				EDE6D4621BA7B2DB00C7AC8C /* Parse.framework */,
+				ED323F951BAAAFF400576C04 /* ParseUI.framework */,
+				ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */,
+				ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +308,7 @@
 		EDE6D4281BA7B2BC00C7AC8C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "White Rabbit Technology";
 				TargetAttributes = {
@@ -234,6 +356,7 @@
 				EDE6D43E1BA7B2BC00C7AC8C /* LaunchScreen.storyboard in Resources */,
 				EDE6D43B1BA7B2BC00C7AC8C /* Assets.xcassets in Resources */,
 				EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */,
+				ED9760CB1BAA256300EE3BBF /* FacebookSDKStrings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +381,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDE6D4361BA7B2BC00C7AC8C /* ViewController.swift in Sources */,
+				EDE96F6A1BAB97DA008B5131 /* BreedsTableViewCell.swift in Sources */,
+				ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */,
+				EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */,
+				ED274C2D1BABFF0A00A31375 /* SheltersMapViewController.swift in Sources */,
+				EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */,
+				EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */,
+				ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */,
+				EDF00D731BAD466500FE4B48 /* CameraViewController.swift in Sources */,
+				EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */,
+				ED692D671BACECED00C52562 /* ShelterDetailViewController.swift in Sources */,
 				EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */,
+				ED274C2F1BAC0E2500A31375 /* Shelter.swift in Sources */,
+				ED274C311BAC181E00A31375 /* SheltersTableViewController.swift in Sources */,
+				ED274C331BACA8A600A31375 /* SheltersTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,10 +534,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "White Rabbit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.whiterabbit.White-Rabbit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "White Rabbit/White Rabbit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -410,10 +552,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "White Rabbit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.whiterabbit.White-Rabbit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "White Rabbit/White Rabbit-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -484,6 +632,7 @@
 				EDE6D45A1BA7B2BD00C7AC8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EDE6D45B1BA7B2BD00C7AC8C /* Build configuration list for PBXNativeTarget "White RabbitTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +641,7 @@
 				EDE6D45D1BA7B2BD00C7AC8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EDE6D45E1BA7B2BD00C7AC8C /* Build configuration list for PBXNativeTarget "White RabbitUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +650,7 @@
 				EDE6D4601BA7B2BD00C7AC8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

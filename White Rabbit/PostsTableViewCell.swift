@@ -9,5 +9,9 @@
 import UIKit
 
 class PostsTableViewCell: PFTableViewCell {
+    
+    @IBOutlet weak var usernameLink: UIButton!
+    @IBOutlet weak var largeImageView: UIImageView!
+    
 
 }

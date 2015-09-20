@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  White Rabbit
 //
 //  Created by Michael Bina on 9/14/15.
@@ -11,6 +11,12 @@ import Parse
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    var currentUser: PFUser?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,40 +26,49 @@ class HomeViewController: UIViewController {
         
         checkForUser()
     }
-
-    override func didReceiveMemoryWarning() {
-        // Dispose of any resources that can be recreated.
-        super.didReceiveMemoryWarning()
-    }
     
     func checkForUser() {
         let currentUser = PFUser.currentUser()
         
         if (currentUser != nil) {
-            self.getUserInfo()
+            self.currentUser = currentUser
+            self.populateUserInfo()
         } else {
             // Navigate to the LoginViewController
             let lvc = self.storyboard!.instantiateViewControllerWithIdentifier("lvc") as! LoginViewController
             
-            self.navigationController!.pushViewController(lvc, animated: true)
+            self.presentViewController(lvc, animated: true, completion: nil)
+            // self.pushViewController(lvc, animated: true)
         }
     }
-
     
-    func getUserInfo() {
-        let fbRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,name,first_name,last_name,gender"])
-        fbRequest.startWithCompletionHandler({ (FBSDKGraphRequestConnection, result, error) -> Void in
-            
-            if (error == nil && result != nil) {
-                let facebookData = result as! NSDictionary //FACEBOOK DATA IN DICTIONARY
-                NSLog("%@\n", facebookData)
-                let userEmail = (facebookData.objectForKey("email") as? String)
-                let firstName = (facebookData.objectForKey("first_name") as? String)
-                let lastName = (facebookData.objectForKey("last_name") as? String)
-                NSLog("User data:\n \(userEmail)\n \(firstName)\n \(lastName)")
+    func populateUserInfo() {
+        self.nameLabel.text = (currentUser?.valueForKey("firstName") as? String)! + " " + (currentUser?.valueForKey("lastName") as? String)!
+        self.emailLabel.text = currentUser?.valueForKey("email") as? String
+
+        self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFit
+
+        let imageFile = currentUser?.valueForKey("profilePhoto") as! PFFile
+        imageFile.getDataInBackgroundWithBlock({
+            (imageData: NSData?, error: NSError?) -> Void in
+            if(error == nil) {
+                let image = UIImage(data:imageData!)
+                self.profileImageView.image = image
             }
         })
     }
 
+    @IBAction func logout(sender: UIButton) {
+        PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in
+            if error != nil {
+                NSLog("logout fail: \(error)")
+            } else {
+                NSLog("logout success")
+                self.checkForUser()
+            }
+        }
+    }
+
+    
 }
 

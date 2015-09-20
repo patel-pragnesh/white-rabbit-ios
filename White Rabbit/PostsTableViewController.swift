@@ -7,7 +7,45 @@
 //
 
 import UIKit
+import Parse
 
 class PostsTableViewController: PFQueryTableViewController {
 
+    required init(coder aDecoder:NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
+    override func queryForTable() -> PFQuery {
+        let query = PFQuery(className: self.parseClassName!)
+        query.orderByDescending("createdAt")
+        return query
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier("PostCell", forIndexPath: indexPath) as? PostsTableViewCell
+        
+        if cell == nil  {
+            cell = PostsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "PostCell")
+        }
+        
+        NSLog("post data: %@\n", object!)
+        
+        // Extract values from the PFObject to display in the table cell
+        // cell!.name.text = object?["name"] as? String
+        
+        cell!.usernameLink.setTitle(object?["user"] as? String, forState: .Normal)
+        
+        let imageFile = object?["image"] as? PFFile
+        imageFile?.getDataInBackgroundWithBlock({
+            (imageData: NSData?, error: NSError?) -> Void in
+            if(error == nil) {
+                let image = UIImage(data:imageData!)
+                cell!.largeImageView.image = image
+            }
+        })
+        
+        return cell
+    }
+    
 }

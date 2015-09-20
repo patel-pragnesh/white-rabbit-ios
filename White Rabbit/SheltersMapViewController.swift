@@ -8,36 +8,146 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class SheltersMapViewController: UIViewController {
+class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-//    @IBOutlet weak var tableView: SheltersTableViewController!
-
+    
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
-        NSLog("initializing shelters view controller")
+        NSLog("initializing shelters map view controller")
 
         super.viewDidLoad()
         
-//        let tableView = SheltersTableViewController(style: UITableViewStyle.Grouped, className: "Shelter")
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        self.mapView.delegate = self
+        
         initializeMap()
     }
     
     func initializeMap() {
-        let initialLocation = CLLocation(latitude: 34.044467, longitude: -118.442708)
-        let regionRadius: CLLocationDistance = 1000
+//        let initialLocation = CLLocation(latitude: 34.044467, longitude: -118.442708)
+//        let regionRadius: CLLocationDistance = 1000
+        self.mapView.showsUserLocation = true
 
-        // self.populateShelters()
-        self.centerMapOnLocation(initialLocation, regionRadius: regionRadius)
+        self.populateShelters()
+//        self.centerMapOnLocation(initialLocation, regionRadius: regionRadius)
     }
     
-    func populateShelters() {
-        let shelter = Shelter(
-            name: "NKLA",
-            coordinate: CLLocationCoordinate2D(latitude: 34.044467, longitude: -118.442708)
-        )
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        self.mapView.setRegion(region, animated: true)
+        self.locationManager.stopUpdatingLocation()
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+            if annotation is MKUserLocation{
+                return nil
+            }
+            
+            let reuseId = "pin"
+            
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+            
+            if(pinView == nil){
+                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView!.canShowCallout = true
+                pinView!.animatesDrop = true
+                pinView!.pinTintColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+                
+                let calloutButton = UIButton(type: .InfoLight)
+                pinView!.rightCalloutAccessoryView = calloutButton
+            } else {
+                pinView!.annotation = annotation
+            }
+            return pinView!
+    }
+
+    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        self.mapView.addAnnotation(shelter)
+        if control == annotationView.rightCalloutAccessoryView {
+            NSLog("callout")
+            performSegueWithIdentifier("MapToShelterDetail", sender: annotationView)
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller
+        let detailScene = segue.destinationViewController as! ShelterDetailViewController
+
+        let annotationView = sender as! MKAnnotationView
+        let annotation = annotationView.annotation as? Shelter
+        
+        detailScene.currentShelterObject = annotation?.parseObject
+        
+        // Pass the selected object to the destination view controller.
+//        if let indexPath = self.tableView.indexPathForSelectedRow {
+//            let row = Int(indexPath.row)
+//            let object = objects?[row] as! PFObject
+//            
+//            NSLog("Viewing shelter detail for object: %@\n", object)
+//            detailScene.currentShelterObject = object
+//        }
+    }
+    
+//
+//    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+//        NSLog("selected annotation")
+//        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("calloutTapped:"))
+//        // tapGesture.setValue(view, forKey: "shelter")
+//        view.addGestureRecognizer(tapGesture)
+//    }
+//
+//    func calloutTapped(sender: UITapGestureRecognizer) {
+//
+////        let annotation = sender.valueForKey("shelter") as? MKAnnotationView
+////        NSLog("callout tapped: " + ((annotation?.annotation?.title)!)!)
+//        
+//        let annotationView = sender.view as! MKPinAnnotationView
+//        let annotation = annotationView.annotation as MKAnnotation!
+//
+//        NSLog("callout tapped : " + annotation.title!!)
+//    }
+    
+//    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        NSLog("region changed")
+//    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        NSLog("Errors: " + error.localizedDescription)
+    }
+    
+    func populateShelters(){
+        let query : PFQuery = self.queryForTable()
+
+        query.findObjectsInBackgroundWithBlock { (NSArray objects, NSError error) -> Void in
+            if error == nil {
+                if let objects = objects {
+                    for object in objects {
+                        let shelter = Shelter(parseObject: object)
+                        
+                        self.addShelterToMap(shelter)
+                    }
+                }
+            } else {
+                print("There was an error")
+            }
+        }
+        
+    }
+    
+    func queryForTable() -> PFQuery {
+        let query = PFQuery(className: "Shelter")
+        query.orderByAscending("name")
+        return query
     }
     
     func addShelterToMap(shelter: Shelter) {

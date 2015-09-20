@@ -9,6 +9,8 @@ import UIKit
 
 class SheltersTableViewCell: PFTableViewCell {
     
+    @IBOutlet weak var logo: UIImageView!
+    @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
