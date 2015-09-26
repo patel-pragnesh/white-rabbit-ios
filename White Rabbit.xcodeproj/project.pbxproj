@@ -14,6 +14,9 @@
 		ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */; };
 		ED323F961BAAAFF400576C04 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED323F951BAAAFF400576C04 /* ParseUI.framework */; };
 		ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */; };
+		ED406EA71BAEE3A1001FE8B3 /* AnimalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */; };
+		ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */; };
+		ED406EAB1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */; };
 		ED692D671BACECED00C52562 /* ShelterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */; };
 		ED9760C61BAA231300EE3BBF /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */; };
 		ED9760CB1BAA256300EE3BBF /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */; };
@@ -72,6 +75,9 @@
 		ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedsTableViewController.swift; sourceTree = "<group>"; };
 		ED323F951BAAAFF400576C04 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedDetailViewController.swift; sourceTree = "<group>"; };
+		ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTableViewController.swift; sourceTree = "<group>"; };
+		ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
+		ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTableViewCell.swift; sourceTree = "<group>"; };
 		ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewController.swift; sourceTree = "<group>"; };
 		ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
@@ -182,6 +188,9 @@
 				EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */,
 				EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */,
 				EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */,
+				ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */,
+				ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */,
+				ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */,
 				ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */,
 				EDE96F691BAB97DA008B5131 /* BreedsTableViewCell.swift */,
 				ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */,
@@ -383,6 +392,7 @@
 			files = (
 				EDE96F6A1BAB97DA008B5131 /* BreedsTableViewCell.swift in Sources */,
 				ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */,
+				ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */,
 				EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */,
 				ED274C2D1BABFF0A00A31375 /* SheltersMapViewController.swift in Sources */,
 				EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */,
@@ -394,6 +404,8 @@
 				EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */,
 				ED274C2F1BAC0E2500A31375 /* Shelter.swift in Sources */,
 				ED274C311BAC181E00A31375 /* SheltersTableViewController.swift in Sources */,
+				ED406EAB1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift in Sources */,
+				ED406EA71BAEE3A1001FE8B3 /* AnimalsTableViewController.swift in Sources */,
 				ED274C331BACA8A600A31375 /* SheltersTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

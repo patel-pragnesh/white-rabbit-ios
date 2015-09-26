@@ -75,3 +75,14 @@ extension String
         return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
     }
 }
+
+extension UILabel {
+    func resizeHeightToFit(heightConstraint: NSLayoutConstraint) {
+        let attributes = [NSFontAttributeName : font]
+        numberOfLines = 0
+        lineBreakMode = NSLineBreakMode.ByWordWrapping
+        let rect = text!.boundingRectWithSize(CGSizeMake(frame.size.width, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attributes, context: nil)
+        heightConstraint.constant = rect.height
+        setNeedsLayout()
+    }
+}
