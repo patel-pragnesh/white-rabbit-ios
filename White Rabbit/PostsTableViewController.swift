@@ -18,6 +18,7 @@ class PostsTableViewController: PFQueryTableViewController {
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.orderByDescending("createdAt")
+        query.includeKey("user")
         return query
     }
     
@@ -34,8 +35,6 @@ class PostsTableViewController: PFQueryTableViewController {
         // Extract values from the PFObject to display in the table cell
         // cell!.name.text = object?["name"] as? String
         
-        cell!.usernameLink.setTitle(object?["user"] as? String, forState: .Normal)
-        
         let imageFile = object?["image"] as? PFFile
         imageFile?.getDataInBackgroundWithBlock({
             (imageData: NSData?, error: NSError?) -> Void in
@@ -44,6 +43,9 @@ class PostsTableViewController: PFQueryTableViewController {
                 cell!.largeImageView.image = image
             }
         })
+        
+        let userObject = object?.objectForKey("user") as? PFObject
+        cell!.usernameLink.setTitle(userObject!.valueForKey("firstName") as? String, forState: .Normal)
         
         return cell
     }

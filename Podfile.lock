@@ -1,0 +1,13 @@
+PODS:
+  - ALCameraViewController (1.0.8)
+  - TagListView (0.3)
+
+DEPENDENCIES:
+  - ALCameraViewController
+  - TagListView
+
+SPEC CHECKSUMS:
+  ALCameraViewController: fbaed8a35a9272b419ec10004231da356d75bcaa
+  TagListView: c0ffe7e779b3c7a8dc6b7e82b331eacfcc7795b7
+
+COCOAPODS: 0.38.2

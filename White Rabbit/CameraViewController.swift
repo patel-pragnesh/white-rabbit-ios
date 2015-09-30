@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ALCameraViewController
 
 class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -31,11 +32,21 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     @IBAction func takePhoto(sender: UIButton) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .Camera
-        // picker.allowsEditing = true
-        presentViewController(picker, animated: true, completion: nil)
+        
+        let cameraViewController = ALCameraViewController(croppingEnabled: true) { image in
+            // Do something with your image here.
+            // If cropping is enabled this image will be the cropped version
+            self.imagePreview.image = image
+            self.dismissViewControllerAnimated(true, completion: {})
+            self.saveButton.enabled = true
+        }
+        presentViewController(cameraViewController, animated: true, completion: nil)
+        
+//        let picker = UIImagePickerController()
+//        picker.delegate = self
+//        picker.sourceType = .Camera
+//        picker.allowsEditing = true
+//        presentViewController(picker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

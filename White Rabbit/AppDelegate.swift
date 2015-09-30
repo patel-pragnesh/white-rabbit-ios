@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
+        UILabel.appearance().substituteFontName = "Avenir"
+        
         return true
     }
 
@@ -85,4 +87,10 @@ extension UILabel {
         heightConstraint.constant = rect.height
         setNeedsLayout()
     }
+    
+    var substituteFontName : String {
+        get { return self.font.fontName }
+        set { self.font = UIFont(name: newValue, size: self.font.pointSize) }
+    }
+
 }

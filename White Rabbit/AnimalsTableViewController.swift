@@ -43,7 +43,6 @@ class AnimalsTableViewController: PFQueryTableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        NSLog("preparing for segue")
         // Get the new view controller
         let detailScene = segue.destinationViewController as! AnimalDetailViewController
         
@@ -52,7 +51,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
             let row = Int(indexPath.row)
             let object = objects?[row] as! PFObject
             
-            NSLog("Viewing detail for object: %@\n", object)
+//            NSLog("Viewing detail for object: %@\n", object)
             detailScene.currentAnimalObject = object
         }
     }

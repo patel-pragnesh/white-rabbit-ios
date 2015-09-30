@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E716FFA26FD40A93D84B705 /* Pods_White_Rabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30804D5EB7EC46A17D7896EE /* Pods_White_Rabbit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		83F0FD66D0E8946888451B37 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD857B0520D3DDE97FB034 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ED008E221BBA260800CAA0D0 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED008E211BBA260800CAA0D0 /* TagListView.framework */; };
 		ED274C2D1BABFF0A00A31375 /* SheltersMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */; };
 		ED274C2F1BAC0E2500A31375 /* Shelter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C2E1BAC0E2500A31375 /* Shelter.swift */; };
 		ED274C311BAC181E00A31375 /* SheltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */; };
 		ED274C331BACA8A600A31375 /* SheltersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */; };
+		ED2D9F9E1BB91908004F0143 /* ALCameraViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */; };
 		ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */; };
 		ED323F961BAAAFF400576C04 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED323F951BAAAFF400576C04 /* ParseUI.framework */; };
 		ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */; };
@@ -24,6 +28,7 @@
 		ED9760CD1BAA256300EE3BBF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760C91BAA256300EE3BBF /* FBSDKCoreKit.framework */; };
 		ED9760CE1BAA256300EE3BBF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760CA1BAA256300EE3BBF /* FBSDKLoginKit.framework */; };
 		ED9760D31BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */; };
+		EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */; };
 		EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */; };
 		EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */; };
 		EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */; };
@@ -68,10 +73,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09A248E980C817B201FB106C /* Pods-White Rabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-White Rabbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-White Rabbit/Pods-White Rabbit.debug.xcconfig"; sourceTree = "<group>"; };
+		13AC7E90B6DC7C71016794B8 /* Pods-White Rabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-White Rabbit.release.xcconfig"; path = "Pods/Target Support Files/Pods-White Rabbit/Pods-White Rabbit.release.xcconfig"; sourceTree = "<group>"; };
+		30804D5EB7EC46A17D7896EE /* Pods_White_Rabbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_White_Rabbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69AD857B0520D3DDE97FB034 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED008E211BBA260800CAA0D0 /* TagListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagListView.framework; path = "Pods/../build/Debug-iphoneos/TagListView.framework"; sourceTree = "<group>"; };
 		ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersMapViewController.swift; sourceTree = "<group>"; };
 		ED274C2E1BAC0E2500A31375 /* Shelter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shelter.swift; sourceTree = "<group>"; };
 		ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersTableViewController.swift; sourceTree = "<group>"; };
 		ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersTableViewCell.swift; sourceTree = "<group>"; };
+		ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALCameraViewController.framework; path = "Pods/../build/Debug-iphoneos/ALCameraViewController.framework"; sourceTree = "<group>"; };
 		ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedsTableViewController.swift; sourceTree = "<group>"; };
 		ED323F951BAAAFF400576C04 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedDetailViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +97,8 @@
 		ED9760CA1BAA256300EE3BBF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		ED9760CF1BAA27AE00EE3BBF /* White Rabbit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "White Rabbit-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		EDA8B01B1BB9432A0066546E /* XLForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLForm.framework; path = "Pods/../build/Debug-iphoneos/XLForm.framework"; sourceTree = "<group>"; };
+		EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitSelectorTableViewController.swift; sourceTree = "<group>"; };
 		EDE6D4301BA7B2BC00C7AC8C /* White Rabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White Rabbit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED008E221BBA260800CAA0D0 /* TagListView.framework in Frameworks */,
+				ED2D9F9E1BB91908004F0143 /* ALCameraViewController.framework in Frameworks */,
 				ED323F961BAAAFF400576C04 /* ParseUI.framework in Frameworks */,
 				EDE6D4791BA7B43500C7AC8C /* libsqlite3.tbd in Frameworks */,
 				EDE6D4771BA7B42800C7AC8C /* libz.tbd in Frameworks */,
@@ -141,6 +156,8 @@
 				ED9760D31BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework in Frameworks */,
 				ED9760CE1BAA256300EE3BBF /* FBSDKLoginKit.framework in Frameworks */,
 				ED9760C61BAA231300EE3BBF /* ParseFacebookUtils.framework in Frameworks */,
+				2E716FFA26FD40A93D84B705 /* Pods_White_Rabbit.framework in Frameworks */,
+				83F0FD66D0E8946888451B37 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +178,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57DE9C77A14E91EEA9D38F4E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				09A248E980C817B201FB106C /* Pods-White Rabbit.debug.xcconfig */,
+				13AC7E90B6DC7C71016794B8 /* Pods-White Rabbit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EDE6D4271BA7B2BC00C7AC8C = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +195,7 @@
 				EDE6D4471BA7B2BD00C7AC8C /* White RabbitTests */,
 				EDE6D4521BA7B2BD00C7AC8C /* White RabbitUITests */,
 				EDE6D4311BA7B2BC00C7AC8C /* Products */,
+				57DE9C77A14E91EEA9D38F4E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +229,7 @@
 				ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */,
 				ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */,
 				ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */,
+				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
 				EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */,
 				EDE6D43F1BA7B2BC00C7AC8C /* Info.plist */,
@@ -232,6 +260,9 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED008E211BBA260800CAA0D0 /* TagListView.framework */,
+				EDA8B01B1BB9432A0066546E /* XLForm.framework */,
+				ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */,
 				ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */,
 				ED9760C81BAA256300EE3BBF /* FBAudienceNetwork.framework */,
 				ED9760C91BAA256300EE3BBF /* FBSDKCoreKit.framework */,
@@ -251,6 +282,8 @@
 				ED323F951BAAAFF400576C04 /* ParseUI.framework */,
 				ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */,
 				ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */,
+				30804D5EB7EC46A17D7896EE /* Pods_White_Rabbit.framework */,
+				69AD857B0520D3DDE97FB034 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -262,9 +295,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDE6D4581BA7B2BD00C7AC8C /* Build configuration list for PBXNativeTarget "White Rabbit" */;
 			buildPhases = (
+				3B50B96BD6F51FAC1F64C503 /* Check Pods Manifest.lock */,
 				EDE6D42C1BA7B2BC00C7AC8C /* Sources */,
 				EDE6D42D1BA7B2BC00C7AC8C /* Frameworks */,
 				EDE6D42E1BA7B2BC00C7AC8C /* Resources */,
+				B0DEA932E6AC70B4C47A64ED /* Embed Pods Frameworks */,
+				179C0C5D301C904085EF5821 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -385,12 +421,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		179C0C5D301C904085EF5821 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B50B96BD6F51FAC1F64C503 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B0DEA932E6AC70B4C47A64ED /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EDE6D42C1BA7B2BC00C7AC8C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EDE96F6A1BAB97DA008B5131 /* BreedsTableViewCell.swift in Sources */,
+				EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */,
 				ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */,
 				ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */,
 				EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */,
@@ -544,12 +629,14 @@
 		};
 		EDE6D4591BA7B2BD00C7AC8C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09A248E980C817B201FB106C /* Pods-White Rabbit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "White Rabbit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -562,12 +649,14 @@
 		};
 		EDE6D45A1BA7B2BD00C7AC8C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13AC7E90B6DC7C71016794B8 /* Pods-White Rabbit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "White Rabbit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
