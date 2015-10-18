@@ -14,6 +14,7 @@ import BTNavigationDropdownMenu
 class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+//    @IBOutlet weak var locationTypeMenuBar: UINavigationBar!
     
     let locationManager = CLLocationManager()
     
@@ -22,20 +23,35 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
 
         super.viewDidLoad()
         
-        let nav = self.navigationController?.navigationBar
-        nav?.hidden = false
-        nav?.barStyle = UIBarStyle.BlackTranslucent
-        nav?.tintColor = UIColor.whiteColor()
-        self.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.setUpMenuBarController()
+        
+//        let nav = self.navigationController?.navigationBar
+//        nav?.hidden = false
+//        nav?.barStyle = UIBarStyle.BlackTranslucent
+//        nav?.tintColor = UIColor.whiteColor()
+//        self.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+//        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+//
+//        
+//        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
+//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
+//        menuView.cellTextLabelColor = UIColor.whiteColor()
+//        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        
+//        self.locationTypeMenuBar.barStyle = UIBarStyle.BlackTranslucent
+//        self.locationTypeMenuBar.tintColor = UIColor.whiteColor()
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
 
         
-        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
-        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
-        menuView.cellTextLabelColor = UIColor.whiteColor()
-        menuView.cellBackgroundColor = UIColor.darkGrayColor()
-        self.tabBarController?.navigationItem.titleView = menuView
-        self.navigationItem.titleView = menuView
+//        let items = ["Most Popular", "Latest", "Trending", "Nearest", "Top Picks"]
+//        self.selectedCellLabel.text = items.first
+//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
+//        self.navigationItem.titleView = menuView
+        
+//        self.tabBarController?.navigationItem.titleView = menuView
+//        self.navigationItem.title = items.first!
+//        self.navigationItem.titleView = menuView
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest

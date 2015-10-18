@@ -12,6 +12,8 @@ import Bolts
 import FBSDKCoreKit
 import FBSDKLoginKit
 import ParseFacebookUtilsV4
+import SlideMenuControllerSwift
+import BTNavigationDropdownMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,7 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         UILabel.appearance().substituteFontName = "Avenir"
-                
+
+        let storyboard = self.window?.rootViewController?.storyboard
+        let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
+
+        let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        homeController.mainViewController = animalsController
+        
+        let slideMenuController = SlideMenuController(mainViewController: animalsController!, leftMenuViewController: homeController)
+
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+
+        
         return true
     }
 
@@ -70,6 +84,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 extension UIViewController {
+    func getNavBarItem(imageId : String, action : Selector, height : CGFloat) -> UIBarButtonItem! {
+        let editImage = UIImage(named: imageId)
+        let editButton = UIButton(type: .Custom)
+        editButton.setImage(editImage, forState: .Normal)
+        editButton.frame = CGRectMake(0, 0, 25, height)
+        editButton.addTarget(self, action: action, forControlEvents: .TouchUpInside)
+        return UIBarButtonItem(customView: editButton)
+    }
+    
+    func setUpNavigationBar() {
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.BlackTranslucent
+        nav?.tintColor = UIColor.whiteColor()
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    }
+    
+    func setUpMenuBarController() {
+        self.setUpNavigationBar()
+        
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("menu_white", action: "showMenu", height: 15)
+    }
+    
+    func showMenu() {
+        self.slideMenuController()?.openLeft()
+    }
+    
     func displayAlert(title:String, message:String, buttonText: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default, handler: nil))

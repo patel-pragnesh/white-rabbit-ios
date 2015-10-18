@@ -14,10 +14,23 @@ class LocationsTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.BlackTranslucent
-        nav?.tintColor = UIColor.whiteColor()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.tabBar.barTintColor = UIColor.darkGrayColor()
+        self.tabBar.backgroundColor = UIColor.darkGrayColor()
+        self.tabBar.tintColor = UIColor.whiteColor()
+        
+        self.tabBar.frame.size.height = 150
+        
+//        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
+//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
+//        menuView.cellTextLabelColor = UIColor.whiteColor()
+//        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+//        self.tabBarController?.navigationItem.titleView = menuView
+//        self.navigationItem.titleView = menuView
+        
+//        let nav = self.navigationController?.navigationBar
+//        nav?.barStyle = UIBarStyle.BlackTranslucent
+//        nav?.tintColor = UIColor.whiteColor()
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
         
 //        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
 //        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)

@@ -57,8 +57,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/BTNavigationDropdownMenu.framework'
   install_framework 'Pods/Eureka.framework'
   install_framework 'Pods/InstagramKit.framework'
+  install_framework 'Pods/SlideMenuControllerSwift.framework'
   install_framework 'Pods/TagListView.framework'
-  install_framework 'Pods/SideMenu.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/AFNetworking.framework'
@@ -66,6 +66,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/BTNavigationDropdownMenu.framework'
   install_framework 'Pods/Eureka.framework'
   install_framework 'Pods/InstagramKit.framework'
+  install_framework 'Pods/SlideMenuControllerSwift.framework'
   install_framework 'Pods/TagListView.framework'
-  install_framework 'Pods/SideMenu.framework'
 fi

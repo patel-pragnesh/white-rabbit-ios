@@ -8,7 +8,8 @@ pod 'InstagramKit'
 #pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
 pod 'Eureka'
 pod 'BTNavigationDropdownMenu'
-pod 'YALSideMenu', :git => 'git@github.com:Yalantis/Side-Menu.iOS.git', :branch => 'swift_2.0'
+#pod 'YALSideMenu', :git => 'git@github.com:Yalantis/Side-Menu.iOS.git', :branch => 'swift_2.0'
+pod 'SlideMenuControllerSwift'
 
 target 'White Rabbit' do
 end

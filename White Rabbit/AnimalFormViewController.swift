@@ -14,6 +14,8 @@ import Parse
 //class AnimalFormViewController: XLFormViewController {
 class AnimalFormViewController : FormViewController {
     
+    @IBOutlet var formView: UIView!
+    
     let NAME_TAG = "name"
     let BIRTHDATE_TAG = "birthDate"
     let GENDER_TAG = "gender"
@@ -22,17 +24,14 @@ class AnimalFormViewController : FormViewController {
         super.viewDidLoad()
         
         self.generateForm()
+        
+        self.setUpNavigationBar()
+
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveAnimal", height: 20)
     }
     
     func generateForm() {
-        form +++= Section("Photos")
-            <<< ImageRow() {
-                $0.title = "Profile Photo"
-            }
-            <<< ImageRow() {
-                $0.title = "Cover Photo"
-        }
-
         
         form +++= Section("Info")
             <<< NameRow(NAME_TAG) {
@@ -45,7 +44,16 @@ class AnimalFormViewController : FormViewController {
                 $0.title = "Gender"
                 $0.options = ["Male", "Female"]
             }
-            
+
+//        form +++= Section("Photos")
+//            <<< ImageRow() {
+//                $0.title = "Profile Photo"
+//            }
+//            <<< ImageRow() {
+//                $0.title = "Cover Photo"
+//        }
+
+        
         form +++= Section("Details")
             <<< PushRow<String> {
         //            <<< PushSelectorCell<BreedsTableViewCell>("BreedCell") {
@@ -69,35 +77,42 @@ class AnimalFormViewController : FormViewController {
 //                cell.textField.placeholder = "@username"
 //            }
         
-        form +++= Section("")
-            <<< ButtonRow("save") { $0.title = "Save" }.onCellSelection { cell, row in print("Cell was selected")
-                
-                let animal = PFObject(className: "Animal")
-                
-                let nameValue = self.form.rowByTag(self.NAME_TAG)?.baseValue as? String
-                let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate
-                let genderValue = self.form.rowByTag(self.GENDER_TAG)?.baseValue as? String
-                
-                animal.setObject(nameValue!, forKey: "name")
-                if birthDateValue != nil {
-                    animal.setObject(birthDateValue!, forKey: "birthDate")
-                }
-                if genderValue != nil {
-                    animal.setObject(genderValue!, forKey: "gender")
-                }
-                
-                animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                    if success {
-                        // self.displayAlert("saved")
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    } else {
-                        NSLog("%@", error!)
-                    }
-                })
-            }
-            <<< ButtonRow("cancel") { $0.title = "Cancel" }.onCellSelection { cell, row in                         self.dismissViewControllerAnimated(true, completion: nil)
-        }
+//        form +++= Section("")
+//            <<< ButtonRow("save") { $0.title = "Save" }.onCellSelection { cell, row in print("Cell was selected")
+//                    self.saveAnimal()
+//            }
+//            <<< ButtonRow("cancel") { $0.title = "Cancel" }.onCellSelection { cell, row in                         self.cancel()
+//        }
 
+    }
+    
+    func saveAnimal() {
+        let animal = PFObject(className: "Animal")
+        
+        let nameValue = self.form.rowByTag(self.NAME_TAG)?.baseValue as? String
+        let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate
+        let genderValue = self.form.rowByTag(self.GENDER_TAG)?.baseValue as? String
+        
+        animal.setObject(nameValue!, forKey: "name")
+        if birthDateValue != nil {
+            animal.setObject(birthDateValue!, forKey: "birthDate")
+        }
+        if genderValue != nil {
+            animal.setObject(genderValue!, forKey: "gender")
+        }
+        
+        animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if success {
+                // self.displayAlert("saved")
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                NSLog("%@", error!)
+            }
+        })
+    }
+    
+    func cancel() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 

@@ -9,8 +9,10 @@
 import UIKit
 import Parse
 
-class BreedsTableViewController: PFQueryTableViewController {
+class BreedsTableViewController: PFQueryTableViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override init(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
     }
@@ -23,18 +25,69 @@ class BreedsTableViewController: PFQueryTableViewController {
         self.pullToRefreshEnabled = true
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        tableView.reloadData()
+        self.searchBar.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nav = self.navigationController?.navigationBar
-        nav?.hidden = false
-        nav?.barStyle = UIBarStyle.BlackTranslucent
-        nav?.tintColor = UIColor.whiteColor()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.searchBar.hidden = true
+        
+        self.setUpMenuBarController()
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("search_white", action: "showSearch", height: 25)
+
+    }
+    
+    func showSearch() {
+        if (self.searchBar.hidden) {
+            self.searchBar.hidden = false
+        } else {
+            self.searchBar.hidden = true
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        // Force reload of table data
+        self.loadObjects()
+
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        // Dismiss the keyboard
+        searchBar.resignFirstResponder()
+        
+        // Force reload of table data
+        self.loadObjects()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        // Dismiss the keyboard
+        searchBar.resignFirstResponder()
+        
+        // Force reload of table data
+        self.loadObjects()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        // Clear any search criteria
+        searchBar.text = ""
+        
+        // Dismiss the keyboard
+        searchBar.resignFirstResponder()
+        
+        // Force reload of table data
+        self.loadObjects()
     }
     
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
+        if searchBar.text != "" {
+            query.whereKey("name", containsString: searchBar.text!)
+        }
         query.orderByAscending("name")
         return query
     }

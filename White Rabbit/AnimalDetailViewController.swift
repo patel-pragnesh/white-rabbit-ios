@@ -95,18 +95,10 @@ class AnimalDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nav = self.navigationController?.navigationBar
-        nav?.hidden = false
-        nav?.barStyle = UIBarStyle.BlackTranslucent
-        nav?.tintColor = UIColor.whiteColor()
+        self.setUpNavigationBar()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        let editImage = UIImage(named: "edit_white")
-        let editButton = UIButton(type: .Custom)
-        editButton.setImage(editImage, forState: .Normal)
-        editButton.frame = CGRectMake(0, 0, 25, 25)
-        editButton.addTarget(self, action: "showEditAminalView", forControlEvents: .TouchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("edit_white", action: "showEditAminalView", height: 25)
+
         
         traitTags.textFont = UIFont.systemFontOfSize(15)
         

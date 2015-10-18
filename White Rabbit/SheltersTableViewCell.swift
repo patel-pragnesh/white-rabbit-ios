@@ -15,6 +15,8 @@ class SheltersTableViewCell: PFTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.frame.size.height = 200
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

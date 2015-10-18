@@ -85,9 +85,7 @@ class LoginViewController: UIViewController {
             if succeeded {
                 // Success signing up
                 
-                let hvc = self.storyboard!.instantiateViewControllerWithIdentifier("home") as! LoginViewController
-                
-                self.navigationController!.pushViewController(hvc, animated: true)
+                self.goToHome()
                 
             } else {
                 // Error signing up
@@ -102,9 +100,12 @@ class LoginViewController: UIViewController {
     }
     
     func goToHome() {
-        let hvc = self.storyboard!.instantiateViewControllerWithIdentifier("home") as! HomeViewController
+//        let hvc = self.storyboard!.instantiateViewControllerWithIdentifier("home") as! HomeViewController
+//        
+//        self.presentViewController(hvc, animated: true, completion: nil)
         
-        self.presentViewController(hvc, animated: true, completion: nil)
+        self.storyboard!.instantiateInitialViewController()
+        
     }
     
     override func viewDidLoad() {

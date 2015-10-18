@@ -28,26 +28,16 @@ PODS:
     - InstagramKit/Exclude-UICKeyChainStore (= 3.6.8)
   - InstagramKit/Exclude-UICKeyChainStore (3.6.8):
     - AFNetworking (~> 2.0)
+  - SlideMenuControllerSwift (2.0.0)
   - TagListView (0.3)
-  - YALSideMenu (1.0)
 
 DEPENDENCIES:
   - ALCameraViewController
   - BTNavigationDropdownMenu
   - Eureka
   - InstagramKit
+  - SlideMenuControllerSwift
   - TagListView
-  - YALSideMenu (from `git@github.com:Yalantis/Side-Menu.iOS.git`, branch `swift_2.0`)
-
-EXTERNAL SOURCES:
-  YALSideMenu:
-    :branch: swift_2.0
-    :git: git@github.com:Yalantis/Side-Menu.iOS.git
-
-CHECKOUT OPTIONS:
-  YALSideMenu:
-    :commit: d4010701f65fa4169d172c31323ddf3d38b7386f
-    :git: git@github.com:Yalantis/Side-Menu.iOS.git
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
@@ -55,7 +45,7 @@ SPEC CHECKSUMS:
   BTNavigationDropdownMenu: 23403214197d8fb208dd0ad996e3d236748473c9
   Eureka: eaaf2d79f2286fe040dabdea851adde7997dea7b
   InstagramKit: 2dc81dd8a9b534bbf918fbf8c4bc11eef11040a3
+  SlideMenuControllerSwift: 85ce7142935a32e26de41aa90fac0cc9f60fb01c
   TagListView: c0ffe7e779b3c7a8dc6b7e82b331eacfcc7795b7
-  YALSideMenu: a7a903a4bb5e6157b22d49ce209a99dc837dd5d9
 
 COCOAPODS: 0.38.2

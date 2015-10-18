@@ -10,10 +10,8 @@ import UIKit
 import Parse
 import SideMenu
 
-class AnimalsTableViewController: PFQueryTableViewController, Menu {
+class AnimalsTableViewController: PFQueryTableViewController {
 
-    var menuItems = [UIView]()
-    
     override init(style: UITableViewStyle, className: String!) {
         NSLog("initializing animals table view controller: \(className)")
         
@@ -35,14 +33,11 @@ class AnimalsTableViewController: PFQueryTableViewController, Menu {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nav = self.navigationController?.navigationBar
-        nav?.hidden = false
-        nav?.barStyle = UIBarStyle.BlackTranslucent
-        nav?.tintColor = UIColor.whiteColor()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-
+        self.setUpMenuBarController()
+        
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25)        
     }
-    
+        
     func showAddAminalView() {
         self.performSegueWithIdentifier("AnimalTableToAddAnimal", sender: self)
     }
@@ -55,19 +50,6 @@ class AnimalsTableViewController: PFQueryTableViewController, Menu {
         super.viewWillAppear(animated)
         
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-
-        let menuImage = UIImage(named: "menu_white")
-        let menuButton = UIButton(type: .Custom)
-        menuButton.setImage(menuImage, forState: .Normal)
-        menuButton.frame = CGRectMake(0, 0, 25, 15)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
-        
-        let addImage = UIImage(named: "add_white")
-        let addButton = UIButton(type: .Custom)
-        addButton.setImage(addImage, forState: .Normal)
-        addButton.frame = CGRectMake(0, 0, 25, 25)
-        addButton.addTarget(self, action: "showAddAminalView", forControlEvents: .TouchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
         
         self.tableView.reloadData()
     }

@@ -49,12 +49,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TagListView.xcscheme</key>
+		<key>SlideMenuControllerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>YALSideMenu.xcscheme</key>
+		<key>TagListView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,52 +62,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02F458E7FD9DF4A200A579C05C45ECC4</key>
+		<key>0F07864E44BE034A84FBCD55E9CEB4A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>06D017CBBEFCA35AAD90DBDED57C8CAA</key>
+		<key>52BB7698F567570ACE60E1085384C4A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0AEC91F2D84616440D46B1FECD1628CE</key>
+		<key>5C80616AB90209BB84C56264FB407A2D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>36FC284A512C0D96830AB7E9447FDE26</key>
+		<key>712248CCCAD390B3786CEF46BE47F633</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A33296F716B733DCED1992F21670F68</key>
+		<key>7262ADBD26EE19C793C40342F966F4C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>753D668F2AEC2F46DFF2F5DBACDD6566</key>
+		<key>7A35E3E002D7B52CC96C7A5C8826A951</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>78744C8612B93FB0AC99138D5B30E988</key>
+		<key>92CD7A34599FE0A194E5B030DC3C1B18</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A00B32038FB4B6F0980A4286E27802C5</key>
+		<key>A5BA0A378E4DED8B91AA24A1F5FFF55E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B54378F7BC6B44B5395B876BD659CDC6</key>
+		<key>D2DCFFFFF3A0AD026AD590F165118408</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0EE8D4257E388D64A0236FA102BB3D1</key>
+		<key>F227C5C66D10DB5303CB172FE56B5E5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

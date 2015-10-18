@@ -8,39 +8,54 @@
 
 import UIKit
 import Parse
-import SideMenu
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+    
+    @IBOutlet weak var animalsButton: UIButton!
+    @IBOutlet weak var locationsButton: UIButton!
+    @IBOutlet weak var breedsButton: UIButton!
+    
+    
+    var mainViewController: UIViewController!
+    var locationsViewController: UIViewController!
+    var breedsViewController: UIViewController!
+    
     
     var currentUser: PFUser?
     
-    var menuItems = [UIView]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        let nav = self.navigationController?.navigationBar
-        nav?.hidden = true
-        nav?.barStyle = UIBarStyle.BlackTranslucent
-        nav?.tintColor = UIColor.whiteColor()
-        nav?.frame.size.height = 50
-
-//        let image = UIImage(named: "bg copy copy")
-//        nav?.setBackgroundImage(image, forBarMetrics: .Default)
+        
+        self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsTabView")
+        self.breedsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BreedsTable")
 
         
-
+        self.animalsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
+        self.locationsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
+        self.breedsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
+    }
+    
+    func showView(sender: UIButton!) {
+        switch sender.currentTitle! {
+            case "  Cats":
+                self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
+                break
+            case "  Locations":
+                self.slideMenuController()?.changeMainViewController(self.locationsViewController, close: true)
+                break
+        case "  Breeds":
+            self.slideMenuController()?.changeMainViewController(self.breedsViewController, close: true)
+            break
+            default:
+                break
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-
         
         checkForUser()
     }
@@ -62,7 +77,6 @@ class HomeViewController: UIViewController {
     
     func populateUserInfo() {
         self.nameLabel.text = (currentUser?.valueForKey("firstName") as? String)! + " " + (currentUser?.valueForKey("lastName") as? String)!
-        self.emailLabel.text = currentUser?.valueForKey("email") as? String
 
         self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFit
 

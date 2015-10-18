@@ -26,6 +26,11 @@ class ShelterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+//        self.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+//        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+
+        
         if let object = currentShelterObject {
             NSLog("Viewing detail for shelter: %@\n", object)
             

@@ -57,8 +57,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-White Rabbit/BTNavigationDropdownMenu.framework'
   install_framework 'Pods-White Rabbit/Eureka.framework'
   install_framework 'Pods-White Rabbit/InstagramKit.framework'
+  install_framework 'Pods-White Rabbit/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White Rabbit/TagListView.framework'
-  install_framework 'Pods-White Rabbit/SideMenu.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White Rabbit/AFNetworking.framework'
@@ -66,6 +66,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White Rabbit/BTNavigationDropdownMenu.framework'
   install_framework 'Pods-White Rabbit/Eureka.framework'
   install_framework 'Pods-White Rabbit/InstagramKit.framework'
+  install_framework 'Pods-White Rabbit/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White Rabbit/TagListView.framework'
-  install_framework 'Pods-White Rabbit/SideMenu.framework'
 fi
