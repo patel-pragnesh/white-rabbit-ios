@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Find animals and shelters near you.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -28,6 +26,16 @@
 				<string>fb417687371726647</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.whiterabbit.whiterabbit</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>whiterabbit</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -35,13 +43,31 @@
 	<string>417687371726647</string>
 	<key>FacebookDisplayName</key>
 	<string>white rabbit</string>
+	<key>InstagramAppClientId</key>
+	<string>09214a4e95494f70873ea3f8c7c82960</string>
+	<key>InstagramAppRedirectURL</key>
+	<string>whiterabbit://app</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fb-messenger-api</string>
 		<string>fbshareextension</string>
 		<string>fbapi</string>
+		<string>fbapi20130214</string>
+    <string>fbapi20130410</string>
+    <string>fbapi20130702</string>
+    <string>fbapi20131010</string>
+    <string>fbapi20131219</string>
+    <string>fbapi20140410</string>
+    <string>fbapi20140116</string>
+    <string>fbapi20150313</string>
+    <string>fbapi20150629</string>
 		<string>fbauth</string>
 		<string>fbauth2</string>
+    <string>fb-messenger-api20140430</string>
+		<string>instagram</string>
+		<string>fb</string>
+		<string>youtube</string>
+		<string>twitter</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -50,6 +76,13 @@
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>akamaihd.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>cdninstagram.com</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
 				<false/>
@@ -70,8 +103,17 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
+			<key>instagram.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Find animals and shelters near you.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

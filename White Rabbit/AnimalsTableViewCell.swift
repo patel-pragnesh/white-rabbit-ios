@@ -10,5 +10,7 @@ import UIKit
 
 class AnimalsTableViewCell: PFTableViewCell {
 
+    @IBOutlet weak var coverPhoto: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profilePhoto: UIImageView!
 }

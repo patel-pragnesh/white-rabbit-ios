@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         UILabel.appearance().substituteFontName = "Avenir"
-        
+                
         return true
     }
 
@@ -65,10 +65,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sourceApplication: sourceApplication,
             annotation: annotation)
     }
-
+    
 }
 
 
+extension UIViewController {
+    func displayAlert(title:String, message:String, buttonText: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func displayAlert(message: String) {
+        displayAlert("Alert", message: message, buttonText: "OK")
+    }
+    
+    func openUrl(url:String!) {
+        NSLog("opening url: \(url)")
+        
+        let url = NSURL(string: url)!
+        UIApplication.sharedApplication().openURL(url)
+    }
+    
+    func openAppLinkOrWebUrl(appLink: String!, webUrl: String!) {
+        if(UIApplication.sharedApplication().canOpenURL(NSURL(string: appLink)!)) {
+            openUrl(appLink)
+        } else {
+            openUrl(webUrl)
+        }
+
+    }
+}
+
+
+public extension UITextField {
+    @IBInspectable public var leftSpacer:CGFloat {
+        get {
+            if let l = leftView {
+                return l.frame.size.width
+            } else {
+                return 0
+            }
+        } set {
+            leftViewMode = .Always
+            leftView = UIView(frame: CGRect(x: 0, y: 0, width: newValue, height: frame.size.height))
+        }
+    }
+}
 
 extension String
 {
@@ -93,4 +136,20 @@ extension UILabel {
         set { self.font = UIFont(name: newValue, size: self.font.pointSize) }
     }
 
+}
+
+extension UIImage
+{
+    func roundImage() -> UIImage
+    {
+        let newImage = self.copy() as! UIImage
+        let cornerRadius = self.size.width / 2
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 1.0)
+        let bounds = CGRect(origin: CGPointZero, size: self.size)
+        UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).addClip()
+        newImage.drawInRect(bounds)
+        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return finalImage
+    }
 }

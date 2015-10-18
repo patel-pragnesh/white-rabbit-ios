@@ -63,14 +63,7 @@ class ShelterDetailViewController: UIViewController {
     @IBAction func openDirections(sender: UIButton) {
         openMapsAppWithDirections()
     }
-    
-    func openUrl(url:String!) {
-        NSLog("opening url: \(url)")
         
-        let url = NSURL(string: url)!
-        UIApplication.sharedApplication().openURL(url)
-    }
-    
     func openMapsAppWithDirections() {
         let coordinates = self.getCoordinates()
         let regionDistance:CLLocationDistance = 10000

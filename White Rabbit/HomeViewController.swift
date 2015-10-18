@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import SideMenu
 
 class HomeViewController: UIViewController {
     
@@ -17,12 +18,29 @@ class HomeViewController: UIViewController {
     
     var currentUser: PFUser?
     
+    var menuItems = [UIView]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        let nav = self.navigationController?.navigationBar
+        nav?.hidden = true
+        nav?.barStyle = UIBarStyle.BlackTranslucent
+        nav?.tintColor = UIColor.whiteColor()
+        nav?.frame.size.height = 50
+
+//        let image = UIImage(named: "bg copy copy")
+//        nav?.setBackgroundImage(image, forBarMetrics: .Default)
+
+        
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+
         
         checkForUser()
     }

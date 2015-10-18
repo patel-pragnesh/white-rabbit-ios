@@ -52,10 +52,20 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods/AFNetworking.framework'
   install_framework 'Pods/ALCameraViewController.framework'
+  install_framework 'Pods/BTNavigationDropdownMenu.framework'
+  install_framework 'Pods/Eureka.framework'
+  install_framework 'Pods/InstagramKit.framework'
   install_framework 'Pods/TagListView.framework'
+  install_framework 'Pods/SideMenu.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods/AFNetworking.framework'
   install_framework 'Pods/ALCameraViewController.framework'
+  install_framework 'Pods/BTNavigationDropdownMenu.framework'
+  install_framework 'Pods/Eureka.framework'
+  install_framework 'Pods/InstagramKit.framework'
   install_framework 'Pods/TagListView.framework'
+  install_framework 'Pods/SideMenu.framework'
 fi

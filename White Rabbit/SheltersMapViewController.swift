@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import BTNavigationDropdownMenu
 
 class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -20,6 +21,21 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
         NSLog("initializing shelters map view controller")
 
         super.viewDidLoad()
+        
+        let nav = self.navigationController?.navigationBar
+        nav?.hidden = false
+        nav?.barStyle = UIBarStyle.BlackTranslucent
+        nav?.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+
+        
+        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
+        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
+        menuView.cellTextLabelColor = UIColor.whiteColor()
+        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        self.tabBarController?.navigationItem.titleView = menuView
+        self.navigationItem.titleView = menuView
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest

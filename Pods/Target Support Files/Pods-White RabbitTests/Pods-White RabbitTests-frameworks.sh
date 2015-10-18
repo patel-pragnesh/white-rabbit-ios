@@ -52,10 +52,20 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods-White RabbitTests/AFNetworking.framework'
   install_framework 'Pods-White RabbitTests/ALCameraViewController.framework'
+  install_framework 'Pods-White RabbitTests/BTNavigationDropdownMenu.framework'
+  install_framework 'Pods-White RabbitTests/Eureka.framework'
+  install_framework 'Pods-White RabbitTests/InstagramKit.framework'
   install_framework 'Pods-White RabbitTests/TagListView.framework'
+  install_framework 'Pods-White RabbitTests/SideMenu.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods-White RabbitTests/AFNetworking.framework'
   install_framework 'Pods-White RabbitTests/ALCameraViewController.framework'
+  install_framework 'Pods-White RabbitTests/BTNavigationDropdownMenu.framework'
+  install_framework 'Pods-White RabbitTests/Eureka.framework'
+  install_framework 'Pods-White RabbitTests/InstagramKit.framework'
   install_framework 'Pods-White RabbitTests/TagListView.framework'
+  install_framework 'Pods-White RabbitTests/SideMenu.framework'
 fi

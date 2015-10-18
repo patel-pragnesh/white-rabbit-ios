@@ -8,10 +8,15 @@
 
 import UIKit
 import Parse
+import InstagramKit
 
 class PostsTableViewController: PFQueryTableViewController {
 
+    var engine : InstagramEngine
+    
     required init(coder aDecoder:NSCoder) {
+        self.engine = InstagramEngine.sharedEngine()
+
         super.init(coder: aDecoder)!
     }
     
@@ -30,11 +35,10 @@ class PostsTableViewController: PFQueryTableViewController {
             cell = PostsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "PostCell")
         }
         
-        NSLog("post data: %@\n", object!)
         
         // Extract values from the PFObject to display in the table cell
         // cell!.name.text = object?["name"] as? String
-        
+                
         let imageFile = object?["image"] as? PFFile
         imageFile?.getDataInBackgroundWithBlock({
             (imageData: NSData?, error: NSError?) -> Void in

@@ -19,8 +19,33 @@ import UIKit
 import UIKit
 import MapKit
 import Parse
+import BTNavigationDropdownMenu
 
 class SheltersTableViewController: PFQueryTableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let nav = self.navigationController?.navigationBar
+        nav?.hidden = false
+        nav?.barStyle = UIBarStyle.BlackTranslucent
+        nav?.tintColor = UIColor.whiteColor()
+//        self.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+
+        
+        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
+        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
+        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        menuView.cellTextLabelColor = UIColor.whiteColor()
+//        menuView.tintColor = UIColor.whiteColor()
+//        menuView.menuTitleColor = UIColor.whiteColor()
+//        menuView.cellSelectionColor = UIColor.whiteColor()
+//        menuView.tintColor = UIColor.whiteColor()
+//        menuView.maskBackgroundColor = UIColor.whiteColor()
+//        self.navigationItem.titleView?.tintColor = UIColor.whiteColor()
+        self.navigationItem.titleView = menuView
+    }
     
     override init(style: UITableViewStyle, className: String!) {
         NSLog("initializing shelters table view controller: \(className)")
@@ -37,7 +62,7 @@ class SheltersTableViewController: PFQueryTableViewController {
         
         self.parseClassName = "Shelter"
         self.paginationEnabled = false
-        self.pullToRefreshEnabled = true
+        self.pullToRefreshEnabled = false
     }
     
     override func queryForTable() -> PFQuery {

@@ -4,7 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ALCameraViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>BTNavigationDropdownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Eureka.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>InstagramKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,30 +54,60 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>YALSideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6408A7522D01909F28E218D3C602D279</key>
+		<key>02F458E7FD9DF4A200A579C05C45ECC4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>654FFDFD011685609BDACAD8E9D79E69</key>
+		<key>06D017CBBEFCA35AAD90DBDED57C8CAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88E473129C4ED5101721F025B72B2034</key>
+		<key>0AEC91F2D84616440D46B1FECD1628CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D4422A0CA9F7FE4222F44F7217CEB6B</key>
+		<key>36FC284A512C0D96830AB7E9447FDE26</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EBA927BCEFCEECD8C5D8018A59DBA603</key>
+		<key>4A33296F716B733DCED1992F21670F68</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>753D668F2AEC2F46DFF2F5DBACDD6566</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>78744C8612B93FB0AC99138D5B30E988</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A00B32038FB4B6F0980A4286E27802C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B54378F7BC6B44B5395B876BD659CDC6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0EE8D4257E388D64A0236FA102BB3D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

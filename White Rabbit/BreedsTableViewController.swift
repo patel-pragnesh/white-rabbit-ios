@@ -23,6 +23,16 @@ class BreedsTableViewController: PFQueryTableViewController {
         self.pullToRefreshEnabled = true
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let nav = self.navigationController?.navigationBar
+        nav?.hidden = false
+        nav?.barStyle = UIBarStyle.BlackTranslucent
+        nav?.tintColor = UIColor.whiteColor()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+    }
+    
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.orderByAscending("name")
