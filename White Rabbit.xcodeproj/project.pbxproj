@@ -36,6 +36,7 @@
 		EDCF6EC91BD4A33600C46D90 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC61BD4A33500C46D90 /* FBSDKCoreKit.framework */; };
 		EDCF6ECA1BD4A33600C46D90 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC71BD4A33500C46D90 /* FBSDKLoginKit.framework */; };
 		EDCF6ECB1BD4A33600C46D90 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC81BD4A33500C46D90 /* Parse.framework */; };
+		EDCF6ECE1BD4AB5400C46D90 /* FacebookSDKStrings.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */; };
 		EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */; };
 		EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */; };
 		EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */; };
@@ -120,6 +121,7 @@
 		EDCF6EC61BD4A33500C46D90 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		EDCF6EC71BD4A33500C46D90 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		EDCF6EC81BD4A33500C46D90 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
+		EDCF6ECC1BD4A96400C46D90 /* Facebook_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Facebook_iOS_SDK.framework; path = "Pods/../build/Debug-iphoneos/Facebook_iOS_SDK.framework"; sourceTree = "<group>"; };
 		EDDF73BE1BD3442D00E7C863 /* BTNavigationDropdownMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTNavigationDropdownMenu.framework; path = "Pods/../build/Debug-iphoneos/BTNavigationDropdownMenu.framework"; sourceTree = "<group>"; };
 		EDE6D4301BA7B2BC00C7AC8C /* White Rabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White Rabbit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCF6ECE1BD4AB5400C46D90 /* FacebookSDKStrings.bundle in Frameworks */,
 				EDCF6EC91BD4A33600C46D90 /* FBSDKCoreKit.framework in Frameworks */,
 				EDCF6ECA1BD4A33600C46D90 /* FBSDKLoginKit.framework in Frameworks */,
 				EDCF6ECB1BD4A33600C46D90 /* Parse.framework in Frameworks */,
@@ -287,6 +290,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDCF6ECC1BD4A96400C46D90 /* Facebook_iOS_SDK.framework */,
 				EDCF6EC61BD4A33500C46D90 /* FBSDKCoreKit.framework */,
 				EDCF6EC71BD4A33500C46D90 /* FBSDKLoginKit.framework */,
 				EDCF6EC81BD4A33500C46D90 /* Parse.framework */,
