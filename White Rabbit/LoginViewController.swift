@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
                     if let data = NSData(contentsOfURL: url){
 
                         let fileName:String = fbId! + ".jpg"
-                        let imageFile:PFFile = PFFile(name: fileName, data: data)
+                        let imageFile:PFFile = PFFile(name: fileName, data: data)!
                         
                         user?.setValue(imageFile, forKey: "profilePhoto")
                     }

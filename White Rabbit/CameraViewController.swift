@@ -66,7 +66,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         let imageData = UIImageJPEGRepresentation(imagePreview.image!, 0.5)
         let fileName:String = (String)(PFUser.currentUser()!.username!) + "-" + (String)(NSDate().description.replace(" ", withString:"_").replace(":", withString:"-").replace("+", withString:"~")) + ".jpg"
-        let imageFile:PFFile = PFFile(name: fileName, data: imageData!)
+        let imageFile:PFFile = PFFile(name: fileName, data: imageData!)!
         
         let post = PFObject(className: "Post")
         post["image"] = imageFile

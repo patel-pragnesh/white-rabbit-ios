@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XLForm
 import TagListView
 
 class AnimalDetailViewController: UIViewController {

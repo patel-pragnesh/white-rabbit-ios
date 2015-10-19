@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import SideMenu
+import ParseUI
 
 class AnimalsTableViewController: PFQueryTableViewController {
 

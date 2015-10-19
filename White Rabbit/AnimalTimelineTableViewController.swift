@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class AnimalTimelineTableViewController: PFQueryTableViewController {
 

@@ -6,6 +6,8 @@
 //  Copyright © 2015 White Rabbit Technology. All rights reserved.
 //
 import UIKit
+import Parse
+import ParseUI
 
 class SheltersTableViewCell: PFTableViewCell {
     

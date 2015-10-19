@@ -2,13 +2,15 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
+pod 'FBSDKLoginKit', :podspec => 'https://gist.githubusercontent.com/nlutsenko/cf1775dcae07eca6be43/raw/58b919433be07b791dd1036249185b22ecc3de3f/FBSDKLoginKit.podspec'
+pod 'Parse'
+pod 'ParseUI'
+pod 'ParseFacebookUtilsV4'
 pod 'TagListView'
 pod 'ALCameraViewController'
 pod 'InstagramKit'
-#pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
 pod 'Eureka'
 pod 'BTNavigationDropdownMenu'
-#pod 'YALSideMenu', :git => 'git@github.com:Yalantis/Side-Menu.iOS.git', :branch => 'swift_2.0'
 pod 'SlideMenuControllerSwift'
 
 target 'White Rabbit' do
