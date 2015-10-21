@@ -25,10 +25,17 @@
 import UIKit
 import Foundation
 
-internal protocol FieldRowConformance : class {
+internal protocol FieldRowConformance : FormatterConformance {
     var textFieldPercentage : CGFloat? { get set }
     var placeholder : String? { get set }
     var placeholderColor : UIColor? { get set }
+}
+
+internal protocol TextAreaConformance : FormatterConformance {
+    var placeholder : String? { get set }
+}
+
+internal protocol FormatterConformance: class {
     var formatter: NSFormatter? { get set }
     var useFormatterDuringInput: Bool { get set }
 }
@@ -66,7 +73,13 @@ public class FieldRow<T: Any, Cell: CellType where Cell: BaseCell, Cell: TextFie
     }
 }
 
-public class _DateFieldRow: Row<NSDate, DateCell> {
+public protocol _DatePickerRowProtocol {
+    var minimumDate : NSDate? { get set }
+    var maximumDate : NSDate? { get set }
+    var minuteInterval : Int? { get set }
+}
+
+public class _DateFieldRow: Row<NSDate, DateCell>, _DatePickerRowProtocol {
     
     public var minimumDate : NSDate?
     public var maximumDate : NSDate?
@@ -80,7 +93,81 @@ public class _DateFieldRow: Row<NSDate, DateCell> {
             return formatter.stringFromDate(val)
         }
     }
+}
+
+public class _DateInlineFieldRow: Row<NSDate, DateInlineCell>, _DatePickerRowProtocol {
     
+    public var minimumDate : NSDate?
+    public var maximumDate : NSDate?
+    public var minuteInterval : Int?
+    public var dateFormatter: NSDateFormatter?
+    
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        displayValueFor = { [unowned self] value in
+            guard let val = value, let formatter = self.dateFormatter else { return nil }
+            return formatter.stringFromDate(val)
+        }
+    }
+}
+
+public class _DateInlineRow: _DateInlineFieldRow {
+    
+    public typealias InlineRow = DatePickerRow
+    
+    public required init(tag: String?) {
+        super.init(tag: tag)
+        dateFormatter = NSDateFormatter()
+        dateFormatter?.timeStyle = .NoStyle
+        dateFormatter?.dateStyle = .MediumStyle
+        dateFormatter?.locale = .currentLocale()
+    }
+}
+
+public class _DateTimeInlineRow: _DateInlineFieldRow {
+
+    public typealias InlineRow = DateTimePickerRow
+    
+    public required init(tag: String?) {
+        super.init(tag: tag)
+        dateFormatter = NSDateFormatter()
+        dateFormatter?.timeStyle = .ShortStyle
+        dateFormatter?.dateStyle = .ShortStyle
+        dateFormatter?.locale = .currentLocale()
+    }
+}
+
+public class _TimeInlineRow: _DateInlineFieldRow {
+    
+    public typealias InlineRow = TimePickerRow
+    
+    public required init(tag: String?) {
+        super.init(tag: tag)
+        dateFormatter = NSDateFormatter()
+        dateFormatter?.timeStyle = .ShortStyle
+        dateFormatter?.dateStyle = .NoStyle
+        dateFormatter?.locale = .currentLocale()
+    }
+}
+
+public class _CountDownInlineRow: _DateInlineFieldRow {
+    
+    public typealias InlineRow = CountDownPickerRow
+    
+    public required init(tag: String?) {
+        super.init(tag: tag)
+        displayValueFor =  {
+            guard let date = $0 else {
+                return nil
+            }
+            let hour = NSCalendar.currentCalendar().component(.Hour, fromDate: date)
+            let min = NSCalendar.currentCalendar().component(.Minute, fromDate: date)
+            if hour == 1{
+                return "\(hour) hour \(min) min"
+            }
+            return "\(hour) hours \(min) min"
+        }
+    }
 }
 
 public class _TextRow: FieldRow<String, TextCell> {
@@ -93,7 +180,7 @@ public class _IntRow: FieldRow<Int, IntCell> {
     public required init(tag: String?) {
         super.init(tag: tag)
         let numberFormatter = NSNumberFormatter()
-        numberFormatter.locale = NSLocale.currentLocale()
+        numberFormatter.locale = .currentLocale()
         numberFormatter.numberStyle = .DecimalStyle
         numberFormatter.minimumFractionDigits = 0
         formatter = numberFormatter
@@ -128,7 +215,7 @@ public class _DecimalRow: FieldRow<Float, DecimalCell> {
     public required init(tag: String?) {
         super.init(tag: tag)
         let numberFormatter = NSNumberFormatter()
-        numberFormatter.locale = NSLocale.currentLocale()
+        numberFormatter.locale = .currentLocale()
         numberFormatter.numberStyle = .DecimalStyle
         numberFormatter.minimumFractionDigits = 2
         formatter = numberFormatter
@@ -157,7 +244,7 @@ public class _TimeRow: _DateFieldRow {
     required public init(tag: String?) {
         super.init(tag: tag)
         dateFormatter = NSDateFormatter()
-        dateFormatter?.timeStyle = .MediumStyle
+        dateFormatter?.timeStyle = .ShortStyle
         dateFormatter?.dateStyle = .NoStyle
         dateFormatter?.locale = NSLocale.currentLocale()
     }
@@ -203,8 +290,19 @@ public class _CountDownRow: _DateFieldRow {
     }
 }
 
+public class _DatePickerRow : Row<NSDate, DatePickerCell>, _DatePickerRowProtocol {
+    
+    public var minimumDate : NSDate?
+    public var maximumDate : NSDate?
+    public var minuteInterval : Int?
+    
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        displayValueFor = nil
+    }
+}
 
-public class _TextAreaRow: GenericTextAreaRow<String, TextAreaCell> {
+public class _TextAreaRow: AreaRow<String, TextAreaCell> {
     required public init(tag: String?) {
         super.init(tag: tag)
     }
@@ -238,18 +336,36 @@ public class _PushRow<T: Equatable> : SelectorRow<T, SelectorViewController<T>>,
     }
 }
 
-
-internal protocol TextAreaProtocol : class {
-    var placeholder : String? { get set }
-}
-
-public class GenericTextAreaRow<T: Equatable, Cell: CellType where Cell: BaseCell, Cell.Value == T>: Row<T, Cell>, TextAreaProtocol {
+public class AreaRow<T: Equatable, Cell: CellType where Cell: BaseCell, Cell: AreaCell, Cell.Value == T>: Row<T, Cell>, TextAreaConformance {
     
     public var placeholder : String?
+    public var formatter: NSFormatter?
+    public var useFormatterDuringInput: Bool
     
-    required public init(tag: String?) {
+    public required init(tag: String?) {
+        useFormatterDuringInput = false
         super.init(tag: tag)
+        self.displayValueFor = { [unowned self] value in
+            guard let v = value else {
+                return nil
+            }
+            if let formatter = self.formatter {
+                if self.cell.textView.isFirstResponder() {
+                    if self.useFormatterDuringInput {
+                        return formatter.editingStringForObjectValue(v as! AnyObject)
+                    }
+                    else {
+                        return String(v)
+                    }
+                }
+                return formatter.stringForObjectValue(v as! AnyObject)
+            }
+            else{
+                return String(v)
+            }
+        }
     }
+
 }
 
 public class OptionsRow<T: Equatable, Cell: CellType where Cell: BaseCell, Cell.Value == T> : Row<T, Cell> {
@@ -287,16 +403,14 @@ public class _ActionSheetRow<T: Equatable>: OptionsRow<T, AlertSelectorCell<T>>,
     
     public override func customDidSelect() {
         super.customDidSelect()
-        if !isDisabled {
-            if let presentationMode = presentationMode {
-                if let controller = presentationMode.createController(){
-                    controller.row = self
-                    onPresentCallback?(cell.formViewController()!, controller)
-                    presentationMode.presentViewController(controller, row: self, presentingViewController: self.cell.formViewController()!)
-                }
-                else{
-                    presentationMode.presentViewController(nil, row: self, presentingViewController: self.cell.formViewController()!)
-                }
+        if let presentationMode = presentationMode where !isDisabled {
+            if let controller = presentationMode.createController(){
+                controller.row = self
+                onPresentCallback?(cell.formViewController()!, controller)
+                presentationMode.presentViewController(controller, row: self, presentingViewController: cell.formViewController()!)
+            }
+            else{
+                presentationMode.presentViewController(nil, row: self, presentingViewController: cell.formViewController()!)
             }
         }
     }
@@ -324,69 +438,16 @@ public class _AlertRow<T: Equatable>: OptionsRow<T, AlertSelectorCell<T>>, Prese
     
     public override func customDidSelect() {
         super.customDidSelect()
-        if !isDisabled {
-            if let presentationMode = presentationMode {
-                if let controller = presentationMode.createController(){
-                    controller.row = self
-                    onPresentCallback?(cell.formViewController()!, controller)
-                    presentationMode.presentViewController(controller, row: self, presentingViewController: cell.formViewController()!)
-                }
-                else{
-                    presentationMode.presentViewController(nil, row: self, presentingViewController: cell.formViewController()!)
-                }
+        if let presentationMode = presentationMode where !isDisabled  {
+            if let controller = presentationMode.createController(){
+                controller.row = self
+                onPresentCallback?(cell.formViewController()!, controller)
+                presentationMode.presentViewController(controller, row: self, presentingViewController: cell.formViewController()!)
+            }
+            else{
+                presentationMode.presentViewController(nil, row: self, presentingViewController: cell.formViewController()!)
             }
         }
-    }
-}
-
-public class SelectorRow<T: Equatable, VCType: TypedRowControllerType where VCType: UIViewController,  VCType.RowValue == T>: OptionsRow<T, PushSelectorCell<T>> {
-    
-    public var presentationMode: PresentationMode<VCType>?
-    public var onPresentCallback : ((FormViewController, VCType)->())?
-    
-    required public init(tag: String?) {
-        super.init(tag: tag)
-    }
-    
-    public required convenience init(_ tag: String, _ initializer: (SelectorRow<T, VCType> -> ()) = { _ in }) {
-        self.init(tag:tag)
-        let callback : (SelectorRow<T, VCType> -> ()) = RowDefaults.sharedInstance.defaultRowInitializer(self.dynamicType) as! SelectorRow<T, VCType> -> ()
-        callback(self)
-        initializer(self)
-    }
-    
-    public override func customDidSelect() {
-        super.customDidSelect()
-        if !isDisabled {
-            if let presentationMode = presentationMode {
-                if let controller = presentationMode.createController(){
-                    controller.row = self
-                    if let title = selectorTitle {
-                        controller.title = title
-                    }
-                    onPresentCallback?(cell.formViewController()!, controller)
-                    presentationMode.presentViewController(controller, row: self, presentingViewController: self.cell.formViewController()!)
-                }
-                else{
-                    presentationMode.presentViewController(nil, row: self, presentingViewController: self.cell.formViewController()!)
-                }
-            }
-        }
-    }
-    
-    public override func prepareForSegue(segue: UIStoryboardSegue) {
-        super.prepareForSegue(segue)
-        guard let rowVC = segue.destinationViewController as? VCType else {
-            return
-        }
-        if let title = selectorTitle {
-            rowVC.title = title
-        }
-        if let callback = self.presentationMode?.completionHandler{
-            rowVC.completionCallback = callback
-        }
-        onPresentCallback?(cell.formViewController()!, rowVC)
-        rowVC.row = self
     }
 }
 
@@ -413,67 +474,6 @@ public class _ImageRow : SelectorRow<UIImage, ImagePickerController>, PresenterR
     }
 }
 
-
-public class GenericMultipleSelectorRow<T: Hashable, VCType: TypedRowControllerType where VCType: UIViewController,  VCType.RowValue == Set<T>>: Row<Set<T>, PushSelectorCell<Set<T>>> {
-    
-    public var presentationMode: PresentationMode<VCType>?
-    public var onPresentCallback : ((FormViewController, VCType)->())?
-    
-    public var selectorTitle: String?
-    
-    public var options: [T] {
-        get { return self.dataProvider?.arrayData?.map({ $0.first! }) ?? [] }
-        set { self.dataProvider = DataProvider(arrayData: newValue.map({ Set<T>(arrayLiteral: $0) })) }
-    }
-    
-    required public init(tag: String?) {
-        super.init(tag: tag)
-        presentationMode = .Show(controllerProvider: ControllerProvider.Callback { return VCType() }, completionCallback: { vc in vc.navigationController?.popViewControllerAnimated(true) })
-    }
-    
-    public required convenience init(_ tag: String, _ initializer: (GenericMultipleSelectorRow<T, VCType> -> ()) = { _ in }) {
-        self.init(tag:tag)
-        let callback : (GenericMultipleSelectorRow<T, VCType> -> ()) = RowDefaults.sharedInstance.defaultRowInitializer(self.dynamicType) as! GenericMultipleSelectorRow<T, VCType> -> ()
-        callback(self)
-        initializer(self)
-    }
-    
-    public override func customDidSelect() {
-        super.customDidSelect()
-        if !isDisabled {
-            if let presentationMode = presentationMode {
-                if let controller = presentationMode.createController(){
-                    controller.row = self
-                    if let title = selectorTitle {
-                        controller.title = title
-                    }
-                    onPresentCallback?(cell.formViewController()!, controller)
-                    presentationMode.presentViewController(controller, row: self, presentingViewController: self.cell.formViewController()!)
-                }
-                else{
-                    presentationMode.presentViewController(nil, row: self, presentingViewController: self.cell.formViewController()!)
-                }
-            }
-        }
-    }
-    
-    public override func prepareForSegue(segue: UIStoryboardSegue) {
-        super.prepareForSegue(segue)
-        guard let rowVC = segue.destinationViewController as? VCType else {
-            return
-        }
-        if let title = selectorTitle {
-            rowVC.title = title
-        }
-        if let callback = self.presentationMode?.completionHandler{
-            rowVC.completionCallback = callback
-        }
-        onPresentCallback?(cell.formViewController()!, rowVC)
-        rowVC.row = self
-
-    }
-}
-
 public class _MultipleSelectorRow<T: Hashable> : GenericMultipleSelectorRow<T, MultipleSelectorViewController<T>>, PresenterRowType {
     public required init(tag: String?) {
         super.init(tag: tag)
@@ -481,7 +481,7 @@ public class _MultipleSelectorRow<T: Hashable> : GenericMultipleSelectorRow<T, M
             if let t = $0 {
                 return t.map({ String($0) }).joinWithSeparator(", ")
             }
-            return ""
+            return nil
         }
     }
 }
@@ -610,26 +610,158 @@ public final class LabelRow: _LabelRow, RowType {
     }
 }
 
-public final class TimeRow: _TimeRow, RowType {
-    required public init(tag: String?) {
-        super.init(tag: tag)
-    }
-}
-
 public final class DateRow: _DateRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row in
+            let color = cell.detailTextLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
+    }
+}
+
+public final class TimeRow: _TimeRow, RowType {
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        onCellHighlight { cell, row in
+            let color = cell.detailTextLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class DateTimeRow: _DateTimeRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row in
+            let color = cell.detailTextLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class CountDownRow: _CountDownRow, RowType {
     required public init(tag: String?) {
+        super.init(tag: tag)
+        onCellHighlight { cell, row in
+            let color = cell.detailTextLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
+    }
+}
+
+public final class DateInlineRow: _DateInlineRow, RowType, InlineRowType {
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        onExpandInlineRow { cell, row, _ in
+            let color = cell.detailTextLabel?.textColor
+            row.onCollapseInlineRow { cell, _, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
+    }
+    
+    public override func customDidSelect() {
+        super.customDidSelect()
+        if !isDisabled {
+            toggleInlineRow()
+        }
+    }
+}
+
+public final class TimeInlineRow: _TimeInlineRow, RowType, InlineRowType {
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        onExpandInlineRow { cell, row, _ in
+            let color = cell.detailTextLabel?.textColor
+            row.onCollapseInlineRow { cell, _, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
+    }
+    
+    public override func customDidSelect() {
+        super.customDidSelect()
+        if !isDisabled {
+            toggleInlineRow()
+        }
+    }
+}
+
+public final class DateTimeInlineRow: _DateTimeInlineRow, RowType, InlineRowType {
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        onExpandInlineRow { cell, row, _ in
+            let color = cell.detailTextLabel?.textColor
+            row.onCollapseInlineRow { cell, _, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
+    }
+    
+    public override func customDidSelect() {
+        super.customDidSelect()
+        if !isDisabled {
+            toggleInlineRow()
+        }
+    }
+}
+
+public final class CountDownInlineRow: _CountDownInlineRow, RowType, InlineRowType {
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        onExpandInlineRow { cell, row, _ in
+            let color = cell.detailTextLabel?.textColor
+            row.onCollapseInlineRow { cell, _, _ in
+                cell.detailTextLabel?.textColor = color
+            }
+            cell.detailTextLabel?.textColor = cell.tintColor
+        }
+    }
+    
+    public override func customDidSelect() {
+        super.customDidSelect()
+        if !isDisabled {
+            toggleInlineRow()
+        }
+    }
+}
+
+public final class DatePickerRow : _DatePickerRow, RowType {
+    public required init(tag: String?) {
+        super.init(tag: tag)
+    }
+}
+
+public final class TimePickerRow : _DatePickerRow, RowType {
+    public required init(tag: String?) {
+        super.init(tag: tag)
+    }
+}
+
+public final class DateTimePickerRow : _DatePickerRow, RowType {
+    public required init(tag: String?) {
+        super.init(tag: tag)
+    }
+}
+
+public final class CountDownPickerRow : _DatePickerRow, RowType {
+    public required init(tag: String?) {
         super.init(tag: tag)
     }
 }
@@ -637,60 +769,130 @@ public final class CountDownRow: _CountDownRow, RowType {
 public final class TextRow: _TextRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class NameRow: _NameRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class PasswordRow: _PasswordRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class EmailRow: _EmailRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class TwitterRow: _TwitterRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class AccountRow: _AccountRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class IntRow: _IntRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class DecimalRow: _DecimalRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class URLRow: _URLRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
 public final class PhoneRow: _PhoneRow, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
+        onCellHighlight { cell, row  in
+            let color = cell.textLabel?.textColor
+            row.onCellUnHighlight { cell, _ in
+                cell.textLabel?.textColor = color
+            }
+            cell.textLabel?.textColor = cell.tintColor
+        }
     }
 }
 
@@ -743,7 +945,6 @@ public final class ButtonRowOf<T: Equatable> : _ButtonRowOf<T>, RowType {
 }
 
 public typealias ButtonRow = ButtonRowOf<String>
-
 
 public final class ButtonRowWithPresent<T: Equatable, VCType: TypedRowControllerType where VCType: UIViewController, VCType.RowValue == T> : _ButtonRowWithPresent<T, VCType>, RowType {
     public required init(tag: String?) {

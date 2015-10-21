@@ -104,8 +104,10 @@ class LoginViewController: UIViewController {
 //        
 //        self.presentViewController(hvc, animated: true, completion: nil)
         
-        self.storyboard!.instantiateInitialViewController()
-        
+//        self.storyboard!.instantiateInitialViewController()
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.loadMainController()
     }
     
     override func viewDidLoad() {

@@ -35,19 +35,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UILabel.appearance().substituteFontName = "Avenir"
 
+        loadMainController()
+        
+        return true
+    }
+    
+    func loadMainController() {
         let storyboard = self.window?.rootViewController?.storyboard
         let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
-
+        
         let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        homeController.checkForUser(false)
+        let user = homeController.currentUser as PFUser?
+        let tableController = animalsController?.childViewControllers.first as! AnimalsTableViewController
+        if(user != nil) {
+            tableController.owner = user!
+        } else {
+            tableController.featured = true
+        }
         homeController.mainViewController = animalsController
         
         let slideMenuController = SlideMenuController(mainViewController: animalsController!, leftMenuViewController: homeController)
-
+        
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
-
-        
-        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -33,10 +33,12 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
 //        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
 //
 //        
-//        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
-//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
-//        menuView.cellTextLabelColor = UIColor.whiteColor()
-//        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
+        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+        menuView.cellTextLabelColor = UIColor.whiteColor()
+        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        self.navigationItem.titleView = menuView
+
         
 //        self.locationTypeMenuBar.barStyle = UIBarStyle.BlackTranslucent
 //        self.locationTypeMenuBar.tintColor = UIColor.whiteColor()

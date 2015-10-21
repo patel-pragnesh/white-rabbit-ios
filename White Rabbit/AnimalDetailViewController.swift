@@ -88,7 +88,7 @@ class AnimalDetailViewController: UIViewController {
     }
     
     func showEditAminalView() {
-        displayAlert("editing")
+        self.performSegueWithIdentifier("AnimalDetailToEditAnimal", sender: self)
     }
     
     override func viewDidLoad() {
@@ -211,6 +211,9 @@ class AnimalDetailViewController: UIViewController {
         if(segue.identifier == "AnimalToBreedDetail") {
             let detailScene = segue.destinationViewController as! BreedDetailViewController
             detailScene.currentBreedObject = self.breedObject
+        } else if(segue.identifier == "AnimalDetailToEditAnimal"){
+            let editScene = segue.destinationViewController as! AnimalFormViewController
+            editScene.animalObject = self.currentAnimalObject        
         } else if(segue.identifier == "AnimalToTraitSelector") {
             let traitSelector = segue.destinationViewController as! TraitSelectorTableViewController
             NSLog("trait objects before: \(self.traitObjects)")

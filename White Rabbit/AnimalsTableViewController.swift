@@ -9,9 +9,13 @@
 import UIKit
 import Parse
 import ParseUI
+import BTNavigationDropdownMenu
 
 class AnimalsTableViewController: PFQueryTableViewController {
 
+    var owner : PFUser?
+    var featured : Bool = false
+    
     override init(style: UITableViewStyle, className: String!) {
         NSLog("initializing animals table view controller: \(className)")
         
@@ -25,6 +29,13 @@ class AnimalsTableViewController: PFQueryTableViewController {
     override func queryForTable() -> PFQuery {
         NSLog("queryForTable: " + self.parseClassName!)
         let query = PFQuery(className: self.parseClassName!)
+        if self.owner != nil {
+            NSLog("query for: \(owner)")
+            query.whereKey("owner", equalTo: owner!)
+        }
+        if self.featured {
+            query.whereKey("featured", equalTo: true)
+        }
         query.orderByAscending("name")
         query.includeKey("breed")
         return query
@@ -32,6 +43,19 @@ class AnimalsTableViewController: PFQueryTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let items = ["Featured", "Mine"]
+        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+        menuView.cellTextLabelColor = UIColor.whiteColor()
+        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        self.navigationItem.titleView = menuView
+        
+        let menuViewController = self.slideMenuController()?.leftViewController as! HomeViewController
+        let user = menuViewController.currentUser as PFUser?
+        NSLog("found user \(user)")
+        if user != nil {
+            self.owner = user!
+        }
         
         self.setUpMenuBarController()
         

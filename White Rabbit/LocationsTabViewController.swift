@@ -20,13 +20,6 @@ class LocationsTabViewController: UITabBarController {
         
         self.tabBar.frame.size.height = 150
         
-//        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
-//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
-//        menuView.cellTextLabelColor = UIColor.whiteColor()
-//        menuView.cellBackgroundColor = UIColor.darkGrayColor()
-//        self.tabBarController?.navigationItem.titleView = menuView
-//        self.navigationItem.titleView = menuView
-        
 //        let nav = self.navigationController?.navigationBar
 //        nav?.barStyle = UIBarStyle.BlackTranslucent
 //        nav?.tintColor = UIColor.whiteColor()

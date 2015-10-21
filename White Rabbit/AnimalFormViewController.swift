@@ -19,6 +19,16 @@ class AnimalFormViewController : FormViewController {
     let BIRTHDATE_TAG = "birthDate"
     let GENDER_TAG = "gender"
     
+    var animalObject : PFObject?
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
+    func isEditMode() -> Bool {
+        return (self.animalObject != nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,22 +36,43 @@ class AnimalFormViewController : FormViewController {
         
         self.setUpNavigationBar()
 
-        self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25)
+        if !self.isEditMode() {
+            self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25)
+        } else {
+            self.navigationItem.title = "Edit Cat"
+        }
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveAnimal", height: 20)
     }
     
+//    
+//    func populateForm() {
+//        if self.animalObject != nil {
+//            self.form.rowByTag(self.NAME_TAG)?.baseCell.
+//        }
+//    }
+//    
+    
     func generateForm() {
-        
         form +++= Section("Info")
             <<< NameRow(NAME_TAG) {
                 $0.title = "Name"
+                if self.isEditMode() {
+                    $0.value = self.animalObject?.objectForKey("name") as? String
+                }
             }
             <<< DateRow(BIRTHDATE_TAG) {
                 $0.title = "Birth Date"
+                if self.isEditMode() {
+                    $0.value = self.animalObject?.objectForKey("birthDate") as? NSDate
+                }
             }
             <<< SegmentedRow<String>(GENDER_TAG) {
                 $0.title = "Gender"
                 $0.options = ["Male", "Female"]
+                if self.isEditMode() {
+                    $0.value = self.animalObject?.objectForKey("gender") as? String
+                }
+
             }
 
 //        form +++= Section("Photos")
@@ -86,7 +117,11 @@ class AnimalFormViewController : FormViewController {
     }
     
     func saveAnimal() {
-        let animal = PFObject(className: "Animal")
+        NSLog("saving animal")
+        var animal = PFObject(className: "Animal")
+        if self.isEditMode() {
+            animal = self.animalObject!
+        }
         
         let nameValue = self.form.rowByTag(self.NAME_TAG)?.baseValue as? String
         let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate
@@ -102,7 +137,6 @@ class AnimalFormViewController : FormViewController {
         
         animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             if success {
-                // self.displayAlert("saved")
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 NSLog("%@", error!)

@@ -56,6 +56,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-White RabbitUITests/ALCameraViewController.framework'
   install_framework 'Pods-White RabbitUITests/BTNavigationDropdownMenu.framework'
   install_framework 'Pods-White RabbitUITests/Bolts.framework'
+  install_framework 'Pods-White RabbitUITests/Dodo.framework'
+  install_framework 'Pods-White RabbitUITests/DynamicColor.framework'
   install_framework 'Pods-White RabbitUITests/Eureka.framework'
   install_framework 'Pods-White RabbitUITests/FBSDKCoreKit.framework'
   install_framework 'Pods-White RabbitUITests/FBSDKLoginKit.framework'
@@ -65,12 +67,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-White RabbitUITests/ParseUI.framework'
   install_framework 'Pods-White RabbitUITests/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White RabbitUITests/TagListView.framework'
+  install_framework 'Pods-White RabbitUITests/Timepiece.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White RabbitUITests/AFNetworking.framework'
   install_framework 'Pods-White RabbitUITests/ALCameraViewController.framework'
   install_framework 'Pods-White RabbitUITests/BTNavigationDropdownMenu.framework'
   install_framework 'Pods-White RabbitUITests/Bolts.framework'
+  install_framework 'Pods-White RabbitUITests/Dodo.framework'
+  install_framework 'Pods-White RabbitUITests/DynamicColor.framework'
   install_framework 'Pods-White RabbitUITests/Eureka.framework'
   install_framework 'Pods-White RabbitUITests/FBSDKCoreKit.framework'
   install_framework 'Pods-White RabbitUITests/FBSDKLoginKit.framework'
@@ -80,4 +85,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White RabbitUITests/ParseUI.framework'
   install_framework 'Pods-White RabbitUITests/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White RabbitUITests/TagListView.framework'
+  install_framework 'Pods-White RabbitUITests/Timepiece.framework'
 fi

@@ -56,6 +56,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/ALCameraViewController.framework'
   install_framework 'Pods/BTNavigationDropdownMenu.framework'
   install_framework 'Pods/Bolts.framework'
+  install_framework 'Pods/Dodo.framework'
+  install_framework 'Pods/DynamicColor.framework'
   install_framework 'Pods/Eureka.framework'
   install_framework 'Pods/FBSDKCoreKit.framework'
   install_framework 'Pods/FBSDKLoginKit.framework'
@@ -65,12 +67,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/ParseUI.framework'
   install_framework 'Pods/SlideMenuControllerSwift.framework'
   install_framework 'Pods/TagListView.framework'
+  install_framework 'Pods/Timepiece.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/AFNetworking.framework'
   install_framework 'Pods/ALCameraViewController.framework'
   install_framework 'Pods/BTNavigationDropdownMenu.framework'
   install_framework 'Pods/Bolts.framework'
+  install_framework 'Pods/Dodo.framework'
+  install_framework 'Pods/DynamicColor.framework'
   install_framework 'Pods/Eureka.framework'
   install_framework 'Pods/FBSDKCoreKit.framework'
   install_framework 'Pods/FBSDKLoginKit.framework'
@@ -80,4 +85,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/ParseUI.framework'
   install_framework 'Pods/SlideMenuControllerSwift.framework'
   install_framework 'Pods/TagListView.framework'
+  install_framework 'Pods/Timepiece.framework'
 fi

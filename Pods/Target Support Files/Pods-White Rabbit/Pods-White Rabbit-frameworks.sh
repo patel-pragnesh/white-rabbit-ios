@@ -56,6 +56,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-White Rabbit/ALCameraViewController.framework'
   install_framework 'Pods-White Rabbit/BTNavigationDropdownMenu.framework'
   install_framework 'Pods-White Rabbit/Bolts.framework'
+  install_framework 'Pods-White Rabbit/Dodo.framework'
+  install_framework 'Pods-White Rabbit/DynamicColor.framework'
   install_framework 'Pods-White Rabbit/Eureka.framework'
   install_framework 'Pods-White Rabbit/FBSDKCoreKit.framework'
   install_framework 'Pods-White Rabbit/FBSDKLoginKit.framework'
@@ -65,12 +67,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-White Rabbit/ParseUI.framework'
   install_framework 'Pods-White Rabbit/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White Rabbit/TagListView.framework'
+  install_framework 'Pods-White Rabbit/Timepiece.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White Rabbit/AFNetworking.framework'
   install_framework 'Pods-White Rabbit/ALCameraViewController.framework'
   install_framework 'Pods-White Rabbit/BTNavigationDropdownMenu.framework'
   install_framework 'Pods-White Rabbit/Bolts.framework'
+  install_framework 'Pods-White Rabbit/Dodo.framework'
+  install_framework 'Pods-White Rabbit/DynamicColor.framework'
   install_framework 'Pods-White Rabbit/Eureka.framework'
   install_framework 'Pods-White Rabbit/FBSDKCoreKit.framework'
   install_framework 'Pods-White Rabbit/FBSDKLoginKit.framework'
@@ -80,4 +85,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White Rabbit/ParseUI.framework'
   install_framework 'Pods-White Rabbit/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White Rabbit/TagListView.framework'
+  install_framework 'Pods-White Rabbit/Timepiece.framework'
 fi

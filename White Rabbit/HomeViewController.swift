@@ -26,8 +26,14 @@ class HomeViewController: UIViewController {
     
     var currentUser: PFUser?
     
+    required init(coder: NSCoder) {
+        super.init(coder: coder)!
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkForUser(true)
         
         self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsTabView")
         self.breedsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BreedsTable")
@@ -57,15 +63,17 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        checkForUser()
+        checkForUser(true)
     }
     
-    func checkForUser() {
+    func checkForUser(populate: Bool) {
         let currentUser = PFUser.currentUser()
         
         if (currentUser != nil) {
             self.currentUser = currentUser
+            if populate {
             self.populateUserInfo()
+            }
         } else {
             // Navigate to the LoginViewController
             let lvc = self.storyboard!.instantiateViewControllerWithIdentifier("lvc") as! LoginViewController
@@ -96,7 +104,7 @@ class HomeViewController: UIViewController {
                 NSLog("logout fail: \(error)")
             } else {
                 NSLog("logout success")
-                self.checkForUser()
+                self.checkForUser(false)
             }
         }
     }

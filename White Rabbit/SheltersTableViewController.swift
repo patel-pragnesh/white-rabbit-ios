@@ -29,6 +29,13 @@ class SheltersTableViewController: PFQueryTableViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
 
         
+        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
+        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+        menuView.cellTextLabelColor = UIColor.whiteColor()
+        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        self.navigationItem.titleView = menuView
+
+        
 //        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
 //        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
 //        menuView.cellBackgroundColor = UIColor.darkGrayColor()
