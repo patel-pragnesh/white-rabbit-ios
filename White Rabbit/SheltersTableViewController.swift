@@ -31,6 +31,10 @@ class SheltersTableViewController: PFQueryTableViewController {
         
         let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
         let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            print("Did select item at index: \(indexPath)")
+//            self.setCurrentView(items[indexPath])
+        }
         menuView.cellTextLabelColor = UIColor.whiteColor()
         menuView.cellBackgroundColor = UIColor.darkGrayColor()
         self.navigationItem.titleView = menuView

@@ -107,6 +107,7 @@ extension UIViewController {
     func setUpNavigationBar() {
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.BlackTranslucent
+        //nav?.barTintColor = UIColor.blueColor()
         nav?.tintColor = UIColor.whiteColor()
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)

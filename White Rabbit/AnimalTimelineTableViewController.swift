@@ -12,6 +12,8 @@ import ParseUI
 
 class AnimalTimelineTableViewController: PFQueryTableViewController {
 
+    var animalObject : PFObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +28,9 @@ class AnimalTimelineTableViewController: PFQueryTableViewController {
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.orderByDescending("date")
+        if(self.animalObject != nil) {
+            query.whereKey("animal", equalTo: animalObject!)
+        }
         return query
     }
     
@@ -50,8 +55,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController {
         dateFormatter.dateFormat = "yyyy"
         cell!.yearLabel.text = dateFormatter.stringFromDate(date!)
 
-        
-        
         return cell
     }
     

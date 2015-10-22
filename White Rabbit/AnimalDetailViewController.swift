@@ -219,6 +219,9 @@ class AnimalDetailViewController: UIViewController {
             NSLog("trait objects before: \(self.traitObjects)")
             traitSelector.selectedTraitObjects = self.traitObjects
             traitSelector.animalViewController = self
+        } else if(segue.identifier == "AnimalDetailToTimeline") {
+            let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
+            animalTimeline.animalObject = self.currentAnimalObject            
         }
     }
     

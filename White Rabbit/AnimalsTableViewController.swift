@@ -44,24 +44,48 @@ class AnimalsTableViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let items = ["Featured", "Mine"]
+        let items = ["Mine", "Featured"]
         let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            print("Did select item at index: \(indexPath)")
+            self.setCurrentView(items[indexPath])
+        }
         menuView.cellTextLabelColor = UIColor.whiteColor()
         menuView.cellBackgroundColor = UIColor.darkGrayColor()
         self.navigationItem.titleView = menuView
         
+        self.setCurrentUser()
+        
+        self.setUpMenuBarController()
+        
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25)        
+    }
+    
+    func setCurrentUser() {
         let menuViewController = self.slideMenuController()?.leftViewController as! HomeViewController
         let user = menuViewController.currentUser as PFUser?
         NSLog("found user \(user)")
         if user != nil {
             self.owner = user!
         }
-        
-        self.setUpMenuBarController()
-        
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25)        
     }
-        
+    
+    func setCurrentView(viewName: String) {
+        switch viewName {
+            case "Featured":
+                self.featured = true
+                self.owner = nil
+                break
+            case "Mine":
+                self.featured = false
+                self.setCurrentUser()
+                break
+            default:
+                break
+        }
+        self.loadObjects()
+    }
+    
     func showAddAminalView() {
         self.performSegueWithIdentifier("AnimalTableToAddAnimal", sender: self)
     }
@@ -88,6 +112,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
         
         cell!.nameLabel.text = object?["name"] as? String
         
+        cell!.coverPhoto.image = UIImage(named: "blank_cover")
         let coverPhotoFile = object?["coverPhoto"] as? PFFile
         coverPhotoFile?.getDataInBackgroundWithBlock({
             (imageData: NSData?, error: NSError?) -> Void in
@@ -97,6 +122,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
             }
         })
         
+        cell!.profilePhoto.image = UIImage(named: "avatar_blank")
         let profilePhotoFile = object?["profilePhoto"] as? PFFile
         profilePhotoFile?.getDataInBackgroundWithBlock({
             (imageData: NSData?, error: NSError?) -> Void in
