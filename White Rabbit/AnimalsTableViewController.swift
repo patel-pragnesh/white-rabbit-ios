@@ -10,11 +10,13 @@ import UIKit
 import Parse
 import ParseUI
 import BTNavigationDropdownMenu
+import FillableLoaders
 
 class AnimalsTableViewController: PFQueryTableViewController {
 
     var owner : PFUser?
     var featured : Bool = false
+    var loader : FillableLoader = FillableLoader()
     
     override init(style: UITableViewStyle, className: String!) {
         NSLog("initializing animals table view controller: \(className)")
@@ -58,8 +60,15 @@ class AnimalsTableViewController: PFQueryTableViewController {
         
         self.setUpMenuBarController()
         
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25)        
+        if self.owner != nil {
+            self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25)
+        }
     }
+    
+//    override func objectsDidLoad(error: NSError?) {
+//        NSLog("finished loading")
+////        self.loader.removeLoader()
+//    }
     
     func setCurrentUser() {
         let menuViewController = self.slideMenuController()?.leftViewController as! HomeViewController
@@ -83,6 +92,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
             default:
                 break
         }
+//        self.loader = self.showLoader()
         self.loadObjects()
     }
     

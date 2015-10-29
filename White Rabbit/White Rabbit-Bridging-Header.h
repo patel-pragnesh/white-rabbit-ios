@@ -7,3 +7,4 @@
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <InstagramKit/InstagramKit.h>
+#import <MMMarkdown/MMMarkdown.h>

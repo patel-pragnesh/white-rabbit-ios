@@ -16,5 +16,6 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var timelineImageView: UIImageView!
     
 }

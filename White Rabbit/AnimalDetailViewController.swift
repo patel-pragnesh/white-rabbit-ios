@@ -58,6 +58,8 @@ class AnimalDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setUpNavigationBar()
+//        self.removeNavigationBar()
         
 //        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable")
 //        timelineTableController?.view.layoutIfNeeded()
@@ -94,7 +96,6 @@ class AnimalDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setUpNavigationBar()
         
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("edit_white", action: "showEditAminalView", height: 25)
 
@@ -222,7 +223,13 @@ class AnimalDetailViewController: UIViewController {
         } else if(segue.identifier == "AnimalDetailToTimeline") {
             let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
             animalTimeline.animalObject = self.currentAnimalObject            
+        } else if(segue.identifier == "AnimalDetailToAddTimelineEntry") {
+            let camera = segue.destinationViewController as! CameraViewController
+            camera.animalObject = self.currentAnimalObject
         }
+
+    
+    
     }
     
     

@@ -19,6 +19,11 @@ class TraitSelectorTableViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setUpNavigationBar()
+        self.setUpNavigationBarImage(UIImage(named: "traits_header")!, height: 180)
+        
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveTraits", height: 20)
+        
         self.tableView.allowsMultipleSelection = true
         
         // Uncomment the following line to preserve selection between presentations
@@ -31,7 +36,7 @@ class TraitSelectorTableViewController: PFQueryTableViewController {
         return query
     }
 
-    @IBAction func saveTraits(sender: UIBarButtonItem) {
+    func saveTraits() {
         let selectedIndexes = self.tableView.indexPathsForSelectedRows
         
         var selectedObjects:[PFObject?] = []

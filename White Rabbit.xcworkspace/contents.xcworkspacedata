@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:White Rabbit.xcodeproj">
+      location = "group:/Users/michaelbina/Library/Mobile Documents/com~apple~CloudDocs/Projects/white rabbit/dev/iOS/White Rabbit/ .xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

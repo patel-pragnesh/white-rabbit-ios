@@ -17,11 +17,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var animalsButton: UIButton!
     @IBOutlet weak var locationsButton: UIButton!
     @IBOutlet weak var breedsButton: UIButton!
+    @IBOutlet weak var careButton: UIButton!
     
     
     var mainViewController: UIViewController!
     var locationsViewController: UIViewController!
     var breedsViewController: UIViewController!
+    var careViewController: UIViewController!
     
     
     var currentUser: PFUser?
@@ -37,11 +39,13 @@ class HomeViewController: UIViewController {
         
         self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsTabView")
         self.breedsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BreedsTable")
+        self.careViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CareNavigation")
 
         
         self.animalsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.locationsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.breedsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
+        self.careButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
     }
     
     func showView(sender: UIButton!) {
@@ -52,9 +56,12 @@ class HomeViewController: UIViewController {
             case "  Locations":
                 self.slideMenuController()?.changeMainViewController(self.locationsViewController, close: true)
                 break
-        case "  Breeds":
-            self.slideMenuController()?.changeMainViewController(self.breedsViewController, close: true)
-            break
+            case "  Breeds":
+                self.slideMenuController()?.changeMainViewController(self.breedsViewController, close: true)
+                break
+            case "  Care":
+                self.slideMenuController()?.changeMainViewController(self.careViewController, close: true)
+                break
             default:
                 break
         }

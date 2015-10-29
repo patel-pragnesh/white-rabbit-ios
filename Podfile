@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 pod 'FBSDKCoreKit'
@@ -8,6 +8,7 @@ pod 'FBSDKLoginKit'
 pod 'Parse'
 pod 'ParseUI'
 pod 'ParseFacebookUtilsV4'
+pod 'ContentfulDeliveryAPI'
 pod 'TagListView'
 pod 'Timepiece'
 pod 'DynamicColor'
@@ -17,6 +18,8 @@ pod 'InstagramKit'
 pod 'Eureka'
 pod 'BTNavigationDropdownMenu'
 pod 'SlideMenuControllerSwift'
+pod 'MMMarkdown'
+pod 'FillableLoaders'
 
 target 'White Rabbit' do
 end

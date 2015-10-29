@@ -14,12 +14,15 @@ import FBSDKLoginKit
 import ParseFacebookUtilsV4
 import SlideMenuControllerSwift
 import BTNavigationDropdownMenu
+import ContentfulDeliveryAPI
+import FillableLoaders
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var client: CDAClient?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -32,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
+        self.client = CDAClient(spaceKey:"8mu31kgi73w0", accessToken:"3bd31581398aa28d0b9c05aa86573763aa4dfd4119eb020625cd0989fee99836")
         
         UILabel.appearance().substituteFontName = "Avenir"
 
@@ -103,18 +108,49 @@ extension UIViewController {
         editButton.addTarget(self, action: action, forControlEvents: .TouchUpInside)
         return UIBarButtonItem(customView: editButton)
     }
-    
+
     func setUpNavigationBar() {
+        self.setUpNavigationBar("")
+    }
+    
+    func setUpNavigationBar(title: String) {
         let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.BlackTranslucent
+        nav!.barStyle = UIBarStyle.BlackTranslucent
         //nav?.barTintColor = UIColor.blueColor()
-        nav?.tintColor = UIColor.whiteColor()
+        nav!.tintColor = UIColor.whiteColor()
+        
+        nav!.setBackgroundImage(nil, forBarMetrics: .Default)
+        var frame = nav!.frame
+        frame.size.height = 40
+        nav!.frame = frame
+        
+        self.navigationItem.title = title
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     }
     
+    func removeNavigationBar() {
+//        let nav = self.navigationController?.navigationBar
+//        nav!.delete(self)
+    }
+    
+    func setUpNavigationBarImage(image: UIImage, height: CGFloat) {
+        let nav = self.navigationController?.navigationBar
+
+        nav?.barStyle = UIBarStyle.Default
+
+        nav!.setBackgroundImage(image.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: .Stretch), forBarMetrics: .Default)
+        var frame = nav!.frame
+        frame.size.height = height
+        nav!.frame = frame
+    }
+    
     func setUpMenuBarController() {
-        self.setUpNavigationBar()
+        self.setUpMenuBarController("")
+    }
+    
+    func setUpMenuBarController(title: String) {
+        self.setUpNavigationBar(title)
         
         self.navigationItem.leftBarButtonItem = self.getNavBarItem("menu_white", action: "showMenu", height: 15)
     }
@@ -146,7 +182,30 @@ extension UIViewController {
         } else {
             openUrl(webUrl)
         }
-
+    }
+    
+    func getLoaderPath() -> CGPath {
+        let starPath = UIBezierPath()
+        starPath.moveToPoint(CGPointMake(180, 25))
+        starPath.addLineToPoint(CGPointMake(195.16, 43.53))
+        starPath.addLineToPoint(CGPointMake(220.9, 49.88))
+        starPath.addLineToPoint(CGPointMake(204.54, 67.67))
+        starPath.addLineToPoint(CGPointMake(205.27, 90.12))
+        starPath.addLineToPoint(CGPointMake(180, 82.6))
+        starPath.addLineToPoint(CGPointMake(154.73, 90.12))
+        starPath.addLineToPoint(CGPointMake(155.46, 67.67))
+        starPath.addLineToPoint(CGPointMake(139.1, 49.88))
+        starPath.addLineToPoint(CGPointMake(164.84, 43.53))
+        starPath.closePath()
+        UIColor.grayColor().setFill()
+        starPath.fill()
+        let myPath = starPath.CGPath
+        return myPath
+    }
+    
+    func showLoader() -> FillableLoader {
+        let loader = PlainLoader.showProgressBasedLoaderWithPath(self.getLoaderPath())
+        return loader
     }
 }
 

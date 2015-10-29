@@ -9,13 +9,19 @@
 import UIKit
 import Parse
 import ALCameraViewController
+import AssetsLibrary
+import Photos
 
 class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var animalObject: PFObject?
+    var pickedImageDate : NSDate?
+    
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var uploadIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var cancelButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +57,19 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePreview.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        
+        let library = ALAssetsLibrary()
+        library.assetForURL(url,
+            resultBlock: {
+                (asset: ALAsset!) -> Void in
+                    let date = asset.valueForProperty(ALAssetPropertyDate)
+                    self.pickedImageDate = date as! NSDate
+            }, failureBlock: { (error: NSError!) -> Void in
+                print(error)
+            }
+        )
+        
         dismissViewControllerAnimated(true, completion: nil)
         saveButton.enabled = true
     }
@@ -68,16 +87,26 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         let fileName:String = (String)(PFUser.currentUser()!.username!) + "-" + (String)(NSDate().description.replace(" ", withString:"_").replace(":", withString:"-").replace("+", withString:"~")) + ".jpg"
         let imageFile:PFFile = PFFile(name: fileName, data: imageData!)!
         
-        let post = PFObject(className: "Post")
-        post["image"] = imageFile
-        post["user"] = PFUser.currentUser()
-        post.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+        let timelineEntry = PFObject(className: "AnimalTimelineEntry")
+        timelineEntry["animal"] = self.animalObject
+        timelineEntry["image"] = imageFile
+        timelineEntry["createdBy"] = PFUser.currentUser()
+        timelineEntry["kind"] = 1 // TODO : change this for a constant
+        
+        if self.pickedImageDate != nil {
+            timelineEntry["date"] = self.pickedImageDate
+        } else {
+            timelineEntry["date"] = NSDate()
+        }
+        
+        
+        timelineEntry.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if(success) {
                 NSLog("finished saving post")
                 self.uploadIndicator.hidden = true
                 self.uploadIndicator.stopAnimating()
                 self.clearImagePreview()
-                self.showPostsView()
+                self.closeView()
             } else {
                 NSLog("error uploading file: \(error)")
             }
@@ -90,6 +119,14 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func clearImagePreview() {
         self.imagePreview.image = nil
+    }
+    
+    func closeView() {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    @IBAction func cancelPressed(sender: AnyObject) {
+        self.closeView()
     }
     
     override func didReceiveMemoryWarning() {
