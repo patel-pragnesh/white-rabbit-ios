@@ -208,7 +208,7 @@ public class BTNavigationDropdownMenu: UIView {
         
         self.menuTitle = UILabel(frame: frame)
         self.menuTitle.text = title
-        self.menuTitle.textColor = self.menuTitleColor
+        self.menuTitle.textColor = UIColor.whiteColor()
         self.menuTitle.textAlignment = NSTextAlignment.Center
         self.menuTitle.font = self.configuration.cellTextLabelFont
         self.menuButton.addSubview(self.menuTitle)
@@ -399,7 +399,7 @@ class BTConfiguration {
         self.cellBackgroundColor = UIColor.whiteColor()
         self.cellSeparatorColor = UIColor.darkGrayColor()
         self.cellTextLabelColor = UIColor.darkGrayColor()
-        self.cellTextLabelFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        self.cellTextLabelFont = UIFont(name: "HelveticaNeue-Bold", size: 18)
         self.cellSelectionColor = UIColor.lightGrayColor()
         self.checkMarkImage = UIImage(contentsOfFile: checkMarkImagePath!)
         self.animationDuration = 0.5

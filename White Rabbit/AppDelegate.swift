@@ -124,6 +124,10 @@ extension UIViewController {
         frame.size.height = 40
         nav!.frame = frame
         
+        nav!.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir", size: 19)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+//        self.navigationItem.toggleBoldface(self)
+        
         self.navigationItem.title = title
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)

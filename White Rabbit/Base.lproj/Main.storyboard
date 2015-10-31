@@ -736,13 +736,13 @@
         <scene sceneID="WN4-Jr-78m">
             <objects>
                 <tableViewController storyboardIdentifier="BreedsTableView" id="RuW-dE-NU8" customClass="BreedsTableViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gJK-Pt-Ujs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="1" sectionFooterHeight="1" id="gJK-Pt-Ujs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BreedCell" rowHeight="125" id="XHw-pe-5OK" customClass="BreedsTableViewCell" customModule="White_Rabbit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BreedCell" rowHeight="99" id="XHw-pe-5OK" customClass="BreedsTableViewCell" customModule="White_Rabbit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="157.5" width="600" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XHw-pe-5OK" id="h6V-Km-AYX">
@@ -1527,7 +1527,7 @@
                             <outlet property="delegate" destination="4AR-Rn-9P6" id="q5t-1G-2eA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xWo-xt-0qY"/>
+                    <navigationItem key="navigationItem" title="Menu" id="xWo-xt-0qY"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="Animal"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="name"/>
@@ -2516,8 +2516,8 @@
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rZ8-6v-l2a"/>
         <segue reference="Z0V-tp-whT"/>
         <segue reference="fNE-Ea-jwQ"/>
+        <segue reference="bme-G7-25h"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -52,9 +52,13 @@ class AnimalsTableViewController: PFQueryTableViewController {
             print("Did select item at index: \(indexPath)")
             self.setCurrentView(items[indexPath])
         }
+//        menuView.tintColor = UIColor.whiteColor()
+        menuView.menuTitleColor = UIColor.whiteColor()
         menuView.cellTextLabelColor = UIColor.whiteColor()
         menuView.cellBackgroundColor = UIColor.darkGrayColor()
+        menuView.reloadInputViews()
         self.navigationItem.titleView = menuView
+        menuView.reloadInputViews()
         
         self.setCurrentUser()
         
