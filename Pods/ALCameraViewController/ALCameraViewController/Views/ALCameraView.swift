@@ -33,7 +33,7 @@ public class ALCameraView: UIView {
         if session != nil {
             dispatch_async(cameraQueue) {
                 self.session.stopRunning()
-                self.preview.removeFromSuperlayer()
+//                self.preview.removeFromSuperlayer()
                 
                 self.session = nil
                 self.input = nil

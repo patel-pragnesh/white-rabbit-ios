@@ -22,6 +22,8 @@ class AnimalDetailViewController: UIViewController {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var youtubeButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var timelineView: UIView!
+    @IBOutlet weak var closeButton: UIButton!
 
     var currentAnimalObject : PFObject?
     var breedObject : PFObject?
@@ -58,10 +60,19 @@ class AnimalDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.setUpNavigationBar()
+//        self.setUpNavigationBar()
 //        self.removeNavigationBar()
         
-//        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable")
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
+        )
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController!.navigationBar.translucent = true
+        self.navigationController!.view.backgroundColor = UIColor.clearColor()
+
+        
+        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
+        timelineTableController.animalObject = self.currentAnimalObject
+        
 //        timelineTableController?.view.layoutIfNeeded()
 //        var subviewsHeight:CGFloat = 0
 //        for view in timelineTableController!.view.subviews {
@@ -114,7 +125,7 @@ class AnimalDetailViewController: UIViewController {
                 ageLabel.text = "Age Unknown"
             }
             
-            self.navigationItem.title = object["username"] as? String
+//            self.navigationItem.title = object["username"] as? String
             
             if let coverPhotoFile = object["coverPhoto"] as? PFFile {
                 coverPhotoFile.getDataInBackgroundWithBlock({
@@ -223,11 +234,17 @@ class AnimalDetailViewController: UIViewController {
         } else if(segue.identifier == "AnimalDetailToTimeline") {
             let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
             animalTimeline.animalObject = self.currentAnimalObject            
+        } else if(segue.identifier == "AnimalDetailTimelineEmbed") {
+//            let animalTimeline = segue.sourceViewController as! AnimalTimelineTableViewController
+            let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
+            animalTimeline.animalObject = self.currentAnimalObject
         } else if(segue.identifier == "AnimalDetailToAddTimelineEntry") {
             let camera = segue.destinationViewController as! CameraViewController
             camera.animalObject = self.currentAnimalObject
         }
 
+        
+        
     
     
     }
@@ -258,6 +275,10 @@ class AnimalDetailViewController: UIViewController {
         let youtubeWebLink = "http://youtube.com/user/" + youtubeUsername!
         
         openAppLinkOrWebUrl(youtubeAppLink, webUrl: youtubeWebLink)
+    }
+    
+    @IBAction func closeScreen(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func openTwitterProfile(sender: AnyObject) {

@@ -30,15 +30,15 @@ class BreedsTableViewController: PFQueryTableViewController, UISearchBarDelegate
         super.viewDidAppear(animated)
 
         tableView.reloadData()
-        self.searchBar.delegate = self
+//        self.searchBar.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.searchBar.hidden = true
+//        self.searchBar.hidden = true
         
-        self.setUpMenuBarController()
+        self.setUpMenuBarController("Breeds")
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("search_white", action: "showSearch", height: 25)
 
     }
@@ -86,9 +86,9 @@ class BreedsTableViewController: PFQueryTableViewController, UISearchBarDelegate
     
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
-        if searchBar.text != "" {
-            query.whereKey("name", containsString: searchBar.text!)
-        }
+//        if searchBar.text != "" {
+//            query.whereKey("name", containsString: searchBar.text!)
+//        }
         query.orderByAscending("name")
         return query
     }

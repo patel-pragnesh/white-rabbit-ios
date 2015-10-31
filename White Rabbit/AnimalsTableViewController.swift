@@ -102,12 +102,17 @@ class AnimalsTableViewController: PFQueryTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        
+        self.setUpNavigationBar()
+
         
         self.tableView.reloadData()
     }

@@ -46,6 +46,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.dismissViewControllerAnimated(true, completion: {})
             self.saveButton.enabled = true
         }
+//        cameraViewController
         presentViewController(cameraViewController, animated: true, completion: nil)
         
 //        let picker = UIImagePickerController()

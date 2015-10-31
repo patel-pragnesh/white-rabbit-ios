@@ -22,7 +22,10 @@ class BreedDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         if let object = currentBreedObject {
+            self.setUpNavigationBar((object["name"] as? String)!)
+
             NSLog("Viewing detail for object: %@\n", object)
             
             nameLabel.text = object["name"] as? String
