@@ -57,12 +57,25 @@ class AnimalTimelineTableViewController: PFQueryTableViewController {
             self.deleteEntry(indexPath)
         })
         
+        let profilePhotoAction = UIAlertAction(title: "Set as Profile Photo", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Setting profile photo")
+        })
+
+        let coverPhotoAction = UIAlertAction(title: "Set as Cover Photo", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Setting cover photo")
+        })
+
+        
          let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })
         
         optionMenu.addAction(deleteAction)
+        optionMenu.addAction(profilePhotoAction)
+        optionMenu.addAction(coverPhotoAction)
         optionMenu.addAction(cancelAction)
         
         self.presentViewController(optionMenu, animated: true, completion: nil)

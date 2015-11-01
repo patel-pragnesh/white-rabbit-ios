@@ -28,12 +28,13 @@ class AnimalDetailViewController: UIViewController {
     var currentAnimalObject : PFObject?
     var breedObject : PFObject?
     var traitObjects : [PFObject]? = []
+    var timelineTableController : AnimalTimelineTableViewController = AnimalTimelineTableViewController()
     
 //    @IBAction func viewBreedDetail(sender: UIButton) {
 //        NSLog("viewing breed detail")
 //        self.performSegueWithIdentifier("AnimalToBreedDetail", sender: self)
 //    }
-    
+
     func saveTraits(traitObjects: [PFObject?]) {
         let relation = self.currentAnimalObject?.relationForKey("traits")
         
@@ -63,15 +64,14 @@ class AnimalDetailViewController: UIViewController {
 //        self.setUpNavigationBar()
 //        self.removeNavigationBar()
         
+        self.timelineTableController.loadObjects()
+        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
         )
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController!.navigationBar.translucent = true
         self.navigationController!.view.backgroundColor = UIColor.clearColor()
-
         
-        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
-        timelineTableController.animalObject = self.currentAnimalObject
         
 //        timelineTableController?.view.layoutIfNeeded()
 //        var subviewsHeight:CGFloat = 0
@@ -107,9 +107,12 @@ class AnimalDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
+        timelineTableController.animalObject = self.currentAnimalObject
+        self.timelineTableController = timelineTableController
+
         
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("edit_white", action: "showEditAminalView", height: 25)
-
         
         traitTags.textFont = UIFont.systemFontOfSize(15)
         
@@ -240,6 +243,7 @@ class AnimalDetailViewController: UIViewController {
             animalTimeline.animalObject = self.currentAnimalObject
         } else if(segue.identifier == "AnimalDetailToAddTimelineEntry") {
             let camera = segue.destinationViewController as! CameraViewController
+            camera.animalDetailController = self
             camera.animalObject = self.currentAnimalObject
         }
 

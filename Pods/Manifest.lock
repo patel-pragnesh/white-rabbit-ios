@@ -46,6 +46,7 @@ PODS:
   - FBSDKLoginKit (4.7.0.1):
     - FBSDKCoreKit
   - FillableLoaders (1.1.1)
+  - GKImagePicker (0.0.1)
   - InstagramKit (3.6.9):
     - AFNetworking (~> 2.0)
     - InstagramKit/Exclude-UICKeyChainStore (= 3.6.9)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FillableLoaders
+  - GKImagePicker
   - InstagramKit
   - MMMarkdown
   - Parse
@@ -98,6 +100,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: eb580bfc2040ad44f4c0b4f4d0befb1d35bce59c
   FBSDKLoginKit: 028c5a205990441123764609fe795e65027c447f
   FillableLoaders: c49df1505dc84a40e1fd980fb65a2e57cfc44216
+  GKImagePicker: 38eabf8e048ed7275f9bc3cc3c3f3620c4a4826f
   InstagramKit: 1f937c5c4b8469fd00a31e235d5e7d3e256ffe5d
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
   MMMarkdown: 74e6a040d7c41419d86c0ec22b2a49755a10e0fd

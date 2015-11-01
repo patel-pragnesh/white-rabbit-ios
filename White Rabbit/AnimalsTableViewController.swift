@@ -45,7 +45,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let items = ["Mine", "Featured"]
         let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in

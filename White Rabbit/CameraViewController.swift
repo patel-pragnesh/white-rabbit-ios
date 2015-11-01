@@ -11,11 +11,14 @@ import Parse
 import ALCameraViewController
 import AssetsLibrary
 import Photos
+import GKImagePicker
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCropControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var animalObject: PFObject?
     var pickedImageDate : NSDate?
+    var imagePicker : GKImagePicker = GKImagePicker()
+    var animalDetailController : AnimalDetailViewController = AnimalDetailViewController()
     
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
@@ -31,12 +34,19 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     @IBAction func chooseImage(sender: UIButton) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .PhotoLibrary
-        presentViewController(picker, animated: true, completion: nil)
-    }
+//        self.displayAlert(imagePreview.frame.size.width.description)
 
+        
+//        self.imagePicker = GKImagePicker() //UIImagePickerController()
+//        self.imagePicker.cropSize = CGSizeMake(320, 320)
+//        self.imagePicker.delegate = self
+
+        let picker = UIImagePickerController()
+        picker.sourceType = .PhotoLibrary
+        picker.delegate = self
+        self.presentViewController(picker, animated: true, completion: nil)
+    }
+    
     @IBAction func takePhoto(sender: UIButton) {
         
         let cameraViewController = ALCameraViewController(croppingEnabled: true) { image in
@@ -56,8 +66,25 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
 //        presentViewController(picker, animated: true, completion: nil)
     }
     
+    func imageCropController(imageCropController: GKImageCropViewController!, didFinishWithCroppedImage croppedImage: UIImage!) {
+        self.imagePreview.contentMode = .ScaleAspectFill
+        self.imagePreview.image = croppedImage
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        saveButton.enabled = true
+    }
+    
+    func imagePicker(imagePicker: GKImagePicker!, pickedImage image: UIImage!) {
+        self.imagePreview.contentMode = .ScaleAspectFill
+        self.imagePreview.image = image
+        
+        dismissViewControllerAnimated(true, completion: nil)
+
+        saveButton.enabled = true
+    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        imagePreview.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         let url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         
         let library = ALAssetsLibrary()
@@ -70,9 +97,17 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 print(error)
             }
         )
+
+        let cropController = GKImageCropViewController()
+        cropController.sourceImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        cropController.resizeableCropArea = false
+        cropController.cropSize = CGSizeMake(320, 320)
+        cropController.delegate = self
+        picker.pushViewController(cropController, animated: true)
         
-        dismissViewControllerAnimated(true, completion: nil)
-        saveButton.enabled = true
+//        imagePreview.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        dismissViewControllerAnimated(true, completion: nil)
+//        saveButton.enabled = true
     }
     
     @IBAction func saveImage(sender: UIButton) {
@@ -123,7 +158,8 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func closeView() {
-        self.dismissViewControllerAnimated(true, completion: {})
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.animalDetailController.timelineTableController.loadObjects()
     }
     
     @IBAction func cancelPressed(sender: AnyObject) {

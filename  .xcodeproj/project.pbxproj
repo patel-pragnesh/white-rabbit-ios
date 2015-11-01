@@ -25,6 +25,7 @@
 		ED406EA71BAEE3A1001FE8B3 /* AnimalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */; };
 		ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */; };
 		ED406EAB1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */; };
+		ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */; };
 		ED692D671BACECED00C52562 /* ShelterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */; };
 		ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */; };
 		ED8F90461BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */; };
@@ -113,6 +114,7 @@
 		ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTableViewController.swift; sourceTree = "<group>"; };
 		ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
 		ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTableViewCell.swift; sourceTree = "<group>"; };
+		ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GKImagePicker.framework; path = "Pods/../build/Debug-iphoneos/GKImagePicker.framework"; sourceTree = "<group>"; };
 		ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewController.swift; sourceTree = "<group>"; };
 		ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTableViewController.swift; sourceTree = "<group>"; };
 		ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTNavigationDropdownMenu.framework; path = "Pods/../build/Debug-iphoneos/BTNavigationDropdownMenu.framework"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */,
 				EDFD64FC1BDAD48300344BDC /* FillableLoaders.framework in Frameworks */,
 				EDFD64FA1BDA1C7400344BDC /* XNGMarkdownParser.framework in Frameworks */,
 				EDFD64F61BDA132200344BDC /* Bumblebee.framework in Frameworks */,
@@ -308,6 +311,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */,
 				EDFD64FB1BDAD48300344BDC /* FillableLoaders.framework */,
 				EDFD64F91BDA1C7400344BDC /* XNGMarkdownParser.framework */,
 				EDFD64F71BDA166400344BDC /* Bypass.framework */,

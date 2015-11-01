@@ -1,0 +1,6 @@
+framework module GKImagePicker {
+  umbrella header "GKImagePicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

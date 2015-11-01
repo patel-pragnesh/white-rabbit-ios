@@ -20,6 +20,7 @@ pod 'BTNavigationDropdownMenu'
 pod 'SlideMenuControllerSwift'
 pod 'MMMarkdown'
 pod 'FillableLoaders'
+pod 'GKImagePicker'
 
 target 'White Rabbit' do
 end
