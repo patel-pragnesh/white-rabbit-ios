@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/michaelbina/Library/Mobile Documents/com~apple~CloudDocs/Projects/white rabbit/dev/iOS/White Rabbit/ .xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:White Rabbit.xcodeproj">
+   </FileRef>
+</Workspace>
