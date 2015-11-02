@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "white-rabbit"
+        },
+        "white-rabbit": {
+            "applicationId": "IWr9xzTirLbjXH80mbTCtT9lWB73ggQe3PhA6nPg",
+            "masterKey": "OAfKo4xeECdDiUHFXHgctp8HZv7teJT0fUkqMnwQ"
+        }
+    },
+    "global": {
+        "parseVersion": "1.3.0"
+    }
+}
