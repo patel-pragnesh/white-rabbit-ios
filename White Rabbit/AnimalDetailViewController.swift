@@ -24,11 +24,16 @@ class AnimalDetailViewController: UIViewController {
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var timelineView: UIView!
     @IBOutlet weak var addButton: UIButton!
-
+    
+    @IBOutlet weak var instagramView: UIView!
+    
     var currentAnimalObject : PFObject?
     var breedObject : PFObject?
     var traitObjects : [PFObject?] = []
-    var timelineTableController : AnimalTimelineTableViewController = AnimalTimelineTableViewController()
+    var timelineTableController : AnimalTimelineTableViewController?
+    
+    var instagramTableController : InstagramTableViewController?
+    var instagramId : String?
     
     func saveTraits(traitObjects: [PFObject?]) {
         let relation = self.currentAnimalObject?.relationForKey("traits")
@@ -58,7 +63,7 @@ class AnimalDetailViewController: UIViewController {
         
 //        self.setUpNavigationBar()
         
-        self.timelineTableController.loadObjects()
+        self.timelineTableController!.loadObjects()
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
         )
@@ -71,13 +76,22 @@ class AnimalDetailViewController: UIViewController {
         self.performSegueWithIdentifier("AnimalDetailToEditAnimal", sender: self)
     }
     
+//    func showInstagramView(instagramId: String) {
+//        let view = self.instagramView as! InstagramTableViewController
+//        view.userId = instagramId
+//        view.loadMedia()
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.instagramView.hidden = false
+        self.timelineView.hidden = false
         
         let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
         timelineTableController.animalObject = self.currentAnimalObject
         self.timelineTableController = timelineTableController
-
+        
         
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("edit_white", action: "showEditAminalView", height: 25)
         
@@ -94,6 +108,23 @@ class AnimalDetailViewController: UIViewController {
                 ageLabel.text = getAgeString(birthDate!, deceasedDate: deceasedDate)
             } else {
                 ageLabel.text = "Age Unknown"
+            }
+            
+            let instagramId = object["instagramUserId"] as? String
+            if(instagramId != nil) {
+                NSLog("setting instagram: \(instagramId)")
+                self.instagramId = instagramId!
+                
+                self.instagramTableController?.userId = instagramId!
+                self.instagramTableController?.loadMedia()
+//                self.instagramTableController?.loadView()
+                
+                self.instagramView.hidden = false
+                self.timelineView.hidden = true
+
+            } else {
+                self.instagramView.hidden = true
+                self.timelineView.hidden = false
             }
             
 //            self.navigationItem.title = object["username"] as? String
@@ -215,6 +246,17 @@ class AnimalDetailViewController: UIViewController {
             let camera = segue.destinationViewController as! CameraViewController
             camera.animalDetailController = self
             camera.animalObject = self.currentAnimalObject
+        } else if (segue.identifier == "AnimalDetailInstagramEmbed") {
+            if(self.instagramId != nil) {
+                NSLog("showing insta view")
+                
+                self.instagramView.hidden = false
+                self.timelineView.hidden = true
+            } else {
+                NSLog("Insta wasn't set yet")
+                let insta = segue.destinationViewController as! InstagramTableViewController
+                self.instagramTableController = insta
+            }
         }
     }
     

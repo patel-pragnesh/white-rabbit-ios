@@ -53,7 +53,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
             NSLog("scrolled to the top")
             self.showTraits()
         } else {
-            NSLog("scrolled away from the top")
             self.hideTraits()
         }
     }
@@ -167,11 +166,17 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.orderByDescending("date")
+        query.includeKey("shelter")
         if(self.animalObject != nil) {
             query.whereKey("animal", equalTo: animalObject!)
         }
         return query
     }
+    
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.media.count
+//    }
+
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
@@ -179,14 +184,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
         if cell == nil  {
             cell = AnimalTimelineTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "AnimalTimelineCell")
         }
-        
-        // Extract values from the PFObject to display in the table cell
-        if let text = object?["text"] as? String {
-            cell!.eventTextLabel.text = text
-        } else {
-            cell!.eventTextLabel.hidden = true
-        }
-        
 
         cell!.timelineImageView.hidden = true
         if let imageFile = object?["image"] as? PFFile {
@@ -201,6 +198,49 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
         } else {
             cell!.timelineImageView.hidden = true
         }
+
+        // Extract values from the PFObject to display in the table cell
+        if let text = object?["text"] as? String {
+            NSLog("setting cell text to: \(text)")
+
+            
+            switch object?["kind"] as! Int {
+            case 2:
+                cell!.largeIcon.image = UIImage(named: "timeline_medical")
+                cell!.largeIcon.hidden = false
+                break
+            case 3:
+                cell!.largeIcon.image = UIImage(named: "timeline_adopted")
+                cell!.largeIcon.hidden = false
+                break
+            case 4:
+                cell!.largeIcon.image = UIImage(named: "timeline_born")
+                cell!.largeIcon.hidden = false
+                break
+            case 5:
+                cell!.largeIcon.image = UIImage(named: "timeline_birthday")
+                cell!.largeIcon.hidden = false
+                break
+            default:
+                cell!.largeIcon.image = UIImage()
+                cell!.largeIcon.hidden = true
+                break
+        }
+
+            cell!.eventTextLabel.text = text
+            cell!.eventTextLabel.hidden = false            
+        } else {
+            cell!.eventTextLabel.hidden = true
+        }
+        
+        if let shelter = object?.objectForKey("shelter") as? PFObject {
+            cell!.shelterButton.titleLabel?.textAlignment = .Center
+            cell!.shelterButton.setTitle(shelter.valueForKey("name") as? String, forState: .Normal)
+            cell!.shelterButton.hidden = false
+        } else {
+            cell!.shelterButton.setTitle("", forState: .Normal)
+        }
+
         
         let date = object?["date"] as? NSDate
         let dateFormatter = NSDateFormatter()

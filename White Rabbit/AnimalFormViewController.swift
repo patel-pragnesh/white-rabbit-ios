@@ -101,18 +101,18 @@ class AnimalFormViewController : FormViewController {
                 $0.title = "Traits"
                 $0.options = ["athletic", "cuddly"]
         }
-        
-//        form +++= Section("Social")
-//            <<< TwitterRow() {
-//                $0.title = "Instagram"
-//            }.cellSetup { cell, row in
-//                cell.textField.placeholder = "@username"
-//            }
-//            <<< TwitterRow() {
-//                $0.title = "Twitter"
-//            }.cellSetup { cell, row in
-//                cell.textField.placeholder = "@username"
-//            }
+
+        form +++= Section("Social")
+            <<< TwitterRow() {
+                $0.title = "Instagram"
+            }.cellSetup { cell, row in
+                cell.textField.placeholder = "@username"
+            }
+            <<< TwitterRow() {
+                $0.title = "Twitter"
+            }.cellSetup { cell, row in
+                cell.textField.placeholder = "@username"
+            }
         
 //        form +++= Section("")
 //            <<< ButtonRow("save") { $0.title = "Save" }.onCellSelection { cell, row in print("Cell was selected")

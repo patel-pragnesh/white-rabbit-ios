@@ -281,7 +281,6 @@
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
 				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
-				ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
 				EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */,
 				EDE6D43F1BA7B2BC00C7AC8C /* Info.plist */,
@@ -373,6 +372,7 @@
 				ED008E251BBE413A00CAA0D0 /* AnimalTimelineTableViewCell.swift */,
 				EDF00D721BAD466500FE4B48 /* CameraViewController.swift */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
+				ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */,
 			);
 			name = Animals;
 			sourceTree = "<group>";
@@ -495,7 +495,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EDE6D42B1BA7B2BC00C7AC8C /* Build configuration list for PBXProject " " */;
+			buildConfigurationList = EDE6D42B1BA7B2BC00C7AC8C /* Build configuration list for PBXProject "White Rabbit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -849,7 +849,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EDE6D42B1BA7B2BC00C7AC8C /* Build configuration list for PBXProject " " */ = {
+		EDE6D42B1BA7B2BC00C7AC8C /* Build configuration list for PBXProject "White Rabbit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDE6D4561BA7B2BD00C7AC8C /* Debug */,

@@ -15,6 +15,7 @@ class InstagramTableViewController: UITableViewController {
     var engine : InstagramEngine
     var media : [AnyObject]
     var currentPaginationInfo : InstagramPaginationInfo
+    var userId : String = ""
     
     required init(coder aDecoder:NSCoder) {
         self.engine = InstagramEngine.sharedEngine()
@@ -23,19 +24,18 @@ class InstagramTableViewController: UITableViewController {
         
         super.init(coder: aDecoder)!
         
-        self.loadMedia()
+//        self.loadMedia()
     }
     
     func loadMedia() {
-        NSLog("loading media\n")
-
+        NSLog("loading media for \(self.userId)\n")
         
-        self.engine.getMediaForUser("7013409", count: 10, maxId: self.currentPaginationInfo.nextMaxId, withSuccess: { (object: [AnyObject]!, pagination: InstagramPaginationInfo!) -> Void in
+        self.engine.getMediaForUser(self.userId, count: 10, maxId: self.currentPaginationInfo.nextMaxId, withSuccess: { (object: [AnyObject]!, pagination: InstagramPaginationInfo!) -> Void in
             self.currentPaginationInfo = pagination
             NSLog("nextMaxId: %@\n", self.currentPaginationInfo.nextMaxId)
             self.media += object!
             self.tableView.reloadData()
-//            NSLog("media data: %@\n", self.media)
+            self.tableView.sizeToFit()
             }, failure: { (error: NSError!, code: Int) -> Void in
                 NSLog("instagram error: %@\n", error!)
             }

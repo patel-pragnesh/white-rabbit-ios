@@ -159,7 +159,7 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
     
     func closeView() {
         self.dismissViewControllerAnimated(true, completion: nil)
-        self.animalDetailController.timelineTableController.loadObjects()
+        self.animalDetailController.timelineTableController!.loadObjects()
     }
     
     @IBAction func cancelPressed(sender: AnyObject) {
