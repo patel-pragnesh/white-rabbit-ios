@@ -33,7 +33,7 @@ class AnimalDetailViewController: UIViewController {
     var timelineTableController : AnimalTimelineTableViewController?
     
     var instagramTableController : InstagramTableViewController?
-    var instagramId : String?
+    var instagramUsername : String?
     
     func saveTraits(traitObjects: [PFObject?]) {
         let relation = self.currentAnimalObject?.relationForKey("traits")
@@ -110,12 +110,12 @@ class AnimalDetailViewController: UIViewController {
                 ageLabel.text = "Age Unknown"
             }
             
-            let instagramId = object["instagramUserId"] as? String
-            if(instagramId != nil) {
-                NSLog("setting instagram: \(instagramId)")
-                self.instagramId = instagramId!
+            let instagramUsername = object["instagramUsername"] as? String
+            if(instagramUsername != nil) {
+                NSLog("setting instagram: \(instagramUsername)")
+                self.instagramUsername = instagramUsername!
                 
-                self.instagramTableController?.userId = instagramId!
+                self.instagramTableController?.userName = instagramUsername!
                 self.instagramTableController?.loadMedia()
 //                self.instagramTableController?.loadView()
                 
@@ -247,7 +247,7 @@ class AnimalDetailViewController: UIViewController {
             camera.animalDetailController = self
             camera.animalObject = self.currentAnimalObject
         } else if (segue.identifier == "AnimalDetailInstagramEmbed") {
-            if(self.instagramId != nil) {
+            if(self.instagramUsername != nil) {
                 NSLog("showing insta view")
                 
                 self.instagramView.hidden = false

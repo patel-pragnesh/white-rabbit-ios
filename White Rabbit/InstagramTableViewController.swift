@@ -15,6 +15,7 @@ class InstagramTableViewController: UITableViewController {
     var engine : InstagramEngine
     var media : [AnyObject]
     var currentPaginationInfo : InstagramPaginationInfo
+    var userName : String = ""
     var userId : String = ""
     
     required init(coder aDecoder:NSCoder) {
@@ -30,16 +31,26 @@ class InstagramTableViewController: UITableViewController {
     func loadMedia() {
         NSLog("loading media for \(self.userId)\n")
         
-        self.engine.getMediaForUser(self.userId, count: 10, maxId: self.currentPaginationInfo.nextMaxId, withSuccess: { (object: [AnyObject]!, pagination: InstagramPaginationInfo!) -> Void in
-            self.currentPaginationInfo = pagination
-            NSLog("nextMaxId: %@\n", self.currentPaginationInfo.nextMaxId)
-            self.media += object!
-            self.tableView.reloadData()
-            self.tableView.sizeToFit()
+        self.engine.searchUsersWithString(self.userName, withSuccess: { (object: [AnyObject]!, pagination: InstagramPaginationInfo!) -> Void in
+                self.userId = (object!.first as! InstagramUser).Id
+                NSLog("username object: %@\n", (object!.first as! InstagramUser).Id)
+
+                self.engine.getMediaForUser(self.userId, count: 10, maxId: self.currentPaginationInfo.nextMaxId, withSuccess: { (object: [AnyObject]!, pagination: InstagramPaginationInfo!) -> Void in
+                    self.currentPaginationInfo = pagination
+                    NSLog("nextMaxId: %@\n", self.currentPaginationInfo.nextMaxId)
+                    self.media += object!
+                    self.tableView.reloadData()
+                    self.tableView.sizeToFit()
+                    }, failure: { (error: NSError!, code: Int) -> Void in
+                        NSLog("instagram error: %@\n", error!)
+                    }
+                )
+            
             }, failure: { (error: NSError!, code: Int) -> Void in
                 NSLog("instagram error: %@\n", error!)
             }
         )
+        
     }
     
     override func viewDidLoad() {

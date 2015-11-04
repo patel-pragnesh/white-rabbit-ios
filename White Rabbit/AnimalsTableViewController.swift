@@ -15,6 +15,7 @@ import FillableLoaders
 class AnimalsTableViewController: PFQueryTableViewController {
 
     var owner : PFUser?
+    var adoptable : Bool = false
     var featured : Bool = false
     var loader : FillableLoader = FillableLoader()
     
@@ -38,6 +39,9 @@ class AnimalsTableViewController: PFQueryTableViewController {
         if self.featured {
             query.whereKey("featured", equalTo: true)
         }
+        if self.adoptable {
+            query.whereKey("adoptable", equalTo: true)
+        }
         query.orderByAscending("name")
         query.includeKey("breed")
         return query
@@ -46,7 +50,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let items = ["Mine", "Featured"]
+        let items = ["Mine", "Featured", "Adoptable"]
         let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             print("Did select item at index: \(indexPath)")
@@ -88,9 +92,16 @@ class AnimalsTableViewController: PFQueryTableViewController {
             case "Featured":
                 self.featured = true
                 self.owner = nil
+                self.adoptable = false
+                break
+            case "Adoptable":
+                self.featured = false
+                self.owner = nil
+                self.adoptable = true
                 break
             case "Mine":
                 self.featured = false
+                self.adoptable = false
                 self.setCurrentUser()
                 break
             default:

@@ -19,6 +19,13 @@ class AnimalFormViewController : FormViewController {
     let BIRTHDATE_TAG = "birthDate"
     let DECEASED_TAG = "deceasedDate"
     let GENDER_TAG = "gender"
+    let USERNAME_TAG = "username"
+
+    
+    let INSTAGRAM_TAG = "instagramUsername"
+    let TWITTER_TAG = "twitterUsername"
+    let YOUTUBE_TAG = "youtubeUsername"
+
     
     var animalObject : PFObject?
     
@@ -58,26 +65,33 @@ class AnimalFormViewController : FormViewController {
             <<< NameRow(NAME_TAG) {
                 $0.title = "Name"
                 if self.isEditMode() {
-                    $0.value = self.animalObject?.objectForKey("name") as? String
+                    $0.value = self.animalObject?.objectForKey(self.NAME_TAG) as? String
                 }
+            }
+            <<< TwitterRow(USERNAME_TAG) {
+                $0.title = "Username"
+                $0.value = self.animalObject?.objectForKey(self.USERNAME_TAG) as? String
+                }.cellSetup { cell, row in
+                    cell.textField.placeholder = "@username"
             }
             <<< DateRow(BIRTHDATE_TAG) {
                 $0.title = "Birth Date"
                 if self.isEditMode() {
-                    $0.value = self.animalObject?.objectForKey("birthDate") as? NSDate
+                    $0.value = self.animalObject?.objectForKey(self.BIRTHDATE_TAG) as? NSDate
                 }
             }
             <<< DateRow(DECEASED_TAG) {
                 $0.title = "Deceased Date"
                 if self.isEditMode() {
-                    $0.value = self.animalObject?.objectForKey("deceasedDate") as? NSDate
+                    $0.value = self.animalObject?.objectForKey(self.DECEASED_TAG) as? NSDate
                 }
             }
             <<< SegmentedRow<String>(GENDER_TAG) {
                 $0.title = "Gender"
                 $0.options = ["Male", "Female"]
                 if self.isEditMode() {
-                    $0.value = self.animalObject?.objectForKey("gender") as? String
+                    $0.value = self.animalObject?.objectForKey(self.GENDER_TAG
+                        ) as? String
                 }
 
             }
@@ -103,17 +117,31 @@ class AnimalFormViewController : FormViewController {
         }
 
         form +++= Section("Social")
-            <<< TwitterRow() {
+            <<< TwitterRow(INSTAGRAM_TAG) {
                 $0.title = "Instagram"
+                if self.isEditMode() {
+                    $0.value = self.animalObject?.objectForKey(self.INSTAGRAM_TAG) as? String
+                }
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "@username"
             }
-            <<< TwitterRow() {
+            <<< TwitterRow(TWITTER_TAG) {
                 $0.title = "Twitter"
+                if self.isEditMode() {
+                    $0.value = self.animalObject?.objectForKey(self.TWITTER_TAG) as? String
+                }
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "@username"
             }
-        
+            <<< TwitterRow(YOUTUBE_TAG) {
+                $0.title = "Youtube"
+                if self.isEditMode() {
+                    $0.value = self.animalObject?.objectForKey(self.YOUTUBE_TAG) as? String
+                }
+            }.cellSetup { cell, row in
+                cell.textField.placeholder = "@username"
+            }
+    
 //        form +++= Section("")
 //            <<< ButtonRow("save") { $0.title = "Save" }.onCellSelection { cell, row in print("Cell was selected")
 //                    self.saveAnimal()
@@ -134,21 +162,41 @@ class AnimalFormViewController : FormViewController {
         let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate
         let deceasedDateValue = self.form.rowByTag(self.DECEASED_TAG)?.baseValue as? NSDate
         let genderValue = self.form.rowByTag(self.GENDER_TAG)?.baseValue as? String
+        let usernameValue = self.form.rowByTag(self.USERNAME_TAG)?.baseValue as? String
+
+        let instagramValue = self.form.rowByTag(self.INSTAGRAM_TAG)?.baseValue as? String
+        let twitterValue = self.form.rowByTag(self.TWITTER_TAG)?.baseValue as? String
+        let youtubeValue = self.form.rowByTag(self.YOUTUBE_TAG)?.baseValue as? String
+
         
-        animal.setObject(nameValue!, forKey: "name")
+        animal.setObject(nameValue!, forKey: NAME_TAG)
         if birthDateValue != nil {
-            animal.setObject(birthDateValue!, forKey: "birthDate")
+            animal.setObject(birthDateValue!, forKey: BIRTHDATE_TAG)
         }
         if deceasedDateValue != nil {
-            animal.setObject(deceasedDateValue!, forKey: "deceasedDate")
+            animal.setObject(deceasedDateValue!, forKey: DECEASED_TAG)
         }
         if genderValue != nil {
-            animal.setObject(genderValue!, forKey: "gender")
+            animal.setObject(genderValue!, forKey: GENDER_TAG)
         }
-        
+        if usernameValue != nil {
+            animal.setObject(usernameValue!, forKey: USERNAME_TAG)
+        }
+        if instagramValue != nil {
+            animal.setObject(instagramValue!, forKey: INSTAGRAM_TAG)
+        }
+        if twitterValue != nil {
+            animal.setObject(twitterValue!, forKey: TWITTER_TAG)
+        }
+        if youtubeValue != nil {
+            animal.setObject(youtubeValue!, forKey: YOUTUBE_TAG)
+        }
+
         animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             if success {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                NSLog("Finished saving")
+//                self.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController!.popViewControllerAnimated(true)
             } else {
                 NSLog("%@", error!)
             }

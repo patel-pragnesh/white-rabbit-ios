@@ -286,7 +286,7 @@ extension UIImage
         imageView.image = self
         imageView.layer.cornerRadius = square.width/2
         imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 50
+        imageView.layer.borderWidth = square.width/50
         imageView.layer.borderColor = CGColorCreateCopyWithAlpha(UIColor.whiteColor().CGColor, 0.75)
         UIGraphicsBeginImageContext(imageView.bounds.size)
         imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
