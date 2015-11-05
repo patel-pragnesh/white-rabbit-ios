@@ -92,7 +92,7 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
             resultBlock: {
                 (asset: ALAsset!) -> Void in
                     let date = asset.valueForProperty(ALAssetPropertyDate)
-                    self.pickedImageDate = date as! NSDate
+                    self.pickedImageDate = date as? NSDate
             }, failureBlock: { (error: NSError!) -> Void in
                 print(error)
             }

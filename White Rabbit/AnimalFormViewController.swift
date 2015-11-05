@@ -21,6 +21,8 @@ class AnimalFormViewController : FormViewController {
     let GENDER_TAG = "gender"
     let USERNAME_TAG = "username"
 
+    let ADOPTABLE_TAG = "adoptable"
+    let FEATURED_TAG = "featured"
     
     let INSTAGRAM_TAG = "instagramUsername"
     let TWITTER_TAG = "twitterUsername"
@@ -141,7 +143,23 @@ class AnimalFormViewController : FormViewController {
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "@username"
             }
-    
+
+            form +++= Section("Flags")
+                <<< SwitchRow(ADOPTABLE_TAG) {
+                    $0.title = "Adoptable"
+                    $0.value = false
+                    if self.isEditMode() {
+                        $0.value = self.animalObject?.objectForKey(self.ADOPTABLE_TAG) as? Bool
+                    }
+                }
+                <<< SwitchRow(FEATURED_TAG) {
+                    $0.title = "Featured"
+                    $0.value = false
+                    if self.isEditMode() {
+                        $0.value = self.animalObject?.objectForKey(self.FEATURED_TAG) as? Bool
+                    }
+            }
+        
 //        form +++= Section("")
 //            <<< ButtonRow("save") { $0.title = "Save" }.onCellSelection { cell, row in print("Cell was selected")
 //                    self.saveAnimal()
@@ -158,44 +176,42 @@ class AnimalFormViewController : FormViewController {
             animal = self.animalObject!
         }
         
-        let nameValue = self.form.rowByTag(self.NAME_TAG)?.baseValue as? String
-        let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate
-        let deceasedDateValue = self.form.rowByTag(self.DECEASED_TAG)?.baseValue as? NSDate
-        let genderValue = self.form.rowByTag(self.GENDER_TAG)?.baseValue as? String
-        let usernameValue = self.form.rowByTag(self.USERNAME_TAG)?.baseValue as? String
+        if let nameValue = self.form.rowByTag(self.NAME_TAG)?.baseValue as? String {
+            animal.setObject(nameValue, forKey: NAME_TAG)
+        }
+        if let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate {
+            animal.setObject(birthDateValue, forKey: BIRTHDATE_TAG)
+        }
+        if let deceasedDateValue = self.form.rowByTag(self.DECEASED_TAG)?.baseValue as? NSDate {
+            animal.setObject(deceasedDateValue, forKey: DECEASED_TAG)
+        }
+        if let genderValue = self.form.rowByTag(self.GENDER_TAG)?.baseValue as? String {
+            animal.setObject(genderValue, forKey: GENDER_TAG)
+        }
+        if let usernameValue = self.form.rowByTag(self.USERNAME_TAG)?.baseValue as? String {
+            animal.setObject(usernameValue, forKey: USERNAME_TAG)
+        }
+        if let instagramValue = self.form.rowByTag(self.INSTAGRAM_TAG)?.baseValue as? String {
+            animal.setObject(instagramValue, forKey: INSTAGRAM_TAG)
+        }
+        if let twitterValue = self.form.rowByTag(self.TWITTER_TAG)?.baseValue as? String {
+            animal.setObject(twitterValue, forKey: TWITTER_TAG)
+        }
+        if let youtubeValue = self.form.rowByTag(self.YOUTUBE_TAG)?.baseValue as? String {
+            animal.setObject(youtubeValue, forKey: YOUTUBE_TAG)
+        }
 
-        let instagramValue = self.form.rowByTag(self.INSTAGRAM_TAG)?.baseValue as? String
-        let twitterValue = self.form.rowByTag(self.TWITTER_TAG)?.baseValue as? String
-        let youtubeValue = self.form.rowByTag(self.YOUTUBE_TAG)?.baseValue as? String
-
+        if let featuredValue = self.form.rowByTag(self.FEATURED_TAG)?.baseValue as? Bool {
+            animal.setObject(featuredValue, forKey: FEATURED_TAG)
+        }
+        if let adoptableValue = self.form.rowByTag(self.ADOPTABLE_TAG)?.baseValue as? Bool {
+            animal.setObject(adoptableValue, forKey: ADOPTABLE_TAG)
+        }
         
-        animal.setObject(nameValue!, forKey: NAME_TAG)
-        if birthDateValue != nil {
-            animal.setObject(birthDateValue!, forKey: BIRTHDATE_TAG)
-        }
-        if deceasedDateValue != nil {
-            animal.setObject(deceasedDateValue!, forKey: DECEASED_TAG)
-        }
-        if genderValue != nil {
-            animal.setObject(genderValue!, forKey: GENDER_TAG)
-        }
-        if usernameValue != nil {
-            animal.setObject(usernameValue!, forKey: USERNAME_TAG)
-        }
-        if instagramValue != nil {
-            animal.setObject(instagramValue!, forKey: INSTAGRAM_TAG)
-        }
-        if twitterValue != nil {
-            animal.setObject(twitterValue!, forKey: TWITTER_TAG)
-        }
-        if youtubeValue != nil {
-            animal.setObject(youtubeValue!, forKey: YOUTUBE_TAG)
-        }
-
         animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             if success {
                 NSLog("Finished saving")
-//                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
                 self.navigationController!.popViewControllerAnimated(true)
             } else {
                 NSLog("%@", error!)

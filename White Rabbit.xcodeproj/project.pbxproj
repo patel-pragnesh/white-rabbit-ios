@@ -29,7 +29,6 @@
 		ED692D671BACECED00C52562 /* ShelterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */; };
 		ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */; };
 		ED8F90461BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */; };
-		ED9760CB1BAA256300EE3BBF /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */; };
 		EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */; };
 		EDC1FCC31BD325E8005FDAED /* DocumentCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */; };
 		EDCF6EC41BD4A31300C46D90 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */; };
@@ -37,7 +36,6 @@
 		EDCF6EC91BD4A33600C46D90 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC61BD4A33500C46D90 /* FBSDKCoreKit.framework */; };
 		EDCF6ECA1BD4A33600C46D90 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC71BD4A33500C46D90 /* FBSDKLoginKit.framework */; };
 		EDCF6ECB1BD4A33600C46D90 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC81BD4A33500C46D90 /* Parse.framework */; };
-		EDCF6ECE1BD4AB5400C46D90 /* FacebookSDKStrings.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */; };
 		EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */; };
 		EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */; };
 		EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */; };
@@ -65,11 +63,7 @@
 		EDFD64E41BD9E02300344BDC /* ContentfulDeliveryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */; };
 		EDFD64E51BD9E02300344BDC /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64E31BD9E02300344BDC /* ISO8601DateFormatter.framework */; };
 		EDFD64EB1BD9E57400344BDC /* CareSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFD64EA1BD9E57400344BDC /* CareSectionViewController.swift */; };
-		EDFD64EF1BDA021A00344BDC /* markdown in Resources */ = {isa = PBXBuildFile; fileRef = EDFD64EE1BDA021A00344BDC /* markdown */; };
-		EDFD64F01BDA028A00344BDC /* markdown in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64EE1BDA021A00344BDC /* markdown */; };
 		EDFD64F21BDA058400344BDC /* MMMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64F11BDA058400344BDC /* MMMarkdown.framework */; };
-		EDFD64F61BDA132200344BDC /* Bumblebee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64F51BDA132200344BDC /* Bumblebee.framework */; };
-		EDFD64FA1BDA1C7400344BDC /* XNGMarkdownParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64F91BDA1C7400344BDC /* XNGMarkdownParser.framework */; };
 		EDFD64FC1BDAD48300344BDC /* FillableLoaders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64FB1BDAD48300344BDC /* FillableLoaders.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,7 +113,6 @@
 		ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTableViewController.swift; sourceTree = "<group>"; };
 		ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTNavigationDropdownMenu.framework; path = "Pods/../build/Debug-iphoneos/BTNavigationDropdownMenu.framework"; sourceTree = "<group>"; };
 		ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
 		ED9760C81BAA256300EE3BBF /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		ED9760C91BAA256300EE3BBF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		ED9760CA1BAA256300EE3BBF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -172,7 +165,6 @@
 		EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContentfulDeliveryAPI.framework; path = "Pods/../build/Debug-iphoneos/ContentfulDeliveryAPI.framework"; sourceTree = "<group>"; };
 		EDFD64E31BD9E02300344BDC /* ISO8601DateFormatter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601DateFormatter.framework; path = "Pods/../build/Debug-iphoneos/ISO8601DateFormatter.framework"; sourceTree = "<group>"; };
 		EDFD64EA1BD9E57400344BDC /* CareSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareSectionViewController.swift; sourceTree = "<group>"; };
-		EDFD64EE1BDA021A00344BDC /* markdown */ = {isa = PBXFileReference; lastKnownFileType = folder; path = markdown; sourceTree = "<group>"; };
 		EDFD64F11BDA058400344BDC /* MMMarkdown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMMarkdown.framework; path = "Pods/../build/Debug-iphoneos/MMMarkdown.framework"; sourceTree = "<group>"; };
 		EDFD64F31BDA104F00344BDC /* Bumblebee.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bumblebee.framework; path = "Pods/../build/Debug-iphoneos/Bumblebee.framework"; sourceTree = "<group>"; };
 		EDFD64F51BDA132200344BDC /* Bumblebee.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bumblebee.framework; path = "Pods/../build/Debug-iphoneos/Bumblebee.framework"; sourceTree = "<group>"; };
@@ -188,13 +180,9 @@
 			files = (
 				ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */,
 				EDFD64FC1BDAD48300344BDC /* FillableLoaders.framework in Frameworks */,
-				EDFD64FA1BDA1C7400344BDC /* XNGMarkdownParser.framework in Frameworks */,
-				EDFD64F61BDA132200344BDC /* Bumblebee.framework in Frameworks */,
 				EDFD64F21BDA058400344BDC /* MMMarkdown.framework in Frameworks */,
-				EDFD64F01BDA028A00344BDC /* markdown in Frameworks */,
 				EDFD64E41BD9E02300344BDC /* ContentfulDeliveryAPI.framework in Frameworks */,
 				EDFD64E51BD9E02300344BDC /* ISO8601DateFormatter.framework in Frameworks */,
-				EDCF6ECE1BD4AB5400C46D90 /* FacebookSDKStrings.bundle in Frameworks */,
 				EDCF6EC91BD4A33600C46D90 /* FBSDKCoreKit.framework in Frameworks */,
 				EDCF6ECA1BD4A33600C46D90 /* FBSDKLoginKit.framework in Frameworks */,
 				EDCF6ECB1BD4A33600C46D90 /* Parse.framework in Frameworks */,
@@ -278,7 +266,6 @@
 				EDFD64E71BD9E42B00344BDC /* Breeds */,
 				EDFD64E81BD9E43600344BDC /* Care */,
 				EDFD64E91BD9E43E00344BDC /* Locations */,
-				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
 				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
@@ -317,7 +304,6 @@
 				EDFD64F51BDA132200344BDC /* Bumblebee.framework */,
 				EDFD64F31BDA104F00344BDC /* Bumblebee.framework */,
 				EDFD64F11BDA058400344BDC /* MMMarkdown.framework */,
-				EDFD64EE1BDA021A00344BDC /* markdown */,
 				EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */,
 				EDFD64E31BD9E02300344BDC /* ISO8601DateFormatter.framework */,
 				EDF4239C1BD9DF7D0087583A /* ContentfulDeliveryAPI.framework */,
@@ -336,7 +322,6 @@
 				ED1C8CB51BC7931D0046A34B /* InstagramKit.framework */,
 				ED008E211BBA260800CAA0D0 /* TagListView.framework */,
 				ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */,
-				ED9760C71BAA256300EE3BBF /* FacebookSDKStrings.bundle */,
 				ED9760C81BAA256300EE3BBF /* FBAudienceNetwork.framework */,
 				ED9760C91BAA256300EE3BBF /* FBSDKCoreKit.framework */,
 				ED9760CA1BAA256300EE3BBF /* FBSDKLoginKit.framework */,
@@ -371,6 +356,7 @@
 				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
 				ED008E251BBE413A00CAA0D0 /* AnimalTimelineTableViewCell.swift */,
 				EDF00D721BAD466500FE4B48 /* CameraViewController.swift */,
+				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
 				ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */,
 			);
@@ -522,9 +508,7 @@
 			files = (
 				EDE6D43E1BA7B2BC00C7AC8C /* LaunchScreen.storyboard in Resources */,
 				EDE6D43B1BA7B2BC00C7AC8C /* Assets.xcassets in Resources */,
-				EDFD64EF1BDA021A00344BDC /* markdown in Resources */,
 				EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */,
-				ED9760CB1BAA256300EE3BBF /* FacebookSDKStrings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
