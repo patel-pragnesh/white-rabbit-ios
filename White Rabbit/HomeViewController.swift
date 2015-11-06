@@ -18,12 +18,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var locationsButton: UIButton!
     @IBOutlet weak var breedsButton: UIButton!
     @IBOutlet weak var careButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var aboutButton: UIButton!
     
     
     var mainViewController: UIViewController!
     var locationsViewController: UIViewController!
     var breedsViewController: UIViewController!
     var careViewController: UIViewController!
+    var userFormController: UINavigationController!
     
     
     var currentUser: PFUser?
@@ -40,12 +43,18 @@ class HomeViewController: UIViewController {
         self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsTabView")
         self.breedsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BreedsTable")
         self.careViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CareNavigation")
+        self.userFormController = self.storyboard?.instantiateViewControllerWithIdentifier("UserNavigation") as! UINavigationController
+        let userForm = self.userFormController.topViewController as! UserFormViewController
+        userForm.userObject = self.currentUser
+        userForm.menuController = self
 
         
         self.animalsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.locationsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.breedsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.careButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
+        self.settingsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
+        self.aboutButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
     }
     
     func showView(sender: UIButton!) {
@@ -61,6 +70,9 @@ class HomeViewController: UIViewController {
                 break
             case "  Care":
                 self.slideMenuController()?.changeMainViewController(self.careViewController, close: true)
+                break
+            case "Settings":
+                self.slideMenuController()?.changeMainViewController(self.userFormController, close: true)
                 break
             default:
                 break
@@ -105,7 +117,7 @@ class HomeViewController: UIViewController {
         })
     }
 
-    @IBAction func logout(sender: UIButton) {
+    @IBAction func logout() {
         PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in
             if error != nil {
                 NSLog("logout fail: \(error)")

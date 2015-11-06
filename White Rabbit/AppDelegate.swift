@@ -116,7 +116,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func loadMainController() {
-        let storyboard = self.window?.rootViewController?.storyboard
+        var storyboard = self.window?.rootViewController?.storyboard
+        if(storyboard == nil) {
+            storyboard = UIStoryboard(name: "Main", bundle: nil)
+        }
         let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
         
         let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
