@@ -1408,7 +1408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhh-hW-okU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4401" y="-2224.5"/>
+            <point key="canvasLocation" x="4291" y="-2291"/>
         </scene>
         <!--Animals-->
         <scene sceneID="svv-l2-QU2">
@@ -1491,7 +1491,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="name"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="imageKey" value="profilePhoto"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="loadingViewEnabled" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="pullToRefreshEnabled" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pullToRefreshEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="CdW-CM-oLe" kind="presentation" identifier="AnimalTableToAddAnimal" id="P6Y-Yv-4xu"/>
@@ -2427,12 +2427,12 @@
                         <outlet property="traitTags" destination="y4o-E0-izx" id="uwa-1U-MCT"/>
                         <outlet property="twitterButton" destination="5td-DT-3Wg" id="ocw-xM-0Hp"/>
                         <outlet property="youtubeButton" destination="zcE-lC-Vkd" id="WBP-ui-S9b"/>
-                        <segue destination="BTn-zl-1NW" kind="show" identifier="AnimalDetailToEditAnimal" id="Z0V-tp-whT"/>
+                        <segue destination="CdW-CM-oLe" kind="presentation" identifier="AnimalDetailToEditAnimal" id="to2-Xz-uJJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uH-eJ-MnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2922" y="-1191"/>
+            <point key="canvasLocation" x="2922" y="-1369"/>
         </scene>
         <!--Traits-->
         <scene sceneID="v87-9v-NPS">
@@ -2655,8 +2655,8 @@
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Z0V-tp-whT"/>
         <segue reference="rZ8-6v-l2a"/>
+        <segue reference="to2-Xz-uJJ"/>
         <segue reference="J4W-rm-qZ2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -93,7 +93,7 @@ class AnimalDetailViewController: UIViewController {
         self.timelineTableController = timelineTableController
         
         
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("edit_white", action: "showEditAminalView", height: 25)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25)
         
         traitTags.textFont = UIFont.systemFontOfSize(15)
         
@@ -232,7 +232,8 @@ class AnimalDetailViewController: UIViewController {
             let detailScene = segue.destinationViewController as! BreedDetailViewController
             detailScene.currentBreedObject = self.breedObject
         } else if(segue.identifier == "AnimalDetailToEditAnimal"){
-            let editScene = segue.destinationViewController as! AnimalFormViewController
+            let nav = segue.destinationViewController as! UINavigationController
+            let editScene =  nav.topViewController as! AnimalFormViewController
             editScene.animalObject = self.currentAnimalObject        
         } else if(segue.identifier == "AnimalToTraitSelector") {
             let traitSelector = segue.destinationViewController as! TraitSelectorTableViewController

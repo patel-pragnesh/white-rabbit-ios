@@ -130,6 +130,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
 
         
         self.tableView.reloadData()
+        self.tableView.reloadInputViews()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {

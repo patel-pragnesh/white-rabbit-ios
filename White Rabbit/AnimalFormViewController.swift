@@ -16,11 +16,18 @@ class AnimalFormViewController : FormViewController {
     @IBOutlet var formView: UIView!
     
     let NAME_TAG = "name"
+    let PROFILE_PHOTO_TAG = "profilePhoto"
+    let COVER_PHOTO_TAG = "coverPhoto"
+    
     let BIRTHDATE_TAG = "birthDate"
     let DECEASED_TAG = "deceasedDate"
     let GENDER_TAG = "gender"
     let USERNAME_TAG = "username"
 
+    let TRAITS_TAG = "traits"
+    let BREED_TAG = "breed"
+    let SHELTER_TAG = "shelter"
+    
     let ADOPTABLE_TAG = "adoptable"
     let FEATURED_TAG = "featured"
     
@@ -30,6 +37,7 @@ class AnimalFormViewController : FormViewController {
 
     
     var animalObject : PFObject?
+    var selectedTraitStrings : Set<String>?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -39,18 +47,66 @@ class AnimalFormViewController : FormViewController {
         return (self.animalObject != nil)
     }
     
+    func loadTraits() {
+        NSLog("loading traits")
+        if let animal = self.animalObject {
+            NSLog("animal set - getting traits")
+            let relation = animal.objectForKey("traits") as! PFRelation
+            let traitsQuery = relation.query() as PFQuery?
+            
+            traitsQuery?.findObjectsInBackgroundWithBlock({
+                (objects: [PFObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    NSLog("found traits \(objects)")
+                    var value = Set<String>()
+                    for object in objects! {
+                        value.insert(object.valueForKey("name") as! String)
+                    }
+                    self.selectedTraitStrings = value
+                    self.form.rowByTag(self.TRAITS_TAG)?.baseValue = value
+                    self.form.rowByTag(self.TRAITS_TAG)?.updateCell()
+                }
+            })
+        }
+    }
+    
+    func saveTraits(traitObjects: [PFObject?]) {
+        let relation = self.animalObject!.relationForKey("traits")
+        
+        // clear out all previous traits
+        // TODO - figure out a more efficient way to do this
+        let traitsQuery = PFQuery(className: "Trait")
+        let allTraits = try! traitsQuery.findObjects()
+        for traitObject in allTraits {
+            relation.removeObject(traitObject)
+        }
+        
+        for traitObject in traitObjects {
+            print("adding: \(traitObject)!")
+            relation.addObject(traitObject!)
+        }
+        
+        self.animalObject!.saveInBackgroundWithBlock({
+            (success: Bool, error: NSError?) -> Void in
+            NSLog("traits saved!!!!")
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.loadTraits()
         
         self.generateForm()
         
         self.setUpNavigationBar()
 
         if !self.isEditMode() {
-            self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25)
+            self.navigationItem.title = "New Cat"
         } else {
-            self.navigationItem.title = "Edit Cat"
+            self.navigationItem.title = "Cat Settings"
         }
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25)
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveAnimal", height: 20)
     }
     
@@ -63,60 +119,104 @@ class AnimalFormViewController : FormViewController {
 //    
     
     func generateForm() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
         form +++= Section("Info")
             <<< NameRow(NAME_TAG) {
-                $0.title = "Name"
+                $0.title = "Cat's Name"
                 if self.isEditMode() {
                     $0.value = self.animalObject?.objectForKey(self.NAME_TAG) as? String
                 }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_user")
             }
             <<< TwitterRow(USERNAME_TAG) {
                 $0.title = "Username"
                 $0.value = self.animalObject?.objectForKey(self.USERNAME_TAG) as? String
                 }.cellSetup { cell, row in
                     cell.textField.placeholder = "@username"
+                    cell.imageView?.image = UIImage(named: "form_username")
             }
             <<< DateRow(BIRTHDATE_TAG) {
                 $0.title = "Birth Date"
                 if self.isEditMode() {
                     $0.value = self.animalObject?.objectForKey(self.BIRTHDATE_TAG) as? NSDate
                 }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_birthdate")
             }
             <<< DateRow(DECEASED_TAG) {
                 $0.title = "Deceased Date"
+                $0.hidden = .Function([self.ADOPTABLE_TAG], { form -> Bool in
+                    let row: RowOf<NSDate>! = form.rowByTag(self.BIRTHDATE_TAG)
+                    return row.value ?? false == true
+                })
                 if self.isEditMode() {
                     $0.value = self.animalObject?.objectForKey(self.DECEASED_TAG) as? NSDate
                 }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_date")
             }
             <<< SegmentedRow<String>(GENDER_TAG) {
                 $0.title = "Gender"
                 $0.options = ["Male", "Female"]
                 if self.isEditMode() {
-                    $0.value = self.animalObject?.objectForKey(self.GENDER_TAG
-                        ) as? String
+                    $0.value = self.animalObject?.objectForKey(self.GENDER_TAG) as? String
                 }
-
+                }.cellSetup { cell, row in
+                    cell.imageView?.image = UIImage(named: "form_gender")
             }
-
-//        form +++= Section("Photos")
-//            <<< ImageRow() {
-//                $0.title = "Profile Photo"
+//            <<< SegmentedRow<String>(GENDER_TAG) {
+//                $0.title = "Gender"
+//                $0.options = ["Male", "Female"]
+//                if self.isEditMode() {
+//                    $0.value = self.animalObject?.objectForKey(self.GENDER_TAG) as? String
+//                }
+//            }.cellSetup { cell, row in
+//                cell.imageView?.image = UIImage(named: "form_birthdate")
+////                cell.textLabel!.frame = CGRectMake(cell.textLabel!.frame.origin.x + 100, cell.textLabel!.frame.origin.y, cell.textLabel!.frame.size.width, cell.textLabel!.frame.size.height);
 //            }
-//            <<< ImageRow() {
-//                $0.title = "Cover Photo"
-//        }
+
+        form +++= Section("Photos")
+            <<< ImageRow(PROFILE_PHOTO_TAG) {
+                $0.title = "Profile Photo"
+            }.cellSetup { cell, row in
+                    cell.imageView?.image = UIImage(named: "form_profile_photo")
+            }
+            <<< ImageRow(COVER_PHOTO_TAG) {
+                $0.title = "Cover Photo"
+            }.cellSetup { cell, row in
+                    cell.imageView?.image = UIImage(named: "form_cover_photo")
+        }
 
         
         form +++= Section("Details")
-            <<< PushRow<String> {
+            <<< PushRow<String>(BREED_TAG) {
         //            <<< PushSelectorCell<BreedsTableViewCell>("BreedCell") {
                 $0.title = "Breed"
-                $0.options = ["Bengal", "American Shorthair"]
+                $0.options = appDelegate.breedsArray!
+                if self.isEditMode() {
+                    let breedObject = self.animalObject?.objectForKey(self.BREED_TAG) as? PFObject
+                    if(breedObject != nil) {
+                        $0.value = breedObject!.objectForKey("name") as? String
+                    }
+                }
+
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_breed")
             }
-            <<< PushRow<String> {
+            <<< MultipleSelectorRow<String>(TRAITS_TAG) {
                 $0.title = "Traits"
-                $0.options = ["athletic", "cuddly"]
-        }
+                $0.options = appDelegate.traitsArray!
+                NSLog("creating traits row")
+                if self.isEditMode() {
+                    NSLog("selected traits are: \(self.selectedTraitStrings)")
+
+                    $0.value = self.selectedTraitStrings
+                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_traits")
+            }
 
         form +++= Section("Social")
             <<< TwitterRow(INSTAGRAM_TAG) {
@@ -126,6 +226,7 @@ class AnimalFormViewController : FormViewController {
                 }
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "@username"
+                cell.imageView?.image = UIImage(named: "form_instagram")
             }
             <<< TwitterRow(TWITTER_TAG) {
                 $0.title = "Twitter"
@@ -134,6 +235,7 @@ class AnimalFormViewController : FormViewController {
                 }
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "@username"
+                cell.imageView?.image = UIImage(named: "form_twitter")
             }
             <<< TwitterRow(YOUTUBE_TAG) {
                 $0.title = "Youtube"
@@ -142,6 +244,7 @@ class AnimalFormViewController : FormViewController {
                 }
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "@username"
+                cell.imageView?.image = UIImage(named: "form_youtube")
             }
 
             form +++= Section("Flags")
@@ -152,15 +255,36 @@ class AnimalFormViewController : FormViewController {
                         $0.value = self.animalObject?.objectForKey(self.ADOPTABLE_TAG) as? Bool
                     }
                 }
+                
+                <<< PushRow<String>(SHELTER_TAG) {
+                    $0.title = "Shelter"
+                    $0.options = appDelegate.sheltersArray!
+                    $0.hidden = .Function([self.ADOPTABLE_TAG], { form -> Bool in
+                        let row: RowOf<Bool>! = form.rowByTag(self.ADOPTABLE_TAG)
+                        return row.value ?? false == false
+                    })
+                    if self.isEditMode() {
+                        let shelterObject = self.animalObject?.objectForKey(self.SHELTER_TAG) as? PFObject
+                        if(shelterObject != nil) {
+                            $0.value = shelterObject!.objectForKey("name") as? String
+                        }
+                    }
+                }
+        
                 <<< SwitchRow(FEATURED_TAG) {
                     $0.title = "Featured"
                     $0.value = false
                     if self.isEditMode() {
                         $0.value = self.animalObject?.objectForKey(self.FEATURED_TAG) as? Bool
                     }
-            }
+        }
         
-//        form +++= Section("")
+        if(self.isEditMode()) {
+            form +++= Section("")
+                <<< ButtonRow("remove") { $0.title = "Remove" }.onCellSelection { cell, row in print("Cell was selected")
+                    self.removeAnimal()
+            }
+        }
 //            <<< ButtonRow("save") { $0.title = "Save" }.onCellSelection { cell, row in print("Cell was selected")
 //                    self.saveAnimal()
 //            }
@@ -168,10 +292,31 @@ class AnimalFormViewController : FormViewController {
 //        }
 
     }
+
+    func removeAnimal() {
+        let refreshAlert = UIAlertController(title: "Remove?", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Do it", style: .Default, handler: { (action: UIAlertAction!) in
+            self.animalObject!.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                self.displayAlert("Deleted. KTHXBAI.")
+                refreshAlert.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            })
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+    }
+        
     
     func saveAnimal() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
         NSLog("saving animal")
         var animal = PFObject(className: "Animal")
+        let wasEditMode = self.isEditMode()
         if self.isEditMode() {
             animal = self.animalObject!
         }
@@ -179,6 +324,28 @@ class AnimalFormViewController : FormViewController {
         if let nameValue = self.form.rowByTag(self.NAME_TAG)?.baseValue as? String {
             animal.setObject(nameValue, forKey: NAME_TAG)
         }
+//        if let profilePhotoValue = self.form.rowByTag(self.PROFILE_PHOTO_TAG)?.baseValue as? NSFile {
+//            animal.setObject(birthDateValue, forKey: BIRTHDATE_TAG)
+//        }
+        
+        if let breedValue = self.form.rowByTag(self.BREED_TAG)?.baseValue as? String {
+            let breed = appDelegate.breedByName![breedValue]
+            NSLog("XBreed: \(breed?.valueForKey("objectId"))")
+            animal.setObject(breed!, forKey: BREED_TAG)
+        }
+        
+        if let traitsValue = self.form.rowByTag(self.TRAITS_TAG)?.baseValue as? Set<String> {
+            var traitObjects = [PFObject?]()
+            for trait in traitsValue{
+                let trait = appDelegate.traitByName![trait]
+                traitObjects.append(trait)
+            }
+            self.saveTraits(traitObjects)
+//            animal.setObject(breed!, forKey: BREED_TAG)
+        }
+
+        
+        
         if let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate {
             animal.setObject(birthDateValue, forKey: BIRTHDATE_TAG)
         }
@@ -208,11 +375,19 @@ class AnimalFormViewController : FormViewController {
             animal.setObject(adoptableValue, forKey: ADOPTABLE_TAG)
         }
         
+        if let shelterValue = self.form.rowByTag(self.SHELTER_TAG)?.baseValue as? String {
+            let shelter = appDelegate.shelterByName![shelterValue]
+            animal.setObject(shelter!, forKey: SHELTER_TAG)
+        }
+        
         animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             if success {
                 NSLog("Finished saving")
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.navigationController!.popViewControllerAnimated(true)
+//                if(wasEditMode) {
+//                    self.navigationController!.popViewControllerAnimated(true)
+//                } else {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+//                }
             } else {
                 NSLog("%@", error!)
             }

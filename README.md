@@ -2,6 +2,9 @@
 
 White Rabbit is built for iOS 8 and later with Swift 2.
 
+- python slice.py "/Users/michaelbina/Library/Mobile Documents/com~apple~CloudDocs/Projects/white rabbit/design/iPhone.sketch" "/Users/michaelbina/Library/Mobile Documents/com~apple~CloudDocs/Projects/white rabbit/dev/ios/White Rabbit/Assets.xcassets"
+
+
 Libraries being used:
 
 * [DynamicColor](https://github.com/yannickl/DynamicColor) for color shortcuts

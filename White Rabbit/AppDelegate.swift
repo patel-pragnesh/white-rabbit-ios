@@ -1,4 +1,4 @@
-    //
+//
 //  AppDelegate.swift
 //  White Rabbit
 //
@@ -23,7 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var client: CDAClient?
+    
+    var traitsArray: [String]?
+    var traitByName: [String: PFObject]?
+    var breedsArray: [String]?
+    var breedByName: [String: PFObject]?
+    var sheltersArray: [String]?
+    var shelterByName: [String: PFObject]?
 
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         Parse.enableLocalDatastore()
@@ -41,8 +49,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UILabel.appearance().substituteFontName = "Avenir"
 
         loadMainController()
+        loadTraits()
+        loadBreeds()
+        loadShelters()
         
         return true
+    }
+    
+    func loadTraits() {
+        let traitQuery = PFQuery(className:"Trait")
+        self.traitsArray = [String]()
+        self.traitByName = [String:PFObject]()
+        
+        traitQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let name = object["name"] as! String
+                    self.traitsArray?.append(name)
+                    self.traitByName![name] = object
+                }
+                NSLog("Finished loading traits: %@", self.traitByName!)
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
+    }
+    
+    func loadShelters() {
+        let sheltersQuery = PFQuery(className:"Location")
+        sheltersQuery.whereKey("type", equalTo: "shelter")
+
+        self.sheltersArray = [String]()
+        self.shelterByName = [String:PFObject]()
+        
+        sheltersQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let name = object["name"] as! String
+                    self.sheltersArray?.append(name)
+                    self.shelterByName![name] = object
+                }
+                NSLog("Finished loading shelters: %@", self.shelterByName!)
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
+    }
+    
+    func loadBreeds() {
+        let breedQuery = PFQuery(className:"Breed")
+        self.breedsArray = [String]()
+        self.breedByName = [String:PFObject]()
+        
+        breedQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let name = object["name"] as! String
+                    self.breedsArray?.append(name)
+                    self.breedByName![name] = object
+                }
+                NSLog("Finished loading breeds: %@", self.breedByName!)
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
     }
     
     func loadMainController() {
