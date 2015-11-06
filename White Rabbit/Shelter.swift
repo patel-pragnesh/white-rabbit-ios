@@ -17,12 +17,15 @@ class Shelter: NSObject, MKAnnotation {
     init(parseObject: PFObject) {
         self.title = parseObject["name"] as? String
         
-        let location = parseObject["geo"] as! PFGeoPoint
-        self.coordinate = CLLocationCoordinate2D(
-            latitude: location.latitude,
-            longitude: location.longitude
-        )
-        
+        if let location = parseObject["geo"] as? PFGeoPoint {
+            self.coordinate = CLLocationCoordinate2D(
+                latitude: location.latitude,
+                longitude: location.longitude
+            )
+        } else {
+            self.coordinate = CLLocationCoordinate2D()
+        }
+            
         self.parseObject = parseObject
         
         super.init()

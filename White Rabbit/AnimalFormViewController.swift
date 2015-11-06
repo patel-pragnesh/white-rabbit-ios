@@ -34,6 +34,7 @@ class AnimalFormViewController : FormViewController {
     let INSTAGRAM_TAG = "instagramUsername"
     let TWITTER_TAG = "twitterUsername"
     let YOUTUBE_TAG = "youtubeUsername"
+    let FACEBOOK_TAG = "facebookPageId"
 
     
     var animalObject : PFObject?
@@ -246,7 +247,17 @@ class AnimalFormViewController : FormViewController {
                 cell.textField.placeholder = "@username"
                 cell.imageView?.image = UIImage(named: "form_youtube")
             }
+            <<< TwitterRow(FACEBOOK_TAG) {
+                $0.title = "Facebook"
+                if self.isEditMode() {
+                    $0.value = self.animalObject?.objectForKey(self.FACEBOOK_TAG) as? String
+                }
+                }.cellSetup { cell, row in
+                    cell.textField.placeholder = "page_id"
+                    cell.imageView?.image = UIImage(named: "form_facebook")
+        }
 
+        
             form +++= Section("Flags")
                 <<< SwitchRow(ADOPTABLE_TAG) {
                     $0.title = "Adoptable"
@@ -299,8 +310,9 @@ class AnimalFormViewController : FormViewController {
         refreshAlert.addAction(UIAlertAction(title: "Do it", style: .Default, handler: { (action: UIAlertAction!) in
             self.animalObject!.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 self.displayAlert("Deleted. KTHXBAI.")
-                refreshAlert.dismissViewControllerAnimated(true, completion: nil)
-                self.navigationController?.popToRootViewControllerAnimated(true)
+//                refreshAlert.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
             })
         }))
         
@@ -357,6 +369,9 @@ class AnimalFormViewController : FormViewController {
         }
         if let usernameValue = self.form.rowByTag(self.USERNAME_TAG)?.baseValue as? String {
             animal.setObject(usernameValue, forKey: USERNAME_TAG)
+        }
+        if let facebookValue = self.form.rowByTag(self.FACEBOOK_TAG)?.baseValue as? String {
+            animal.setObject(facebookValue, forKey: FACEBOOK_TAG)
         }
         if let instagramValue = self.form.rowByTag(self.INSTAGRAM_TAG)?.baseValue as? String {
             animal.setObject(instagramValue, forKey: INSTAGRAM_TAG)

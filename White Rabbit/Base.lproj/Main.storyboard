@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="5680.5" y="951"/>
         </scene>
-        <!--Shelters-->
+        <!--Locations-->
         <scene sceneID="hvu-zl-VPD">
             <objects>
-                <tableViewController title="Shelters" id="mFZ-X5-hje" customClass="SheltersTableViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Locations" id="mFZ-X5-hje" customClass="SheltersTableViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="hF9-JB-JMf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,6 +94,7 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="logo" destination="cgU-Du-gJQ" id="gfd-Oj-ZcQ"/>
                                     <outlet property="name" destination="3yx-gh-FgT" id="ciQ-4L-LXs"/>
@@ -107,13 +108,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="y7D-Hf-Ekm"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="loadingViewEnabled" value="YES"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pullToRefreshEnabled" value="NO"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="Shelter"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="Location"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="name"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="imageKey" value="logo"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="paginationEnabled" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="objectsPerPage">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcn-Nw-jZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
