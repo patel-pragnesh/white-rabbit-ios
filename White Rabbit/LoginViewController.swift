@@ -11,11 +11,22 @@ import Parse
 import ParseFacebookUtilsV4
 
 class LoginViewController: UIViewController {
-
     let permissions = ["public_profile", "email", "user_location", "user_friends"]
+
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    @IBAction func loginWithUsername(sender: AnyObject) {
+        PFUser.logInWithUsernameInBackground(usernameField.text!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
+            if user != nil {
+                NSLog("finished logging in by username")
+                self.goToHome()
+            }
+        }
+    
+    }
     
     @IBAction func loginWithFacebook(sender: UIButton) {
-        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(self.permissions, block: { (user: PFUser?, error: NSError?) -> Void in
             if user == nil {
                 NSLog("Uh oh. The user cancelled the Facebook login.")

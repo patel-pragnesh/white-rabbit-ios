@@ -107,14 +107,16 @@ class HomeViewController: UIViewController {
 
         self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFit
 
-        let imageFile = currentUser?.valueForKey("profilePhoto") as! PFFile
-        imageFile.getDataInBackgroundWithBlock({
-            (imageData: NSData?, error: NSError?) -> Void in
-            if(error == nil) {
-                let image = UIImage(data:imageData!)
-                self.profileImageView.image = image?.circle
-            }
-        })
+        let imageFile = currentUser?.valueForKey("profilePhoto") as? PFFile
+        if imageFile != nil {
+            imageFile!.getDataInBackgroundWithBlock({
+                (imageData: NSData?, error: NSError?) -> Void in
+                if(error == nil) {
+                    let image = UIImage(data:imageData!)
+                    self.profileImageView.image = image?.circle
+                }
+            })
+        }
     }
 
     @IBAction func logout() {

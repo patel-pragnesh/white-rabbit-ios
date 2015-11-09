@@ -120,11 +120,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(storyboard == nil) {
             storyboard = UIStoryboard(name: "Main", bundle: nil)
         }
-        let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
         
         let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         homeController.checkForUser(false)
         let user = homeController.currentUser as PFUser?
+        let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
         let tableController = animalsController?.childViewControllers.first as! AnimalsTableViewController
         if(user != nil) {
             tableController.owner = user!

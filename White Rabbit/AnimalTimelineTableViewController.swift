@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import GKImagePicker
+import Social
 
 class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCropControllerDelegate {
 
@@ -64,7 +65,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
     }
     
     func showTraits() {
-        
         let pvc = self.parentViewController as! AnimalDetailViewController
 //        UIView.transitionWithView(pvc.viewIfLoaded!, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
         pvc.addButton.hidden = false
@@ -72,6 +72,15 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
     
     func showActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+
+        let shareAction = UIAlertAction(title: "Share", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Sharing entry")
+            let image = self.imageAtCell(indexPath)!
+            let activityVC = UIActivityViewController(activityItems: ["http://ftwtrbt.com", image], applicationActivities: nil)
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        })
+
         
         let deleteAction = UIAlertAction(title: "Delete", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -97,6 +106,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
             print("Cancelled")
         })
         
+        optionMenu.addAction(shareAction)
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(profilePhotoAction)
         optionMenu.addAction(coverPhotoAction)
