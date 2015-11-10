@@ -75,7 +75,7 @@ class UserFormViewController : FormViewController {
         
         if(self.isEditMode()) {
             form +++= Section("")
-                <<< ButtonRow("remove") { $0.title = "Remove User" }.onCellSelection { cell, row in print("Removing user")
+                <<< ButtonRow("remove") { $0.title = "Delete Account" }.onCellSelection { cell, row in print("Removing user")
                     self.removeUser()
                 }
                 <<< ButtonRow("logout") { $0.title = "Log Out" }.onCellSelection { cell, row in print("Cell was selected")
@@ -150,7 +150,7 @@ class UserFormViewController : FormViewController {
         } else {
             user.signUpInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 if success {
-                    PFUser.logInWithUsernameInBackground(emailValue!, password: passwordValue!, block: { (user: PFUser?, error: NSError?) -> Void in
+                    PFUser.logInWithUsernameInBackground(emailValue!.lowercaseString, password: passwordValue!, block: { (user: PFUser?, error: NSError?) -> Void in
                         NSLog("loggedddd in")
                         self.dismissViewControllerAnimated(true, completion: nil)
                         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

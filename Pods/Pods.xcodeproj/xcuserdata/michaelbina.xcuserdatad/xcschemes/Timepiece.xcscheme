@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A5EE1E1295D3737E103478E"
+               BlueprintIdentifier = "7C9D8BA0B41F6E33705E74E7"
                BuildableName = "Timepiece.framework"
                BlueprintName = "Timepiece"
                ReferencedContainer = "container:Pods.xcodeproj">

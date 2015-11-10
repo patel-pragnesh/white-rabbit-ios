@@ -329,6 +329,16 @@ extension UILabel {
 
 extension UIImage
 {
+    class func imageWithImage(image: UIImage, scaledToScale scale: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(image.size, true, scale)
+        let context: CGContextRef = UIGraphicsGetCurrentContext()!
+        CGContextSetInterpolationQuality(context, .High)
+        image.drawInRect(CGRectMake(0, 0, image.size.width, image.size.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     func roundImage() -> UIImage
     {
         let newImage = self.copy() as! UIImage

@@ -17,6 +17,8 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
 //    @IBOutlet weak var locationTypeMenuBar: UINavigationBar!
     
     let locationManager = CLLocationManager()
+    var selectedType: String = "shelter"
+    let items = ["Shelter", "Vet", "Supplies", "Grooming"]
     
     override func viewDidLoad() {
         NSLog("initializing shelters map view controller")
@@ -25,39 +27,18 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         self.setUpMenuBarController()
         
-//        let nav = self.navigationController?.navigationBar
-//        nav?.hidden = false
-//        nav?.barStyle = UIBarStyle.BlackTranslucent
-//        nav?.tintColor = UIColor.whiteColor()
-//        self.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-//        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-//
-//        
-        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
         let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            print("Did select item at index: \(indexPath)")
-            //            self.setCurrentView(items[indexPath])
+            self.selectedType = self.items[indexPath].lowercaseString
+            NSLog("Did select : \(self.selectedType)")
+            self.populateLocations()
         }
         menuView.cellTextLabelColor = UIColor.whiteColor()
         menuView.cellBackgroundColor = UIColor.darkGrayColor()
         self.navigationItem.titleView = menuView
-
-        
-//        self.locationTypeMenuBar.barStyle = UIBarStyle.BlackTranslucent
-//        self.locationTypeMenuBar.tintColor = UIColor.whiteColor()
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-
-        
-//        let items = ["Most Popular", "Latest", "Trending", "Nearest", "Top Picks"]
-//        self.selectedCellLabel.text = items.first
-//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
-//        self.navigationItem.titleView = menuView
-        
-//        self.tabBarController?.navigationItem.titleView = menuView
-//        self.navigationItem.title = items.first!
-//        self.navigationItem.titleView = menuView
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -73,7 +54,7 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
 //        let regionRadius: CLLocationDistance = 1000
         self.mapView.showsUserLocation = true
 
-        self.populateShelters()
+        self.populateLocations()
 //        self.centerMapOnLocation(initialLocation, regionRadius: regionRadius)
     }
     
@@ -121,7 +102,7 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
         let detailScene = segue.destinationViewController as! ShelterDetailViewController
 
         let annotationView = sender as! MKAnnotationView
-        let annotation = annotationView.annotation as? Shelter
+        let annotation = annotationView.annotation as? Location
         
         detailScene.currentShelterObject = annotation?.parseObject
         
@@ -135,44 +116,22 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
 //        }
     }
     
-//
-//    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-//        NSLog("selected annotation")
-//        
-//        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("calloutTapped:"))
-//        // tapGesture.setValue(view, forKey: "shelter")
-//        view.addGestureRecognizer(tapGesture)
-//    }
-//
-//    func calloutTapped(sender: UITapGestureRecognizer) {
-//
-////        let annotation = sender.valueForKey("shelter") as? MKAnnotationView
-////        NSLog("callout tapped: " + ((annotation?.annotation?.title)!)!)
-//        
-//        let annotationView = sender.view as! MKPinAnnotationView
-//        let annotation = annotationView.annotation as MKAnnotation!
-//
-//        NSLog("callout tapped : " + annotation.title!!)
-//    }
-    
-//    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        NSLog("region changed")
-//    }
-    
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         NSLog("Errors: " + error.localizedDescription)
     }
     
-    func populateShelters(){
+    func populateLocations(){
         let query : PFQuery = self.queryForTable()
 
+        self.clearMap()
+        
         query.findObjectsInBackgroundWithBlock { (NSArray objects, NSError error) -> Void in
             if error == nil {
                 if let objects = objects {
                     for object in objects {
-                        let shelter = Shelter(parseObject: object)
+                        let location = Location(parseObject: object)
                         
-                        self.addShelterToMap(shelter)
+                        self.addLocationToMap(location)
                     }
                 }
             } else {
@@ -182,14 +141,20 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
         
     }
     
+    func clearMap() {
+        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+    }
+    
     func queryForTable() -> PFQuery {
-        let query = PFQuery(className: "Shelter")
+        let query = PFQuery(className: "Location")
         query.orderByAscending("name")
+        query.whereKey("type", equalTo: self.selectedType)
         return query
     }
     
-    func addShelterToMap(shelter: Shelter) {
-        self.mapView.addAnnotation(shelter)
+    func addLocationToMap(location: Location) {
+        self.mapView.addAnnotation(location)
     }
 
     func centerMapOnLocation(location: CLLocation, regionRadius: CLLocationDistance) {
@@ -199,3 +164,37 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
     }
     
 }
+
+
+
+class Location: NSObject, MKAnnotation {
+    let title: String?
+    let coordinate: CLLocationCoordinate2D
+    
+    var parseObject: PFObject?
+    
+    init(parseObject: PFObject) {
+        self.title = parseObject["name"] as? String
+        
+        if let location = parseObject["geo"] as? PFGeoPoint {
+            self.coordinate = CLLocationCoordinate2D(
+                latitude: location.latitude,
+                longitude: location.longitude
+            )
+        } else {
+            self.coordinate = CLLocationCoordinate2D()
+        }
+        
+        self.parseObject = parseObject
+        
+        super.init()
+    }
+    
+    init(name: String, coordinate: CLLocationCoordinate2D) {
+        self.title = name
+        self.coordinate = coordinate
+        
+        super.init()
+    }
+}
+

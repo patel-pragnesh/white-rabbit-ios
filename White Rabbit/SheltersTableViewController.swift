@@ -14,43 +14,37 @@ import BTNavigationDropdownMenu
 
 class SheltersTableViewController: PFQueryTableViewController {
     
+    var selectedType: String = "shelter"
+    let items = ["Shelter", "Vet", "Supplies", "Grooming"]
+    
+    required init(coder aDecoder:NSCoder) {
+        NSLog("initializing required shelters table view controller")
+        
+        super.init(coder: aDecoder)!
+        
+        self.parseClassName = "Location"
+        self.paginationEnabled = false
+        self.pullToRefreshEnabled = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setUpMenuBarController()
         
 //        self.setUpLocationsMenu()
-
-        
-//        let nav = self.navigationController?.navigationBar
-//        nav?.hidden = false
-//        nav?.barStyle = UIBarStyle.BlackTranslucent
-//        nav?.tintColor = UIColor.whiteColor()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-
         
-        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
         let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            print("Did select item at index: \(indexPath)")
+            self.selectedType = self.items[indexPath].lowercaseString
+            NSLog("Did select : \(self.selectedType)")
+            self.loadObjects()
 //            self.setCurrentView(items[indexPath])
         }
         menuView.cellTextLabelColor = UIColor.whiteColor()
         menuView.cellBackgroundColor = UIColor.darkGrayColor()
         self.navigationItem.titleView = menuView
-
-        
-//        let items = ["Shelters", "Vets", "Pet Supplies", "Grooming"]
-//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items)
-//        menuView.cellBackgroundColor = UIColor.darkGrayColor()
-//        menuView.cellTextLabelColor = UIColor.whiteColor()
-//        menuView.tintColor = UIColor.whiteColor()
-//        menuView.menuTitleColor = UIColor.whiteColor()
-//        menuView.cellSelectionColor = UIColor.whiteColor()
-//        menuView.tintColor = UIColor.whiteColor()
-//        menuView.maskBackgroundColor = UIColor.whiteColor()
-//        self.navigationItem.titleView?.tintColor = UIColor.whiteColor()
-//        self.navigationItem.titleView = menuView
     }
     
     override init(style: UITableViewStyle, className: String!) {
@@ -61,18 +55,9 @@ class SheltersTableViewController: PFQueryTableViewController {
 //        self.loadParseData()
     }
     
-    required init(coder aDecoder:NSCoder) {
-        NSLog("initializing required shelters table view controller")
-
-        super.init(coder: aDecoder)!
-        
-        self.parseClassName = "Shelter"
-        self.paginationEnabled = false
-        self.pullToRefreshEnabled = false
-    }
-    
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
+        query.whereKey("type", equalTo: self.selectedType)
         query.orderByAscending("name")
         return query
     }
@@ -84,20 +69,21 @@ class SheltersTableViewController: PFQueryTableViewController {
             cell = SheltersTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ShelterCell")
         }
         
-        cell!.frame.size.height = 200
-        
         // Extract values from the PFObject to display in the table cell
         cell!.name.text = object?["name"] as? String
         
-        let imageFile = object?["logo"] as? PFFile
-        imageFile?.getDataInBackgroundWithBlock({
-            (imageData: NSData?, error: NSError?) -> Void in
-            if(error == nil) {
-                let image = UIImage(data:imageData!)
-                cell!.logo.image = image
-            }
-        })
-        
+        if let imageFile = object?["logo"] as? PFFile {
+            imageFile.getDataInBackgroundWithBlock({
+                (imageData: NSData?, error: NSError?) -> Void in
+                if(error == nil) {
+                    let image = UIImage(data:imageData!)
+                    cell!.logo.image = image
+                }
+            })
+        } else {
+            cell!.logo.image = nil
+        }
+            
         return cell
     }
     

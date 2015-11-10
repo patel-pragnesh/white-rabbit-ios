@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15C27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RlW-pc-oHP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15C31f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RlW-pc-oHP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
@@ -125,10 +125,10 @@
             </objects>
             <point key="canvasLocation" x="5680.5" y="262.5"/>
         </scene>
-        <!--Shelter Detail-->
+        <!--Location-->
         <scene sceneID="QHm-Ac-ayr">
             <objects>
-                <viewController title="Shelter Detail" id="SHO-jO-gC5" customClass="ShelterDetailViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Location" id="SHO-jO-gC5" customClass="ShelterDetailViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8OI-ml-bwF"/>
                         <viewControllerLayoutGuide type="bottom" id="vek-Ru-n2D"/>
@@ -180,7 +180,7 @@
                                     <action selector="openWebsite:" destination="SHO-jO-gC5" eventType="touchUpInside" id="lYQ-fX-JVJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lj-ry-wPq">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lj-ry-wPq">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Directions"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
@@ -191,7 +191,7 @@
                                     <action selector="openWebsite:" destination="SHO-jO-gC5" eventType="touchUpInside" id="SnR-Q3-Wg0"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jC8-zi-HQL">
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jC8-zi-HQL">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="463" width="400" height="128"/>
@@ -237,6 +237,7 @@
                     <connections>
                         <outlet property="address1Label" destination="eOv-du-5sW" id="c9k-hk-vvy"/>
                         <outlet property="cityStateZipLabel" destination="ItF-dD-Gzd" id="X6q-2d-Weq"/>
+                        <outlet property="directionsButton" destination="0lj-ry-wPq" id="v5A-nH-7pK"/>
                         <outlet property="logoImage" destination="3zf-PX-rfR" id="al0-WT-YwA"/>
                         <outlet property="mapView" destination="jC8-zi-HQL" id="FrR-QD-TfD"/>
                         <outlet property="nameLabel" destination="feX-cb-zpa" id="Z1H-oJ-DX3"/>
@@ -630,22 +631,19 @@
                                 <exclude reference="7kT-pb-56P"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="5vr-LI-yOQ"/>
-                                <exclude reference="9ew-FV-Y1c"/>
-                                <exclude reference="MJ3-3k-1En"/>
-                                <exclude reference="cSJ-Xv-WuH"/>
-                                <exclude reference="CAE-x1-WSq"/>
-                                <exclude reference="F0e-HO-CUK"/>
-                                <exclude reference="Kdm-Rr-NAd"/>
-                                <exclude reference="SJY-8z-9QA"/>
-                                <exclude reference="7tn-ly-mtR"/>
-                                <exclude reference="HzB-wC-dqm"/>
-                                <exclude reference="b5V-Ia-35o"/>
-                                <exclude reference="blX-Cq-jel"/>
+                                <exclude reference="gq1-Nl-2WN"/>
+                                <exclude reference="P3g-5p-Siw"/>
+                                <exclude reference="fRH-ag-Efs"/>
+                                <exclude reference="R9M-ZN-JdA"/>
+                                <exclude reference="n0F-3a-vqC"/>
                                 <exclude reference="IIH-LI-0rR"/>
                                 <exclude reference="Jqi-n1-5I4"/>
                                 <exclude reference="mw7-PQ-VwE"/>
                                 <exclude reference="wcu-Tz-DQs"/>
+                                <exclude reference="CAE-x1-WSq"/>
+                                <exclude reference="F0e-HO-CUK"/>
+                                <exclude reference="Kdm-Rr-NAd"/>
+                                <exclude reference="SJY-8z-9QA"/>
                                 <exclude reference="0uN-aV-nfl"/>
                                 <exclude reference="DCn-Yz-Bxg"/>
                                 <exclude reference="MUs-Yk-0Xr"/>
@@ -654,11 +652,14 @@
                                 <exclude reference="WgY-iC-rpD"/>
                                 <exclude reference="s9U-gv-4Ci"/>
                                 <exclude reference="yId-io-VmM"/>
-                                <exclude reference="P3g-5p-Siw"/>
-                                <exclude reference="fRH-ag-Efs"/>
-                                <exclude reference="R9M-ZN-JdA"/>
-                                <exclude reference="n0F-3a-vqC"/>
-                                <exclude reference="gq1-Nl-2WN"/>
+                                <exclude reference="7tn-ly-mtR"/>
+                                <exclude reference="HzB-wC-dqm"/>
+                                <exclude reference="b5V-Ia-35o"/>
+                                <exclude reference="blX-Cq-jel"/>
+                                <exclude reference="5vr-LI-yOQ"/>
+                                <exclude reference="9ew-FV-Y1c"/>
+                                <exclude reference="MJ3-3k-1En"/>
+                                <exclude reference="cSJ-Xv-WuH"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -673,22 +674,19 @@
                                 <include reference="7kT-pb-56P"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="5vr-LI-yOQ"/>
-                                <exclude reference="9ew-FV-Y1c"/>
-                                <include reference="MJ3-3k-1En"/>
-                                <exclude reference="cSJ-Xv-WuH"/>
-                                <include reference="CAE-x1-WSq"/>
-                                <include reference="F0e-HO-CUK"/>
-                                <exclude reference="Kdm-Rr-NAd"/>
-                                <include reference="SJY-8z-9QA"/>
-                                <exclude reference="7tn-ly-mtR"/>
-                                <include reference="HzB-wC-dqm"/>
-                                <exclude reference="b5V-Ia-35o"/>
-                                <include reference="blX-Cq-jel"/>
+                                <include reference="gq1-Nl-2WN"/>
+                                <include reference="P3g-5p-Siw"/>
+                                <include reference="fRH-ag-Efs"/>
+                                <include reference="R9M-ZN-JdA"/>
+                                <include reference="n0F-3a-vqC"/>
                                 <include reference="IIH-LI-0rR"/>
                                 <include reference="Jqi-n1-5I4"/>
                                 <include reference="mw7-PQ-VwE"/>
                                 <include reference="wcu-Tz-DQs"/>
+                                <include reference="CAE-x1-WSq"/>
+                                <include reference="F0e-HO-CUK"/>
+                                <exclude reference="Kdm-Rr-NAd"/>
+                                <include reference="SJY-8z-9QA"/>
                                 <include reference="0uN-aV-nfl"/>
                                 <include reference="DCn-Yz-Bxg"/>
                                 <include reference="MUs-Yk-0Xr"/>
@@ -697,11 +695,14 @@
                                 <include reference="WgY-iC-rpD"/>
                                 <include reference="s9U-gv-4Ci"/>
                                 <include reference="yId-io-VmM"/>
-                                <include reference="P3g-5p-Siw"/>
-                                <include reference="fRH-ag-Efs"/>
-                                <include reference="R9M-ZN-JdA"/>
-                                <include reference="n0F-3a-vqC"/>
-                                <include reference="gq1-Nl-2WN"/>
+                                <exclude reference="7tn-ly-mtR"/>
+                                <include reference="HzB-wC-dqm"/>
+                                <exclude reference="b5V-Ia-35o"/>
+                                <include reference="blX-Cq-jel"/>
+                                <include reference="5vr-LI-yOQ"/>
+                                <exclude reference="9ew-FV-Y1c"/>
+                                <include reference="MJ3-3k-1En"/>
+                                <exclude reference="cSJ-Xv-WuH"/>
                             </mask>
                         </variation>
                     </view>

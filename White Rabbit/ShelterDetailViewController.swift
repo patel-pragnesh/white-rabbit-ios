@@ -20,6 +20,7 @@ class ShelterDetailViewController: UIViewController {
     @IBOutlet weak var phoneNumberButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var directionsButton: UIButton!
     
     var currentShelterObject: PFObject?
 
@@ -36,7 +37,7 @@ class ShelterDetailViewController: UIViewController {
             
             nameLabel.text = object["name"] as? String
             address1Label.text = object["address"] as? String
-            cityStateZipLabel.text = (object["city"] as! String) + ", " + (object["state"] as! String) + " " + String(object["zip"] as! Int)
+            cityStateZipLabel.text = (object["city"] as! String) + ", " + (object["state"] as! String) + " " + (object["zip"] != nil ? (object["zip"] as! String) : "")
             
             phoneNumberButton.setTitle(object["phone"] as? String, forState: .Normal)
             websiteButton.setTitle(object["website"] as? String, forState: .Normal)
@@ -51,7 +52,9 @@ class ShelterDetailViewController: UIViewController {
                 }
             })
             
-            self.initializeMap()
+            if object["geo"] != nil {
+                self.initializeMap()
+            }
         }
     }
     
@@ -101,14 +104,16 @@ class ShelterDetailViewController: UIViewController {
         
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinates, regionRadius * 2.0, regionRadius * 2.0)
         
-        let shelter = Shelter(
+        let location = Location(
             name: currentShelterObject?.valueForKey("name") as! String,
             coordinate: coordinates
         )
 
-        mapView.addAnnotation(shelter)
+        mapView.addAnnotation(location)
         // mapView.selectAnnotation(shelter, animated: true)
         mapView.setRegion(coordinateRegion, animated: true)
+        mapView.hidden = false
+        directionsButton.hidden = false
     }
     
     

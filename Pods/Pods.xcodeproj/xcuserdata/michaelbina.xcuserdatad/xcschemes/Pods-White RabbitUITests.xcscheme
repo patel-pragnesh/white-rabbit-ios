@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "82C0A9A5B6606F143DC4EECF"
+               BlueprintIdentifier = "EF23B7CE0EB1D8C62CB24136"
                BuildableName = "Pods_White_RabbitUITests.framework"
                BlueprintName = "Pods-White RabbitUITests"
                ReferencedContainer = "container:Pods.xcodeproj">

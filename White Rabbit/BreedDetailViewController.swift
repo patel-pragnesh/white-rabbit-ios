@@ -21,7 +21,7 @@ class BreedDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setUpNavigationBar()
         
         if let object = currentBreedObject {
             self.setUpNavigationBar((object["name"] as? String)!)

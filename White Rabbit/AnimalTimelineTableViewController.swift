@@ -133,7 +133,9 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
 
     func setCoverPhoto(image : UIImage) {
         let cropController = GKImageCropViewController()
+        NSLog("original image size: \(image.size)")
         cropController.sourceImage = image
+        NSLog("source image size: \(cropController.sourceImage.size)")
         cropController.resizeableCropArea = false
         cropController.cropSize = CGSizeMake(320, 160)
         cropController.delegate = self
@@ -143,6 +145,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
     
     func imageCropController(imageCropController: GKImageCropViewController!, didFinishWithCroppedImage croppedImage: UIImage!) {
         if let object = self.animalObject {
+            NSLog("cropped image size: \(croppedImage.size)")
             let imageFile = PFFile(data: UIImageJPEGRepresentation(croppedImage, 1.0)!)
             object.setValue(imageFile, forKey: "coverPhoto")
             object.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in

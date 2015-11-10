@@ -131,8 +131,7 @@ static CGRect GKScaleRect(CGRect rect, CGFloat scale)
     CGFloat scaleHeight = self.imageToCrop.size.height / self.cropSize.height;
     CGFloat scale = 0.0f;
     
-//    if (self.cropSize.width > self.cropSize.height) {
-    if (self.imageToCrop.size.width > self.imageToCrop.size.height) {
+    if (self.cropSize.width > self.cropSize.height) {
         scale = (self.imageToCrop.size.width < self.imageToCrop.size.height ?
                  MAX(scaleWidth, scaleHeight) :
                  MIN(scaleWidth, scaleHeight));
@@ -241,54 +240,23 @@ static CGRect GKScaleRect(CGRect rect, CGFloat scale)
     CGFloat faktoredHeight = 0.f;
     CGFloat faktoredWidth = 0.f;
     
-//    if(width > height){
-//        
-//        faktor = width / size.width;
-//        faktoredWidth = size.width;
-//        faktoredHeight =  height / faktor;
-//        
-//    } else {
-//        
-//        faktor = height / size.height;
-//        faktoredWidth = width / faktor;
-//        faktoredHeight =  size.height;
-//    }
-    
-    //Flip sign, instead of Aspect Fit, will be Aspect Fill.
-    //Crop zone is a rectangle
-    if (size.width != size.height) {
-        if(size.width > size.height){
-            faktor = width / size.width;
-            faktoredWidth = size.width;
-            faktoredHeight =  height / faktor;
-        } else {
-            faktor = height / size.height;
-            faktoredWidth = width / faktor;
-            faktoredHeight =  size.height;
-        }
-    }
-    //Crop zone is a square
-    else {
-        if(width < height){
-            faktor = width / size.width;
-            faktoredWidth = size.width;
-            faktoredHeight =  height / faktor;
-        } else {
-            faktor = height / size.height;
-            faktoredWidth = width / faktor;
-            faktoredHeight =  size.height;
-        }
+    if(width > height){
+        
+        faktor = width / size.width;
+        faktoredWidth = size.width;
+        faktoredHeight =  height / faktor;
+        
+    } else {
+        
+        faktor = height / size.height;
+        faktoredWidth = width / faktor;
+        faktoredHeight =  size.height;
     }
     
     self.cropOverlayView.frame = self.bounds;
     self.scrollView.frame = CGRectMake(xOffset, yOffset, size.width, size.height);
-//    self.scrollView.contentSize = CGSizeMake(size.width, size.height);
-//    self.imageView.frame = CGRectMake(0, floor((size.height - faktoredHeight) * 0.5), faktoredWidth, faktoredHeight);
-    //Content Size was not being set correctly.
-    self.scrollView.contentSize = CGSizeMake(faktoredWidth, faktoredHeight);
-    //Center the scrollview in the crop zone.
-    [self.scrollView setContentOffset:CGPointMake((faktoredWidth-size.width)/2, (faktoredHeight-size.height)/2) animated:NO];
-    self.imageView.frame = CGRectMake(0, floor((size.height - faktoredHeight/2) * 0.5), faktoredWidth, faktoredHeight);
+    self.scrollView.contentSize = CGSizeMake(size.width, size.height);
+    self.imageView.frame = CGRectMake(0, floor((size.height - faktoredHeight) * 0.5), faktoredWidth, faktoredHeight);
 }
 
 #pragma mark -

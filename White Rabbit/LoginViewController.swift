@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func loginWithUsername(sender: AnyObject) {
-        PFUser.logInWithUsernameInBackground(usernameField.text!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
+        PFUser.logInWithUsernameInBackground((usernameField.text?.lowercaseString)!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 NSLog("finished logging in by username")
                 self.goToHome()
@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
                 let fbId = (facebookData.objectForKey("id") as? String)
                 let first_name = (facebookData.objectForKey("first_name") as? String)
                 let last_name = (facebookData.objectForKey("last_name") as? String)
-                let email = (facebookData.objectForKey("email") as? String)
+                let email = (facebookData.objectForKey("email") as? String)?.lowercaseString
                 
                 let user = PFUser.currentUser()
                 user?.setValue(email, forKey: "email")
@@ -111,12 +111,6 @@ class LoginViewController: UIViewController {
     }
     
     func goToHome() {
-//        let hvc = self.storyboard!.instantiateViewControllerWithIdentifier("home") as! HomeViewController
-//        
-//        self.presentViewController(hvc, animated: true, completion: nil)
-        
-//        self.storyboard!.instantiateInitialViewController()
-
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.loadMainController()
     }

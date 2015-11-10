@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C747639B9B970CA1DEFFFC9"
+               BlueprintIdentifier = "841B89851A20974DD523B5BA"
                BuildableName = "ContentfulDeliveryAPI.framework"
                BlueprintName = "ContentfulDeliveryAPI"
                ReferencedContainer = "container:Pods.xcodeproj">
