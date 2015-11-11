@@ -39,6 +39,7 @@ class AnimalFormViewController : FormViewController {
     var detailController : AnimalDetailViewController?
     var animalObject : PFObject?
     var selectedTraitStrings : Set<String>?
+    var userObject : PFUser?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -393,6 +394,10 @@ class AnimalFormViewController : FormViewController {
         if let shelterValue = self.form.rowByTag(self.SHELTER_TAG)?.baseValue as? String {
             let shelter = appDelegate.shelterByName![shelterValue]
             animal.setObject(shelter!, forKey: SHELTER_TAG)
+        }
+        
+        if !self.isEditMode() {
+            animal.setObject(self.userObject!, forKey: "owner")
         }
         
         animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
