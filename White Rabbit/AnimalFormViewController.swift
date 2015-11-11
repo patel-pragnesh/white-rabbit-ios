@@ -37,6 +37,7 @@ class AnimalFormViewController : FormViewController {
     let FACEBOOK_TAG = "facebookPageId"
 
     var detailController : AnimalDetailViewController?
+    var animalTableController : AnimalsTableViewController?
     var animalObject : PFObject?
     var selectedTraitStrings : Set<String>?
     var userObject : PFUser?
@@ -409,6 +410,8 @@ class AnimalFormViewController : FormViewController {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     if self.detailController != nil {
                         self.detailController!.loadAnimal()
+                    } else if self.animalTableController != nil {
+                        self.animalTableController!.loadObjects()
                     }
 //                }
             } else {

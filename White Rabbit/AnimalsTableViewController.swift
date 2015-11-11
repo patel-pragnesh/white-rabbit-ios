@@ -181,6 +181,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
         } else if(segue.identifier == "AnimalTableToAddAnimal") {
             let editScene = (segue.destinationViewController as! UINavigationController)
             let formScene = editScene.viewControllers[0] as! AnimalFormViewController
+            formScene.animalTableController = self
             formScene.userObject = self.owner
         }
     }
