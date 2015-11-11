@@ -93,7 +93,6 @@ class UserFormViewController : FormViewController {
         self.generateForm()
         
         self.setUpMenuBarController()
-
         
         if !self.isEditMode() {
             self.navigationItem.title = "New User"

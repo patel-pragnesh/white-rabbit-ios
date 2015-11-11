@@ -38,6 +38,8 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
         menuView.cellBackgroundColor = UIColor.darkGrayColor()
         self.navigationItem.titleView = menuView
         
+//        self.setUpNavigationBarImage(UIImage(named: "locations_header")!, height: 220)
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
         
         self.locationManager.delegate = self

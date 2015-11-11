@@ -63,7 +63,7 @@ class AnimalDetailViewController: UIViewController {
         
 //        self.setUpNavigationBar()
         
-        self.timelineTableController!.loadObjects()
+//        self.timelineTableController!.loadObjects()
         
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
         )
@@ -97,8 +97,12 @@ class AnimalDetailViewController: UIViewController {
         
         traitTags.textFont = UIFont.systemFontOfSize(15)
         
+        self.loadAnimal()
+    }
+    
+    func loadAnimal() {
         if let object = currentAnimalObject {
-//            NSLog("Viewing detail for object: %@\n", object)
+            //            NSLog("Viewing detail for object: %@\n", object)
             
             nameLabel.text = object["name"] as? String
             genderLabel.text = object["gender"] as? String
@@ -117,17 +121,17 @@ class AnimalDetailViewController: UIViewController {
                 
                 self.instagramTableController?.userName = instagramUsername!
                 self.instagramTableController?.loadMedia()
-//                self.instagramTableController?.loadView()
+                //                self.instagramTableController?.loadView()
                 
                 self.instagramView.hidden = false
                 self.timelineView.hidden = true
-
+                
             } else {
                 self.instagramView.hidden = true
                 self.timelineView.hidden = false
             }
             
-//            self.navigationItem.title = object["username"] as? String
+            //            self.navigationItem.title = object["username"] as? String
             
             if let coverPhotoFile = object["coverPhoto"] as? PFFile {
                 coverPhotoFile.getDataInBackgroundWithBlock({
@@ -139,8 +143,8 @@ class AnimalDetailViewController: UIViewController {
                 })
             }
             
-//            profileThumb.layer.cornerRadius = profileThumb.frame.size.width / 2
-//            profileThumb.clipsToBounds = true
+            //            profileThumb.layer.cornerRadius = profileThumb.frame.size.width / 2
+            //            profileThumb.clipsToBounds = true
             
             if let profilePhotoFile = object["profilePhoto"] as? PFFile {
                 profilePhotoFile.getDataInBackgroundWithBlock({
@@ -160,7 +164,7 @@ class AnimalDetailViewController: UIViewController {
             } else {
                 breedButton.hidden = true
             }
-
+            
             if(object.objectForKey("instagramUsername") == nil) {
                 instagramButton.hidden = true
             }
@@ -173,8 +177,6 @@ class AnimalDetailViewController: UIViewController {
             if(object.objectForKey("twitterUsername") == nil) {
                 twitterButton.hidden = true
             }
-
-        
         }
     }
     
@@ -234,6 +236,7 @@ class AnimalDetailViewController: UIViewController {
         } else if(segue.identifier == "AnimalDetailToEditAnimal"){
             let nav = segue.destinationViewController as! UINavigationController
             let editScene =  nav.topViewController as! AnimalFormViewController
+            editScene.detailController = self
             editScene.animalObject = self.currentAnimalObject        
         } else if(segue.identifier == "AnimalToTraitSelector") {
             let traitSelector = segue.destinationViewController as! TraitSelectorTableViewController

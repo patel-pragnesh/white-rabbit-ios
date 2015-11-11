@@ -45,6 +45,8 @@ class SheltersTableViewController: PFQueryTableViewController {
         menuView.cellTextLabelColor = UIColor.whiteColor()
         menuView.cellBackgroundColor = UIColor.darkGrayColor()
         self.navigationItem.titleView = menuView
+        
+//        self.setUpNavigationBarImage(UIImage(named: "locations_header")!, height: 220)
     }
     
     override init(style: UITableViewStyle, className: String!) {

@@ -36,7 +36,7 @@ class AnimalFormViewController : FormViewController {
     let YOUTUBE_TAG = "youtubeUsername"
     let FACEBOOK_TAG = "facebookPageId"
 
-    
+    var detailController : AnimalDetailViewController?
     var animalObject : PFObject?
     var selectedTraitStrings : Set<String>?
     
@@ -402,6 +402,9 @@ class AnimalFormViewController : FormViewController {
 //                    self.navigationController!.popViewControllerAnimated(true)
 //                } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
+                    if self.detailController != nil {
+                        self.detailController!.loadAnimal()
+                    }
 //                }
             } else {
                 NSLog("%@", error!)
