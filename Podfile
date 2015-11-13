@@ -22,6 +22,7 @@ pod 'SlideMenuControllerSwift'
 pod 'MMMarkdown'
 pod 'FillableLoaders'
 pod 'GKImagePicker'
+pod 'CLImageEditor'
 
 target 'White Rabbit' do
 end

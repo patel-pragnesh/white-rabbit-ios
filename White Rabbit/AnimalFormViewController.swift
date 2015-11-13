@@ -311,10 +311,14 @@ class AnimalFormViewController : FormViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "Do it", style: .Default, handler: { (action: UIAlertAction!) in
             self.animalObject!.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                self.displayAlert("Deleted. KTHXBAI.")
+//                self.displayAlert("Deleted. KTHXBAI.")
 //                refreshAlert.dismissViewControllerAnimated(true, completion: nil)
                 self.dismissViewControllerAnimated(true, completion: nil)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    if self.detailController != nil {
+                        self.detailController!.closeScreen(self)
+                    }
+                })
             })
         }))
         
@@ -375,12 +379,15 @@ class AnimalFormViewController : FormViewController {
         if let facebookValue = self.form.rowByTag(self.FACEBOOK_TAG)?.baseValue as? String {
             animal.setObject(facebookValue, forKey: FACEBOOK_TAG)
         }
+        
         if let instagramValue = self.form.rowByTag(self.INSTAGRAM_TAG)?.baseValue as? String {
             animal.setObject(instagramValue, forKey: INSTAGRAM_TAG)
         }
+        
         if let twitterValue = self.form.rowByTag(self.TWITTER_TAG)?.baseValue as? String {
             animal.setObject(twitterValue, forKey: TWITTER_TAG)
         }
+        
         if let youtubeValue = self.form.rowByTag(self.YOUTUBE_TAG)?.baseValue as? String {
             animal.setObject(youtubeValue, forKey: YOUTUBE_TAG)
         }

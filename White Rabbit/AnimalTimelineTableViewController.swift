@@ -9,12 +9,16 @@
 import UIKit
 import Parse
 import ParseUI
-import GKImagePicker
+import CLImageEditor
 import Social
 
-class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCropControllerDelegate {
+class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEditorDelegate {
 
     var animalObject : PFObject?
+    var animalDetailController : AnimalDetailViewController?
+    
+    var isEditingProfile : Bool = false
+    var isEditingCover : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +31,10 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
         // gestureRecognizer.delegate = self
         self.tableView.addGestureRecognizer(gestureRecognizer)
         
-        self.tableView.estimatedRowHeight = 84.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        
-        self.tableView.layoutIfNeeded()
+//        self.tableView.estimatedRowHeight = 84.0
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        
+//        self.tableView.layoutIfNeeded()
         // self.tableView.sizeToFit()
     }
     
@@ -130,40 +134,85 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
             }
         })
     }
-
-    func setCoverPhoto(image : UIImage) {
-        let cropController = GKImageCropViewController()
-        NSLog("original image size: \(image.size)")
-        cropController.sourceImage = image
-        NSLog("source image size: \(cropController.sourceImage.size)")
-        cropController.resizeableCropArea = false
-        cropController.cropSize = CGSizeMake(320, 160)
-        cropController.delegate = self
-        self.presentViewController(cropController, animated: true, completion: nil)
-//        self.navigationController!.pushViewController(cropController, animated: true)
-    }
     
-    func imageCropController(imageCropController: GKImageCropViewController!, didFinishWithCroppedImage croppedImage: UIImage!) {
-        if let object = self.animalObject {
-            NSLog("cropped image size: \(croppedImage.size)")
-            let imageFile = PFFile(data: UIImageJPEGRepresentation(croppedImage, 1.0)!)
-            object.setValue(imageFile, forKey: "coverPhoto")
-            object.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                NSLog("finished saving cover photo")
-            })
-        }
+    func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
+        NSLog("got new image")
+        let imageFile = PFFile(data: UIImageJPEGRepresentation(image, 0.5)!)
         
-        imageCropController.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func setProfilePhoto(image : UIImage) {
         if let object = self.animalObject {
-            let imageFile = PFFile(data: UIImageJPEGRepresentation(image, 0.5)!)
-            object.setValue(imageFile, forKey: "profilePhoto")
+            if self.isEditingProfile {
+                object.setValue(imageFile, forKey: "profilePhoto")
+            } else if self.isEditingCover {
+                object.setValue(imageFile, forKey: "coverPhoto")
+            }
             object.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 NSLog("finished saving profile photo")
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.animalDetailController?.loadAnimal()
             })
         }
+        self.isEditingProfile = false
+        self.isEditingCover = false
+    }
+    
+    func setCoverPhoto(image : UIImage) {
+        self.isEditingCover = true
+
+        NSLog("launching editor")
+        self.showEditor(image)
+    }
+
+    func setProfilePhoto(image : UIImage) {
+        self.isEditingProfile = true
+
+        NSLog("launching editor")
+        self.showEditor(image)
+    }
+    
+    func showEditor(image : UIImage) {
+        let editor = CLImageEditor(image: image)
+        editor.delegate = self
+        
+        let curveTool = editor.toolInfo.subToolInfoWithToolName("CLToneCurveTool", recursive: false)
+        curveTool.available = false
+        let blurTool = editor.toolInfo.subToolInfoWithToolName("CLBlurTool", recursive: false)
+        blurTool.available = false
+        let drawTool = editor.toolInfo.subToolInfoWithToolName("CLDrawTool", recursive: false)
+        drawTool.available = false
+        let adjustmentTool = editor.toolInfo.subToolInfoWithToolName("CLAdjustmentTool", recursive: false)
+        adjustmentTool.available = false
+
+        let effectTool = editor.toolInfo.subToolInfoWithToolName("CLEffectTool", recursive: false)
+        effectTool.available = true
+        let pixelateFilter = effectTool.subToolInfoWithToolName("CLPixellateEffect", recursive: false)
+        pixelateFilter.available = false
+        let posterizeFilter = effectTool.subToolInfoWithToolName("CLPosterizeEffect", recursive: false)
+        posterizeFilter.available = false
+
+        
+        let filterTool = editor.toolInfo.subToolInfoWithToolName("CLFilterTool", recursive: false)
+        filterTool.available = true
+        let invertFilter = filterTool.subToolInfoWithToolName("CLDefaultInvertFilter", recursive: false)
+        invertFilter.available = false
+        
+        let rotateTool = editor.toolInfo.subToolInfoWithToolName("CLRotateTool", recursive: false)
+        rotateTool.available = true
+        rotateTool.dockedNumber = -1
+        
+        let cropTool = editor.toolInfo.subToolInfoWithToolName("CLClippingTool", recursive: false)
+        cropTool.available = true
+        cropTool.dockedNumber = -2
+        cropTool.optionalInfo["swapButtonHidden"] = true
+        
+        var ratios: [AnyObject] = [["value1": 1, "value2": 1]]
+        if self.isEditingCover {
+            ratios = [["value1": 2, "value2": 1]]
+        } else if self.isEditingProfile {
+            ratios = [["value1": 1, "value2": 1]]
+        }
+        cropTool.optionalInfo["ratios"] = ratios
+        
+        self.presentViewController(editor, animated: true, completion: nil)
     }
     
     func incrementIndexPath(indexPath: NSIndexPath) -> NSIndexPath? {
@@ -186,11 +235,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
         return query
     }
     
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.media.count
-//    }
-
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("AnimalTimelineCell", forIndexPath: indexPath) as? AnimalTimelineTableViewCell
@@ -200,6 +244,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, GKImageCrop
 
         cell!.timelineImageView.hidden = true
         if let imageFile = object?["image"] as? PFFile {
+            NSLog("setting cell image")
             imageFile.getDataInBackgroundWithBlock({
                 (imageData: NSData?, error: NSError?) -> Void in
                 if(error == nil) {

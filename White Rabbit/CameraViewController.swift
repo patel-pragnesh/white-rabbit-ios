@@ -18,7 +18,7 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
     var animalObject: PFObject?
     var pickedImageDate : NSDate?
     var imagePicker : GKImagePicker = GKImagePicker()
-    var animalDetailController : AnimalDetailViewController = AnimalDetailViewController()
+    var animalDetailController : AnimalDetailViewController?
     
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
@@ -158,8 +158,9 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
     }
     
     func closeView() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.animalDetailController.timelineTableController!.loadObjects()
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            self.animalDetailController!.reloadTimeline()
+        }
     }
     
     @IBAction func cancelPressed(sender: AnyObject) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import TagListView
+import Darwin
 
 class AnimalDetailViewController: UIViewController {
 
@@ -22,18 +23,34 @@ class AnimalDetailViewController: UIViewController {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var youtubeButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
-    @IBOutlet weak var timelineView: UIView!
     @IBOutlet weak var addButton: UIButton!
     
+    @IBOutlet weak var timelineView: UIView!
     @IBOutlet weak var instagramView: UIView!
     
     var currentAnimalObject : PFObject?
     var breedObject : PFObject?
     var traitObjects : [PFObject?] = []
-    var timelineTableController : AnimalTimelineTableViewController?
     
+    var timelineTableController : AnimalTimelineTableViewController?
     var instagramTableController : InstagramTableViewController?
+    
     var instagramUsername : String?
+    
+    func reloadTimeline() {
+        NSLog("relaoding timeline")
+//        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
+//        timelineTableController.animalObject = self.currentAnimalObject
+        self.timelineView.hidden = false
+        self.timelineView.reloadInputViews()
+        self.timelineView.inputView?.reloadInputViews()
+//        self.displayAlert("reloaded: \(self.timelineTableController?.objects!.count)")
+        self.timelineTableController!.loadObjects()
+        self.timelineTableController!.reloadInputViews()
+        self.timelineTableController!.tableView.reloadData()
+        self.timelineTableController!.tableView.reloadInputViews()
+        NSLog("number of rows: \(self.timelineTableController!.tableView.numberOfRowsInSection(0))")
+    }
     
     func saveTraits(traitObjects: [PFObject?]) {
         let relation = self.currentAnimalObject?.relationForKey("traits")
@@ -61,6 +78,8 @@ class AnimalDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.reloadTimeline()
+        
 //        self.setUpNavigationBar()
         
 //        self.timelineTableController!.loadObjects()
@@ -85,7 +104,7 @@ class AnimalDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.instagramView.hidden = false
+        self.instagramView.hidden = true
         self.timelineView.hidden = false
         
         let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
@@ -115,7 +134,7 @@ class AnimalDetailViewController: UIViewController {
             }
             
             let instagramUsername = object["instagramUsername"] as? String
-            if(instagramUsername != nil) {
+            if(instagramUsername != nil && instagramUsername != "") {
                 NSLog("setting instagram: \(instagramUsername)")
                 self.instagramUsername = instagramUsername!
                 
@@ -246,6 +265,7 @@ class AnimalDetailViewController: UIViewController {
         } else if(segue.identifier == "AnimalDetailToTimeline" || segue.identifier == "AnimalDetailTimelineEmbed") {
             let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
             animalTimeline.animalObject = self.currentAnimalObject
+            animalTimeline.animalDetailController = self
         } else if(segue.identifier == "AnimalDetailToAddTimelineEntry") {
             let camera = segue.destinationViewController as! CameraViewController
             camera.animalDetailController = self

@@ -104,14 +104,17 @@ class BreedsTableViewController: PFQueryTableViewController, UISearchBarDelegate
         // Extract values from the PFObject to display in the table cell
         cell!.name.text = object?["name"] as? String
         
-        let imageFile = object?["image"] as? PFFile
-        imageFile?.getDataInBackgroundWithBlock({
-            (imageData: NSData?, error: NSError?) -> Void in
-            if(error == nil) {
-                let image = UIImage(data:imageData!)
-                cell!.thumbnailImage.image = image
-            }
-        })
+        if let imageFile = object?["image"] as? PFFile {
+            imageFile.getDataInBackgroundWithBlock({
+                (imageData: NSData?, error: NSError?) -> Void in
+                if(error == nil) {
+                    let image = UIImage(data:imageData!)
+                    cell!.thumbnailImage.image = image
+                }
+            })
+        } else {
+            cell!.thumbnailImage.image = nil
+        }
         
         return cell
     }

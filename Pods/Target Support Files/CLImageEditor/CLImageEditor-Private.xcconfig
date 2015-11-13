@@ -1,0 +1,6 @@
+#include "CLImageEditor.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/CLImageEditor" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLAdjustmentTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLBlurTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLClippingTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLDrawTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLEffectTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLEffectTool/CLEffect" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLFilterTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLRotateTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/CLToneCurveTool" "${PODS_ROOT}/Headers/Private/CLImageEditor/ImageTools/ToolSettings" "${PODS_ROOT}/Headers/Private/CLImageEditor/Utils" "${PODS_ROOT}/Headers/Private/CLImageEditor/ViewController" "${PODS_ROOT}/Headers/Public"
+OTHER_LDFLAGS = ${CLIMAGEEDITOR_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

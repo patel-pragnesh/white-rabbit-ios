@@ -28,6 +28,9 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.4.0)
   - BTNavigationDropdownMenu (0.1.8)
+  - CLImageEditor (0.1.4):
+    - CLImageEditor/Core (= 0.1.4)
+  - CLImageEditor/Core (0.1.4)
   - ContentfulDeliveryAPI (1.8.0):
     - AFNetworking (>= 2.5.3)
     - ISO8601DateFormatter
@@ -71,6 +74,7 @@ PODS:
 DEPENDENCIES:
   - ALCameraViewController
   - BTNavigationDropdownMenu
+  - CLImageEditor
   - ContentfulDeliveryAPI
   - Dodo
   - DynamicColor
@@ -93,6 +97,7 @@ SPEC CHECKSUMS:
   ALCameraViewController: fbaed8a35a9272b419ec10004231da356d75bcaa
   Bolts: 0e9bce58b9b9f5e8a7a4d47b16d2fabec289072b
   BTNavigationDropdownMenu: 23403214197d8fb208dd0ad996e3d236748473c9
+  CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   ContentfulDeliveryAPI: b1031d673519b68e8048771243741745475b4395
   Dodo: fe9b894c3e8828f86154c8590d91d7f491160f2d
   DynamicColor: bd4ccde8466ccbf0dd40900aa8be93a5ea482724

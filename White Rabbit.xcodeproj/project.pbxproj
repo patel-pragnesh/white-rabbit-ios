@@ -33,6 +33,7 @@
 		EDCF6EC41BD4A31300C46D90 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */; };
 		EDCF6EC51BD4A31300C46D90 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */; };
 		EDCF6ECB1BD4A33600C46D90 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC81BD4A33500C46D90 /* Parse.framework */; };
+		EDD845511BF5C14D008A5C2E /* CLImageEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD845501BF5C14D008A5C2E /* CLImageEditor.framework */; };
 		EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */; };
 		EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */; };
 		EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */; };
@@ -120,6 +121,7 @@
 		EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "Pods/../build/Debug-iphoneos/ParseUI.framework"; sourceTree = "<group>"; };
 		EDCF6EC81BD4A33500C46D90 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		EDCF6ECC1BD4A96400C46D90 /* Facebook_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Facebook_iOS_SDK.framework; path = "Pods/../build/Debug-iphoneos/Facebook_iOS_SDK.framework"; sourceTree = "<group>"; };
+		EDD845501BF5C14D008A5C2E /* CLImageEditor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CLImageEditor.framework; path = "Pods/../build/Debug-iphoneos/CLImageEditor.framework"; sourceTree = "<group>"; };
 		EDDF73BE1BD3442D00E7C863 /* BTNavigationDropdownMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTNavigationDropdownMenu.framework; path = "Pods/../build/Debug-iphoneos/BTNavigationDropdownMenu.framework"; sourceTree = "<group>"; };
 		EDE6D4301BA7B2BC00C7AC8C /* White Rabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White Rabbit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDD845511BF5C14D008A5C2E /* CLImageEditor.framework in Frameworks */,
 				ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */,
 				EDFD64FC1BDAD48300344BDC /* FillableLoaders.framework in Frameworks */,
 				EDFD64F21BDA058400344BDC /* MMMarkdown.framework in Frameworks */,
@@ -287,6 +290,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDD845501BF5C14D008A5C2E /* CLImageEditor.framework */,
 				ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */,
 				EDFD64FB1BDAD48300344BDC /* FillableLoaders.framework */,
 				EDFD64F71BDA166400344BDC /* Bypass.framework */,
