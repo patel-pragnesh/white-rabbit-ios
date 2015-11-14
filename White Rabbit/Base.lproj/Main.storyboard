@@ -8,10 +8,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Shelters Map View Controller-->
+        <!--Locations Map View Controller-->
         <scene sceneID="W3a-Uw-Rfz">
             <objects>
-                <viewController id="pwn-BM-reb" customClass="SheltersMapViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pwn-BM-reb" customClass="LocationsMapViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="znK-Ny-r5q"/>
                         <viewControllerLayoutGuide type="bottom" id="y3k-6G-qia"/>
@@ -23,26 +23,37 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ur7-fs-tnr">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="751"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="274"/>
                                 </variation>
                             </mapView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPH-Zo-H9D">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="273" width="400" height="478"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="mFZ-X5-hje" kind="embed" id="hfq-Dv-nVW"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="ur7-fs-tnr"/>
+                                <exclude reference="DPH-Zo-H9D"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="ur7-fs-tnr"/>
+                                <include reference="DPH-Zo-H9D"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="HlP-0K-7i5"/>
                     <connections>
                         <outlet property="mapView" destination="ur7-fs-tnr" id="iP5-Ld-iH7"/>
-                        <segue destination="SHO-jO-gC5" kind="show" identifier="MapToShelterDetail" id="fNE-Ea-jwQ"/>
+                        <segue destination="SHO-jO-gC5" kind="show" identifier="MapToLocationDetail" id="fNE-Ea-jwQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nKH-ZU-Xrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -52,13 +63,13 @@
         <!--Locations-->
         <scene sceneID="hvu-zl-VPD">
             <objects>
-                <tableViewController title="Locations" id="mFZ-X5-hje" customClass="SheltersTableViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Locations" id="mFZ-X5-hje" customClass="LocationsTableViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="hF9-JB-JMf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShelterCell" id="pN4-jT-dPa" customClass="SheltersTableViewCell" customModule="White_Rabbit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" id="pN4-jT-dPa" customClass="LocationsTableViewCell" customModule="White_Rabbit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pN4-jT-dPa" id="UdV-P8-lxh">
@@ -97,7 +108,7 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="logo" destination="cgU-Du-gJQ" id="gfd-Oj-ZcQ"/>
-                                    <outlet property="name" destination="3yx-gh-FgT" id="ciQ-4L-LXs"/>
+                                    <outlet property="name" destination="3yx-gh-FgT" id="xP7-It-thV"/>
                                     <segue destination="SHO-jO-gC5" kind="show" id="J4W-rm-qZ2"/>
                                 </connections>
                             </tableViewCell>
@@ -128,7 +139,7 @@
         <!--Location-->
         <scene sceneID="QHm-Ac-ayr">
             <objects>
-                <viewController title="Location" id="SHO-jO-gC5" customClass="ShelterDetailViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Location" id="SHO-jO-gC5" customClass="LocationDetailViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8OI-ml-bwF"/>
                         <viewControllerLayoutGuide type="bottom" id="vek-Ru-n2D"/>
@@ -1527,12 +1538,12 @@
         <scene sceneID="Ojq-4v-G5Q">
             <objects>
                 <tableViewController storyboardIdentifier="AnimalTimelineTable" id="QeF-Ee-6cL" customClass="AnimalTimelineTableViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="374" sectionHeaderHeight="28" sectionFooterHeight="28" id="0fE-ze-8wx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="351" sectionHeaderHeight="28" sectionFooterHeight="28" id="0fE-ze-8wx">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnimalTimelineCell" rowHeight="374" id="ANJ-g2-s51" customClass="AnimalTimelineTableViewCell" customModule="White_Rabbit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnimalTimelineCell" rowHeight="351" id="ANJ-g2-s51" customClass="AnimalTimelineTableViewCell" customModule="White_Rabbit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="400" height="374"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ANJ-g2-s51" id="bpx-6C-Ngk">
@@ -2543,7 +2554,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="A1f-6G-4HB" kind="relationship" relationship="viewControllers" id="iYB-qT-OEE"/>
-                        <segue destination="j0D-vS-PsE" kind="relationship" relationship="viewControllers" id="oKD-by-HMF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eh1-gW-S3z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2575,7 +2585,7 @@
         <!--MAP-->
         <scene sceneID="gGX-Gt-6rT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j0D-vS-PsE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LocationsMapView" automaticallyAdjustsScrollViewInsets="NO" id="j0D-vS-PsE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="MAP" image="map_grey" id="PVu-tZ-cui"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BLd-L1-nzp">
@@ -2698,6 +2708,18 @@
             </objects>
             <point key="canvasLocation" x="4166" y="-3016"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="QoD-EK-Xl7">
+            <objects>
+                <viewController id="u27-AM-naj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gd1-IX-tHv">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mqW-mC-g9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="LoginImage" width="750" height="1328"/>
@@ -2724,8 +2746,9 @@
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="to2-Xz-uJJ"/>
         <segue reference="rZ8-6v-l2a"/>
+        <segue reference="to2-Xz-uJJ"/>
+        <segue reference="hfq-Dv-nVW"/>
         <segue reference="J4W-rm-qZ2"/>
     </inferredMetricsTieBreakers>
 </document>

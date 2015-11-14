@@ -11,11 +11,9 @@
 		83F0FD66D0E8946888451B37 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD857B0520D3DDE97FB034 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		ED008E221BBA260800CAA0D0 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED008E211BBA260800CAA0D0 /* TagListView.framework */; };
 		ED008E241BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */; };
-		ED008E261BBE413A00CAA0D0 /* AnimalTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED008E251BBE413A00CAA0D0 /* AnimalTimelineTableViewCell.swift */; };
 		ED1C8CB61BC7931D0046A34B /* InstagramKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1C8CB51BC7931D0046A34B /* InstagramKit.framework */; };
-		ED274C2D1BABFF0A00A31375 /* SheltersMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */; };
-		ED274C311BAC181E00A31375 /* SheltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */; };
-		ED274C331BACA8A600A31375 /* SheltersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */; };
+		ED274C2D1BABFF0A00A31375 /* LocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C2C1BABFF0A00A31375 /* LocationsMapViewController.swift */; };
+		ED274C311BAC181E00A31375 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C301BAC181E00A31375 /* LocationsTableViewController.swift */; };
 		ED2D9F9E1BB91908004F0143 /* ALCameraViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */; };
 		ED3071EB1BD3490E001B6E56 /* LocationsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3071EA1BD3490E001B6E56 /* LocationsTabViewController.swift */; };
 		ED31F48B1BCE0D5C00D9E492 /* AnimalFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */; };
@@ -23,9 +21,8 @@
 		ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */; };
 		ED406EA71BAEE3A1001FE8B3 /* AnimalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */; };
 		ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */; };
-		ED406EAB1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */; };
 		ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */; };
-		ED692D671BACECED00C52562 /* ShelterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */; };
+		ED692D671BACECED00C52562 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* LocationDetailViewController.swift */; };
 		ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */; };
 		ED8F90461BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */; };
 		EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */; };
@@ -52,12 +49,10 @@
 		EDE6D4771BA7B42800C7AC8C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4761BA7B42800C7AC8C /* libz.tbd */; };
 		EDE6D4791BA7B43500C7AC8C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */; };
 		EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */; };
-		EDE96F6A1BAB97DA008B5131 /* BreedsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE96F691BAB97DA008B5131 /* BreedsTableViewCell.swift */; };
 		EDF00D731BAD466500FE4B48 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D721BAD466500FE4B48 /* CameraViewController.swift */; };
 		EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */; };
 		EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */; };
 		EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */; };
-		EDF4239B1BD9B8A40087583A /* CareMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF4239A1BD9B8A40087583A /* CareMenuTableViewCell.swift */; };
 		EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */; };
 		EDFD64E41BD9E02300344BDC /* ContentfulDeliveryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */; };
 		EDFD64E51BD9E02300344BDC /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64E31BD9E02300344BDC /* ISO8601DateFormatter.framework */; };
@@ -90,12 +85,10 @@
 		69AD857B0520D3DDE97FB034 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED008E211BBA260800CAA0D0 /* TagListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagListView.framework; path = "Pods/../build/Debug-iphoneos/TagListView.framework"; sourceTree = "<group>"; };
 		ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTimelineTableViewController.swift; sourceTree = "<group>"; };
-		ED008E251BBE413A00CAA0D0 /* AnimalTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTimelineTableViewCell.swift; sourceTree = "<group>"; };
 		ED0B409A1BD36B5C0083D024 /* SlideMenuControllerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlideMenuControllerSwift.framework; path = "Pods/../build/Debug-iphoneos/SlideMenuControllerSwift.framework"; sourceTree = "<group>"; };
 		ED1C8CB51BC7931D0046A34B /* InstagramKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstagramKit.framework; path = "Pods/../build/Debug-iphoneos/InstagramKit.framework"; sourceTree = "<group>"; };
-		ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersMapViewController.swift; sourceTree = "<group>"; };
-		ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersTableViewController.swift; sourceTree = "<group>"; };
-		ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheltersTableViewCell.swift; sourceTree = "<group>"; };
+		ED274C2C1BABFF0A00A31375 /* LocationsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsMapViewController.swift; sourceTree = "<group>"; };
+		ED274C301BAC181E00A31375 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALCameraViewController.framework; path = "Pods/../build/Debug-iphoneos/ALCameraViewController.framework"; sourceTree = "<group>"; };
 		ED3071EA1BD3490E001B6E56 /* LocationsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTabViewController.swift; sourceTree = "<group>"; };
 		ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalFormViewController.swift; sourceTree = "<group>"; };
@@ -104,9 +97,8 @@
 		ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedDetailViewController.swift; sourceTree = "<group>"; };
 		ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTableViewController.swift; sourceTree = "<group>"; };
 		ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
-		ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTableViewCell.swift; sourceTree = "<group>"; };
 		ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GKImagePicker.framework; path = "Pods/../build/Debug-iphoneos/GKImagePicker.framework"; sourceTree = "<group>"; };
-		ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewController.swift; sourceTree = "<group>"; };
+		ED692D661BACECED00C52562 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTableViewController.swift; sourceTree = "<group>"; };
 		ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTNavigationDropdownMenu.framework; path = "Pods/../build/Debug-iphoneos/BTNavigationDropdownMenu.framework"; sourceTree = "<group>"; };
 		ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -149,12 +141,10 @@
 		EDE6D4761BA7B42800C7AC8C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		EDE96F691BAB97DA008B5131 /* BreedsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedsTableViewCell.swift; sourceTree = "<group>"; };
 		EDF00D721BAD466500FE4B48 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareMenuTableViewController.swift; sourceTree = "<group>"; };
-		EDF4239A1BD9B8A40087583A /* CareMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareMenuTableViewCell.swift; sourceTree = "<group>"; };
 		EDF4239C1BD9DF7D0087583A /* ContentfulDeliveryAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContentfulDeliveryAPI.framework; path = "Pods/../build/Debug-iphoneos/ContentfulDeliveryAPI.framework"; sourceTree = "<group>"; };
 		EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFormViewController.swift; sourceTree = "<group>"; };
 		EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContentfulDeliveryAPI.framework; path = "Pods/../build/Debug-iphoneos/ContentfulDeliveryAPI.framework"; sourceTree = "<group>"; };
@@ -337,11 +327,9 @@
 			isa = PBXGroup;
 			children = (
 				ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */,
-				ED406EAA1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift */,
 				ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */,
 				ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */,
 				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
-				ED008E251BBE413A00CAA0D0 /* AnimalTimelineTableViewCell.swift */,
 				EDF00D721BAD466500FE4B48 /* CameraViewController.swift */,
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
@@ -354,7 +342,6 @@
 			isa = PBXGroup;
 			children = (
 				ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */,
-				EDE96F691BAB97DA008B5131 /* BreedsTableViewCell.swift */,
 				ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */,
 			);
 			name = Breeds;
@@ -364,7 +351,6 @@
 			isa = PBXGroup;
 			children = (
 				EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */,
-				EDF4239A1BD9B8A40087583A /* CareMenuTableViewCell.swift */,
 				EDFD64EA1BD9E57400344BDC /* CareSectionViewController.swift */,
 			);
 			name = Care;
@@ -373,10 +359,9 @@
 		EDFD64E91BD9E43E00344BDC /* Locations */ = {
 			isa = PBXGroup;
 			children = (
-				ED274C2C1BABFF0A00A31375 /* SheltersMapViewController.swift */,
-				ED274C301BAC181E00A31375 /* SheltersTableViewController.swift */,
-				ED274C321BACA8A600A31375 /* SheltersTableViewCell.swift */,
-				ED692D661BACECED00C52562 /* ShelterDetailViewController.swift */,
+				ED274C2C1BABFF0A00A31375 /* LocationsMapViewController.swift */,
+				ED274C301BAC181E00A31375 /* LocationsTableViewController.swift */,
+				ED692D661BACECED00C52562 /* LocationDetailViewController.swift */,
 				ED3071EA1BD3490E001B6E56 /* LocationsTabViewController.swift */,
 			);
 			name = Locations;
@@ -567,16 +552,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED008E261BBE413A00CAA0D0 /* AnimalTimelineTableViewCell.swift in Sources */,
-				EDE96F6A1BAB97DA008B5131 /* BreedsTableViewCell.swift in Sources */,
 				ED3071EB1BD3490E001B6E56 /* LocationsTabViewController.swift in Sources */,
-				EDF4239B1BD9B8A40087583A /* CareMenuTableViewCell.swift in Sources */,
 				EDFD64EB1BD9E57400344BDC /* CareSectionViewController.swift in Sources */,
 				EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */,
 				ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */,
 				ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */,
 				EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */,
-				ED274C2D1BABFF0A00A31375 /* SheltersMapViewController.swift in Sources */,
+				ED274C2D1BABFF0A00A31375 /* LocationsMapViewController.swift in Sources */,
 				EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */,
 				EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */,
 				ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */,
@@ -586,14 +568,12 @@
 				EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */,
 				ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */,
 				EDC1FCC31BD325E8005FDAED /* DocumentCaptureViewController.swift in Sources */,
-				ED692D671BACECED00C52562 /* ShelterDetailViewController.swift in Sources */,
+				ED692D671BACECED00C52562 /* LocationDetailViewController.swift in Sources */,
 				EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */,
 				ED008E241BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift in Sources */,
 				ED31F48B1BCE0D5C00D9E492 /* AnimalFormViewController.swift in Sources */,
-				ED274C311BAC181E00A31375 /* SheltersTableViewController.swift in Sources */,
-				ED406EAB1BAEF5E1001FE8B3 /* AnimalsTableViewCell.swift in Sources */,
+				ED274C311BAC181E00A31375 /* LocationsTableViewController.swift in Sources */,
 				ED406EA71BAEE3A1001FE8B3 /* AnimalsTableViewController.swift in Sources */,
-				ED274C331BACA8A600A31375 /* SheltersTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

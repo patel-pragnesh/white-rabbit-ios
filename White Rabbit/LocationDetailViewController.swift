@@ -1,5 +1,5 @@
 //
-//  ShelterDetailViewController.swift
+//  LocationDetailViewController.swift
 //  White Rabbit
 //
 //  Created by Michael Bina on 9/18/15.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ShelterDetailViewController: UIViewController {
+class LocationDetailViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var logoImage: UIImageView!
@@ -22,7 +22,7 @@ class ShelterDetailViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionsButton: UIButton!
     
-    var currentShelterObject: PFObject?
+    var currentLocationObject: PFObject?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,8 @@ class ShelterDetailViewController: UIViewController {
 //        self.navigationController?.tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
 
         
-        if let object = currentShelterObject {
-            NSLog("Viewing detail for shelter: %@\n", object)
+        if let object = currentLocationObject {
+            NSLog("Viewing detail for Location: %@\n", object)
             
             nameLabel.text = object["name"] as? String
             address1Label.text = object["address"] as? String
@@ -83,12 +83,12 @@ class ShelterDetailViewController: UIViewController {
         ]
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = currentShelterObject?.valueForKey("name") as? String
+        mapItem.name = currentLocationObject?.valueForKey("name") as? String
         mapItem.openInMapsWithLaunchOptions(options)
     }
     
     func getCoordinates() -> CLLocationCoordinate2D {
-        let location = currentShelterObject?.valueForKey("geo") as! PFGeoPoint
+        let location = currentLocationObject?.valueForKey("geo") as! PFGeoPoint
         
         let latitute:CLLocationDegrees =  location.latitude
         let longitute:CLLocationDegrees =  location.longitude
@@ -105,12 +105,12 @@ class ShelterDetailViewController: UIViewController {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinates, regionRadius * 2.0, regionRadius * 2.0)
         
         let location = Location(
-            name: currentShelterObject?.valueForKey("name") as! String,
+            name: currentLocationObject?.valueForKey("name") as! String,
             coordinate: coordinates
         )
 
         mapView.addAnnotation(location)
-        // mapView.selectAnnotation(shelter, animated: true)
+        // mapView.selectAnnotation(location, animated: true)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.hidden = false
         directionsButton.hidden = false

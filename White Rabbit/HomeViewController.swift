@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         
         checkForUser(true)
         
-        self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsTabView")
+        self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsMapView")
         self.breedsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BreedsTable")
         self.careViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CareNavigation")
         self.userFormController = self.storyboard?.instantiateViewControllerWithIdentifier("UserNavigation") as! UINavigationController

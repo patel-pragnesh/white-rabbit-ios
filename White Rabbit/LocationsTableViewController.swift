@@ -1,5 +1,5 @@
 //
-//  SheltersTableViewController.swift
+//  LocationsTableViewController.swift
 //  White Rabbit
 //
 //  Created by Michael Bina on 9/18/15.
@@ -12,7 +12,7 @@ import Parse
 import ParseUI
 import BTNavigationDropdownMenu
 
-class SheltersTableViewController: PFQueryTableViewController {
+class LocationsTableViewController: PFQueryTableViewController {
     
     var selectedType: String = "shelter"
     let items = ["Shelter", "Vet", "Supplies", "Grooming"]
@@ -30,21 +30,21 @@ class SheltersTableViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setUpMenuBarController()
+//        self.setUpMenuBarController()
         
 //        self.setUpLocationsMenu()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-        
-        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
-        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            self.selectedType = self.items[indexPath].lowercaseString
-            NSLog("Did select : \(self.selectedType)")
-            self.loadObjects()
-//            self.setCurrentView(items[indexPath])
-        }
-        menuView.cellTextLabelColor = UIColor.whiteColor()
-        menuView.cellBackgroundColor = UIColor.darkGrayColor()
-        self.navigationItem.titleView = menuView
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+//        
+//        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+//        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+//            self.selectedType = self.items[indexPath].lowercaseString
+//            NSLog("Did select : \(self.selectedType)")
+//            self.loadObjects()
+////            self.setCurrentView(items[indexPath])
+//        }
+//        menuView.cellTextLabelColor = UIColor.whiteColor()
+//        menuView.cellBackgroundColor = UIColor.darkGrayColor()
+//        self.navigationItem.titleView = menuView
         
 //        self.setUpNavigationBarImage(UIImage(named: "locations_header")!, height: 220)
     }
@@ -66,9 +66,9 @@ class SheltersTableViewController: PFQueryTableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("ShelterCell", forIndexPath: indexPath) as? SheltersTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("LocationCell", forIndexPath: indexPath) as? LocationsTableViewCell
         if cell == nil  {
-            cell = SheltersTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ShelterCell")
+            cell = LocationsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "LocationCell")
         }
         
         // Extract values from the PFObject to display in the table cell
@@ -96,7 +96,7 @@ class SheltersTableViewController: PFQueryTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller
-        let detailScene = segue.destinationViewController as! ShelterDetailViewController
+        let detailScene = segue.destinationViewController as! LocationDetailViewController
         
         // Pass the selected object to the destination view controller.
         if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -104,7 +104,22 @@ class SheltersTableViewController: PFQueryTableViewController {
             let object = objects?[row] as! PFObject
             
             NSLog("Viewing shelter detail for object: %@\n", object)
-            detailScene.currentShelterObject = object
+            detailScene.currentLocationObject = object
         }
     }
 }
+
+class LocationsTableViewCell: PFTableViewCell {
+    @IBOutlet weak var logo: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.frame.size.height = 200
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+}
+

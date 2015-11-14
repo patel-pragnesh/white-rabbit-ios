@@ -10,6 +10,12 @@ import UIKit
 import Parse
 import ParseUI
 
+class BreedsTableViewCell: PFTableViewCell {
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var thumbnailImage: UIImageView!
+    
+}
+
 class BreedsTableViewController: PFQueryTableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!

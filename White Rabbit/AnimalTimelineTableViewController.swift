@@ -12,6 +12,17 @@ import ParseUI
 import CLImageEditor
 import Social
 
+class AnimalTimelineTableViewCell: PFTableViewCell {
+    
+    @IBOutlet weak var eventTextLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var timelineImageView: UIImageView!
+    @IBOutlet weak var shelterButton: UIButton!
+    @IBOutlet weak var largeIcon: UIImageView!
+}
+
 class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEditorDelegate {
 
     var animalObject : PFObject?

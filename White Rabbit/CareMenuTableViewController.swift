@@ -8,6 +8,10 @@
 
 import UIKit
 
+class CareMenuTableViewCell: UITableViewCell {
+    @IBOutlet weak var coverImage: UIImageView!
+}
+
 class CareMenuTableViewController: UITableViewController {
 
     override func viewDidLoad() {

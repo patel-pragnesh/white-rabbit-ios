@@ -1,5 +1,5 @@
 //
-//  SheltersMapViewController.swift
+//  LocationsMapViewController.swift
 //  White Rabbit
 //
 //  Created by Michael Bina on 9/18/15.
@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import BTNavigationDropdownMenu
 
-class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
 //    @IBOutlet weak var locationTypeMenuBar: UINavigationBar!
@@ -95,27 +95,20 @@ class SheltersMapViewController: UIViewController, MKMapViewDelegate, CLLocation
         
         if control == annotationView.rightCalloutAccessoryView {
             NSLog("callout")
-            performSegueWithIdentifier("MapToShelterDetail", sender: annotationView)
+            performSegueWithIdentifier("MapToLocationDetail", sender: annotationView)
         }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller
-        let detailScene = segue.destinationViewController as! ShelterDetailViewController
+        if(segue.identifier == "MapToLocationDetail") {
+            let detailScene = segue.destinationViewController as! LocationDetailViewController
 
-        let annotationView = sender as! MKAnnotationView
-        let annotation = annotationView.annotation as? Location
-        
-        detailScene.currentShelterObject = annotation?.parseObject
-        
-        // Pass the selected object to the destination view controller.
-//        if let indexPath = self.tableView.indexPathForSelectedRow {
-//            let row = Int(indexPath.row)
-//            let object = objects?[row] as! PFObject
-//            
-//            NSLog("Viewing shelter detail for object: %@\n", object)
-//            detailScene.currentShelterObject = object
-//        }
+            let annotationView = sender as! MKAnnotationView
+            let annotation = annotationView.annotation as? Location
+            
+            detailScene.currentLocationObject = annotation?.parseObject
+        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {

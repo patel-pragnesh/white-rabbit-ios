@@ -12,6 +12,13 @@ import ParseUI
 import BTNavigationDropdownMenu
 import FillableLoaders
 
+class AnimalsTableViewCell: PFTableViewCell {
+    
+    @IBOutlet weak var coverPhoto: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profilePhoto: UIImageView!
+}
+
 class AnimalsTableViewController: PFQueryTableViewController {
 
     var owner : PFUser?
