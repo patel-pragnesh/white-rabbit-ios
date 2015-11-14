@@ -236,9 +236,17 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         return nextIndexPath
     }
     
+    func animalDeceased() -> Bool {
+        return self.animalObject?.valueForKey("deceasedDate") != nil
+    }
+    
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
+        
         query.orderByDescending("date")
+        if self.animalDeceased() {
+            query.orderByAscending("date")
+        }
         query.includeKey("shelter")
         if(self.animalObject != nil) {
             query.whereKey("animal", equalTo: animalObject!)

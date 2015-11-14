@@ -13,12 +13,14 @@ import BTNavigationDropdownMenu
 
 class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet weak var tableView: UIView!
     @IBOutlet weak var mapView: MKMapView!
-//    @IBOutlet weak var locationTypeMenuBar: UINavigationBar!
     
     let locationManager = CLLocationManager()
     var selectedType: String = "shelter"
     let items = ["Shelter", "Vet", "Supplies", "Grooming"]
+    
+    var locationsTableController: LocationsTableViewController?
     
     override func viewDidLoad() {
         NSLog("initializing shelters map view controller")
@@ -50,7 +52,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
         initializeMap()
     }
-    
+        
     func initializeMap() {
 //        let initialLocation = CLLocation(latitude: 34.044467, longitude: -118.442708)
 //        let regionRadius: CLLocationDistance = 1000
@@ -69,26 +71,25 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-            if annotation is MKUserLocation{
-                return nil
-            }
+        if annotation is MKUserLocation{
+            return nil
+        }
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if(pinView == nil){
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView!.pinTintColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
             
-            let reuseId = "pin"
-            
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-            
-            if(pinView == nil){
-                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                pinView!.canShowCallout = true
-                pinView!.animatesDrop = true
-                pinView!.pinTintColor = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
-                
-                let calloutButton = UIButton(type: .InfoLight)
-                pinView!.rightCalloutAccessoryView = calloutButton
-            } else {
-                pinView!.annotation = annotation
-            }
-            return pinView!
+            let calloutButton = UIButton(type: .InfoLight)
+            pinView!.rightCalloutAccessoryView = calloutButton
+        } else {
+            pinView!.annotation = annotation
+        }
+        return pinView!
     }
 
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -108,6 +109,11 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
             let annotation = annotationView.annotation as? Location
             
             detailScene.currentLocationObject = annotation?.parseObject
+        } else if(segue.identifier == "LocationTableEmbed") {
+            let tableScene = segue.destinationViewController as! LocationsTableViewController
+            tableScene.selectedType = self.selectedType
+            tableScene.loadObjects()
+            self.locationsTableController = tableScene
         }
     }
     
@@ -134,6 +140,8 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
             }
         }
         
+        self.locationsTableController?.selectedType = self.selectedType
+        self.locationsTableController?.loadObjects()
     }
     
     func clearMap() {
@@ -157,9 +165,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
             regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-    
 }
-
 
 
 class Location: NSObject, MKAnnotation {

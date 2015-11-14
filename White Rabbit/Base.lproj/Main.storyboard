@@ -23,16 +23,16 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ur7-fs-tnr">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="274"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="253"/>
                                 </variation>
                             </mapView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPH-Zo-H9D">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="273" width="400" height="478"/>
+                                    <rect key="frame" x="0.0" y="253" width="400" height="425"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="mFZ-X5-hje" kind="embed" id="hfq-Dv-nVW"/>
+                                    <segue destination="mFZ-X5-hje" kind="embed" identifier="LocationTableEmbed" id="hfq-Dv-nVW"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -53,6 +53,7 @@
                     <navigationItem key="navigationItem" id="HlP-0K-7i5"/>
                     <connections>
                         <outlet property="mapView" destination="ur7-fs-tnr" id="iP5-Ld-iH7"/>
+                        <outlet property="tableView" destination="DPH-Zo-H9D" id="Gf9-m5-J9P"/>
                         <segue destination="SHO-jO-gC5" kind="show" identifier="MapToLocationDetail" id="fNE-Ea-jwQ"/>
                     </connections>
                 </viewController>
@@ -2540,25 +2541,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9v-W2-6UG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3771" y="-1174.5"/>
-        </scene>
-        <!--Locations Tab View Controller-->
-        <scene sceneID="Jsc-3T-bMc">
-            <objects>
-                <tabBarController storyboardIdentifier="LocationsTabView" automaticallyAdjustsScrollViewInsets="NO" id="21A-LX-D5a" customClass="LocationsTabViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ZG5-Ej-HKs">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="A1f-6G-4HB" kind="relationship" relationship="viewControllers" id="iYB-qT-OEE"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eh1-gW-S3z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3937.5" y="586.5"/>
         </scene>
         <!--LIST-->
         <scene sceneID="8ft-al-eKd">

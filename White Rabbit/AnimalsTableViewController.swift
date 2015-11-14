@@ -45,8 +45,10 @@ class AnimalsTableViewController: PFQueryTableViewController {
         }
         if self.featured {
             query.whereKey("featured", equalTo: true)
+            query.whereKey("adoptable", equalTo: false)
         }
         if self.adoptable {
+            query.whereKey("featured", equalTo: true)
             query.whereKey("adoptable", equalTo: true)
         }
         query.orderByAscending("name")

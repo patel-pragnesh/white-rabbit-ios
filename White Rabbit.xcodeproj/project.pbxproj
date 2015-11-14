@@ -15,7 +15,6 @@
 		ED274C2D1BABFF0A00A31375 /* LocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C2C1BABFF0A00A31375 /* LocationsMapViewController.swift */; };
 		ED274C311BAC181E00A31375 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED274C301BAC181E00A31375 /* LocationsTableViewController.swift */; };
 		ED2D9F9E1BB91908004F0143 /* ALCameraViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */; };
-		ED3071EB1BD3490E001B6E56 /* LocationsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3071EA1BD3490E001B6E56 /* LocationsTabViewController.swift */; };
 		ED31F48B1BCE0D5C00D9E492 /* AnimalFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */; };
 		ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */; };
 		ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */; };
@@ -90,7 +89,6 @@
 		ED274C2C1BABFF0A00A31375 /* LocationsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsMapViewController.swift; sourceTree = "<group>"; };
 		ED274C301BAC181E00A31375 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		ED2D9F9D1BB91908004F0143 /* ALCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALCameraViewController.framework; path = "Pods/../build/Debug-iphoneos/ALCameraViewController.framework"; sourceTree = "<group>"; };
-		ED3071EA1BD3490E001B6E56 /* LocationsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTabViewController.swift; sourceTree = "<group>"; };
 		ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalFormViewController.swift; sourceTree = "<group>"; };
 		ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedsTableViewController.swift; sourceTree = "<group>"; };
 		ED323F951BAAAFF400576C04 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -362,7 +360,6 @@
 				ED274C2C1BABFF0A00A31375 /* LocationsMapViewController.swift */,
 				ED274C301BAC181E00A31375 /* LocationsTableViewController.swift */,
 				ED692D661BACECED00C52562 /* LocationDetailViewController.swift */,
-				ED3071EA1BD3490E001B6E56 /* LocationsTabViewController.swift */,
 			);
 			name = Locations;
 			sourceTree = "<group>";
@@ -552,7 +549,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED3071EB1BD3490E001B6E56 /* LocationsTabViewController.swift in Sources */,
 				EDFD64EB1BD9E57400344BDC /* CareSectionViewController.swift in Sources */,
 				EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */,
 				ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */,
