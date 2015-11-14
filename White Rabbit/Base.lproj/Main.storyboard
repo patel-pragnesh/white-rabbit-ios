@@ -219,6 +219,16 @@
                                     <action selector="callPhoneNumber:" destination="SHO-jO-gC5" eventType="touchUpInside" id="iNW-ek-m7p"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vs-QC-CaS">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Animals"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="320" y="283" width="54" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="4AR-Rn-9P6" kind="show" identifier="ShelterToAnimalsTable" id="3cZ-Ve-MtK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -231,6 +241,7 @@
                                 <exclude reference="0lj-ry-wPq"/>
                                 <exclude reference="jC8-zi-HQL"/>
                                 <exclude reference="gDh-dB-k45"/>
+                                <exclude reference="2Vs-QC-CaS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -243,6 +254,7 @@
                                 <include reference="0lj-ry-wPq"/>
                                 <include reference="jC8-zi-HQL"/>
                                 <include reference="gDh-dB-k45"/>
+                                <include reference="2Vs-QC-CaS"/>
                             </mask>
                         </variation>
                     </view>
@@ -259,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHM-Wu-RYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6615" y="262.5"/>
+            <point key="canvasLocation" x="2902.5" y="-859.875"/>
         </scene>
         <!--Instagram Table View Controller-->
         <scene sceneID="EnM-DC-CYd">
@@ -826,7 +838,8 @@
                                                         <exclude reference="VqF-cw-QSg"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
+                                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                                    <rect key="frame" x="0.0" y="65" width="253.5" height="253.5"/>
                                                     <mask key="constraints">
                                                         <include reference="VqF-cw-QSg"/>
                                                     </mask>
@@ -847,7 +860,8 @@
                                                         <exclude reference="6qT-Ko-ZlY"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
+                                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                                    <rect key="frame" x="20" y="374" width="360" height="20.5"/>
                                                     <mask key="constraints">
                                                         <include reference="6qT-Ko-ZlY"/>
                                                     </mask>
@@ -858,6 +872,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                                    <rect key="frame" x="20" y="328" width="360" height="36"/>
+                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2728,9 +2745,10 @@
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3cZ-Ve-MtK"/>
+        <segue reference="J4W-rm-qZ2"/>
+        <segue reference="hfq-Dv-nVW"/>
         <segue reference="rZ8-6v-l2a"/>
         <segue reference="to2-Xz-uJJ"/>
-        <segue reference="hfq-Dv-nVW"/>
-        <segue reference="J4W-rm-qZ2"/>
     </inferredMetricsTieBreakers>
 </document>

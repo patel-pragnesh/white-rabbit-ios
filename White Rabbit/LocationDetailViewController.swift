@@ -36,6 +36,7 @@ class LocationDetailViewController: UIViewController {
             NSLog("Viewing detail for Location: %@\n", object)
             
             nameLabel.text = object["name"] as? String
+            self.setUpNavigationBar(nameLabel.text!)
             address1Label.text = object["address"] as? String
             cityStateZipLabel.text = (object["city"] as! String) + ", " + (object["state"] as! String) + " " + (object["zip"] != nil ? (object["zip"] as! String) : "")
             
@@ -116,6 +117,12 @@ class LocationDetailViewController: UIViewController {
         directionsButton.hidden = false
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "ShelterToAnimalsTable") {
+            let tableViewController = segue.destinationViewController as! AnimalsTableViewController
+            tableViewController.shelter = self.currentLocationObject
+        }
+    }
     
 
     override func didReceiveMemoryWarning() {

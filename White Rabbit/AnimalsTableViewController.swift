@@ -25,6 +25,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
     var adoptable : Bool = false
     var featured : Bool = false
     var loader : FillableLoader = FillableLoader()
+    var shelter : PFObject?
     
     override init(style: UITableViewStyle, className: String!) {
         NSLog("initializing animals table view controller: \(className)")
@@ -51,6 +52,10 @@ class AnimalsTableViewController: PFQueryTableViewController {
             query.whereKey("featured", equalTo: true)
             query.whereKey("adoptable", equalTo: true)
         }
+        if self.shelter != nil {
+            query.whereKey("shelter", equalTo: self.shelter!)
+            query.whereKey("adoptable", equalTo: true)
+        }
         query.orderByAscending("name")
         query.includeKey("breed")
         return query
@@ -59,23 +64,27 @@ class AnimalsTableViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let items = ["Mine", "Featured", "Adoptable"]
-        let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
-        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            print("Did select item at index: \(indexPath)")
-            self.setCurrentView(items[indexPath])
+        
+        if self.shelter == nil {
+            let items = ["Mine", "Featured", "Adoptable"]
+            let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+            menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+                print("Did select item at index: \(indexPath)")
+                self.setCurrentView(items[indexPath])
+            }
+            menuView.menuTitleColor = UIColor.whiteColor()
+            menuView.cellTextLabelColor = UIColor.whiteColor()
+            menuView.cellBackgroundColor = UIColor.darkGrayColor()
+            self.navigationItem.titleView = menuView
+            menuView.reloadInputViews()
+            
+            self.setCurrentUser()
+        
+            self.setUpMenuBarController()
+        } else {
+            let shelterName = self.shelter!["name"] as? String
+            self.setUpNavigationBar(shelterName!)
         }
-//        menuView.tintColor = UIColor.whiteColor()
-        menuView.menuTitleColor = UIColor.whiteColor()
-        menuView.cellTextLabelColor = UIColor.whiteColor()
-        menuView.cellBackgroundColor = UIColor.darkGrayColor()
-        menuView.reloadInputViews()
-        self.navigationItem.titleView = menuView
-        menuView.reloadInputViews()
-        
-        self.setCurrentUser()
-        
-        self.setUpMenuBarController()
         
         if self.owner != nil {
             self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25)
@@ -124,20 +133,16 @@ class AnimalsTableViewController: PFQueryTableViewController {
         self.performSegueWithIdentifier("AnimalTableToAddAnimal", sender: self)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-
-    }
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
-        
-        self.setUpNavigationBar()
-
-        
+        if self.shelter != nil {
+            let shelterName = self.shelter!["name"] as? String
+            self.setUpNavigationBar(shelterName!)
+        } else {
+            self.setUpNavigationBar()
+        }
+            
         self.tableView.reloadData()
         self.tableView.reloadInputViews()
     }
