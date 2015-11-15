@@ -27,10 +27,12 @@ class AnimalDetailViewController: UIViewController {
     
     @IBOutlet weak var timelineView: UIView!
     @IBOutlet weak var instagramView: UIView!
+    @IBOutlet weak var shelterButton: UIButton!
     
     var currentAnimalObject : PFObject?
     var breedObject : PFObject?
     var traitObjects : [PFObject?] = []
+    var shelterObject : PFObject?
     
     var timelineTableController : AnimalTimelineTableViewController?
     var instagramTableController : InstagramTableViewController?
@@ -182,6 +184,13 @@ class AnimalDetailViewController: UIViewController {
                 breedButton.setTitle(self.breedObject!.valueForKey("name") as? String, forState: .Normal)
             } else {
                 breedButton.hidden = true
+            }
+            
+            self.shelterObject = object.objectForKey("shelter") as? PFObject
+            if self.shelterObject != nil && object.valueForKey("adoptable") != nil && object.valueForKey("adoptable") as! Bool {
+                shelterButton.setTitle(self.shelterObject!.valueForKey("name") as? String, forState: .Normal)
+            } else {
+                shelterButton.hidden = true
             }
             
             if(object.objectForKey("instagramUsername") == nil) {

@@ -327,7 +327,6 @@
 				ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */,
 				ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */,
 				ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */,
-				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
 				EDF00D721BAD466500FE4B48 /* CameraViewController.swift */,
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
@@ -339,6 +338,7 @@
 		EDFD64E71BD9E42B00344BDC /* Breeds */ = {
 			isa = PBXGroup;
 			children = (
+				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
 				ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */,
 				ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */,
 			);

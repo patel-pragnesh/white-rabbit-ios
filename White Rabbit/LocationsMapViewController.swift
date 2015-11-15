@@ -110,7 +110,9 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
             
             detailScene.currentLocationObject = annotation?.parseObject
         } else if(segue.identifier == "LocationTableEmbed") {
-            let tableScene = segue.destinationViewController as! LocationsTableViewController
+            let tableNav = segue.destinationViewController as! UINavigationController
+            let tableScene = tableNav.topViewController as! LocationsTableViewController
+//            let tableScene = segue.destinationViewController as! LocationsTableViewController
             tableScene.selectedType = self.selectedType
             tableScene.loadObjects()
             self.locationsTableController = tableScene
