@@ -16,6 +16,7 @@ class LocationsTableViewController: PFQueryTableViewController {
     
     var selectedType: String = "shelter"
     let items = ["Shelter", "Vet", "Supplies", "Grooming"]
+    var mapViewController : LocationsMapViewController?
     
     required init(coder aDecoder:NSCoder) {
         NSLog("initializing required shelters table view controller")
@@ -96,15 +97,18 @@ class LocationsTableViewController: PFQueryTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller
-        let detailScene = segue.destinationViewController as! LocationDetailViewController
         
-        // Pass the selected object to the destination view controller.
-        if let indexPath = self.tableView.indexPathForSelectedRow {
-            let row = Int(indexPath.row)
-            let object = objects?[row] as! PFObject
+        if(segue.identifier == "LocationToLocationDetail") {
+            let detailScene = segue.destinationViewController as! LocationDetailViewController
             
-            NSLog("Viewing shelter detail for object: %@\n", object)
-            detailScene.currentLocationObject = object
+            // Pass the selected object to the destination view controller.
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let row = Int(indexPath.row)
+                let object = objects?[row] as! PFObject
+                
+                NSLog("Viewing shelter detail for object: %@\n", object)
+                detailScene.currentLocationObject = object
+            }
         }
     }
 }

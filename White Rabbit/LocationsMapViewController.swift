@@ -113,6 +113,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
             let tableNav = segue.destinationViewController as! UINavigationController
             let tableScene = tableNav.topViewController as! LocationsTableViewController
 //            let tableScene = segue.destinationViewController as! LocationsTableViewController
+            tableScene.mapViewController = self
             tableScene.selectedType = self.selectedType
             tableScene.loadObjects()
             self.locationsTableController = tableScene

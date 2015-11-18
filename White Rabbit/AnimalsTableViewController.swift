@@ -27,6 +27,8 @@ class AnimalsTableViewController: PFQueryTableViewController {
     var loader : FillableLoader = FillableLoader()
     var shelter : PFObject?
     
+    var locationDetailController : LocationDetailViewController?
+    
     override init(style: UITableViewStyle, className: String!) {
         NSLog("initializing animals table view controller: \(className)")
         
@@ -82,8 +84,8 @@ class AnimalsTableViewController: PFQueryTableViewController {
         
             self.setUpMenuBarController()
         } else {
-            let shelterName = self.shelter!["name"] as? String
-            self.setUpNavigationBar(shelterName!)
+//            let shelterName = self.shelter!["name"] as? String
+//            self.setUpNavigationBar(shelterName!)
         }
         
         if self.owner != nil {
@@ -147,6 +149,12 @@ class AnimalsTableViewController: PFQueryTableViewController {
         self.tableView.reloadInputViews()
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        if(self.locationDetailController != nil) {
+//            self.performSegueWithIdentifier("AnimalTableToAnimalDetail", sender: tableView)
+//        }
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("AnimalCell", forIndexPath: indexPath) as? AnimalsTableViewCell
@@ -179,7 +187,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
         
         return cell
     }
-    
+        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "AnimalTableToAnimalDetail") {
             // Get the new view controller

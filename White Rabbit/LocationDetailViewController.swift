@@ -19,7 +19,6 @@ class LocationDetailViewController: UIViewController {
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var phoneNumberButton: UIButton!
     
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionsButton: UIButton!
     
     var currentLocationObject: PFObject?
@@ -53,9 +52,9 @@ class LocationDetailViewController: UIViewController {
                 }
             })
             
-            if object["geo"] != nil {
-                self.initializeMap()
-            }
+//            if object["geo"] != nil {
+//                self.initializeMap()
+//            }
         }
     }
     
@@ -99,27 +98,28 @@ class LocationDetailViewController: UIViewController {
         return coordinates
     }
     
-    func initializeMap() {
-        let coordinates = self.getCoordinates()
-        let regionRadius: CLLocationDistance = 1000
-        
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinates, regionRadius * 2.0, regionRadius * 2.0)
-        
-        let location = Location(
-            name: currentLocationObject?.valueForKey("name") as! String,
-            coordinate: coordinates
-        )
-
-        mapView.addAnnotation(location)
-        // mapView.selectAnnotation(location, animated: true)
-        mapView.setRegion(coordinateRegion, animated: true)
-        mapView.hidden = false
-        directionsButton.hidden = false
-    }
+//    func initializeMap() {
+//        let coordinates = self.getCoordinates()
+//        let regionRadius: CLLocationDistance = 1000
+//        
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinates, regionRadius * 2.0, regionRadius * 2.0)
+//        
+//        let location = Location(
+//            name: currentLocationObject?.valueForKey("name") as! String,
+//            coordinate: coordinates
+//        )
+//
+//        mapView.addAnnotation(location)
+//        // mapView.selectAnnotation(location, animated: true)
+//        mapView.setRegion(coordinateRegion, animated: true)
+//        mapView.hidden = false
+//        directionsButton.hidden = false
+//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "ShelterToAnimalsTable") {
             let tableViewController = segue.destinationViewController as! AnimalsTableViewController
+            tableViewController.locationDetailController = self
             tableViewController.shelter = self.currentLocationObject
         }
     }
