@@ -1,12 +1,20 @@
-# white-rabbit
+White Rabbit iOS App
+===============================
 
-White Rabbit is built for iOS 8 and later with Swift 2.
 
-'''
-python Tools/Slicer/slice.py "/Users/michaelbina/Library/Mobile Documents/com~apple~CloudDocs/Projects/white rabbit/design/iPhone.sketch" "/Users/michaelbina/Library/Mobile Documents/com~apple~CloudDocs/Projects/white rabbit/dev/ios/White Rabbit/Assets.xcassets"
-'''
+# Technologies
 
-Libraries being used:
+## Languages
+
+- iOS 8 and later
+- Swift 2
+
+
+## Assets from Sketch
+
+    `python Tools/Slicer/slice.py "../../design/iPhone.sketch" "White Rabbit/Assets.xcassets"`
+
+## Framework|Tools
 
 * [DynamicColor](https://github.com/yannickl/DynamicColor) for color shortcuts
 * [Eureka](https://github.com/xmartlabs/Eureka) for forms
@@ -18,21 +26,12 @@ Libraries being used:
 * [InstagramKit]()
 * [SlideMenuControllerSwift]()
 
+## Framework|Tools To Consider
 
-Libraries to consider:
-* [](https://github.com/mamaral/Neon)
-* [](https://github.com/ifitdoesntwork/DAExpandAnimation)
-* [](https://github.com/ifitdoesntwork/DAExpandAnimation)
-* [](https://github.com/poolqf/FillableLoaders)
-* [](https://github.com/CezaryKopacz/CKWaveCollectionViewTransition)
-* [](https://github.com/burczyk/XcodeSwiftSnippets)
-* [](https://github.com/aaronabentheuer/AAFaceDetection)
-* [](https://github.com/SnapKit/SnapKit)
-* []()
-* []()
-* []()
-* []()
-* []()
-* []()
-* 
-* 
+* [Neon](https://github.com/mamaral/Neon)
+* [DAExpandAnimation](https://github.com/ifitdoesntwork/DAExpandAnimation)
+* [FillableLoaders](https://github.com/poolqf/FillableLoaders)
+* [CKWaveCollectionViewTransition](https://github.com/CezaryKopacz/CKWaveCollectionViewTransition)
+* [XcodeSwiftSnippets](https://github.com/burczyk/XcodeSwiftSnippets)
+* [AAFaceDetection](https://github.com/aaronabentheuer/AAFaceDetection)
+* [SnapKit](https://github.com/SnapKit/SnapKit)
