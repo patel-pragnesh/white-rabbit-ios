@@ -9,8 +9,9 @@
 import UIKit
 import TagListView
 import Darwin
+import ActionButton
 
-class AnimalDetailViewController: UIViewController {
+class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var breedButton: UIButton!
@@ -76,6 +77,40 @@ class AnimalDetailViewController: UIViewController {
         })
     }
     
+    func createAddMenu() {
+        let start = UIImage(named: "add_button")
+        let image1 = UIImage(named: "button_camera")
+        let image2 = UIImage(named: "button_photo")
+        let image3 = UIImage(named: "button_medical")
+        let images:[UIImage] = [image1!,image2!,image3!]
+        let menu = SphereMenu(startPoint: CGPointMake(200, 380), startImage: start!, submenuImages:images, tapToDismiss:true)
+        menu.delegate = self
+        self.timelineView.addSubview(menu)
+    }
+    
+    func sphereDidSelected(index: Int) {
+        let cameraViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CameraView") as! CameraViewController
+        cameraViewController.animalDetailController = self
+        cameraViewController.animalObject = self.currentAnimalObject
+        self.navigationController?.presentViewController(cameraViewController, animated: false, completion: { () -> Void in
+        })
+        switch index {
+            case 0:
+                NSLog("camera selected")
+                cameraViewController.takePhoto(self.addButton)
+                break
+            case 1:
+                NSLog("photo selected")
+                cameraViewController.chooseImage(self.addButton)
+                break
+            case 2:
+                NSLog("medical selected")
+                break
+            default:
+                break
+        }
+        
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -106,6 +141,7 @@ class AnimalDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.addButton.hidden = true
         self.instagramView.hidden = true
         self.timelineView.hidden = false
         
@@ -116,8 +152,9 @@ class AnimalDetailViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25)
         
-        traitTags.textFont = UIFont.systemFontOfSize(15)
+//        traitTags.textFont = UIFont.systemFontOfSize(15)
         
+        self.createAddMenu()
         self.loadAnimal()
     }
     
@@ -177,7 +214,7 @@ class AnimalDetailViewController: UIViewController {
                 })
             }
             
-            self.addTraitTags()
+//            self.addTraitTags()
             
             self.breedObject = object.objectForKey("breed") as? PFObject
             if self.breedObject != nil {
@@ -292,6 +329,7 @@ class AnimalDetailViewController: UIViewController {
             }
         }
     }
+    
     
     
     @IBAction func openInstagramProfile(sender: AnyObject) {

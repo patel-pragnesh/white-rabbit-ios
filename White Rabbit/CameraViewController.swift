@@ -49,12 +49,12 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
     
     @IBAction func takePhoto(sender: UIButton) {
         
-        let cameraViewController = ALCameraViewController(croppingEnabled: true) { image in
+        let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in
             // Do something with your image here.
             // If cropping is enabled this image will be the cropped version
             self.imagePreview.image = image
             self.dismissViewControllerAnimated(true, completion: {})
-            self.saveButton.enabled = true
+            self.dismissViewControllerAnimated(true, completion: {})
         }
 //        cameraViewController
         presentViewController(cameraViewController, animated: true, completion: nil)
@@ -82,6 +82,12 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
         dismissViewControllerAnimated(true, completion: nil)
 
         saveButton.enabled = true
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        NSLog("image picker cancelled")
+        self.closeView()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

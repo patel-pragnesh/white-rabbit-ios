@@ -70,6 +70,7 @@ PODS:
   - SlideMenuControllerSwift (2.0.0)
   - TagListView (0.3.1)
   - Timepiece (0.4.2)
+  - XLPagerTabStrip (2.0.0)
 
 DEPENDENCIES:
   - ALCameraViewController
@@ -91,6 +92,7 @@ DEPENDENCIES:
   - SlideMenuControllerSwift
   - TagListView
   - Timepiece
+  - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
@@ -115,5 +117,6 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 85ce7142935a32e26de41aa90fac0cc9f60fb01c
   TagListView: 17ceea2f6a4eac2bb31fe5faa9c0903a2428e64b
   Timepiece: cf53bb908bf542acc0e3d5f69cabfed869df4ebd
+  XLPagerTabStrip: 2c69b8e3208432a94e713c198ce597faad5a87bb
 
 COCOAPODS: 0.38.2

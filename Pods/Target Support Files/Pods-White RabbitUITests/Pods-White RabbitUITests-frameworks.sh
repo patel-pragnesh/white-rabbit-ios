@@ -74,6 +74,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-White RabbitUITests/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White RabbitUITests/TagListView.framework'
   install_framework 'Pods-White RabbitUITests/Timepiece.framework'
+  install_framework 'Pods-White RabbitUITests/XLPagerTabStrip.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White RabbitUITests/AFNetworking.framework'
@@ -98,4 +99,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-White RabbitUITests/SlideMenuControllerSwift.framework'
   install_framework 'Pods-White RabbitUITests/TagListView.framework'
   install_framework 'Pods-White RabbitUITests/Timepiece.framework'
+  install_framework 'Pods-White RabbitUITests/XLPagerTabStrip.framework'
 fi

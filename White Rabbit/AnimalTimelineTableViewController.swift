@@ -74,15 +74,15 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     }
     
     func hideTraits() {
-        let pvc = self.parentViewController as! AnimalDetailViewController
+//        let pvc = self.parentViewController as! AnimalDetailViewController
 //        UIView.transitionWithView(pvc.viewIfLoaded!, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        pvc.addButton.hidden = true
+//        pvc.addButton.hidden = true
     }
     
     func showTraits() {
-        let pvc = self.parentViewController as! AnimalDetailViewController
+//        let pvc = self.parentViewController as! AnimalDetailViewController
 //        UIView.transitionWithView(pvc.viewIfLoaded!, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        pvc.addButton.hidden = false
+//        pvc.addButton.hidden = false
     }
     
     func showActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {

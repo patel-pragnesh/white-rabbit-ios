@@ -51,6 +51,8 @@
 		EDF00D731BAD466500FE4B48 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D721BAD466500FE4B48 /* CameraViewController.swift */; };
 		EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */; };
 		EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */; };
+		EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */; };
+		EDF3DCE91BFD7C1700A10DF7 /* ActionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */; };
 		EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */; };
 		EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */; };
 		EDFD64E41BD9E02300344BDC /* ContentfulDeliveryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */; };
@@ -142,6 +144,8 @@
 		EDF00D721BAD466500FE4B48 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
+		EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActionButton.framework; path = "Pods/../build/Debug-iphoneos/ActionButton.framework"; sourceTree = "<group>"; };
 		EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareMenuTableViewController.swift; sourceTree = "<group>"; };
 		EDF4239C1BD9DF7D0087583A /* ContentfulDeliveryAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContentfulDeliveryAPI.framework; path = "Pods/../build/Debug-iphoneos/ContentfulDeliveryAPI.framework"; sourceTree = "<group>"; };
 		EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFormViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF3DCE91BFD7C1700A10DF7 /* ActionButton.framework in Frameworks */,
 				EDD845511BF5C14D008A5C2E /* CLImageEditor.framework in Frameworks */,
 				ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */,
 				EDFD64FC1BDAD48300344BDC /* FillableLoaders.framework in Frameworks */,
@@ -249,6 +254,7 @@
 				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
 				EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */,
 				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
+				EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
 				EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */,
 				EDE6D43F1BA7B2BC00C7AC8C /* Info.plist */,
@@ -278,6 +284,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */,
 				EDD845501BF5C14D008A5C2E /* CLImageEditor.framework */,
 				ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */,
 				EDFD64FB1BDAD48300344BDC /* FillableLoaders.framework */,
@@ -327,6 +334,7 @@
 				ED406EA61BAEE3A1001FE8B3 /* AnimalsTableViewController.swift */,
 				ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */,
 				ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */,
+				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
 				EDF00D721BAD466500FE4B48 /* CameraViewController.swift */,
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
@@ -338,7 +346,6 @@
 		EDFD64E71BD9E42B00344BDC /* Breeds */ = {
 			isa = PBXGroup;
 			children = (
-				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
 				ED323F931BAAAB1900576C04 /* BreedsTableViewController.swift */,
 				ED323F971BAAB84D00576C04 /* BreedDetailViewController.swift */,
 			);
@@ -550,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDFD64EB1BD9E57400344BDC /* CareSectionViewController.swift in Sources */,
+				EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */,
 				EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */,
 				ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */,
 				ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */,

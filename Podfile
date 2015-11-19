@@ -23,6 +23,9 @@ pod 'MMMarkdown'
 pod 'FillableLoaders'
 pod 'GKImagePicker'
 pod 'CLImageEditor'
+pod 'XLPagerTabStrip'
+#pod 'CameraKit'
+#pod 'IPDFCameraViewController'
 
 target 'White Rabbit' do
 end

@@ -59,6 +59,10 @@ public class ALCameraViewController: UIViewController {
     var verticalPadding: CGFloat = 30
     var horizontalPadding: CGFloat = 30
     
+    public func hideLibraryButton() {
+        self.libraryButton.hidden = true;
+    }
+    
     public init(croppingEnabled: Bool, completion: ALCameraViewCompletion) {
         super.init(nibName: nil, bundle: nil)
         onCompletion = completion
@@ -188,15 +192,15 @@ public class ALCameraViewController: UIViewController {
 
         closeButton.setImage(UIImage(named: "closeButton", inBundle: NSBundle(forClass: ALCameraViewController.self), compatibleWithTraitCollection: nil), forState: UIControlState.Normal)
         swapButton.setImage(UIImage(named: "swapButton", inBundle: NSBundle(forClass: ALCameraViewController.self), compatibleWithTraitCollection: nil), forState: UIControlState.Normal)
-        libraryButton.setImage(UIImage(named: "libraryButton", inBundle: NSBundle(forClass: ALCameraViewController.self), compatibleWithTraitCollection: nil), forState: UIControlState.Normal)
+//        libraryButton.setImage(UIImage(named: "libraryButton", inBundle: NSBundle(forClass: ALCameraViewController.self), compatibleWithTraitCollection: nil), forState: UIControlState.Normal)
         
         cameraButton.sizeToFit()
         closeButton.sizeToFit()
         swapButton.sizeToFit()
-        libraryButton.sizeToFit()
+//        libraryButton.sizeToFit()
         
         view.addSubview(cameraButton)
-        view.addSubview(libraryButton)
+//        view.addSubview(libraryButton)
         view.addSubview(closeButton)
         view.addSubview(swapButton)
         
@@ -238,7 +242,7 @@ public class ALCameraViewController: UIViewController {
         
         let swapY = closeY
         
-        swapButton.frame.origin = CGPointMake(initialX, swapY + yOffset)
+        swapButton.frame.origin = CGPointMake(initialX, swapY + yOffset + yOffset)
         swapButton.alpha = 0
     }
     
@@ -266,9 +270,10 @@ public class ALCameraViewController: UIViewController {
         libraryButton.frame.origin = CGPointMake(libraryX, libraryY)
         libraryButton.alpha = 1
         
-        let swapSize = swapButton.frame.size
-        let swapSpace = libraryX - (cameraX + cameraSize.width)
-        let swapX = (cameraX + cameraSize.width) + (swapSpace/2 - swapSize.width/2)
+//        let swapSize = swapButton.frame.size
+//        let swapSpace = libraryX - (cameraX + cameraSize.width)
+//        let swapX = (cameraX + cameraSize.width) + (swapSpace/2 - swapSize.width/2)
+        let swapX = size.width - (cameraSize.width)
         let swapY = closeY
         
         swapButton.frame.origin = CGPointMake(swapX, swapY)

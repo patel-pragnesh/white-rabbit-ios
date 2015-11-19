@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A3430C9C5DC94316048533E2"
+               BlueprintIdentifier = "D5DA7D809B2D5EE7EF657641"
                BuildableName = "ALCameraViewController.framework"
                BlueprintName = "ALCameraViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
