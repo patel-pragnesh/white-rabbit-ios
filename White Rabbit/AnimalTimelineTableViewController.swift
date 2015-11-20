@@ -31,6 +31,8 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     var parentTable: AnimalTimelineTableViewController?
     var type: String?
     
+    var entryObject : PFObject?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -61,6 +63,15 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
         self.moreButton.hidden = true
     }
 
+    @IBAction func heartButtonPressed(sender: AnyObject) {
+        parentTable?.likeEntry(self.indexPath!)
+    }
+    
+    @IBAction func commentButtonPressed(sender: AnyObject) {
+        parentTable!.selectedIndexPath = self.indexPath!
+        parentTable!.performSegueWithIdentifier("TimelineToEntryDetail", sender: self)
+    }
+    
     @IBAction func shareButtonPressed(sender: AnyObject) {
         parentTable!.showShareActionSheet(sender, indexPath: self.indexPath!)
     }
@@ -78,26 +89,51 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     var isEditingProfile : Bool = false
     var isEditingCover : Bool = false
     
+    var selectedIndexPath : NSIndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // self.tableView.rowHeight = UITableViewAutomaticDimension
-        // self.tableView.estimatedRowHeight = 140.0
+//        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+//        gestureRecognizer.minimumPressDuration = 1.0
+//        self.tableView.addGestureRecognizer(gestureRecognizer)
         
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
-        gestureRecognizer.minimumPressDuration = 1.0
-        // gestureRecognizer.delegate = self
-        self.tableView.addGestureRecognizer(gestureRecognizer)
-        
-//        self.tableView.estimatedRowHeight = 84.0
-//        self.tableView.rowHeight = UITableViewAutomaticDimension
-//        
-//        self.tableView.layoutIfNeeded()
-        // self.tableView.sizeToFit()
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handlePress:")
+        self.tableView.addGestureRecognizer(tapRecognizer)
+
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        self.tableView.addGestureRecognizer(doubleTapRecognizer)
+
+    }
+    
+    func likeEntry(indexPath: NSIndexPath?) {
+        NSLog("Entry has been liked!")
     }
     
     func handleDoubleTap(gestureRecognizer : UILongPressGestureRecognizer) {
+        let p = gestureRecognizer.locationInView(self.tableView)
+        let indexPath = self.tableView.indexPathForRowAtPoint(p)
         
+        if (indexPath == nil) {
+            NSLog("tap on table view but not on a row");
+        } else {
+            NSLog("gestureRecognizer.state = %d", gestureRecognizer.state.rawValue);
+            self.likeEntry(indexPath)
+        }
+    }
+    
+    func handlePress(gestureRecognizer : UILongPressGestureRecognizer) {
+        let p = gestureRecognizer.locationInView(self.tableView)
+        let indexPath = self.tableView.indexPathForRowAtPoint(p)
+        
+        if (indexPath == nil) {
+            NSLog("tap on table view but not on a row");
+        } else {
+            NSLog("gestureRecognizer.state = %d", gestureRecognizer.state.rawValue);
+            self.selectedIndexPath = indexPath
+            self.performSegueWithIdentifier("TimelineToEntryDetail", sender: self)
+        }
     }
     
     func handleLongPress(gestureRecognizer : UILongPressGestureRecognizer) {
@@ -310,6 +346,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         
         cell!.indexPath = indexPath
         cell!.parentTable = self
+        cell!.entryObject = object
         cell!.type = object?["type"] as? String
         
         cell!.hideAllButtons()
@@ -388,6 +425,16 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         cell!.yearLabel.text = dateFormatter.stringFromDate(date!)
 
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "TimelineToEntryDetail") {
+//            let nav = segue.destinationViewController as! UINavigationController
+//            let detailScene =  nav.topViewController as! TimelineEntryDetailViewController
+            let detailScene =  segue.destinationViewController as! TimelineEntryDetailViewController
+
+            detailScene.entryObject = self.objectAtIndexPath(self.selectedIndexPath)
+        }
     }
     
 }

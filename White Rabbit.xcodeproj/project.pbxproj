@@ -53,6 +53,7 @@
 		EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */; };
 		EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */; };
 		EDF3DCE91BFD7C1700A10DF7 /* ActionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */; };
+		EDF3DCEB1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */; };
 		EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */; };
 		EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */; };
 		EDFD64E41BD9E02300344BDC /* ContentfulDeliveryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */; };
@@ -146,6 +147,7 @@
 		EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
 		EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActionButton.framework; path = "Pods/../build/Debug-iphoneos/ActionButton.framework"; sourceTree = "<group>"; };
+		EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryDetailViewController.swift; sourceTree = "<group>"; };
 		EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareMenuTableViewController.swift; sourceTree = "<group>"; };
 		EDF4239C1BD9DF7D0087583A /* ContentfulDeliveryAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContentfulDeliveryAPI.framework; path = "Pods/../build/Debug-iphoneos/ContentfulDeliveryAPI.framework"; sourceTree = "<group>"; };
 		EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFormViewController.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
 				ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */,
+				EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */,
 			);
 			name = Animals;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */,
 				EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */,
 				ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */,
+				EDF3DCEB1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift in Sources */,
 				EDC1FCC31BD325E8005FDAED /* DocumentCaptureViewController.swift in Sources */,
 				ED692D671BACECED00C52562 /* LocationDetailViewController.swift in Sources */,
 				EDE6D4341BA7B2BC00C7AC8C /* AppDelegate.swift in Sources */,
