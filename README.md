@@ -14,7 +14,7 @@ White Rabbit iOS App
 
     `python Tools/Slicer/slice.py "../../design/iPhone.sketch" "White Rabbit/Assets.xcassets"`
 
-## Framework|Tools
+## Frameworks|Tools Used
 
 * [DynamicColor](https://github.com/yannickl/DynamicColor) for color shortcuts
 * [Eureka](https://github.com/xmartlabs/Eureka) for forms
@@ -26,7 +26,7 @@ White Rabbit iOS App
 * [InstagramKit]()
 * [SlideMenuControllerSwift]()
 
-## Framework|Tools To Consider
+## Frameworks|Tools To Consider
 
 * [Neon](https://github.com/mamaral/Neon)
 * [DAExpandAnimation](https://github.com/ifitdoesntwork/DAExpandAnimation)
@@ -35,3 +35,15 @@ White Rabbit iOS App
 * [XcodeSwiftSnippets](https://github.com/burczyk/XcodeSwiftSnippets)
 * [AAFaceDetection](https://github.com/aaronabentheuer/AAFaceDetection)
 * [SnapKit](https://github.com/SnapKit/SnapKit)
+* [MMTextFieldEffects](https://github.com/mukyasa/MMTextFieldEffects)
+* [](https://github.com/mukyasa/MMTransitionEffect)
+* [](https://github.com/mukyasa/MMPaper)
+* [](https://github.com/mukyasa/MMGooglePlayNewsStand)
+* [](https://github.com/ankurp/Dollar.swift)
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()

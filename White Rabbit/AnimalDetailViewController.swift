@@ -9,7 +9,6 @@
 import UIKit
 import TagListView
 import Darwin
-import ActionButton
 
 class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
 
@@ -34,6 +33,8 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
     var breedObject : PFObject?
     var traitObjects : [PFObject?] = []
     var shelterObject : PFObject?
+    
+    var addMenu : SphereMenu?
     
     var timelineTableController : AnimalTimelineTableViewController?
     var instagramTableController : InstagramTableViewController?
@@ -83,8 +84,9 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         let image2 = UIImage(named: "button_photo")
         let image3 = UIImage(named: "button_medical")
         let images:[UIImage] = [image1!,image2!,image3!]
-        let menu = SphereMenu(startPoint: CGPointMake(200, 380), startImage: start!, submenuImages:images, tapToDismiss:true)
+        let menu = SphereMenu(startPoint: CGPointMake(200, 440), startImage: start!, submenuImages:images, tapToDismiss:true)
         menu.delegate = self
+        self.addMenu = menu
         self.timelineView.addSubview(menu)
     }
     

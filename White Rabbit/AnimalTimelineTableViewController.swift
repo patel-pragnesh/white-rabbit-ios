@@ -21,6 +21,53 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     @IBOutlet weak var timelineImageView: UIImageView!
     @IBOutlet weak var shelterButton: UIButton!
     @IBOutlet weak var largeIcon: UIImageView!
+    
+    @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
+    
+    var indexPath: NSIndexPath?
+    var parentTable: AnimalTimelineTableViewController?
+    var type: String?
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, type: String) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.hideAllButtons()
+
+        self.type = type
+        if self.type == "image" {
+            self.showAllButtons()
+        }
+
+    }
+
+    func showAllButtons() {
+        self.heartButton.hidden = false
+        self.commentButton.hidden = false
+        self.shareButton.hidden = false
+        self.moreButton.hidden = false
+    }
+    
+    func hideAllButtons() {
+        self.heartButton.hidden = true
+        self.commentButton.hidden = true
+        self.shareButton.hidden = true
+        self.moreButton.hidden = true
+    }
+
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        parentTable!.showShareActionSheet(sender, indexPath: self.indexPath!)
+    }
+    
+    @IBAction func moreButtonPressed(sender: AnyObject) {
+        parentTable!.showMoreActionSheet(sender, indexPath: self.indexPath!)
+    }
 }
 
 class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEditorDelegate {
@@ -49,6 +96,10 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         // self.tableView.sizeToFit()
     }
     
+    func handleDoubleTap(gestureRecognizer : UILongPressGestureRecognizer) {
+        
+    }
+    
     func handleLongPress(gestureRecognizer : UILongPressGestureRecognizer) {
         let p = gestureRecognizer.locationInView(self.tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(p)
@@ -61,7 +112,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             NSLog("gestureRecognizer.state = %d", gestureRecognizer.state.rawValue);
         }
         
-        self.showActionSheet(self, indexPath: indexPath)
+        self.showMoreActionSheet(self, indexPath: indexPath)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -74,28 +125,19 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     }
     
     func hideTraits() {
-//        let pvc = self.parentViewController as! AnimalDetailViewController
+        let pvc = self.parentViewController as! AnimalDetailViewController
 //        UIView.transitionWithView(pvc.viewIfLoaded!, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-//        pvc.addButton.hidden = true
+        pvc.addMenu!.hide()
     }
     
     func showTraits() {
-//        let pvc = self.parentViewController as! AnimalDetailViewController
+        let pvc = self.parentViewController as! AnimalDetailViewController
 //        UIView.transitionWithView(pvc.viewIfLoaded!, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-//        pvc.addButton.hidden = false
+//        pvc.addMenu!.
     }
     
-    func showActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
+    func showMoreActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
-
-        let shareAction = UIAlertAction(title: "Share", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("Sharing entry")
-            let image = self.imageAtCell(indexPath)!
-            let activityVC = UIActivityViewController(activityItems: ["http://ftwtrbt.com", image], applicationActivities: nil)
-            self.presentViewController(activityVC, animated: true, completion: nil)
-        })
-
         
         let deleteAction = UIAlertAction(title: "Delete", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -121,13 +163,18 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             print("Cancelled")
         })
         
-        optionMenu.addAction(shareAction)
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(profilePhotoAction)
         optionMenu.addAction(coverPhotoAction)
         optionMenu.addAction(cancelAction)
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    func showShareActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
+        let image = self.imageAtCell(indexPath)!
+        let activityVC = UIActivityViewController(activityItems: ["http://ftwtrbt.com", image], applicationActivities: nil)
+        self.presentViewController(activityVC, animated: true, completion: nil)
     }
     
     func imageAtCell(indexPath: NSIndexPath?) -> UIImage? {
@@ -258,9 +305,19 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         
         var cell = tableView.dequeueReusableCellWithIdentifier("AnimalTimelineCell", forIndexPath: indexPath) as? AnimalTimelineTableViewCell
         if cell == nil  {
-            cell = AnimalTimelineTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "AnimalTimelineCell")
+            cell = AnimalTimelineTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "AnimalTimelineCell", type: object?["type"] as! String)
+        }
+        
+        cell!.indexPath = indexPath
+        cell!.parentTable = self
+        cell!.type = object?["type"] as? String
+        
+        cell!.hideAllButtons()
+        if(cell!.type == "image") {
+            cell!.showAllButtons()
         }
 
+        
         cell!.timelineImageView.hidden = true
         if let imageFile = object?["image"] as? PFFile {
             NSLog("setting cell image")
@@ -281,20 +338,20 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             NSLog("setting cell text to: \(text)")
 
             
-            switch object?["kind"] as! Int {
-            case 2:
+            switch object?["type"] as! String {
+            case "medical":
                 cell!.largeIcon.image = UIImage(named: "timeline_medical")
                 cell!.largeIcon.hidden = false
                 break
-            case 3:
+            case "adopted":
                 cell!.largeIcon.image = UIImage(named: "timeline_adopted")
                 cell!.largeIcon.hidden = false
                 break
-            case 4:
+            case "birth":
                 cell!.largeIcon.image = UIImage(named: "timeline_born")
                 cell!.largeIcon.hidden = false
                 break
-            case 5:
+            case "birthday":
                 cell!.largeIcon.image = UIImage(named: "timeline_birthday")
                 cell!.largeIcon.hidden = false
                 break

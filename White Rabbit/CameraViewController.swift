@@ -133,7 +133,7 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
         timelineEntry["animal"] = self.animalObject
         timelineEntry["image"] = imageFile
         timelineEntry["createdBy"] = PFUser.currentUser()
-        timelineEntry["kind"] = 1 // TODO : change this for a constant
+        timelineEntry["type"] = "image"
         
         if self.pickedImageDate != nil {
             timelineEntry["date"] = self.pickedImageDate
