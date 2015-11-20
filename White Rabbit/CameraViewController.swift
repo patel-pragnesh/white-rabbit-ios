@@ -52,9 +52,14 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
         let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in
             // Do something with your image here.
             // If cropping is enabled this image will be the cropped version
-            self.imagePreview.image = image
-            self.dismissViewControllerAnimated(true, completion: {})
-            self.dismissViewControllerAnimated(true, completion: {})
+            if image != nil {
+                self.imagePreview.image = image
+                self.saveButton.enabled = true
+                self.dismissViewControllerAnimated(true, completion: {})
+            } else {
+                self.dismissViewControllerAnimated(true, completion: {})
+                self.dismissViewControllerAnimated(true, completion: {})
+            }
         }
 //        cameraViewController
         presentViewController(cameraViewController, animated: true, completion: nil)
