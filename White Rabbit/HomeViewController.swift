@@ -90,8 +90,9 @@ class HomeViewController: UIViewController {
         
         if (currentUser != nil) {
             self.currentUser = currentUser
+            self.checkAdmin()
             if populate {
-            self.populateUserInfo()
+                self.populateUserInfo()
             }
         } else {
             // Navigate to the LoginViewController
@@ -99,6 +100,15 @@ class HomeViewController: UIViewController {
             
             self.presentViewController(lvc, animated: true, completion: nil)
             // self.pushViewController(lvc, animated: true)
+        }
+    }
+    
+    func checkAdmin() {
+        let isAdmin = self.currentUser!.valueForKey("admin")
+        if(isAdmin != nil && isAdmin as! Bool) {
+            NSLog("current user is an admin")
+        } else {
+            NSLog("current user is NOT an admin")
         }
     }
     

@@ -10,11 +10,32 @@ import UIKit
 import Parse
 import ParseFacebookUtilsV4
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     let permissions = ["public_profile", "email", "user_location", "user_friends"]
 
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.usernameField.delegate = self
+        self.passwordField.delegate = self
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        if (textField === usernameField)
+        {
+            textField.resignFirstResponder()
+            passwordField.becomeFirstResponder()
+        } else if(textField == passwordField) {
+            passwordField.resignFirstResponder()
+            passwordField.endEditing(true)
+            self.loginWithUsername(self)
+        }
+        return true
+    }
     
     @IBAction func loginWithUsername(sender: AnyObject) {
         PFUser.logInWithUsernameInBackground((usernameField.text?.lowercaseString)!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
@@ -115,9 +136,7 @@ class LoginViewController: UIViewController {
         appDelegate.loadMainController()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

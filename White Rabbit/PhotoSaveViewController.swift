@@ -58,7 +58,7 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        self.captionTextField.endEditing(true)
         return false
     }
 
