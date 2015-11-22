@@ -24,14 +24,22 @@
  *
  */
 
-import UIKit
+#if os(iOS) || os(tvOS) || os(watchOS)
+  import UIKit
+#elseif os(OSX)
+  import AppKit
+#endif
 
 /**
   Extension to manipulate colours easily.
 
   It allows you to work hexadecimal strings and value, HSV and RGB components, derivating colours, and many more...
 */
-public typealias DynamicColor = UIColor
+#if os(iOS) || os(tvOS) || os(watchOS)
+  public typealias DynamicColor = UIColor
+#elseif os(OSX)
+  public typealias DynamicColor = NSColor
+#endif
 
 public extension DynamicColor {
   // MARK: - Manipulating Hexa-decimal Values and Strings
@@ -94,7 +102,7 @@ public extension DynamicColor {
   */
   public final func toHex() -> UInt32 {
     let rgba       = toRGBAComponents()
-    let colorToInt = (UInt32)(rgba.r * 255) << 16 | (UInt32)(rgba.g * 255) << 8 | (UInt32)(rgba.b * 255) << 0
+    let colorToInt = (UInt32)(rgba.r * 255) << 16 | (UInt32)(rgba.g * 255) << 8 | (UInt32)(rgba.b * 255)
 
     return colorToInt
   }
@@ -112,13 +120,26 @@ public extension DynamicColor {
     var b: CGFloat = 0
     var a: CGFloat = 0
 
-    if getRed(&r, green: &g, blue: &b, alpha: &a) {
-      return (r, g, b, a)
-    }
+    #if os(iOS) || os(tvOS) || os(watchOS)
+      getRed(&r, green: &g, blue: &b, alpha: &a)
 
-    return (0, 0, 0, 0)
+      return (r, g, b, a)
+    #elseif os(OSX)
+      if isEqual(DynamicColor.blackColor()) {
+        return (0, 0, 0, 0)
+      }
+      else if isEqual(DynamicColor.whiteColor()) {
+        return (1, 1, 1, 1)
+      }
+      else {
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+
+        return (r, g, b, a)
+      }
+    #endif
   }
 
+#if os(iOS) || os(tvOS) || os(watchOS)
   /**
   Returns the red component.
   
@@ -154,6 +175,7 @@ public extension DynamicColor {
   public final func alphaComponent() -> CGFloat {
     return toRGBAComponents().a
   }
+#endif
 
   // MARK: - Working with HSL Components
 
@@ -166,7 +188,7 @@ public extension DynamicColor {
   - parameter alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0.
   */
   public convenience init(hue: Double, saturation: Double, lightness: Double, alpha: Double = 1) {
-    let color      = HSL(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha).toUIColor()
+    let color      = HSL(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha).toDynamicColor()
     let components = color.toRGBAComponents()
 
     self.init(red: components.r, green: components.g, blue: components.b, alpha: components.a)
@@ -191,7 +213,6 @@ public extension DynamicColor {
   Returns a boolean value that indicates whether the receiver is equal to the given hexa-decimal string.
 
   - parameter hexString: A hexa-decimal color number representation to be compared to the receiver.
-
   - returns: true if the receiver and the string are equals, otherwise false.
   */
   public func isEqualToHexString(hexString: String) -> Bool {
@@ -202,7 +223,6 @@ public extension DynamicColor {
   Returns a boolean value that indicates whether the receiver is equal to the given hexa-decimal integer.
 
   - parameter hex: A UInt32 that represents the hexa-decimal color.
-
   - returns: true if the receiver and the integer are equals, otherwise false.
   */
   public func isEqualToHex(hex: UInt32) -> Bool {
@@ -215,11 +235,10 @@ public extension DynamicColor {
   Creates and returns a color object with the hue rotated along the color wheel by the given amount.
 
   - parameter amount: A double representing the number of degrees as ratio (usually -1.0 for -360 degree and 1.0 for 360 degree).
-
-  - returns: A UIColor object with the hue changed.
+  - returns: A DynamicColor object with the hue changed.
   */
-  public final func adjustedHueColor(amount: Double) -> UIColor {
-    return HSL(color: self).adjustHue(amount).toUIColor()
+  public final func adjustedHueColor(amount: Double) -> DynamicColor {
+    return HSL(color: self).adjustHue(amount).toDynamicColor()
   }
 
   /**
@@ -227,22 +246,20 @@ public extension DynamicColor {
 
   This is identical to adjustedHueColor(0.5).
 
-  - returns: The complement UIColor.
-  
-  :see: adjustedHueColor:
+  - returns: The complement DynamicColor.
+  - seealso: adjustedHueColor:
   */
-  public final func complementColor() -> UIColor {
+  public final func complementColor() -> DynamicColor {
     return adjustedHueColor(0.5)
   }
 
   /**
   Creates and returns a lighter color object.
 
-  - returns: An UIColor lightened with an amount of 0.2.
-
-  :see: lightenColor:
+  - returns: An DynamicColor lightened with an amount of 0.2.
+  - seealso: lightenColor:
   */
-  public final func lighterColor() -> UIColor {
+  public final func lighterColor() -> DynamicColor {
     return lightenColor(0.2)
   }
 
@@ -250,23 +267,21 @@ public extension DynamicColor {
   Creates and returns a color object with the lightness increased by the given amount.
 
   - parameter amount: Double between 0.0 and 1.0.
-
-  - returns: A lighter UIColor.
+  - returns: A lighter DynamicColor.
   */
-  public final func lightenColor(amount: Double) -> UIColor {
+  public final func lightenColor(amount: Double) -> DynamicColor {
     let normalizedAmount = clip(amount, 0, 1)
 
-    return HSL(color: self).lighten(normalizedAmount).toUIColor()
+    return HSL(color: self).lighten(normalizedAmount).toDynamicColor()
   }
 
   /**
   Creates and returns a darker color object.
 
-  - returns: A UIColor darkened with an amount of 0.2.
-
-  :see: darkenColor:
+  - returns: A DynamicColor darkened with an amount of 0.2.
+  - seealso: darkenColor:
   */
-  public final func darkerColor() -> UIColor {
+  public final func darkerColor() -> DynamicColor {
     return darkenColor(0.2)
   }
 
@@ -274,23 +289,21 @@ public extension DynamicColor {
   Creates and returns a color object with the lightness decreased by the given amount.
 
   - parameter amount: Float between 0.0 and 1.0.
-
-  - returns: A darker UIColor.
+  - returns: A darker DynamicColor.
   */
-  public final func darkenColor(amount: Double) -> UIColor {
+  public final func darkenColor(amount: Double) -> DynamicColor {
     let normalizedAmount = clip(amount, 0, 1)
 
-    return HSL(color: self).darken(normalizedAmount).toUIColor()
+    return HSL(color: self).darken(normalizedAmount).toDynamicColor()
   }
 
   /**
   Creates and returns a color object with the saturation increased by the given amount.
 
-  - returns: A UIColor more saturated with an amount of 0.2.
-
-  :see: saturateColor:
+  - returns: A DynamicColor more saturated with an amount of 0.2.
+  - seealso: saturateColor:
   */
-  public final func saturatedColor() -> UIColor {
+  public final func saturatedColor() -> DynamicColor {
     return saturateColor(0.2)
   }
 
@@ -299,22 +312,21 @@ public extension DynamicColor {
 
   - parameter amount: Double between 0.0 and 1.0.
 
-  - returns: A UIColor more saturated.
+  - returns: A DynamicColor more saturated.
   */
-  public final func saturateColor(amount: Double) -> UIColor {
+  public final func saturateColor(amount: Double) -> DynamicColor {
     let normalizedAmount = clip(amount, 0, 1)
 
-    return HSL(color: self).saturate(normalizedAmount).toUIColor()
+    return HSL(color: self).saturate(normalizedAmount).toDynamicColor()
   }
 
   /**
   Creates and returns a color object with the saturation decreased by the given amount.
 
-  - returns: A UIColor less saturated with an amount of 0.2.
-
-  :see: desaturateColor:
+  - returns: A DynamicColor less saturated with an amount of 0.2.
+  - seealso: desaturateColor:
   */
-  public final func desaturatedColor() -> UIColor {
+  public final func desaturatedColor() -> DynamicColor {
     return desaturateColor(0.2)
   }
 
@@ -322,13 +334,12 @@ public extension DynamicColor {
   Creates and returns a color object with the saturation decreased by the given amount.
 
   - parameter amount: Double between 0.0 and 1.0.
-
-  - returns: A UIColor less saturated.
+  - returns: A DynamicColor less saturated.
   */
-  public final func desaturateColor(amount: Double) -> UIColor {
+  public final func desaturateColor(amount: Double) -> DynamicColor {
     let normalizedAmount = clip(amount, 0, 1)
     
-    return HSL(color: self).desaturate(normalizedAmount).toUIColor()
+    return HSL(color: self).desaturate(normalizedAmount).toDynamicColor()
   }
 
   /**
@@ -336,11 +347,10 @@ public extension DynamicColor {
   
   This is identical to desaturateColor(1).
   
-  - returns: A grayscale UIColor.
-
-  :see: desaturateColor:
+  - returns: A grayscale DynamicColor.
+  - seealso: desaturateColor:
   */
-  public final func grayscaledColor() -> UIColor {
+  public final func grayscaledColor() -> DynamicColor {
     return desaturateColor(1)
   }
 
@@ -349,10 +359,26 @@ public extension DynamicColor {
 
   - returns: An inverse (negative) of the original color.
   */
-  public final func invertColor() -> UIColor {
+  public final func invertColor() -> DynamicColor {
     let rgba = toRGBAComponents()
 
-    return UIColor(red: 1 - rgba.r, green: 1 - rgba.g, blue: 1 - rgba.b, alpha: rgba.a)
+    return DynamicColor(red: 1 - rgba.r, green: 1 - rgba.g, blue: 1 - rgba.b, alpha: rgba.a)
+  }
+
+  // MARK: - Querying Colors 
+
+  /**
+  Determines if the color object is dark or light.
+
+  It is useful when you need to know whether you should display the text in black or white.
+
+  - returns: A boolean value to know whether the color is light. If true the color is light, dark otherwise.
+  */
+  func isLightColor() -> Bool {
+    let components = toRGBAComponents()
+    let brightness = ((components.r * 299) + (components.g * 587) + (components.b * 114)) / 1000
+
+    return brightness >= 0.5
   }
 
   // MARK: - Mixing Colors
@@ -364,10 +390,9 @@ public extension DynamicColor {
 
   - parameter color: A color object to mix with the receiver.
   - parameter weight: The weight specifies the amount of the given color object (between 0 and 1). The default value is 0.5, which means that half the given color and half the receiver color object should be used. 0.25 means that a quarter of the given color object and three quarters of the receiver color object should be used.
-  
   - returns: A color object corresponding to the two colors object mixed together.
   */
-  public final func mixWithColor(color: UIColor, weight: CGFloat = 0.5) -> UIColor {
+  public final func mixWithColor(color: DynamicColor, weight: CGFloat = 0.5) -> DynamicColor {
     let normalizedWeight = clip(weight, 0, 1)
 
     let c1 = toRGBAComponents()
@@ -379,33 +404,31 @@ public extension DynamicColor {
     let w2 = (((w * a == -1) ? w : (w + a) / (1 + w * a)) + 1) / 2
     let w1 = 1 - w2
 
-    let red   = (w1 * c1.r + w2 * c2.r)
-    let green = (w1 * c1.g + w2 * c2.g)
-    let blue  = (w1 * c1.b + w2 * c2.b)
-    let alpha = (c1.a * normalizedWeight + c2.a * (1 - normalizedWeight))
+    let red   = w1 * c1.r + w2 * c2.r
+    let green = w1 * c1.g + w2 * c2.g
+    let blue  = w1 * c1.b + w2 * c2.b
+    let alpha = c1.a * normalizedWeight + c2.a * (1 - normalizedWeight)
 
-    return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    return DynamicColor(red: red, green: green, blue: blue, alpha: alpha)
   }
 
   /**
   Creates and returns a color object corresponding to the mix of the receiver and an amount of white color, which increases lightness.
 
   - parameter amount: Float between 0.0 and 1.0. The default amount is equal to 0.2.
-
-  - returns: A lighter UIColor.
+  - returns: A lighter DynamicColor.
   */
-  public final func tintColor(amount amount: CGFloat = 0.2) -> UIColor {
-    return mixWithColor(UIColor.whiteColor(), weight: amount)
+  public final func tintColor(amount amount: CGFloat = 0.2) -> DynamicColor {
+    return mixWithColor(DynamicColor.whiteColor(), weight: amount)
   }
 
   /**
   Creates and returns a color object corresponding to the mix of the receiver and an amount of black color, which reduces lightness.
 
   - parameter amount: Float between 0.0 and 1.0. The default amount is equal to 0.2.
-
-  - returns: A darker UIColor.
+  - returns: A darker DynamicColor.
   */
-  public final func shadeColor(amount amount: CGFloat = 0.2) -> UIColor {
-    return mixWithColor(UIColor.blackColor(), weight: amount)
+  public final func shadeColor(amount amount: CGFloat = 0.2) -> DynamicColor {
+    return mixWithColor(DynamicColor(red:0, green:0, blue: 0, alpha:1), weight: amount)
   }
 }

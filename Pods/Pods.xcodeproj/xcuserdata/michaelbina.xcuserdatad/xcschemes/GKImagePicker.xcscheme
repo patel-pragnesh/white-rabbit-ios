@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D2F4CB6227F917447F72C0C"
+               BlueprintIdentifier = "140E802B94363EB270EFAE1B"
                BuildableName = "GKImagePicker.framework"
                BlueprintName = "GKImagePicker"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56E9ECBBFD8AE6A0B472F30E"
+               BlueprintIdentifier = "FE6B2DD4717D81BE6BB7FC60"
                BuildableName = "Dodo.framework"
                BlueprintName = "Dodo"
                ReferencedContainer = "container:Pods.xcodeproj">

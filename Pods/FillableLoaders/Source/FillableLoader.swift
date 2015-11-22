@@ -17,6 +17,7 @@ public class FillableLoader: UIView {
     internal var extraHeight: CGFloat = 0
     internal var oldYPoint: CGFloat = 0
     internal let mainBgColor = UIColor(white: 0.2, alpha: 0.6)
+    internal weak var loaderSuperview: UIView?
     
     // MARK: Public Variables
     
@@ -129,8 +130,8 @@ public class FillableLoader: UIView {
     
     :returns: The loader that's already being showed
     */
-    public static func showLoaderWithPath(path: CGPath) -> Self {
-        let loader = createLoaderWithPath(path: path)
+    public static func showLoaderWithPath(path: CGPath, onView: UIView? = nil) -> Self {
+        let loader = createLoaderWithPath(path: path, onView: onView)
         loader.showLoader()
         return loader
     }
@@ -141,8 +142,8 @@ public class FillableLoader: UIView {
     
     :returns: The loader that's already being showed
     */
-    public static func showProgressBasedLoaderWithPath(path: CGPath) -> Self {
-        let loader = createProgressBasedLoaderWithPath(path: path)
+    public static func showProgressBasedLoaderWithPath(path: CGPath, onView: UIView? = nil) -> Self {
+    let loader = createProgressBasedLoaderWithPath(path: path, onView: onView)
         loader.showLoader()
         return loader
     }
@@ -154,9 +155,9 @@ public class FillableLoader: UIView {
     
     :returns: The created loader
     */
-    public static func createLoaderWithPath(path thePath: CGPath) -> Self {
+    public static func createLoaderWithPath(path thePath: CGPath, onView: UIView? = nil) -> Self {
         let loader = self.init()
-        loader.initialSetup()
+        loader.initialSetup(onView)
         loader.addPath(thePath)
         return loader
     }
@@ -168,20 +169,25 @@ public class FillableLoader: UIView {
     
     :returns: The created loader
     */
-    public static func createProgressBasedLoaderWithPath(path thePath: CGPath) -> Self {
+    public static func createProgressBasedLoaderWithPath(path thePath: CGPath, onView: UIView? = nil) -> Self {
         let loader = self.init()
         loader.progressBased = true
-        loader.initialSetup()
+        loader.initialSetup(onView)
         loader.addPath(thePath)
         return loader
     }
     
-    internal func initialSetup() {
+    internal func initialSetup(view: UIView? = nil) {
         //Setting up frame
-        let window = UIApplication.sharedApplication().delegate?.window!
-        self.frame = window!.frame
-        self.center = CGPointMake(CGRectGetMidX(window!.bounds), CGRectGetMidY(window!.bounds))
-        window!.addSubview(self)
+        var window = view
+        if view == nil, let mainWindow = UIApplication.sharedApplication().delegate?.window {
+            window = mainWindow
+        }
+        guard let w = window else { return }
+        self.frame = w.frame
+        self.center = CGPointMake(CGRectGetMidX(w.bounds), CGRectGetMidY(w.bounds))
+        w.addSubview(self)
+        loaderSuperview = w
         
         //Initial Values
         defaultValues()
@@ -219,10 +225,14 @@ public class FillableLoader: UIView {
     Atention: do not use this method after creating a loader with `showLoaderWithPath(path:)`
     */
     public func showLoader() {
+        alpha = 1.0
         hidden = false
         animate = true
         generateLoader()
         startAnimating()
+        if superview == nil {
+            loaderSuperview?.addSubview(self)
+        }
     }
     
     /**
@@ -233,9 +243,11 @@ public class FillableLoader: UIView {
             self.hidden = false
             self.animate = false
             self.removeFromSuperview()
+            self.layer.removeAllAnimations()
+            self.shapeLayer.removeAllAnimations()
         }
         
-        if !animated {
+        guard animated else {
             completion()
             return
         }
@@ -292,7 +304,7 @@ public class FillableLoader: UIView {
     
     //MARK: Animations
     
-    internal func startMoving(up: Bool) {
+    internal func startMoving(up up: Bool) {
         if (progressBased) { return }
         let key = up ? "up" : "down"
         let moveAnimation: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position.y")
@@ -335,10 +347,10 @@ public class FillableLoader: UIView {
     //MARK: Abstract methods
     
     internal func generateLoader() {
-        preconditionFailure("This method must be overridden")
+        preconditionFailure("Call this method from the desired FillableLoader type class")
     }
     
     internal func startAnimating() {
-        preconditionFailure("This method must be overridden")
+        preconditionFailure("Call this method from the desired FillableLoader type class")
     }
 }

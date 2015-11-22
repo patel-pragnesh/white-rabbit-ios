@@ -24,7 +24,11 @@
  *
  */
 
-import UIKit
+#if os(iOS) || os(tvOS) || os(watchOS)
+  import UIKit
+#elseif os(OSX)
+  import AppKit
+#endif
 
 /**
 Clips the values in an interval.
@@ -80,11 +84,11 @@ internal struct HSL {
   }
 
   /**
-  Initializes and creates a HSL (hue, saturation, lightness) color from a UIColor object.
+  Initializes and creates a HSL (hue, saturation, lightness) color from a DynamicColor object.
   
-  - parameter color: A UIColor object.
+  - parameter color: A DynamicColor object.
   */
-  init(color: UIColor) {
+  init(color: DynamicColor) {
     let rgbaFloat = color.toRGBAComponents()
     let rgba      = (r: Double(rgbaFloat.r), g: Double(rgbaFloat.g), b: Double(rgbaFloat.b), a: Double(rgbaFloat.a))
 
@@ -123,11 +127,11 @@ internal struct HSL {
   // MARK: - Transforming HSL Color
 
   /**
-  Returns the UIColor representation from the current HSV color.
+  Returns the DynamicColor representation from the current HSV color.
   
-  - returns: A UIColor object corresponding to the current HSV color.
+  - returns: A DynamicColor object corresponding to the current HSV color.
   */
-  func toUIColor() -> UIColor {
+  func toDynamicColor() -> DynamicColor {
     let lightness  = clip(l, 0, 1)
     let saturation = clip(s, 0, 1)
     let hue        = moda(h, m: 1)
@@ -147,7 +151,7 @@ internal struct HSL {
     let g = hueToRGB(m1, m2: m2, h: hue)
     let b = hueToRGB(m1, m2: m2, h: hue - 1 / 3)
 
-    return UIColor(red: r, green: g, blue: b, alpha: CGFloat(a))
+    return DynamicColor(red: r, green: g, blue: b, alpha: CGFloat(a))
   }
 
   /// Hue to RGB helper function
@@ -160,12 +164,11 @@ internal struct HSL {
     else if hue * 2 < 1 {
       return CGFloat(m2)
     }
-    else if hue * 3 < 1.999999 {
+    else if hue * 3 < 1.9999 {
       return CGFloat(m1 + (m2 - m1) * (2 / 3 - hue) * 6)
     }
-    else {
-      return CGFloat(m1)
-    }
+
+    return CGFloat(m1)
   }
 
   // MARK: - Deriving the Color
@@ -174,7 +177,6 @@ internal struct HSL {
   Returns a color with the hue rotated along the color wheel by the given amount.
 
   - parameter amount: A double representing the number of degrees as ratio (usually -1.0 for -360deg and 1.0 for 360deg).
-
   - returns: A HSL color with the hue changed.
   */
   func adjustHue(amount: Double) -> HSL {
@@ -185,7 +187,6 @@ internal struct HSL {
   Returns a color with the lightness increased by the given amount.
 
   - parameter amount: Double between 0.0 and 1.0.
-
   - returns: A lighter HSL color.
   */
   func lighten(amount: Double) -> HSL {
@@ -196,7 +197,6 @@ internal struct HSL {
   Returns a color with the lightness decreased by the given amount.
 
   - parameter amount: Double between 0.0 and 1.0.
-  
   - returns: A darker HSL color.
   */
   func darken(amount: Double) -> HSL {
@@ -207,7 +207,6 @@ internal struct HSL {
   Returns a color with the saturation increased by the given amount.
 
   - parameter amount: Double between 0.0 and 1.0.
-
   - returns: A HSL color more saturated.
   */
   func saturate(amount: Double) -> HSL {
@@ -218,7 +217,6 @@ internal struct HSL {
   Returns a color with the saturation decreased by the given amount.
 
   - parameter amount: Double between 0.0 and 1.0.
-
   - returns: A HSL color less saturated.
   */
   func desaturate(amount: Double) -> HSL {

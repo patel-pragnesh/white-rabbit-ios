@@ -14,7 +14,7 @@ SlideMenuControllerSwift
 
 iOS Slide View based on iQON, Feedly, Google+, Ameba iPhone app.
 
-![sample](Screenshots/SlideMenuControllerSwift.gif)
+![sample](Screenshots/SlideMenuControllerSwift3.gif)
 
 ##Installation
 
@@ -23,6 +23,15 @@ iOS Slide View based on iQON, Feedly, Google+, Ameba iPhone app.
 pod 'SlideMenuControllerSwift'
 ```
   
+####Carthage
+
+if iOS8 or later, Carthage is supported
+
+* Add `github "dekatotoro/SlideMenuControllerSwift"` to your Cartfile.
+* Run `carthage update`.
+
+for more info, see [Carthage](https://github.com/carthage/carthage)
+
 ####Manually
 Add the `SlideMenuController.swift` file to your project. 
 
@@ -45,6 +54,27 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     self.window?.makeKeyAndVisible()    
 
     return true
+}
+```
+
+####Storyboard Support
+
+1. Inherit `SlideMenuController` and put UIViewController in a storyboard.
+2. Override `awakeFromNib`, then instantiate any view controllers
+
+```
+class ContainerViewController: SlideMenuController {
+
+    override func awakeFromNib() {
+        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("Main") {
+            self.mainViewController = controller
+        }
+        if let controller = self.storyboard?.instantiateViewControllerWithIdentifier("Left") {
+            self.leftViewController = controller
+        }
+        super.awakeFromNib()
+    }
+
 }
 ```
 
@@ -86,9 +116,11 @@ self.slideMenuController()?.closeRight()
 ```
 
 ## Requirements
-Requires Swift1.2 and iOS 7.0 and ARC.  
+Requires Swift2.0 and iOS 8.0 and ARC.  
 If you are developing in the swift1.1, please use branch of swift1.1.  
-  
+If you are developing in the swift1.2, please use branch of swift1.2.  
+If you want to use even iOS7.0, please to import the code directly.  
+
 ## Features
 - Highly customizable
 - Complete example

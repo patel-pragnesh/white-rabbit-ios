@@ -86,6 +86,18 @@ public class TagListView: UIView {
             rearrangeViews()
         }
     }
+    
+    public enum Alignment {
+        case Left
+        case Center
+        case Right
+    }
+    @IBInspectable public var alignment: Alignment = .Left {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    
     public var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
             for tagView in tagViews {
@@ -98,6 +110,7 @@ public class TagListView: UIView {
     @IBOutlet public weak var delegate: TagListViewDelegate?
     
     var tagViews: [TagView] = []
+    var rowViews: [UIView] = []
     var tagViewHeight: CGFloat = 0
     var rows = 0 {
         didSet {
@@ -126,7 +139,13 @@ public class TagListView: UIView {
             tagView.removeFromSuperview()
         }
         
+        for rowView in rowViews {
+            rowView.removeFromSuperview()
+        }
+        rowViews.removeAll(keepCapacity: true)
+        
         var currentRow = 0
+        var currentRowView: UIView!
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
         for tagView in tagViews {
@@ -135,21 +154,30 @@ public class TagListView: UIView {
             
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width + marginX > frame.width {
                 currentRow += 1
-                tagView.frame.origin.x = 0
-                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
+                currentRowWidth = 0
+                currentRowTagCount = 0
+                currentRowView = UIView()
+                currentRowView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
                 
-                currentRowTagCount = 1
-                currentRowWidth = tagView.frame.width + marginX
-            }
-            else {
-                tagView.frame.origin.x = currentRowWidth
-                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
-                
-                currentRowTagCount += 1
-                currentRowWidth += tagView.frame.width + marginX
+                rowViews.append(currentRowView)
+                addSubview(currentRowView)
             }
             
-            addSubview(tagView)
+            tagView.frame.origin = CGPoint(x: currentRowWidth, y: 0)
+            currentRowView.addSubview(tagView)
+            currentRowTagCount++
+            currentRowWidth += tagView.frame.width + marginX
+            
+            switch alignment {
+            case .Left:
+                currentRowView.frame.origin.x = 0
+            case .Center:
+                currentRowView.frame.origin.x = (frame.size.width - (currentRowWidth - marginX)) / 2
+            case .Right:
+                currentRowView.frame.origin.x = frame.size.width - (currentRowWidth - marginX)
+            }
+            currentRowView.frame.size.width = currentRowWidth
+            currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.size.height)
         }
         rows = currentRow
     }

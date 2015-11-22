@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/language-swift-blue.svg)
-![](https://img.shields.io/badge/version-1.1.0-red.svg)
+![](https://img.shields.io/badge/version-1.2.4-red.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 # FillableLoaders
 
@@ -44,8 +44,14 @@ Rounded
 </p>
 
 ###Changelog:
-
-- __1.1.0__ (2 Sep 2015)
+- __1.2.4__ (28 Oct 2015)
+	- Fixing issue when showing loader after removing it
+- __1.2.2__ (27 Oct 2015)
+	- Precompiled framework using Xcode 7.1
+- __1.2.1__ (25 Oct 2015)
+	- Added the possibility to add a loader to a desired UIView
+	- Updated to Swift 2.0 
+- __1.1.1__ (2 Sep 2015)
 	- Added Carthage Support
 	- Added animation when hidding loader 
 - __1.0.1__ (17 Aug 2015)
@@ -77,24 +83,33 @@ If you want to create the loader, and not show it at the same moment, you can us
 Sample code:
 
 ``` swift
-		//PROGRESS BASED:
+//PROGRESS BASED:
 		
-		var loader = WavesLoader.createProgressBasedLoaderWithPath(path)
-        loader.loaderColor = UIColor.redColor()
+var loader = WavesLoader.createProgressBasedLoaderWithPath(path)
+loader.loaderColor = UIColor.redColor()
         ...
-        //Do other stuff
+//Do other stuff
         ...
-        loader.showLoader()
+loader.showLoader()
 		
-		//BASIC
+//BASIC
 
-        var loader = WavesLoader.createLoaderWithPath(path)
-        loader.loaderColor = UIColor.redColor()
+var loader = WavesLoader.createLoaderWithPath(path)
+loader.loaderColor = UIColor.redColor()
         ...
-        //Do other stuff
+//Do other stuff
         ...
-        loader.showLoader()
+loader.showLoader()
 ```
+
+####- Showing loader in desired view:
+All the methods wave the variant version where you can pass it the view in which you want to add the loader:
+
+- `showProgressBasedLoaderWithPath(path:onView:)`
+- `createProgressBasedLoaderWithPath(path:onView:)`
+- `showLoaderWithPath(path:onView:)`
+- `createLoaderWithPath(path:onView:)`
+
 
 #### - Deletion:
 Just call the method `removeLoader()` and the loader will disappear and will also be removed from its superview.
@@ -102,7 +117,7 @@ Just call the method `removeLoader()` and the loader will disappear and will als
 Sample code:
 
 ``` swift
-        loader.removeLoader()
+loader.removeLoader()
 ```
 
 ### Customization:
@@ -147,12 +162,12 @@ Height of the spike
 ```
 use_frameworks!
 
-pod 'FillableLoaders', '~>1.0.1'
+pod 'FillableLoaders', '~>1.2.4'
 ```
 ####• Carthage
 
 ```
-github "poolqf/FillableLoaders"
+github "poolqf/FillableLoaders" ~> "1.2.4"
 ```
 
 ###How to create my own CGPath?
@@ -164,13 +179,13 @@ github "poolqf/FillableLoaders"
 ####• Manually
 
 ``` swift
-        let path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, 0, height/2)
-        CGPathAddLineToPoint(path, nil, width + 100, height/2)
-        CGPathAddLineToPoint(path, nil, width + 100, height*2)
-        CGPathAddLineToPoint(path, nil, 0, height*2)
-        CGPathCloseSubpath(path)
-        return path
+let path = CGPathCreateMutable()
+CGPathMoveToPoint(path, nil, 0, height/2)
+CGPathAddLineToPoint(path, nil, width + 100, height/2)
+CGPathAddLineToPoint(path, nil, width + 100, height*2)
+CGPathAddLineToPoint(path, nil, 0, height*2)
+CGPathCloseSubpath(path)
+return path
 ```
 
 ####• PaintCode
@@ -215,7 +230,7 @@ A feature that I `LOVE` from PaintCode is that you can import an .svg file, and 
 That's how I did the Github and Twitter logos, for example.
 
 ### Technical details:
-- Swift 1.2
+- Swift 2.1
 - Animations using CAKeyFrameAnimation
 
 ###Licenses

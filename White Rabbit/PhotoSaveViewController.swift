@@ -8,9 +8,12 @@
 
 import UIKit
 
-class PhotoSaveViewController: UIViewController {
+class PhotoSaveViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var captionTextField: UITextView!
+    
+    let captionPlaceholder = "Enter caption here..."
     
     var previousViewController : CameraViewController?
     
@@ -23,8 +26,40 @@ class PhotoSaveViewController: UIViewController {
         super.viewDidLoad()
         
         self.imageView.image = self.image
+        
+        captionTextField.delegate = self
+        captionTextField.text = self.captionPlaceholder
+        captionTextField.textColor = UIColor.lightGrayColor()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+        if captionTextField.textColor == UIColor.lightGrayColor() {
+            captionTextField.text = ""
+            captionTextField.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if captionTextField.text == "" {
+            captionTextField.text = self.captionPlaceholder
+            captionTextField.textColor = UIColor.lightGrayColor()
+        }
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func textViewShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +83,7 @@ class PhotoSaveViewController: UIViewController {
         let timelineEntry = PFObject(className: "AnimalTimelineEntry")
         timelineEntry["animal"] = self.animalObject
         timelineEntry["image"] = imageFile
+        timelineEntry["text"] = self.captionTextField.text
         timelineEntry["createdBy"] = PFUser.currentUser()
         timelineEntry["type"] = "image"
         
