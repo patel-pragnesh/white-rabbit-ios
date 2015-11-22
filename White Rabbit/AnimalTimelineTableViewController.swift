@@ -94,9 +94,9 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
-//        gestureRecognizer.minimumPressDuration = 1.0
-//        self.tableView.addGestureRecognizer(gestureRecognizer)
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        gestureRecognizer.minimumPressDuration = 1.0
+        self.tableView.addGestureRecognizer(gestureRecognizer)
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "handlePress:")
         self.tableView.addGestureRecognizer(tapRecognizer)

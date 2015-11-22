@@ -109,8 +109,8 @@ class AnimalFormViewController : FormViewController {
         } else {
             self.navigationItem.title = "Cat Settings"
         }
-        self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25)
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveAnimal", height: 20)
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25, width: 25)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveAnimal", height: 20, width: 25)
     }
     
 //    

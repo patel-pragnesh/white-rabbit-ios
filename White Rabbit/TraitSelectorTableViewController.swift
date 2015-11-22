@@ -22,7 +22,7 @@ class TraitSelectorTableViewController: PFQueryTableViewController {
         self.setUpNavigationBar()
         self.setUpNavigationBarImage(UIImage(named: "traits_header")!, height: 180)
         
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveTraits", height: 20)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveTraits", height: 20, width: 25)
         
         self.tableView.allowsMultipleSelection = true
         

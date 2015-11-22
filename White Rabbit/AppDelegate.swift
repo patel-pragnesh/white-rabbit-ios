@@ -173,11 +173,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 extension UIViewController {
-    func getNavBarItem(imageId : String, action : Selector, height : CGFloat) -> UIBarButtonItem! {
+    func getNavBarItem(imageId : String, action : Selector, height : CGFloat, width: CGFloat) -> UIBarButtonItem! {
         let editImage = UIImage(named: imageId)
         let editButton = UIButton(type: .Custom)
         editButton.setImage(editImage, forState: .Normal)
-        editButton.frame = CGRectMake(0, 0, 25, height)
+        editButton.frame = CGRectMake(0, 0, width, height)
         editButton.addTarget(self, action: action, forControlEvents: .TouchUpInside)
         return UIBarButtonItem(customView: editButton)
     }
@@ -229,7 +229,7 @@ extension UIViewController {
     func setUpMenuBarController(title: String) {
         self.setUpNavigationBar(title)
         
-        self.navigationItem.leftBarButtonItem = self.getNavBarItem("menu_white", action: "showMenu", height: 15)
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("menu_white", action: "showMenu", height: 15, width: 25)
     }
     
     func showMenu() {

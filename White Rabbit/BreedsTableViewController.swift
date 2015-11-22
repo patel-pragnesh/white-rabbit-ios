@@ -45,7 +45,7 @@ class BreedsTableViewController: PFQueryTableViewController, UISearchBarDelegate
 //        self.searchBar.hidden = true
         
         self.setUpMenuBarController("Breeds")
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("search_white", action: "showSearch", height: 25)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("search_white", action: "showSearch", height: 25, width: 25)
 
     }
     

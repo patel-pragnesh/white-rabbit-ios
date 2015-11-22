@@ -165,7 +165,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
 
     func panned(gesture:UIPanGestureRecognizer)
     {
-        var touchedView = gesture.view;
+        let touchedView = gesture.view;
         if (gesture.state == UIGestureRecognizerState.Began) {
             self.animator?.removeBehavior(self.itemBehavior!)
             self.animator?.removeBehavior(self.collision!)

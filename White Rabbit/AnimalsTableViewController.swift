@@ -89,7 +89,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
         }
         
         if self.owner != nil {
-            self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25)
+            self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25, width: 25)
         }
     }
     

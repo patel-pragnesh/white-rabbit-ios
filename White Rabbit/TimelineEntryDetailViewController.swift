@@ -16,14 +16,23 @@ class TimelineEntryDetailViewController: UIViewController {
     var entryObject : PFObject?
     
     override func viewDidLoad() {
-//        self.setUpNavigationBar()
-        self.setUpNavigationBar()
-        
 //        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
 //        )
 
         
         super.viewDidLoad()
+
+        self.setUpNavigationBar()
+//        self.setUpNavigationBar((entryObject?["name"] as? String)!)
+        
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("share_white", action: "showShareActionSheet", height: 40, width: 25)
+
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+//        self.navigationItem.leftBarButtonItem?.title = ""
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
+//
+//        self.navigationItem.backBarButtonItem = self.getNavBarItem("back_black", action: "showEditAminalView", height: 30, width: 20)
+
         
         self.textLabel.text = entryObject?["text"] as? String
         
@@ -38,6 +47,16 @@ class TimelineEntryDetailViewController: UIViewController {
         }
         
         // Do any additional setup after loading the view.
+    }
+    
+    func goBack() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func showShareActionSheet() {
+        let image = self.imageView.image
+        let activityVC = UIActivityViewController(activityItems: ["http://ftwtrbt.com", image!], applicationActivities: nil)
+        self.presentViewController(activityVC, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

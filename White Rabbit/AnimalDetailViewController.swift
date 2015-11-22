@@ -152,12 +152,19 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         self.timelineTableController = timelineTableController
         
         
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25, width: 25)
+        
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
+
         
 //        traitTags.textFont = UIFont.systemFontOfSize(15)
         
         self.createAddMenu()
         self.loadAnimal()
+    }
+    
+    func goBack() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     func loadAnimal() {

@@ -122,43 +122,22 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
     }
     
     @IBAction func saveImage(sender: UIButton) {
-        self.saveImageData()
-        saveButton.enabled = false
+        self.performSegueWithIdentifier("CameraToSavePhoto", sender: self)
+        
+//        self.saveImageData()
+//        saveButton.enabled = false
     }
     
-    func saveImageData() {
-        uploadIndicator.hidden = false
-        uploadIndicator.startAnimating()
-        
-        let imageData = UIImageJPEGRepresentation(imagePreview.image!, 0.5)
-        let fileName:String = (String)(PFUser.currentUser()!.username!) + "-" + (String)(NSDate().description.replace(" ", withString:"_").replace(":", withString:"-").replace("+", withString:"~")) + ".jpg"
-        let imageFile:PFFile = PFFile(name: fileName, data: imageData!)!
-        
-        let timelineEntry = PFObject(className: "AnimalTimelineEntry")
-        timelineEntry["animal"] = self.animalObject
-        timelineEntry["image"] = imageFile
-        timelineEntry["createdBy"] = PFUser.currentUser()
-        timelineEntry["type"] = "image"
-        
-        if self.pickedImageDate != nil {
-            timelineEntry["date"] = self.pickedImageDate
-        } else {
-            timelineEntry["date"] = NSDate()
-        }
-        
-        
-        timelineEntry.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if(success) {
-                NSLog("finished saving post")
-                self.uploadIndicator.hidden = true
-                self.uploadIndicator.stopAnimating()
-                self.clearImagePreview()
-                self.closeView()
-            } else {
-                NSLog("error uploading file: \(error)")
-            }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "CameraToSavePhoto") {
+            let detailScene = segue.destinationViewController as! PhotoSaveViewController
+            detailScene.image = self.imagePreview.image
+            detailScene.animalObject = self.animalObject
+            detailScene.pickedImageDate = self.pickedImageDate
+            detailScene.previousViewController = self
         }
     }
+    
     
     func showPostsView() {
         self.performSegueWithIdentifier("cameraPostsSegue", sender: self)

@@ -97,13 +97,13 @@ class UserFormViewController : FormViewController {
         if !self.isEditMode() {
             self.navigationItem.title = "New User"
 //            self.setUpNavigationBar()
-            self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25)
+            self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "cancel", height: 25, width: 25)
 
         } else {
             self.navigationItem.title = "Settings"
         }
         
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveUser", height: 20)
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("check_white", action: "saveUser", height: 20, width: 25)
     }
 
     
