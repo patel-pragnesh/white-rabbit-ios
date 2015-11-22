@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - ALCameraViewController (1.0.10)
+  - ALCameraViewController (1.0.8)
   - Bolts (1.5.0):
     - Bolts/AppLinks (= 1.5.0)
     - Bolts/Tasks (= 1.5.0)
@@ -73,7 +73,7 @@ PODS:
   - XLPagerTabStrip (2.0.0)
 
 DEPENDENCIES:
-  - ALCameraViewController
+  - ALCameraViewController (= 1.0.8)
   - BTNavigationDropdownMenu
   - CLImageEditor
   - ContentfulDeliveryAPI
@@ -96,7 +96,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  ALCameraViewController: 10c5809e561c9214bd89106de6230db4f2536463
+  ALCameraViewController: fbaed8a35a9272b419ec10004231da356d75bcaa
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   BTNavigationDropdownMenu: 23403214197d8fb208dd0ad996e3d236748473c9
   CLImageEditor: 9d388449af816729da67e68465e20462f181841d

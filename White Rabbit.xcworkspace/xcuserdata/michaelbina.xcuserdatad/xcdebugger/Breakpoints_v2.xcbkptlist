@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalFormViewController.swift"
-            timestampString = "469020205.116225"
+            timestampString = "469883740.205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "saveAnimal()"
             landmarkType = "5">
          </BreakpointContent>

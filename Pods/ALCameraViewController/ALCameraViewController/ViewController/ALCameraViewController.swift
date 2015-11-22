@@ -22,19 +22,14 @@ public extension ALCameraViewController {
         imagePicker.onSelectionComplete = { image in
             if image != nil {
                 let confirmController = ALConfirmViewController(image: image!, allowsCropping: croppingEnabled)
-                confirmController.onComplete = { image in
-                    if let i = image {
-                        completion(i)
-                    } else {
-                        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                }
+                confirmController.onComplete = completion
                 confirmController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
                 imagePicker.presentViewController(confirmController, animated: true, completion: nil)
             } else {
                 completion(nil)
             }
         }
+        
         
         imagePicker.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "libraryCancel", inBundle: NSBundle(forClass: ALCameraViewController.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), style: UIBarButtonItemStyle.Plain, target: imagePicker, action: "dismiss")
         
@@ -100,13 +95,6 @@ public class ALCameraViewController: UIViewController {
         }
         
         cameraView.frame = view.bounds
-        
-        rotate()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotate", name: UIDeviceOrientationDidChangeNotification, object: nil)
-    }
-    
-    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Portrait
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -114,22 +102,20 @@ public class ALCameraViewController: UIViewController {
         checkPermissions()
     }
     
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        SpringAnimation {
+            self.cameraBeginState()
+        }
+    }
+    
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         cameraView.frame = view.bounds
-        cameraEndState()
-    }
-    
-    internal func rotate() {
-        let rotation = currentRotation()
-        let rads = CGFloat(radians(rotation))
         
-        UIView.animateWithDuration(0.3) {
-            self.cameraButton.transform = CGAffineTransformMakeRotation(rads)
-            self.closeButton.transform = CGAffineTransformMakeRotation(rads)
-            self.swapButton.transform = CGAffineTransformMakeRotation(rads)
-            self.libraryButton.transform = CGAffineTransformMakeRotation(rads)
+        SpringAnimation {
+            self.cameraEndState()
         }
     }
     
@@ -183,15 +169,11 @@ public class ALCameraViewController: UIViewController {
     }
     
     private func layoutCropView() {
-        
-        let size = view.frame.size
-        let minDimension = size.width < size.height ? size.width : size.height
-        let maxDimension = size.width > size.height ? size.width : size.height
-        let width = minDimension - horizontalPadding
+        let width = view.frame.size.width - horizontalPadding
         let height = width
         let x = horizontalPadding/2
         
-        let cameraButtonY = maxDimension - (verticalPadding + 80)
+        let cameraButtonY = view.frame.size.height - (verticalPadding + 80)
         let y = cameraButtonY/2 - height/2
         let frame = CGRectMake(x, y, width, height)
         
@@ -219,7 +201,45 @@ public class ALCameraViewController: UIViewController {
         view.addSubview(swapButton)
         
         cameraButton.enabled = true
-        cameraEndState()
+        
+        cameraBeginState()
+        
+        SpringAnimation {
+            self.cameraEndState()
+        }
+    }
+    
+    private func cameraBeginState() {
+        let size = view.frame.size
+
+        let cameraSize = cameraButton.frame.size
+        
+        let yOffset = cameraSize.height + verticalPadding*2
+        
+        
+        let cameraX = size.width/2 - cameraSize.width/2
+        let cameraY = size.height - (cameraSize.height + verticalPadding)
+        
+        cameraButton.frame.origin = CGPointMake(cameraX, cameraY + yOffset)
+        cameraButton.alpha = 0
+        
+        let closeSize = closeButton.frame.size
+        
+        let initialX = size.width/2 - closeSize.width/2
+        let closeY = cameraY + (cameraSize.height - closeSize.height)/2
+        
+        closeButton.frame.origin = CGPointMake(initialX, closeY + yOffset)
+        closeButton.alpha = 0
+        
+        let libraryY = closeY
+        
+        libraryButton.frame.origin = CGPointMake(initialX, libraryY + yOffset)
+        libraryButton.alpha = 0
+        
+        let swapY = closeY
+        
+        swapButton.frame.origin = CGPointMake(initialX, swapY + yOffset)
+        swapButton.alpha = 0
     }
     
     private func cameraEndState() {
@@ -293,6 +313,10 @@ public class ALCameraViewController: UIViewController {
     }
     
     internal func layoutCameraResult(image: UIImage) {
+        SpringAnimation {
+            self.cameraBeginState()
+        }
+        
         cameraView.stopSession()
         
         let confirmViewController = ALConfirmViewController(image: image, allowsCropping: allowCropping)

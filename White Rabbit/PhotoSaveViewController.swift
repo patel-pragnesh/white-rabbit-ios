@@ -83,7 +83,9 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
         let timelineEntry = PFObject(className: "AnimalTimelineEntry")
         timelineEntry["animal"] = self.animalObject
         timelineEntry["image"] = imageFile
-        timelineEntry["text"] = self.captionTextField.text
+        if(self.captionTextField.text != self.captionPlaceholder) {
+            timelineEntry["text"] = self.captionTextField.text
+        }
         timelineEntry["createdBy"] = PFUser.currentUser()
         timelineEntry["type"] = "image"
         
@@ -109,6 +111,7 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
 
     func closeView() {
         self.previousViewController?.closeView()
+        self.previousViewController?.dismissViewControllerAnimated(true, completion: nil)
         self.dismissViewControllerAnimated(true) { () -> Void in
             self.previousViewController?.closeView()
             self.dismissViewControllerAnimated(true, completion: nil)

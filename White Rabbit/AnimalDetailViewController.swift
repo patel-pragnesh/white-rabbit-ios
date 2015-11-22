@@ -163,7 +163,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         
 //        traitTags.textFont = UIFont.systemFontOfSize(15)
         
-        self.createAddMenu()
+//        self.createAddMenu()
         self.loadAnimal()
     }
     
@@ -192,6 +192,15 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
     func loadAnimal() {
         if let object = currentAnimalObject {
             //            NSLog("Viewing detail for object: %@\n", object)
+            
+            let owner = object["owner"] as? PFUser
+            let currentUser = PFUser.currentUser()
+
+            if(currentUser?.objectId == owner?.objectId) {
+                self.createAddMenu()
+            } else if(currentUser?.valueForKey("admin") as! Bool) {
+                self.createAddMenu()
+            }
             
             nameLabel.text = object["name"] as? String
             genderLabel.text = object["gender"] as? String

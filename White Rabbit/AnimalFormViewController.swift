@@ -352,18 +352,6 @@ class AnimalFormViewController : FormViewController {
             animal.setObject(breed!, forKey: BREED_TAG)
         }
         
-        if let traitsValue = self.form.rowByTag(self.TRAITS_TAG)?.baseValue as? Set<String> {
-            var traitObjects = [PFObject?]()
-            for trait in traitsValue{
-                let trait = appDelegate.traitByName![trait]
-                traitObjects.append(trait)
-            }
-            self.saveTraits(traitObjects)
-//            animal.setObject(breed!, forKey: BREED_TAG)
-        }
-
-        
-        
         if let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate {
             animal.setObject(birthDateValue, forKey: BIRTHDATE_TAG)
         }
@@ -411,6 +399,19 @@ class AnimalFormViewController : FormViewController {
         animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             if success {
                 NSLog("Finished saving")
+                
+                    self.animalObject = animal
+                
+                    if let traitsValue = self.form.rowByTag(self.TRAITS_TAG)?.baseValue as? Set<String> {
+                        var traitObjects = [PFObject?]()
+                        for trait in traitsValue{
+                            let trait = appDelegate.traitByName![trait]
+                            traitObjects.append(trait)
+                        }
+                        self.saveTraits(traitObjects)
+                        //            animal.setObject(breed!, forKey: BREED_TAG)
+                    }
+                
 //                if(wasEditMode) {
 //                    self.navigationController!.popViewControllerAnimated(true)
 //                } else {

@@ -16,23 +16,12 @@ class TimelineEntryDetailViewController: UIViewController {
     var entryObject : PFObject?
     
     override func viewDidLoad() {
-//        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
-//        )
-
-        
         super.viewDidLoad()
 
         self.setUpNavigationBar()
-//        self.setUpNavigationBar((entryObject?["name"] as? String)!)
         
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("share_white", action: "showShareActionSheet", height: 40, width: 25)
-
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-//        self.navigationItem.leftBarButtonItem?.title = ""
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("share_white", action: "showShareActionSheet", height: 40, width: 30)
         self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
-//
-//        self.navigationItem.backBarButtonItem = self.getNavBarItem("back_black", action: "showEditAminalView", height: 30, width: 20)
-
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
@@ -49,8 +38,6 @@ class TimelineEntryDetailViewController: UIViewController {
                 }
             })
         }
-        
-        // Do any additional setup after loading the view.
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -83,18 +70,5 @@ class TimelineEntryDetailViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

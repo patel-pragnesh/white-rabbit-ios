@@ -1577,7 +1577,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="51DF930F-49FD-4A07-93B2-D4697D7B625C"/>
+                                <state key="normal" image="C8A5B4B4-036A-43CD-94C4-BBE8F1BAEF9A"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -1821,9 +1821,6 @@
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="72" y="210" width="348" height="20.5"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" misplaced="YES" text="MON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1L-pc-jWA">
                                             <rect key="frame" x="30" y="26" width="46" height="25"/>
@@ -1881,30 +1878,6 @@
                                                 </mask>
                                             </variation>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HHO-5e-p6H" userLabel="Image">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="HHO-5e-p6H" secondAttribute="height" multiplier="1:1" id="8hf-va-6jB"/>
-                                                <constraint firstAttribute="width" constant="308" id="qx1-X5-8U1"/>
-                                                <constraint firstAttribute="height" constant="334" id="xn0-OW-OCz">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="308"/>
-                                                </constraint>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="8hf-va-6jB"/>
-                                                    <exclude reference="qx1-X5-8U1"/>
-                                                    <exclude reference="xn0-OW-OCz"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="8hf-va-6jB"/>
-                                                    <include reference="qx1-X5-8U1"/>
-                                                    <include reference="xn0-OW-OCz"/>
-                                                </mask>
-                                            </variation>
-                                        </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLQ-wK-ZoR">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <state key="normal" image="heart_grey"/>
@@ -1933,9 +1906,37 @@
                                                 <action selector="moreButtonPressed:" destination="ANJ-g2-s51" eventType="touchUpInside" id="HMb-TQ-7WY"/>
                                             </connections>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HHO-5e-p6H" userLabel="Image">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="HHO-5e-p6H" secondAttribute="height" multiplier="1:1" id="8hf-va-6jB"/>
+                                                <constraint firstAttribute="width" constant="308" id="qx1-X5-8U1">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="300"/>
+                                                </constraint>
+                                                <constraint firstAttribute="height" constant="334" id="xn0-OW-OCz">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="308"/>
+                                                </constraint>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="8hf-va-6jB"/>
+                                                    <exclude reference="qx1-X5-8U1"/>
+                                                    <exclude reference="xn0-OW-OCz"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="8hf-va-6jB"/>
+                                                    <include reference="qx1-X5-8U1"/>
+                                                    <exclude reference="xn0-OW-OCz"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="HHO-5e-p6H" secondAttribute="trailing" id="2AX-B7-yy9"/>
+                                        <constraint firstAttribute="trailing" secondItem="HHO-5e-p6H" secondAttribute="trailing" id="2AX-B7-yy9">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                                        </constraint>
                                         <constraint firstItem="N9P-Ip-Lx6" firstAttribute="leading" secondItem="rcA-gl-R6c" secondAttribute="leading" id="31t-Qu-GKE">
                                             <variation key="heightClass=regular-widthClass=compact" constant="4"/>
                                         </constraint>
@@ -2016,11 +2017,11 @@
                                             <exclude reference="N9P-Ip-Lx6"/>
                                             <exclude reference="Cn4-pD-NKd"/>
                                             <exclude reference="iNU-qH-Zwz"/>
-                                            <exclude reference="HHO-5e-p6H"/>
                                             <exclude reference="qLQ-wK-ZoR"/>
                                             <exclude reference="9aB-GJ-iOK"/>
                                             <exclude reference="rJS-pd-oud"/>
                                             <exclude reference="ENu-NR-863"/>
+                                            <exclude reference="HHO-5e-p6H"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="U6X-vv-GOu"/>
@@ -2071,11 +2072,11 @@
                                             <include reference="N9P-Ip-Lx6"/>
                                             <include reference="Cn4-pD-NKd"/>
                                             <include reference="iNU-qH-Zwz"/>
-                                            <include reference="HHO-5e-p6H"/>
                                             <include reference="qLQ-wK-ZoR"/>
                                             <include reference="9aB-GJ-iOK"/>
                                             <include reference="rJS-pd-oud"/>
                                             <include reference="ENu-NR-863"/>
+                                            <include reference="HHO-5e-p6H"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="U6X-vv-GOu"/>
@@ -3023,7 +3024,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="51DF930F-49FD-4A07-93B2-D4697D7B625C" width="46" height="33">
+        <image name="C8A5B4B4-036A-43CD-94C4-BBE8F1BAEF9A" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

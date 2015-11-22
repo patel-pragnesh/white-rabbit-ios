@@ -138,23 +138,18 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
         }
     }
     
-    
-    func showPostsView() {
-        self.performSegueWithIdentifier("cameraPostsSegue", sender: self)
-    }
-    
     func clearImagePreview() {
         self.imagePreview.image = nil
     }
     
+    @IBAction func cancelPressed(sender: AnyObject) {
+        self.closeView()
+    }
+
     func closeView() {
         self.dismissViewControllerAnimated(true) { () -> Void in
             self.animalDetailController!.reloadTimeline()
         }
-    }
-    
-    @IBAction func cancelPressed(sender: AnyObject) {
-        self.closeView()
     }
     
     override func didReceiveMemoryWarning() {

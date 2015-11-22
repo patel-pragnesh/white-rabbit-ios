@@ -152,22 +152,22 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y == 0 ) {
-            NSLog("scrolled to the top")
-            self.showTraits()
-        } else {
-            self.hideTraits()
-        }
+//        if (scrollView.contentOffset.y == 0 ) {
+//            NSLog("scrolled to the top")
+//            self.showTraits()
+//        } else {
+//            self.hideTraits()
+//        }
     }
     
     func hideTraits() {
-        let pvc = self.parentViewController as! AnimalDetailViewController
+//        let pvc = self.parentViewController as! AnimalDetailViewController
 //        UIView.transitionWithView(pvc.viewIfLoaded!, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        pvc.addMenu!.hide()
+//        pvc.addMenu!.hide()
     }
     
     func showTraits() {
-        let pvc = self.parentViewController as! AnimalDetailViewController
+//        let pvc = self.parentViewController as! AnimalDetailViewController
 //        UIView.transitionWithView(pvc.viewIfLoaded!, duration: 0.4, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
 //        pvc.addMenu!.
     }

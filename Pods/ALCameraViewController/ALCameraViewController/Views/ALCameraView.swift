@@ -98,9 +98,15 @@ public class ALCameraView: UIView {
     
     public func capturePhoto(completion: ALCameraShotCompletion) {
         dispatch_async(cameraQueue) {
-            let orientation = AVCaptureVideoOrientation(rawValue: UIDevice.currentDevice().orientation.rawValue)!
-            ALCameraShot().takePhoto(self.imageOutput, videoOrientation: orientation, cropSize: self.frame.size) { image in
-                completion(image)
+            ALCameraShot().takePhoto(self.imageOutput, videoOrientation: self.preview.connection.videoOrientation, cropSize: self.frame.size) { image in
+                
+                var correctedImage = image
+                
+                if self.currentPosition == AVCaptureDevicePosition.Front {
+                    correctedImage = UIImage(CGImage: image.CGImage!, scale: image.scale, orientation:.UpMirrored)
+                }
+                
+                completion(correctedImage)
             }
         }
     }
