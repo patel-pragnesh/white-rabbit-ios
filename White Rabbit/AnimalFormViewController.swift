@@ -416,8 +416,10 @@ class AnimalFormViewController : FormViewController {
 //                    self.navigationController!.popViewControllerAnimated(true)
 //                } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
+                
                     if self.detailController != nil {
                         self.detailController!.loadAnimal()
+                        self.detailController!.reloadTimeline()
                     } else if self.animalTableController != nil {
                         self.animalTableController!.loadObjects()
                     }

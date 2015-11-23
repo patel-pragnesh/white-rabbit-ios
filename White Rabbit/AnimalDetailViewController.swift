@@ -49,10 +49,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         super.viewDidLoad()
         
         self.addButton.hidden = true
-        self.instagramView.hidden = true
         self.timelineView.hidden = false
-        
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25, width: 25)
         
         self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
         
@@ -188,6 +185,8 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
             
             if(currentUserIsOwner || currentUserIsAdmin) {
                 self.createAddMenu()
+                
+                self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25, width: 25)
             }
                         
             nameLabel.text = object["name"] as? String
@@ -200,22 +199,22 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
                 ageLabel.text = "Age Unknown"
             }
             
-            let instagramUsername = object["instagramUsername"] as? String
-            if(instagramUsername != nil && instagramUsername != "") {
-                NSLog("setting instagram: \(instagramUsername)")
-                self.instagramUsername = instagramUsername!
-                
-                self.instagramTableController?.userName = instagramUsername!
-                self.instagramTableController?.loadMedia()
-                //                self.instagramTableController?.loadView()
-                
-                self.instagramView.hidden = false
-                self.timelineView.hidden = true
-                
-            } else {
-                self.instagramView.hidden = true
-                self.timelineView.hidden = false
-            }
+//            let instagramUsername = object["instagramUsername"] as? String
+//            if(instagramUsername != nil && instagramUsername != "") {
+//                NSLog("setting instagram: \(instagramUsername)")
+//                self.instagramUsername = instagramUsername!
+//                
+//                self.instagramTableController?.userName = instagramUsername!
+//                self.instagramTableController?.loadMedia()
+//                //                self.instagramTableController?.loadView()
+//                
+//                self.instagramView.hidden = false
+//                self.timelineView.hidden = true
+//                
+//            } else {
+//                self.instagramView.hidden = true
+//                self.timelineView.hidden = false
+//            }
             
             //            self.navigationItem.title = object["username"] as? String
             
