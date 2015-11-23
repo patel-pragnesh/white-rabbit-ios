@@ -11,6 +11,7 @@ import Parse
 import Bolts
 import FBSDKCoreKit
 import FBSDKLoginKit
+import CLImageEditor
 import ParseFacebookUtilsV4
 import SlideMenuControllerSwift
 import BTNavigationDropdownMenu
@@ -234,6 +235,49 @@ extension UIViewController {
     
     func showMenu() {
         self.slideMenuController()?.openLeft()
+    }
+    
+    func showEditor(image : UIImage, delegate: CLImageEditorDelegate, var ratios: [AnyObject]?) {
+        let editor = CLImageEditor(image: image)
+        editor.delegate = delegate
+        
+        let curveTool = editor.toolInfo.subToolInfoWithToolName("CLToneCurveTool", recursive: false)
+        curveTool.available = false
+        let blurTool = editor.toolInfo.subToolInfoWithToolName("CLBlurTool", recursive: false)
+        blurTool.available = false
+        let drawTool = editor.toolInfo.subToolInfoWithToolName("CLDrawTool", recursive: false)
+        drawTool.available = false
+        let adjustmentTool = editor.toolInfo.subToolInfoWithToolName("CLAdjustmentTool", recursive: false)
+        adjustmentTool.available = false
+        
+        let effectTool = editor.toolInfo.subToolInfoWithToolName("CLEffectTool", recursive: false)
+        effectTool.available = true
+        let pixelateFilter = effectTool.subToolInfoWithToolName("CLPixellateEffect", recursive: false)
+        pixelateFilter.available = false
+        let posterizeFilter = effectTool.subToolInfoWithToolName("CLPosterizeEffect", recursive: false)
+        posterizeFilter.available = false
+        
+        
+        let filterTool = editor.toolInfo.subToolInfoWithToolName("CLFilterTool", recursive: false)
+        filterTool.available = true
+        let invertFilter = filterTool.subToolInfoWithToolName("CLDefaultInvertFilter", recursive: false)
+        invertFilter.available = false
+        
+        let rotateTool = editor.toolInfo.subToolInfoWithToolName("CLRotateTool", recursive: false)
+        rotateTool.available = true
+        rotateTool.dockedNumber = -1
+        
+        let cropTool = editor.toolInfo.subToolInfoWithToolName("CLClippingTool", recursive: false)
+        cropTool.available = true
+        cropTool.dockedNumber = -2
+        cropTool.optionalInfo["swapButtonHidden"] = true
+        
+        if ratios == nil {
+            ratios = [["value1": 1, "value2": 1]]
+        }
+        cropTool.optionalInfo["ratios"] = ratios
+        
+        self.presentViewController(editor, animated: true, completion: nil)
     }
     
     func displayAlert(title:String, message:String, buttonText: String) {

@@ -13,6 +13,8 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var captionTextField: UITextView!
     
+//    var animalDetailController : AnimalDetailViewController?
+    
     let captionPlaceholder = "Enter caption here..."
     
     var previousViewController : CameraViewController?
@@ -110,14 +112,18 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
     }
 
     func closeView() {
+//        self.dismissViewControllerAnimated(true) { () -> Void in
+//            self.previousViewController?.closeView()
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
         self.previousViewController?.closeView()
-        self.previousViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.previousViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+            self.previousViewController!.animalDetailController!.reloadTimeline()
+        })
         self.dismissViewControllerAnimated(true) { () -> Void in
-            self.previousViewController?.closeView()
-            self.dismissViewControllerAnimated(true, completion: nil)
-//            self.animalDetailController!.reloadTimeline()
+            self.previousViewController!.animalDetailController!.reloadTimeline()
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.previousViewController!.animalDetailController!.reloadTimeline()
     }
 
     

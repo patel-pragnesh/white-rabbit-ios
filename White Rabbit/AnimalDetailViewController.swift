@@ -34,6 +34,9 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
     var traitObjects : [PFObject?] = []
     var shelterObject : PFObject?
     
+    var currentUserIsOwner = false
+    var currentUserIsAdmin = false
+    
     var addMenu : SphereMenu?
     
     var timelineTableController : AnimalTimelineTableViewController?
@@ -45,15 +48,21 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         NSLog("relaoding timeline")
 //        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
 //        timelineTableController.animalObject = self.currentAnimalObject
+//        self.timelineTableController?.delete(self)
+//        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
+//        timelineTableController.animalObject = self.currentAnimalObject
+//        self.timelineTableController = timelineTableController
+        
         self.timelineView.hidden = false
         self.timelineView.reloadInputViews()
         self.timelineView.inputView?.reloadInputViews()
-//        self.displayAlert("reloaded: \(self.timelineTableController?.objects!.count)")
         self.timelineTableController!.loadObjects()
         self.timelineTableController!.reloadInputViews()
         self.timelineTableController!.tableView.reloadData()
         self.timelineTableController!.tableView.reloadInputViews()
         NSLog("number of rows: \(self.timelineTableController!.tableView.numberOfRowsInSection(0))")
+        self.displayAlert("reloaded: \(self.timelineTableController?.objects!.count)")
+
     }
     
     func saveTraits(traitObjects: [PFObject?]) {
@@ -117,7 +126,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.reloadTimeline()
+//        self.reloadTimeline()
         
 //        self.setUpNavigationBar()
         
@@ -189,19 +198,24 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         navigationController?.popViewControllerAnimated(true)
     }
     
+    func checkOwner() {
+        let owner = currentAnimalObject!["owner"] as? PFUser
+        let currentUser = PFUser.currentUser()
+        
+        currentUserIsOwner = (currentUser?.objectId == owner?.objectId)
+        currentUserIsAdmin = (currentUser?.valueForKey("admin") as! Bool)
+    }
+    
     func loadAnimal() {
         if let object = currentAnimalObject {
             //            NSLog("Viewing detail for object: %@\n", object)
             
-            let owner = object["owner"] as? PFUser
-            let currentUser = PFUser.currentUser()
-
-            if(currentUser?.objectId == owner?.objectId) {
-                self.createAddMenu()
-            } else if(currentUser?.valueForKey("admin") as! Bool) {
+            self.checkOwner()
+            
+            if(currentUserIsOwner || currentUserIsAdmin) {
                 self.createAddMenu()
             }
-            
+                        
             nameLabel.text = object["name"] as? String
             genderLabel.text = object["gender"] as? String
             let birthDate = object["birthDate"] as? NSDate

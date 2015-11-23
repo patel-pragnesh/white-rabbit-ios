@@ -26,6 +26,7 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var flagButton: UIButton!
     
     var indexPath: NSIndexPath?
     var parentTable: AnimalTimelineTableViewController?
@@ -53,6 +54,7 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
         self.heartButton.hidden = false
         self.commentButton.hidden = false
         self.shareButton.hidden = false
+        self.flagButton.hidden = false
         self.moreButton.hidden = false
     }
     
@@ -60,6 +62,7 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
         self.heartButton.hidden = true
         self.commentButton.hidden = true
         self.shareButton.hidden = true
+        self.flagButton.hidden = true
         self.moreButton.hidden = true
     }
 
@@ -76,8 +79,16 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
         parentTable!.showShareActionSheet(sender, indexPath: self.indexPath!)
     }
     
+    @IBAction func flagButtonPressed(sender: AnyObject) {
+        if self.flagButton.enabled {
+            parentTable!.showFlagActionSheet(sender, indexPath: self.indexPath!)
+        }
+    }
+    
     @IBAction func moreButtonPressed(sender: AnyObject) {
-        parentTable!.showMoreActionSheet(sender, indexPath: self.indexPath!)
+        if self.moreButton.enabled {
+            parentTable!.showMoreActionSheet(sender, indexPath: self.indexPath!)
+        }
     }
 }
 
@@ -173,6 +184,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     }
     
     func showMoreActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
+        
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
         
         let deleteAction = UIAlertAction(title: "Delete", style: .Default, handler: {
@@ -206,6 +218,33 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
+    
+    func showFlagActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
+        
+        let optionMenu = UIAlertController(title: nil, message: "Flag as", preferredStyle: .ActionSheet)
+        
+        let inappropriateAction = UIAlertAction(title: "Inappropriate", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Marked as inappropriate")
+        })
+        
+        let spamAction = UIAlertAction(title: "Spam", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Marked as spam")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        optionMenu.addAction(inappropriateAction)
+        optionMenu.addAction(spamAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+
     
     func showShareActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
         let image = self.imageAtCell(indexPath)!
@@ -253,60 +292,15 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         self.isEditingCover = true
 
         NSLog("launching editor")
-        self.showEditor(image)
+        self.showEditor(image, delegate: self, ratios: [["value1": 2, "value2": 1]])
     }
 
     func setProfilePhoto(image : UIImage) {
         self.isEditingProfile = true
 
         NSLog("launching editor")
-        self.showEditor(image)
-    }
-    
-    func showEditor(image : UIImage) {
-        let editor = CLImageEditor(image: image)
-        editor.delegate = self
         
-        let curveTool = editor.toolInfo.subToolInfoWithToolName("CLToneCurveTool", recursive: false)
-        curveTool.available = false
-        let blurTool = editor.toolInfo.subToolInfoWithToolName("CLBlurTool", recursive: false)
-        blurTool.available = false
-        let drawTool = editor.toolInfo.subToolInfoWithToolName("CLDrawTool", recursive: false)
-        drawTool.available = false
-        let adjustmentTool = editor.toolInfo.subToolInfoWithToolName("CLAdjustmentTool", recursive: false)
-        adjustmentTool.available = false
-
-        let effectTool = editor.toolInfo.subToolInfoWithToolName("CLEffectTool", recursive: false)
-        effectTool.available = true
-        let pixelateFilter = effectTool.subToolInfoWithToolName("CLPixellateEffect", recursive: false)
-        pixelateFilter.available = false
-        let posterizeFilter = effectTool.subToolInfoWithToolName("CLPosterizeEffect", recursive: false)
-        posterizeFilter.available = false
-
-        
-        let filterTool = editor.toolInfo.subToolInfoWithToolName("CLFilterTool", recursive: false)
-        filterTool.available = true
-        let invertFilter = filterTool.subToolInfoWithToolName("CLDefaultInvertFilter", recursive: false)
-        invertFilter.available = false
-        
-        let rotateTool = editor.toolInfo.subToolInfoWithToolName("CLRotateTool", recursive: false)
-        rotateTool.available = true
-        rotateTool.dockedNumber = -1
-        
-        let cropTool = editor.toolInfo.subToolInfoWithToolName("CLClippingTool", recursive: false)
-        cropTool.available = true
-        cropTool.dockedNumber = -2
-        cropTool.optionalInfo["swapButtonHidden"] = true
-        
-        var ratios: [AnyObject] = [["value1": 1, "value2": 1]]
-        if self.isEditingCover {
-            ratios = [["value1": 2, "value2": 1]]
-        } else if self.isEditingProfile {
-            ratios = [["value1": 1, "value2": 1]]
-        }
-        cropTool.optionalInfo["ratios"] = ratios
-        
-        self.presentViewController(editor, animated: true, completion: nil)
+        self.showEditor(image, delegate: self, ratios: [["value1": 1, "value2": 1]])
     }
     
     func incrementIndexPath(indexPath: NSIndexPath) -> NSIndexPath? {
@@ -331,6 +325,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             query.orderByAscending("date")
         }
         query.includeKey("shelter")
+        query.includeKey("animal")
         if(self.animalObject != nil) {
             query.whereKey("animal", equalTo: animalObject!)
         }
@@ -349,11 +344,32 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         cell!.entryObject = object
         cell!.type = object?["type"] as? String
         
+        
+        let animal = object?["animal"] as? PFObject
+        let owner = animal?.valueForKey("owner") as? PFUser
+        let currentUser = PFUser.currentUser()
+        
+        let currentUserIsOwner = (currentUser?.objectId == owner?.objectId)
+
         cell!.hideAllButtons()
         if(cell!.type == "image") {
             cell!.showAllButtons()
-        }
 
+            if(currentUserIsOwner) {
+                cell!.moreButton.hidden = false
+                cell!.moreButton.enabled = true
+                cell!.flagButton.hidden = true
+                cell!.flagButton.enabled = false
+            } else {
+                cell!.moreButton.hidden = true
+                cell!.moreButton.enabled = false
+                cell!.flagButton.hidden = false
+                cell!.flagButton.enabled = true
+            }
+        }
+        
+        
+        
         
         cell!.timelineImageView.hidden = true
         if let imageFile = object?["image"] as? PFFile {
