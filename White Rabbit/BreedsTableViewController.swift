@@ -41,7 +41,8 @@ class BreedsTableViewController: PFQueryTableViewController, UISearchBarDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.stylePFLoadingView()
+
 //        self.searchBar.hidden = true
         
         self.setUpMenuBarController("Breeds")

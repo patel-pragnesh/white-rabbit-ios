@@ -21,6 +21,11 @@ class PostsTableViewController: PFQueryTableViewController {
         super.init(coder: aDecoder)!
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.stylePFLoadingView()
+    }
+    
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.orderByDescending("createdAt")

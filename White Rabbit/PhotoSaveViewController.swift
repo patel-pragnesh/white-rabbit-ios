@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Dodo
 
 class PhotoSaveViewController: UIViewController, UITextViewDelegate {
 
@@ -101,7 +102,9 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
 //                self.clearImagePreview()
                 self.closeView()
             } else {
-                NSLog("error uploading file: \(error)")
+                NSLog("error uploading file: \(error?.localizedDescription)")
+                self.view.dodo.error((error?.localizedDescription)!)
+                self.closeView()
             }
         }
     }

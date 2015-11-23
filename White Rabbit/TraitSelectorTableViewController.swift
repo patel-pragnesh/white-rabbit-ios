@@ -18,7 +18,8 @@ class TraitSelectorTableViewController: PFQueryTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.stylePFLoadingView()
+
         self.setUpNavigationBar()
         self.setUpNavigationBarImage(UIImage(named: "traits_header")!, height: 180)
         

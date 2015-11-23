@@ -104,6 +104,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.stylePFLoadingView()
         
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
         gestureRecognizer.minimumPressDuration = 1.0

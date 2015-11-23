@@ -12,8 +12,10 @@ import ALCameraViewController
 import AssetsLibrary
 import Photos
 import GKImagePicker
+import CLImageEditor
 
-class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCropControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCropControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate {
 
     var animalObject: PFObject?
     var pickedImageDate : NSDate?
@@ -102,8 +104,10 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
         library.assetForURL(url,
             resultBlock: {
                 (asset: ALAsset!) -> Void in
+                if asset != nil {
                     let date = asset.valueForProperty(ALAssetPropertyDate)
                     self.pickedImageDate = date as? NSDate
+                }
             }, failureBlock: { (error: NSError!) -> Void in
                 print(error)
             }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 import Bolts
 import FBSDKCoreKit
 import FBSDKLoginKit
@@ -421,4 +422,35 @@ extension UIImage
         UIGraphicsEndImageContext()
         return result
     }
+}
+
+
+extension PFQueryTableViewController {
+    func stylePFLoadingView() {
+        let labelTextColor = UIColor.blueColor()
+        let labelShadowColor = UIColor.blackColor()
+        let activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
+        
+        // go through all of the subviews until you find a PFLoadingView subclass
+        for view in self.view.subviews {
+            if NSStringFromClass(view.classForCoder) == "PFLoadingView" {
+                // find the loading label and loading activity indicator inside the PFLoadingView subviews
+                for loadingViewSubview in view.subviews {
+                    if loadingViewSubview is UILabel {
+                        let label:UILabel = loadingViewSubview as! UILabel
+                        let frame = label.frame
+                        label.frame = CGRect(x: frame.midX, y: frame.midY, width: 100, height: 20)
+                        //                        label.textColor = labelTextColor
+                        //                        label.shadowColor = labelShadowColor
+                    }
+                    if loadingViewSubview is UIActivityIndicatorView {
+                        let indicator:UIActivityIndicatorView = loadingViewSubview as! UIActivityIndicatorView
+                        indicator.activityIndicatorViewStyle = activityIndicatorViewStyle
+                    }
+                }
+                
+            }
+        }
+    }
+    
 }

@@ -30,6 +30,7 @@ class LocationsTableViewController: PFQueryTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.stylePFLoadingView()
         
 //        self.setUpMenuBarController()
         
