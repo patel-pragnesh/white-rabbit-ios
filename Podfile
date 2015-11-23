@@ -24,6 +24,7 @@ pod 'FillableLoaders'
 pod 'GKImagePicker'
 pod 'CLImageEditor'
 pod 'XLPagerTabStrip'
+pod 'Dollar'
 #pod 'CameraKit'
 #pod 'IPDFCameraViewController'
 

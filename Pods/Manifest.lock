@@ -35,6 +35,7 @@ PODS:
     - AFNetworking (>= 2.5.3)
     - ISO8601DateFormatter
   - Dodo (2.0.13)
+  - Dollar (4.0.1)
   - DynamicColor (2.2.0)
   - Eureka (1.2.0)
   - FBSDKCoreKit (4.8.0):
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - CLImageEditor
   - ContentfulDeliveryAPI
   - Dodo
+  - Dollar
   - DynamicColor
   - Eureka
   - FBSDKCoreKit
@@ -102,6 +104,7 @@ SPEC CHECKSUMS:
   CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   ContentfulDeliveryAPI: b1031d673519b68e8048771243741745475b4395
   Dodo: 0d783bc1f55e59d53fb698b3380ad8553079540e
+  Dollar: a058e2659e0d3261307c12630dbc2fd8e32f80bf
   DynamicColor: 9b79f9d462f967c77edb8be9985412a85f4fdacb
   Eureka: aa7059d2a30e1b206a581f0aabfcf903ece6beae
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8

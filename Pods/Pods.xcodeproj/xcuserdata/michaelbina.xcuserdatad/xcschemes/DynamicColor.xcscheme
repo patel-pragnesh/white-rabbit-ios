@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "80DE58661242D582D379C5C3"
+               BlueprintIdentifier = "20BE705CEE7B0856B57BDC1E"
                BuildableName = "DynamicColor.framework"
                BlueprintName = "DynamicColor"
                ReferencedContainer = "container:Pods.xcodeproj">
