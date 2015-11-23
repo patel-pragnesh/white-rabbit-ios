@@ -13,8 +13,6 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var captionTextField: UITextView!
     
-//    var animalDetailController : AnimalDetailViewController?
-    
     let captionPlaceholder = "Enter caption here..."
     
     var previousViewController : CameraViewController?
@@ -32,8 +30,6 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
         captionTextField.delegate = self
         captionTextField.text = self.captionPlaceholder
         captionTextField.textColor = UIColor.lightGrayColor()
-
-        // Do any additional setup after loading the view.
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -97,7 +93,6 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
             timelineEntry["date"] = NSDate()
         }
         
-        
         timelineEntry.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if(success) {
                 NSLog("finished saving post")
@@ -112,29 +107,10 @@ class PhotoSaveViewController: UIViewController, UITextViewDelegate {
     }
 
     func closeView() {
-//        self.dismissViewControllerAnimated(true) { () -> Void in
-//            self.previousViewController?.closeView()
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        }
         self.previousViewController?.closeView()
-        self.previousViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-            self.previousViewController!.animalDetailController!.reloadTimeline()
-        })
+        self.previousViewController?.dismissViewControllerAnimated(true, completion: nil)
         self.dismissViewControllerAnimated(true) { () -> Void in
             self.previousViewController!.animalDetailController!.reloadTimeline()
         }
-        self.previousViewController!.animalDetailController!.reloadTimeline()
     }
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

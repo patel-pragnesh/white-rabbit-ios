@@ -44,25 +44,42 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
     
     var instagramUsername : String?
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.addButton.hidden = true
+        self.instagramView.hidden = true
+        self.timelineView.hidden = false
+        
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25, width: 25)
+        
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        //        traitTags.textFont = UIFont.systemFontOfSize(15)
+        
+        self.loadAnimal()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+                
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
+        )
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController!.navigationBar.translucent = true
+        self.navigationController!.view.backgroundColor = UIColor.clearColor()
+    }
+
+
+    
     func reloadTimeline() {
         NSLog("relaoding timeline")
-//        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
-//        timelineTableController.animalObject = self.currentAnimalObject
-//        self.timelineTableController?.delete(self)
-//        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
-//        timelineTableController.animalObject = self.currentAnimalObject
-//        self.timelineTableController = timelineTableController
-        
-        self.timelineView.hidden = false
-        self.timelineView.reloadInputViews()
-        self.timelineView.inputView?.reloadInputViews()
         self.timelineTableController!.loadObjects()
-        self.timelineTableController!.reloadInputViews()
-        self.timelineTableController!.tableView.reloadData()
-        self.timelineTableController!.tableView.reloadInputViews()
-        NSLog("number of rows: \(self.timelineTableController!.tableView.numberOfRowsInSection(0))")
-        self.displayAlert("reloaded: \(self.timelineTableController?.objects!.count)")
-
     }
     
     func saveTraits(traitObjects: [PFObject?]) {
@@ -123,22 +140,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        self.reloadTimeline()
-        
-//        self.setUpNavigationBar()
-        
-//        self.timelineTableController!.loadObjects()
-        
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default
-        )
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController!.navigationBar.translucent = true
-        self.navigationController!.view.backgroundColor = UIColor.clearColor()
-    }
-    
     func showEditAminalView() {
         self.performSegueWithIdentifier("AnimalDetailToEditAnimal", sender: self)
     }
@@ -148,33 +149,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
 //        view.userId = instagramId
 //        view.loadMedia()
 //    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.addButton.hidden = true
-        self.instagramView.hidden = true
-        self.timelineView.hidden = false
-        
-        let timelineTableController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
-        timelineTableController.animalObject = self.currentAnimalObject
-        self.timelineTableController = timelineTableController
-        
-        
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25, width: 25)
-        
-        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
-
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
-        self.view.addGestureRecognizer(swipeRight)
-
-        
-//        traitTags.textFont = UIFont.systemFontOfSize(15)
-        
-//        self.createAddMenu()
-        self.loadAnimal()
-    }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
@@ -348,44 +322,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "AnimalToBreedDetail") {
-            let detailScene = segue.destinationViewController as! BreedDetailViewController
-            detailScene.currentBreedObject = self.breedObject
-        } else if(segue.identifier == "AnimalDetailToEditAnimal"){
-            let nav = segue.destinationViewController as! UINavigationController
-            let editScene =  nav.topViewController as! AnimalFormViewController
-            editScene.detailController = self
-            editScene.animalObject = self.currentAnimalObject        
-        } else if(segue.identifier == "AnimalToTraitSelector") {
-            let traitSelector = segue.destinationViewController as! TraitSelectorTableViewController
-            NSLog("trait objects before: \(self.traitObjects)")
-            traitSelector.selectedTraitObjects = self.traitObjects
-            traitSelector.animalViewController = self
-        } else if(segue.identifier == "AnimalDetailToTimeline" || segue.identifier == "AnimalDetailTimelineEmbed") {
-            let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
-            animalTimeline.animalObject = self.currentAnimalObject
-            animalTimeline.animalDetailController = self
-        } else if(segue.identifier == "AnimalDetailToAddTimelineEntry") {
-            let camera = segue.destinationViewController as! CameraViewController
-            camera.animalDetailController = self
-            camera.animalObject = self.currentAnimalObject
-        } else if (segue.identifier == "AnimalDetailInstagramEmbed") {
-            if(self.instagramUsername != nil) {
-                NSLog("showing insta view")
-                
-                self.instagramView.hidden = false
-                self.timelineView.hidden = true
-            } else {
-                NSLog("Insta wasn't set yet")
-                let insta = segue.destinationViewController as! InstagramTableViewController
-                self.instagramTableController = insta
-            }
-        }
-    }
-    
-    
-    
     @IBAction func openInstagramProfile(sender: AnyObject) {
         let instagramUsername = self.currentAnimalObject?.objectForKey("instagramUsername") as? String
         
@@ -425,5 +361,43 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         
         openAppLinkOrWebUrl(twitterAppLink, webUrl: twitterWebLink)
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "AnimalToBreedDetail") {
+            let detailScene = segue.destinationViewController as! BreedDetailViewController
+            detailScene.currentBreedObject = self.breedObject
+        } else if(segue.identifier == "AnimalDetailToEditAnimal"){
+            let nav = segue.destinationViewController as! UINavigationController
+            let editScene =  nav.topViewController as! AnimalFormViewController
+            editScene.detailController = self
+            editScene.animalObject = self.currentAnimalObject
+        } else if(segue.identifier == "AnimalToTraitSelector") {
+            let traitSelector = segue.destinationViewController as! TraitSelectorTableViewController
+            NSLog("trait objects before: \(self.traitObjects)")
+            traitSelector.selectedTraitObjects = self.traitObjects
+            traitSelector.animalViewController = self
+        } else if(segue.identifier == "AnimalDetailToTimeline" || segue.identifier == "AnimalDetailTimelineEmbed") {
+            let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
+            animalTimeline.animalObject = self.currentAnimalObject
+            animalTimeline.animalDetailController = self
+            self.timelineTableController = animalTimeline
+        } else if(segue.identifier == "AnimalDetailToAddTimelineEntry") {
+            let camera = segue.destinationViewController as! CameraViewController
+            camera.animalDetailController = self
+            camera.animalObject = self.currentAnimalObject
+        } else if (segue.identifier == "AnimalDetailInstagramEmbed") {
+            if(self.instagramUsername != nil) {
+                NSLog("showing insta view")
+                
+                self.instagramView.hidden = false
+                self.timelineView.hidden = true
+            } else {
+                NSLog("Insta wasn't set yet")
+                let insta = segue.destinationViewController as! InstagramTableViewController
+                self.instagramTableController = insta
+            }
+        }
+    }
+
     
 }
