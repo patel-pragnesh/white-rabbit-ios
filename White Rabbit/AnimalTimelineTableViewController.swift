@@ -223,14 +223,17 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     func showFlagActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
         
         let optionMenu = UIAlertController(title: nil, message: "Flag as", preferredStyle: .ActionSheet)
+        let entryObject = self.objectAtCell(indexPath)
         
         let inappropriateAction = UIAlertAction(title: "Inappropriate", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
+            self.flagItem(entryObject!, type: "inappropriate")
             print("Marked as inappropriate")
         })
         
         let spamAction = UIAlertAction(title: "Spam", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
+            self.flagItem(entryObject!, type: "spam")
             print("Marked as spam")
         })
         
@@ -245,6 +248,23 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
+    
+    func flagItem(entryObject: PFObject, type: String) {
+        let flag = PFObject(className: "Flag")
+        flag["entry"] = entryObject
+        flag["type"] = type
+        flag["reportedBy"] = PFUser.currentUser()
+        
+        flag.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if(success) {
+                NSLog("finished saving flag")
+                self.displayAlert("Thanks for letting us know!  We;ll take a look right away.")
+            } else {
+                NSLog("error saving flag")
+                self.view.dodo.error((error?.localizedDescription)!)
+            }
+        }
+    }
 
     
     func showShareActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
@@ -257,6 +277,12 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         let cell = tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell
         let image = cell!.timelineImageView.image
         return image
+    }
+    
+    func objectAtCell(indexPath: NSIndexPath?) -> PFObject? {
+        let cell = tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell
+        let object = cell?.entryObject
+        return object
     }
     
     func deleteEntry(indexPath: NSIndexPath?) {
