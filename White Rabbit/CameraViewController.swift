@@ -113,16 +113,30 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
             }
         )
 
-        let cropController = GKImageCropViewController()
-        cropController.sourceImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        cropController.resizeableCropArea = false
-        cropController.cropSize = CGSizeMake(320, 320)
-        cropController.delegate = self
-        picker.pushViewController(cropController, animated: true)
+        
+//        let cropController = GKImageCropViewController()
+//        cropController.sourceImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        cropController.resizeableCropArea = false
+//        cropController.cropSize = CGSizeMake(320, 320)
+//        cropController.delegate = self
+//        picker.pushViewController(cropController, animated: true)
+        
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
+
         
 //        imagePreview.image = info[UIImagePickerControllerOriginalImage] as? UIImage
 //        dismissViewControllerAnimated(true, completion: nil)
 //        saveButton.enabled = true
+    }
+    
+    func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
+        self.imagePreview.contentMode = .ScaleAspectFill
+        self.imagePreview.image = image
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        saveButton.enabled = true
     }
     
     @IBAction func saveImage(sender: UIButton) {
