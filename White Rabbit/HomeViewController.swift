@@ -12,7 +12,7 @@ import Parse
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageButton: UIButton!
     
     @IBOutlet weak var animalsButton: UIButton!
     @IBOutlet weak var locationsButton: UIButton!
@@ -115,7 +115,8 @@ class HomeViewController: UIViewController {
     func populateUserInfo() {
         self.nameLabel.text = (currentUser?.valueForKey("firstName") as? String)! + " " + (currentUser?.valueForKey("lastName") as? String)!
 
-        self.profileImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        self.profileImageButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
+        
 
         let imageFile = currentUser?.valueForKey("profilePhoto") as? PFFile
         if imageFile != nil {
@@ -123,12 +124,16 @@ class HomeViewController: UIViewController {
                 (imageData: NSData?, error: NSError?) -> Void in
                 if(error == nil) {
                     let image = UIImage(data:imageData!)
-                    self.profileImageView.image = image?.circle
+                    self.profileImageButton.setImage(image?.circle, forState: .Normal)
                 }
             })
         }
     }
 
+    @IBAction func profileImagePressed(sender: AnyObject) {
+        self.displayAlert("Profile Image Change")
+    }
+    
     @IBAction func logout() {
         PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in
             if error != nil {
