@@ -1575,7 +1575,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="E41B51D4-32FA-44D5-A970-EF155A0FDE1E"/>
+                                <state key="normal" image="6D6C623F-B199-419C-A6F7-75B4A3EA89B8"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -2997,7 +2997,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E41B51D4-32FA-44D5-A970-EF155A0FDE1E" width="46" height="33">
+        <image name="6D6C623F-B199-419C-A6F7-75B4A3EA89B8" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

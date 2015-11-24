@@ -11,15 +11,13 @@ import Parse
 import ALCameraViewController
 import AssetsLibrary
 import Photos
-import GKImagePicker
 import CLImageEditor
 
 
-class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCropControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate {
 
     var animalObject: PFObject?
     var pickedImageDate : NSDate?
-    var imagePicker : GKImagePicker = GKImagePicker()
     var animalDetailController : AnimalDetailViewController?
     
     @IBOutlet weak var imagePreview: UIImageView!
@@ -55,9 +53,9 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
             // Do something with your image here.
             // If cropping is enabled this image will be the cropped version
             if image != nil {
-                self.imagePreview.image = image
-                self.saveButton.enabled = true
-                self.dismissViewControllerAnimated(true, completion: {})
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
+                })
             } else {
                 self.dismissViewControllerAnimated(true, completion: {})
                 self.dismissViewControllerAnimated(true, completion: {})
@@ -71,24 +69,6 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
 //        picker.sourceType = .Camera
 //        picker.allowsEditing = true
 //        presentViewController(picker, animated: true, completion: nil)
-    }
-    
-    func imageCropController(imageCropController: GKImageCropViewController!, didFinishWithCroppedImage croppedImage: UIImage!) {
-        self.imagePreview.contentMode = .ScaleAspectFill
-        self.imagePreview.image = croppedImage
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        
-        saveButton.enabled = true
-    }
-    
-    func imagePicker(imagePicker: GKImagePicker!, pickedImage image: UIImage!) {
-        self.imagePreview.contentMode = .ScaleAspectFill
-        self.imagePreview.image = image
-        
-        dismissViewControllerAnimated(true, completion: nil)
-
-        saveButton.enabled = true
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -112,18 +92,13 @@ class CameraViewController: UIViewController, GKImagePickerDelegate, GKImageCrop
                 print(error)
             }
         )
+        
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])            
+        }
 
         
-//        let cropController = GKImageCropViewController()
-//        cropController.sourceImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-//        cropController.resizeableCropArea = false
-//        cropController.cropSize = CGSizeMake(320, 320)
-//        cropController.delegate = self
-//        picker.pushViewController(cropController, animated: true)
-        
-        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
-
         
 //        imagePreview.image = info[UIImagePickerControllerOriginalImage] as? UIImage
 //        dismissViewControllerAnimated(true, completion: nil)
