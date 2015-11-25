@@ -414,7 +414,7 @@
                         <outlet property="imagePreview" destination="j7I-UP-8L8" id="vqw-Rr-mpK"/>
                         <outlet property="saveButton" destination="nHF-G8-iwa" id="yKw-km-IjQ"/>
                         <outlet property="uploadIndicator" destination="f4q-xT-Wka" id="Jnu-qa-KdL"/>
-                        <segue destination="MVn-IL-oap" kind="show" identifier="CameraToSavePhoto" id="ZuG-Yl-nRR"/>
+                        <segue destination="Pdy-IQ-o7t" kind="show" identifier="CameraToSavePhoto" id="ZuG-Yl-nRR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkV-CO-Qfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -424,7 +424,7 @@
         <!--Photo Save View Controller-->
         <scene sceneID="OCe-gU-iW7">
             <objects>
-                <viewController id="MVn-IL-oap" customClass="PhotoSaveViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoSave" id="MVn-IL-oap" customClass="PhotoSaveViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xgt-yK-78S"/>
                         <viewControllerLayoutGuide type="bottom" id="BRx-Z3-Vvc"/>
@@ -433,59 +433,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y4N-Ie-y4q">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="68" width="147" height="147"/>
-                                </variation>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JB-wk-3Z5">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" image="save_button"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="169" y="523" width="63" height="63"/>
+                                    <rect key="frame" x="169" y="597" width="63" height="63"/>
                                 </variation>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="MVn-IL-oap" eventType="touchUpInside" id="HM5-BN-7u3"/>
                                     <action selector="saveImage:" destination="WKB-Ed-G36" eventType="touchUpInside" id="W9h-rm-zVw"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter caption here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t0R-EO-n2Y">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="155" y="68" width="245" height="147"/>
-                                </variation>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Y4N-Ie-y4q"/>
                                 <exclude reference="4JB-wk-3Z5"/>
-                                <exclude reference="t0R-EO-n2Y"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="Y4N-Ie-y4q"/>
                                 <include reference="4JB-wk-3Z5"/>
-                                <include reference="t0R-EO-n2Y"/>
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="captionTextField" destination="t0R-EO-n2Y" id="Mmu-X0-VDf"/>
-                        <outlet property="imageView" destination="Y4N-Ie-y4q" id="aUr-iv-M9Q"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="yvl-4T-jgM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1J6-zv-TLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5778" y="-1213.5"/>
+            <point key="canvasLocation" x="6429" y="-1224"/>
         </scene>
         <!--Timeline Entry Detail-->
         <scene sceneID="Nmh-MC-xHG">
@@ -676,7 +653,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMs-Vs-66k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6822" y="-1849.5"/>
+            <point key="canvasLocation" x="7740" y="-1849.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
@@ -1575,7 +1552,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="6D6C623F-B199-419C-A6F7-75B4A3EA89B8"/>
+                                <state key="normal" image="B2800058-D41D-408E-9792-3045C8C816CD"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -2995,9 +2972,27 @@
             </objects>
             <point key="canvasLocation" x="4166" y="-3016"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jzd-ga-qWB">
+            <objects>
+                <navigationController storyboardIdentifier="PhotoSaveNavigation" automaticallyAdjustsScrollViewInsets="NO" id="Pdy-IQ-o7t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SCP-Mx-Fjq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MVn-IL-oap" kind="relationship" relationship="rootViewController" id="kz9-SP-DHV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2JA-23-opn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5671.5" y="-1224"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="6D6C623F-B199-419C-A6F7-75B4A3EA89B8" width="46" height="33">
+        <image name="B2800058-D41D-408E-9792-3045C8C816CD" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

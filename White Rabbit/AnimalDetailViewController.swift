@@ -9,8 +9,11 @@
 import UIKit
 import TagListView
 import Darwin
+import ALCameraViewController
+import CLImageEditor
+import AssetsLibrary
 
-class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
+class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var breedButton: UIButton!
@@ -43,6 +46,8 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
     var instagramTableController : InstagramTableViewController?
     
     var instagramUsername : String?
+    
+    var pickedImageDate : NSDate?
     
     
     override func viewDidLoad() {
@@ -123,10 +128,12 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
             case 0:
                 NSLog("camera selected")
                 cameraViewController.takePhoto(self.addButton)
+//                self.takePhoto()
                 break
             case 1:
                 NSLog("photo selected")
                 cameraViewController.chooseImage(self.addButton)
+//                self.chooseImage()
                 break
             case 2:
                 NSLog("medical selected")
@@ -141,11 +148,58 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate {
         self.performSegueWithIdentifier("AnimalDetailToEditAnimal", sender: self)
     }
     
-//    func showInstagramView(instagramId: String) {
-//        let view = self.instagramView as! InstagramTableViewController
-//        view.userId = instagramId
-//        view.loadMedia()
-//    }
+    func takePhoto() {
+        let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in
+            if image != nil {
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
+                })
+            } else {
+                self.dismissViewControllerAnimated(true, completion: {})
+            }
+        }
+        presentViewController(cameraViewController, animated: true, completion: nil)
+    }
+    
+    func chooseImage() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .PhotoLibrary
+        picker.delegate = self
+        self.presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        
+        let library = ALAssetsLibrary()
+        library.assetForURL(url,
+            resultBlock: {
+                (asset: ALAsset!) -> Void in
+                if asset != nil {
+                    let date = asset.valueForProperty(ALAssetPropertyDate)
+                    self.pickedImageDate = date as? NSDate
+                }
+            }, failureBlock: { (error: NSError!) -> Void in
+                print(error)
+            }
+        )
+        
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
+        }
+    }
+    
+    func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
+        let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("PhotoSaveNavigation") as! UINavigationController
+        let detailScene =  nav.topViewController as! PhotoSaveViewController
+        detailScene.image = image
+        detailScene.animalObject = self.currentAnimalObject
+        detailScene.pickedImageDate = self.pickedImageDate
+        
+        self.presentViewController(detailScene, animated: true, completion: nil)
+//        detailScene.previousViewController = self
+    }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         

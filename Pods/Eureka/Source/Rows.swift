@@ -526,7 +526,7 @@ public class _ImageRow : SelectorRow<UIImage, ImagePickerController>, PresenterR
         super.customUpdateCell()
         cell.accessoryType = .None
         if let image = self.value {
-            let imageView = UIImageView(frame: CGRectMake(0, 0, 44, 44))
+            let imageView = UIImageView(frame: CGRectMake(0, 0, 200, 200))
             imageView.contentMode = .ScaleAspectFill
             imageView.image = image
             imageView.clipsToBounds = true

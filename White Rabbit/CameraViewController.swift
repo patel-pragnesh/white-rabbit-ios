@@ -106,12 +106,22 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
+//        let detailScene = PhotoSaveViewController()
+//        detailScene.image = image
+//        detailScene.animalObject = self.animalObject
+//        detailScene.pickedImageDate = self.pickedImageDate
+//        detailScene.previousViewController = self
+//        
+//        self.presentViewController(detailScene, animated: true, completion: nil)
+        
         self.imagePreview.contentMode = .ScaleAspectFill
         self.imagePreview.image = image
         
-        dismissViewControllerAnimated(true, completion: nil)
-        
         saveButton.enabled = true
+//        self.saveImage(self.saveButton)
+        dismissViewControllerAnimated(true) { () -> Void in
+            self.performSegueWithIdentifier("CameraToSavePhoto", sender: self)
+        }
     }
     
     @IBAction func saveImage(sender: UIButton) {
@@ -123,7 +133,9 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "CameraToSavePhoto") {
-            let detailScene = segue.destinationViewController as! PhotoSaveViewController
+            let nav = segue.destinationViewController as! UINavigationController
+            let detailScene =  nav.topViewController as! PhotoSaveViewController
+//            let detailScene = segue.destinationViewController as! PhotoSaveViewController
             detailScene.image = self.imagePreview.image
             detailScene.animalObject = self.animalObject
             detailScene.pickedImageDate = self.pickedImageDate

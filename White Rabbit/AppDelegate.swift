@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.client = CDAClient(spaceKey:"8mu31kgi73w0", accessToken:"3bd31581398aa28d0b9c05aa86573763aa4dfd4119eb020625cd0989fee99836")
         
         UILabel.appearance().substituteFontName = "Avenir"
-
+        
         loadMainController()
         loadTraits()
         loadBreeds()
