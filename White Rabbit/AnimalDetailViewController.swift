@@ -120,29 +120,45 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     }
     
     func sphereDidSelected(index: Int) {
-        let cameraViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CameraView") as! CameraViewController
-        cameraViewController.animalDetailController = self
-        cameraViewController.animalObject = self.currentAnimalObject
-        self.navigationController?.presentViewController(cameraViewController, animated: false, completion: { () -> Void in
-        })
+        
+        var cameraViewController : CameraViewController?
+        if(index != 2) {
+            cameraViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CameraView") as? CameraViewController
+            cameraViewController!.animalDetailController = self
+            cameraViewController!.animalObject = self.currentAnimalObject
+            self.navigationController?.presentViewController(cameraViewController!, animated: false, completion: { () -> Void in
+            })
+        }
+
         switch index {
             case 0:
                 NSLog("camera selected")
-                cameraViewController.takePhoto(self.addButton)
+                cameraViewController!.takePhoto(self.addButton)
 //                self.takePhoto()
                 break
             case 1:
                 NSLog("photo selected")
-                cameraViewController.chooseImage(self.addButton)
+                cameraViewController!.chooseImage(self.addButton)
 //                self.chooseImage()
                 break
             case 2:
                 NSLog("medical selected")
+                self.showMedicalaEntryView()
                 break
             default:
                 break
         }
         
+    }
+    
+    func showMedicalaEntryView() {
+        let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("PhotoSaveNavigation") as! UINavigationController
+        let detailScene =  nav.topViewController as! PhotoSaveViewController
+        detailScene.animalObject = self.currentAnimalObject
+        detailScene.type = "medical"
+        detailScene.animalDetailController = self
+        
+        self.presentViewController(nav, animated: true, completion: nil)
     }
     
     func showEditAminalView() {

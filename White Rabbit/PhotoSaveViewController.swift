@@ -18,21 +18,30 @@ class PhotoSaveViewController: FormViewController {
 //    let captionPlaceholder = "Enter caption here..."
     
     var previousViewController : CameraViewController?
+    var animalDetailController : AnimalDetailViewController?
     
     var image : UIImage?
     var animalObject : PFObject?
     var pickedImageDate : NSDate?
     
+    var type : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setUpNavigationBar()
+        
+        if(type == "medical") {
+            self.setUpNavigationBar("Medical Entry")
+            self.generateMedicalForm()
+        } else {
+            self.setUpNavigationBar("Photo Entry")
+            self.generateForm()
+        }
+
         
 //        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
         self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "closeView", height: 25, width: 25)
         
-        self.generateForm()
         
 //        captionTextField.delegate = self
 //        captionTextField.text = self.captionPlaceholder
@@ -85,13 +94,28 @@ class PhotoSaveViewController: FormViewController {
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_date")
             }
-            <<< TextAreaRow("text") {
-                $0.title = "Caption"
-                //                $0.value = self.pickedImageDate
-                $0.placeholder = "Enter caption here..."
+            <<< PushRow<String>("text") {
+                //            <<< PushSelectorCell<BreedsTableViewCell>("BreedCell") {
+                $0.title = "Type"
+                $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
+                
                 }.cellSetup { cell, row in
-                    //                    cell.imageView?.image = UIImage(named: "form_username")
-        }
+                    cell.imageView?.image = UIImage(named: "form_breed")
+            }
+            <<< PushRow<String>("location") {
+                $0.title = "Location"
+                $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
+                
+                }.cellSetup { cell, row in
+                    cell.imageView?.image = UIImage(named: "form_location")
+            }
+            <<< TextAreaRow("details") {
+                $0.title = "Details"
+                //                $0.value = self.pickedImageDate
+                $0.placeholder = "Enter details here..."
+                }.cellSetup { cell, row in
+            }
+
     }
     
     
@@ -156,7 +180,11 @@ class PhotoSaveViewController: FormViewController {
         }
         
         timelineEntry["createdBy"] = PFUser.currentUser()
-        timelineEntry["type"] = "image"
+        if self.type != "" {
+            timelineEntry["type"] = self.type
+        } else {
+            timelineEntry["type"] = "image"
+        }
         
         timelineEntry.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if(success) {
@@ -174,10 +202,18 @@ class PhotoSaveViewController: FormViewController {
     }
 
     func closeView() {
-        self.previousViewController?.closeView()
-        self.previousViewController?.dismissViewControllerAnimated(true, completion: nil)
-        self.dismissViewControllerAnimated(true) { () -> Void in
-            self.previousViewController!.animalDetailController!.reloadTimeline()
+        if (self.previousViewController != nil) {
+            self.previousViewController?.closeView()
+            self.previousViewController?.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(true) { () -> Void in
+                self.previousViewController!.animalDetailController!.reloadTimeline()
+            }
+        } else if (self.animalDetailController != nil) {
+            self.dismissViewControllerAnimated(true) { () -> Void in
+                self.animalDetailController!.reloadTimeline()
+            }
+        } else {
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
 }
