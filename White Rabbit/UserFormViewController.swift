@@ -158,6 +158,8 @@ class UserFormViewController : FormViewController {
                     NSLog("signed up")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
+                    self.displayAlert(error!.localizedDescription)
+//                    self.view.dodo.error(error!.localizedDescription)
                     NSLog("%@", error!)
                 }
             })
