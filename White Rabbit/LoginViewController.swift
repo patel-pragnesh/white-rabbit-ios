@@ -19,6 +19,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.dodo.topLayoutGuide = topLayoutGuide
+        view.dodo.style.bar.hideOnTap = true
+        view.dodo.style.bar.hideAfterDelaySeconds = 3
+        
         self.usernameField.delegate = self
         self.passwordField.delegate = self
     }
@@ -39,6 +43,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginWithUsername(sender: AnyObject) {
         PFUser.logInWithUsernameInBackground((usernameField.text?.lowercaseString)!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
+            if error != nil {
+                self.view.dodo.error((error?.localizedDescription)!)
+            }
             if user != nil {
                 NSLog("finished logging in by username")
                 self.goToHome()
@@ -103,32 +110,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         })
         
-    }
-    
-    @IBAction func registerByEmail(sender: UIButton) {
-        let user = PFUser()
-
-//        user.username = email.text
-//        user.email = email.text?.lowercaseString
-//        user.password = password.text
-        
-        user.signUpInBackgroundWithBlock {
-            (succeeded: Bool, error: NSError?) -> Void in
-            if succeeded {
-                // Success signing up
-                
-                self.goToHome()
-                
-            } else {
-                // Error signing up
-                let errorString = error?.userInfo["error"] as! String
-                
-                let errorAlert = UIAlertController(title: "Error", message: errorString.capitalizedString, preferredStyle: UIAlertControllerStyle.Alert)
-                errorAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(errorAlert, animated: true, completion: nil)
-            }
-        }
     }
     
     func goToHome() {
