@@ -29,7 +29,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     @IBOutlet weak var addButton: UIButton!
     
     @IBOutlet weak var timelineView: UIView!
-    @IBOutlet weak var instagramView: UIView!
     @IBOutlet weak var shelterButton: UIButton!
     
     var currentAnimalObject : PFObject?
@@ -120,26 +119,14 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     }
     
     func sphereDidSelected(index: Int) {
-        
-        var cameraViewController : CameraViewController?
-        if(index != 2) {
-            cameraViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CameraView") as? CameraViewController
-            cameraViewController!.animalDetailController = self
-            cameraViewController!.animalObject = self.currentAnimalObject
-            self.navigationController?.presentViewController(cameraViewController!, animated: false, completion: { () -> Void in
-            })
-        }
-
         switch index {
             case 0:
                 NSLog("camera selected")
-                cameraViewController!.takePhoto(self.addButton)
-//                self.takePhoto()
+                self.takePhoto()
                 break
             case 1:
                 NSLog("photo selected")
-                cameraViewController!.chooseImage(self.addButton)
-//                self.chooseImage()
+                self.chooseImage()
                 break
             case 2:
                 NSLog("medical selected")
@@ -155,14 +142,10 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("PhotoSaveNavigation") as! UINavigationController
         let detailScene =  nav.topViewController as! PhotoSaveViewController
         detailScene.animalObject = self.currentAnimalObject
-        detailScene.type = "medical"
         detailScene.animalDetailController = self
+        detailScene.type = "medical"
         
         self.presentViewController(nav, animated: true, completion: nil)
-    }
-    
-    func showEditAminalView() {
-        self.performSegueWithIdentifier("AnimalDetailToEditAnimal", sender: self)
     }
     
     func takePhoto() {
@@ -175,7 +158,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
                 self.dismissViewControllerAnimated(true, completion: {})
             }
         }
-        presentViewController(cameraViewController, animated: true, completion: nil)
+        presentViewController(cameraViewController, animated: false, completion: nil)
     }
     
     func chooseImage() {
@@ -210,12 +193,19 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
         let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("PhotoSaveNavigation") as! UINavigationController
         let detailScene =  nav.topViewController as! PhotoSaveViewController
-        detailScene.image = image
         detailScene.animalObject = self.currentAnimalObject
+        detailScene.animalDetailController = self
+        detailScene.type = "image"
+        detailScene.image = image
         detailScene.pickedImageDate = self.pickedImageDate
         
-        self.presentViewController(detailScene, animated: true, completion: nil)
-//        detailScene.previousViewController = self
+        self.dismissViewControllerAnimated(false) { () -> Void in
+            self.presentViewController(nav, animated: true, completion: nil)
+        }
+    }
+    
+    func showEditAminalView() {
+        self.performSegueWithIdentifier("AnimalDetailToEditAnimal", sender: self)
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -462,15 +452,10 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             animalTimeline.animalObject = self.currentAnimalObject
             animalTimeline.animalDetailController = self
             self.timelineTableController = animalTimeline
-        } else if(segue.identifier == "AnimalDetailToAddTimelineEntry") {
-            let camera = segue.destinationViewController as! CameraViewController
-            camera.animalDetailController = self
-            camera.animalObject = self.currentAnimalObject
         } else if (segue.identifier == "AnimalDetailInstagramEmbed") {
             if(self.instagramUsername != nil) {
                 NSLog("showing insta view")
                 
-                self.instagramView.hidden = false
                 self.timelineView.hidden = true
             } else {
                 NSLog("Insta wasn't set yet")

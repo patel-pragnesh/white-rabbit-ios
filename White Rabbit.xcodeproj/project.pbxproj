@@ -48,7 +48,6 @@
 		EDE6D4771BA7B42800C7AC8C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4761BA7B42800C7AC8C /* libz.tbd */; };
 		EDE6D4791BA7B43500C7AC8C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */; };
 		EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */; };
-		EDF00D731BAD466500FE4B48 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D721BAD466500FE4B48 /* CameraViewController.swift */; };
 		EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */; };
 		EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */; };
 		EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */; };
@@ -142,7 +141,6 @@
 		EDE6D4761BA7B42800C7AC8C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		EDF00D721BAD466500FE4B48 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
 				ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */,
 				EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */,
-				EDF00D721BAD466500FE4B48 /* CameraViewController.swift */,
 			);
 			name = Animals;
 			sourceTree = "<group>";
@@ -388,6 +385,7 @@
 				EDE6D42E1BA7B2BC00C7AC8C /* Resources */,
 				B0DEA932E6AC70B4C47A64ED /* Embed Pods Frameworks */,
 				179C0C5D301C904085EF5821 /* Copy Pods Resources */,
+				EDCD40681C058A0B008A8E57 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -553,6 +551,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EDCD40681C058A0B008A8E57 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python \"$PROJECT_DIR/Tools/Slicer/slice.py\" \"$PROJECT_DIR/../../design/iPhone.sketch\" \"$PROJECT_DIR/White Rabbit/Assets.xcassets\"";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -572,7 +583,6 @@
 				EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */,
 				ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */,
 				EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */,
-				EDF00D731BAD466500FE4B48 /* CameraViewController.swift in Sources */,
 				EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */,
 				EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */,
 				ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */,

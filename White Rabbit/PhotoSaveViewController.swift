@@ -17,7 +17,6 @@ class PhotoSaveViewController: FormViewController {
     
 //    let captionPlaceholder = "Enter caption here..."
     
-    var previousViewController : CameraViewController?
     var animalDetailController : AnimalDetailViewController?
     
     var image : UIImage?
@@ -100,7 +99,7 @@ class PhotoSaveViewController: FormViewController {
                 $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
                 
                 }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_breed")
+                    cell.imageView?.image = UIImage(named: "form_medical_type")
             }
             <<< PushRow<String>("location") {
                 $0.title = "Location"
@@ -115,6 +114,13 @@ class PhotoSaveViewController: FormViewController {
                 $0.placeholder = "Enter details here..."
                 }.cellSetup { cell, row in
             }
+            <<< PushRow<String>("documents") {
+                $0.title = "Documents"
+                $0.options = ["Add Document"]
+                
+                }.cellSetup { cell, row in
+                    cell.imageView?.image = UIImage(named: "form_documents")
+        }
 
     }
     
@@ -202,13 +208,7 @@ class PhotoSaveViewController: FormViewController {
     }
 
     func closeView() {
-        if (self.previousViewController != nil) {
-            self.previousViewController?.closeView()
-            self.previousViewController?.dismissViewControllerAnimated(true, completion: nil)
-            self.dismissViewControllerAnimated(true) { () -> Void in
-                self.previousViewController!.animalDetailController!.reloadTimeline()
-            }
-        } else if (self.animalDetailController != nil) {
+        if (self.animalDetailController != nil) {
             self.dismissViewControllerAnimated(true) { () -> Void in
                 self.animalDetailController!.reloadTimeline()
             }
