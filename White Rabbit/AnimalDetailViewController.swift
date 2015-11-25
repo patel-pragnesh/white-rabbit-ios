@@ -39,6 +39,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     
     var currentUserIsOwner = false
     var currentUserIsAdmin = false
+    var currentUserIsShelterCaregiver = false
     
     var addMenu : SphereMenu?
     
@@ -227,8 +228,19 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         let owner = currentAnimalObject!["owner"] as? PFUser
         let currentUser = PFUser.currentUser()
         
+        
         currentUserIsOwner = (currentUser?.objectId == owner?.objectId)
         currentUserIsAdmin = (currentUser?.valueForKey("admin") as! Bool)
+        
+        if(self.currentAnimalObject != nil) {
+            let currentUserShelter = currentUser?.valueForKey("shelter") as? PFObject
+            let animalShelter = self.currentAnimalObject!.valueForKey("shelter") as? PFObject
+            
+            if(currentUserShelter != nil && animalShelter != nil) {
+                currentUserIsShelterCaregiver = (currentUserShelter!.objectId == animalShelter!.objectId)
+            }
+        }
+        
     }
     
     func loadAnimal() {
@@ -237,7 +249,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             
             self.checkOwner()
             
-            if(currentUserIsOwner || currentUserIsAdmin) {
+            if(currentUserIsOwner || currentUserIsShelterCaregiver || currentUserIsAdmin) {
                 self.createAddMenu()
                 
                 self.navigationItem.rightBarButtonItem = self.getNavBarItem("setting_white", action: "showEditAminalView", height: 25, width: 25)

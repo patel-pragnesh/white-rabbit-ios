@@ -17,6 +17,8 @@ class UserFormViewController : FormViewController {
     let EMAIL_TAG = "email"
     let PASSWORD_TAG = "password"
     let USERNAME_TAG = "username"
+    let SHELTER_TAG = "shelter"
+    let ADMIN_TAG = "admin"
     
     var userObject : PFUser?
     var menuController : HomeViewController?
@@ -27,7 +29,7 @@ class UserFormViewController : FormViewController {
     
     
     func generateForm() {
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         form +++= Section("Info")
             <<< NameRow(FIRST_NAME_TAG) {
@@ -71,11 +73,28 @@ class UserFormViewController : FormViewController {
                     cell.imageView?.image = UIImage(named: "form_password")
         }
 
-        
+            <<< PushRow<String>(SHELTER_TAG) {
+                $0.title = "Shelter"
+                $0.options = appDelegate.sheltersArray!
+                $0.hidden = .Function(["admin"], { form -> Bool in
+                    return self.isEditMode() && !(self.userObject?.valueForKey(self.ADMIN_TAG) as! Bool)
+                })
+                if self.isEditMode() {
+                    let shelterObject = self.userObject?.objectForKey(self.SHELTER_TAG) as? PFObject
+                    if(shelterObject != nil) {
+                        $0.value = shelterObject!.objectForKey("name") as? String
+                    }
+                }
+        }
         
         if(self.isEditMode()) {
             form +++= Section("")
-                <<< ButtonRow("remove") { $0.title = "Delete Account" }.onCellSelection { cell, row in print("Removing user")
+                <<< ButtonRow("remove") {
+                        $0.title = "Delete Account"
+                        $0.hidden = .Function(["admin"], { form -> Bool in
+                            return !(self.userObject?.valueForKey(self.ADMIN_TAG) as! Bool)
+                        })
+                    }.onCellSelection { cell, row in print("Removing user")
                     self.removeUser()
                 }
                 <<< ButtonRow("logout") { $0.title = "Log Out" }.onCellSelection { cell, row in print("Cell was selected")
@@ -89,6 +108,10 @@ class UserFormViewController : FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.dodo.topLayoutGuide = topLayoutGuide
+        view.dodo.style.bar.hideOnTap = true
+        view.dodo.style.bar.hideAfterDelaySeconds = 3
         
         self.generateForm()
         
@@ -108,7 +131,7 @@ class UserFormViewController : FormViewController {
 
     
     func saveUser() {
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         NSLog("saving user")
         var user = PFUser()
@@ -137,12 +160,18 @@ class UserFormViewController : FormViewController {
             user.setObject(passwordValue!, forKey: PASSWORD_TAG)
         }
         
+        if let shelterValue = self.form.rowByTag(self.SHELTER_TAG)?.baseValue as? String {
+            let shelter = appDelegate.shelterByName![shelterValue]
+            user.setObject(shelter!, forKey: SHELTER_TAG)
+        }
+        
         if(wasEditMode) {
             user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 if success {
                     NSLog("Finished saving user")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
+                    self.view.dodo.error(error!.localizedDescription)
                     NSLog("%@", error!)
                 }
             })
