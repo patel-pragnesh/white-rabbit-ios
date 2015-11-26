@@ -196,7 +196,6 @@ public class ALCameraViewController: UIViewController {
         libraryButton.sizeToFit()
         
         view.addSubview(cameraButton)
-        view.addSubview(libraryButton)
         view.addSubview(closeButton)
         view.addSubview(swapButton)
         

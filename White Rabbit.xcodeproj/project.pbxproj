@@ -28,7 +28,6 @@
 		EDC1FCC31BD325E8005FDAED /* DocumentCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */; };
 		EDCD406A1C05FB82008A8E57 /* GiFHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD40691C05FB82008A8E57 /* GiFHUD.swift */; };
 		EDCD406E1C0601F9008A8E57 /* gif in Resources */ = {isa = PBXBuildFile; fileRef = EDCD406D1C0601F9008A8E57 /* gif */; };
-		EDCD40701C06DDC1008A8E57 /* edit_stickers in Resources */ = {isa = PBXBuildFile; fileRef = EDCD406F1C06DDC1008A8E57 /* edit_stickers */; };
 		EDCD40721C06F5D0008A8E57 /* CLImageEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EDCD40711C06F5D0008A8E57 /* CLImageEditor.bundle */; };
 		EDCF6EC41BD4A31300C46D90 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */; };
 		EDCF6EC51BD4A31300C46D90 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */; };
@@ -115,7 +114,6 @@
 		EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCaptureViewController.swift; sourceTree = "<group>"; };
 		EDCD40691C05FB82008A8E57 /* GiFHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiFHUD.swift; sourceTree = "<group>"; };
 		EDCD406D1C0601F9008A8E57 /* gif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gif; sourceTree = "<group>"; };
-		EDCD406F1C06DDC1008A8E57 /* edit_stickers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = edit_stickers; path = gif/edit_stickers; sourceTree = "<group>"; };
 		EDCD40711C06F5D0008A8E57 /* CLImageEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLImageEditor.bundle; sourceTree = "<group>"; };
 		EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "Pods/../build/Debug-iphoneos/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "Pods/../build/Debug-iphoneos/ParseUI.framework"; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 				EDFD64E91BD9E43E00344BDC /* Locations */,
 				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
 				EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */,
-				EDCD406F1C06DDC1008A8E57 /* edit_stickers */,
 				EDCD406D1C0601F9008A8E57 /* gif */,
 				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
 				EDCD40691C05FB82008A8E57 /* GiFHUD.swift */,
@@ -500,7 +497,6 @@
 				EDCD406E1C0601F9008A8E57 /* gif in Resources */,
 				EDE6D43B1BA7B2BC00C7AC8C /* Assets.xcassets in Resources */,
 				EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */,
-				EDCD40701C06DDC1008A8E57 /* edit_stickers in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

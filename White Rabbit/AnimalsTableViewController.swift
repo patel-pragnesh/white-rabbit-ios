@@ -46,7 +46,6 @@ class AnimalsTableViewController: PFQueryTableViewController {
             let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
             menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
                 print("Did select item at index: \(indexPath)")
-                self.showLoader()
                 self.setCurrentView(items[indexPath])
             }
             menuView.menuTitleColor = UIColor.whiteColor()
