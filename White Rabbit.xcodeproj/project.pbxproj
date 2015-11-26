@@ -26,6 +26,8 @@
 		ED8F90461BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */; };
 		EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */; };
 		EDC1FCC31BD325E8005FDAED /* DocumentCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */; };
+		EDCD406A1C05FB82008A8E57 /* GiFHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD40691C05FB82008A8E57 /* GiFHUD.swift */; };
+		EDCD406E1C0601F9008A8E57 /* gif in Resources */ = {isa = PBXBuildFile; fileRef = EDCD406D1C0601F9008A8E57 /* gif */; };
 		EDCF6EC41BD4A31300C46D90 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */; };
 		EDCF6EC51BD4A31300C46D90 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */; };
 		EDCF6ECB1BD4A33600C46D90 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC81BD4A33500C46D90 /* Parse.framework */; };
@@ -109,6 +111,8 @@
 		ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitSelectorTableViewController.swift; sourceTree = "<group>"; };
 		EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCaptureViewController.swift; sourceTree = "<group>"; };
+		EDCD40691C05FB82008A8E57 /* GiFHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiFHUD.swift; sourceTree = "<group>"; };
+		EDCD406D1C0601F9008A8E57 /* gif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gif; sourceTree = "<group>"; };
 		EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "Pods/../build/Debug-iphoneos/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "Pods/../build/Debug-iphoneos/ParseUI.framework"; sourceTree = "<group>"; };
 		EDCF6EC81BD4A33500C46D90 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
@@ -253,7 +257,9 @@
 				EDFD64E91BD9E43E00344BDC /* Locations */,
 				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
 				EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */,
+				EDCD406D1C0601F9008A8E57 /* gif */,
 				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
+				EDCD40691C05FB82008A8E57 /* GiFHUD.swift */,
 				EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
 				EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */,
@@ -484,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDE6D43E1BA7B2BC00C7AC8C /* LaunchScreen.storyboard in Resources */,
+				EDCD406E1C0601F9008A8E57 /* gif in Resources */,
 				EDE6D43B1BA7B2BC00C7AC8C /* Assets.xcassets in Resources */,
 				EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */,
 			);
@@ -585,6 +592,7 @@
 				EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */,
 				EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */,
 				EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */,
+				EDCD406A1C05FB82008A8E57 /* GiFHUD.swift in Sources */,
 				ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */,
 				EDF3DCEB1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift in Sources */,
 				EDC1FCC31BD325E8005FDAED /* DocumentCaptureViewController.swift in Sources */,

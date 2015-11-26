@@ -175,6 +175,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 extension UIViewController {
+    func showLoader() {
+        let filename = Int.random(1, upper: 6)
+        
+        GiFHUD.setGif("gif/" + String(filename) + ".gif")
+        GiFHUD.show()
+    }
+    
+    func hideLoader() {
+        GiFHUD.dismiss()
+    }
+    
     func getNavBarItem(imageId : String, action : Selector, height : CGFloat, width: CGFloat) -> UIBarButtonItem! {
         let editImage = UIImage(named: imageId)
         let editButton = UIButton(type: .Custom)
@@ -252,7 +263,7 @@ extension UIViewController {
         adjustmentTool.available = false
         
         let effectTool = editor.toolInfo.subToolInfoWithToolName("CLEffectTool", recursive: false)
-        effectTool.available = true
+        effectTool.available = false
         let pixelateFilter = effectTool.subToolInfoWithToolName("CLPixellateEffect", recursive: false)
         pixelateFilter.available = false
         let posterizeFilter = effectTool.subToolInfoWithToolName("CLPosterizeEffect", recursive: false)
@@ -304,30 +315,6 @@ extension UIViewController {
         } else {
             openUrl(webUrl)
         }
-    }
-    
-    func getLoaderPath() -> CGPath {
-        let starPath = UIBezierPath()
-        starPath.moveToPoint(CGPointMake(180, 25))
-        starPath.addLineToPoint(CGPointMake(195.16, 43.53))
-        starPath.addLineToPoint(CGPointMake(220.9, 49.88))
-        starPath.addLineToPoint(CGPointMake(204.54, 67.67))
-        starPath.addLineToPoint(CGPointMake(205.27, 90.12))
-        starPath.addLineToPoint(CGPointMake(180, 82.6))
-        starPath.addLineToPoint(CGPointMake(154.73, 90.12))
-        starPath.addLineToPoint(CGPointMake(155.46, 67.67))
-        starPath.addLineToPoint(CGPointMake(139.1, 49.88))
-        starPath.addLineToPoint(CGPointMake(164.84, 43.53))
-        starPath.closePath()
-        UIColor.grayColor().setFill()
-        starPath.fill()
-        let myPath = starPath.CGPath
-        return myPath
-    }
-    
-    func showLoader() -> FillableLoader {
-        let loader = PlainLoader.showProgressBasedLoaderWithPath(self.getLoaderPath())
-        return loader
     }
 }
 
@@ -427,9 +414,7 @@ extension UIImage
 
 extension PFQueryTableViewController {
     func stylePFLoadingView() {
-        let labelTextColor = UIColor.blueColor()
-        let labelShadowColor = UIColor.blackColor()
-        let activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
+        let activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         
         // go through all of the subviews until you find a PFLoadingView subclass
         for view in self.view.subviews {
@@ -451,6 +436,14 @@ extension PFQueryTableViewController {
                 
             }
         }
+    }
+    
+}
+
+public extension Int {
+    public static func random (lower: Int , upper: Int) -> Int {
+        let limit = UInt32(upper - lower + 1)
+        return lower + Int(arc4random_uniform(limit))
     }
     
 }

@@ -100,8 +100,10 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             relation?.addObject(traitObject!)
         }
         
+        self.showLoader()
         self.currentAnimalObject?.saveInBackgroundWithBlock({
             (success: Bool, error: NSError?) -> Void in
+            self.hideLoader()
             self.addTraitTags()
         })
     }

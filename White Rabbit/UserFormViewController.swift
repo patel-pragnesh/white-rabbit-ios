@@ -166,6 +166,7 @@ class UserFormViewController : FormViewController {
         }
         
         if(wasEditMode) {
+            self.showLoader()
             user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 if success {
                     NSLog("Finished saving user")
@@ -174,8 +175,10 @@ class UserFormViewController : FormViewController {
                     self.view.dodo.error(error!.localizedDescription)
                     NSLog("%@", error!)
                 }
+                self.hideLoader()
             })
         } else {
+            self.showLoader()
             user.signUpInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 if success {
                     PFUser.logInWithUsernameInBackground(emailValue!.lowercaseString, password: passwordValue!, block: { (user: PFUser?, error: NSError?) -> Void in
@@ -191,6 +194,7 @@ class UserFormViewController : FormViewController {
 //                    self.view.dodo.error(error!.localizedDescription)
                     NSLog("%@", error!)
                 }
+                self.hideLoader()
             })
         }
     }
@@ -199,7 +203,9 @@ class UserFormViewController : FormViewController {
         let refreshAlert = UIAlertController(title: "Remove?", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.Alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Do it", style: .Default, handler: { (action: UIAlertAction!) in
+            self.showLoader()
             self.userObject!.deleteInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                self.hideLoader()
                 self.displayAlert("Deleted. KTHXBAI.")
                 //                refreshAlert.dismissViewControllerAnimated(true, completion: nil)
                 self.menuController!.logout()

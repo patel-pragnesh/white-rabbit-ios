@@ -10,7 +10,6 @@ import UIKit
 import Parse
 import ParseUI
 import BTNavigationDropdownMenu
-import FillableLoaders
 
 class AnimalsTableViewCell: PFTableViewCell {
     
@@ -24,7 +23,6 @@ class AnimalsTableViewController: PFQueryTableViewController {
     var owner : PFUser?
     var adoptable : Bool = false
     var featured : Bool = false
-    var loader : FillableLoader = FillableLoader()
     var shelter : PFObject?
     
     var locationDetailController : LocationDetailViewController?
@@ -144,9 +142,14 @@ class AnimalsTableViewController: PFQueryTableViewController {
         } else {
             self.setUpNavigationBar()
         }
+        
+        self.showLoader()
             
         self.tableView.reloadData()
         self.tableView.reloadInputViews()
+
+        self.hideLoader()
+
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

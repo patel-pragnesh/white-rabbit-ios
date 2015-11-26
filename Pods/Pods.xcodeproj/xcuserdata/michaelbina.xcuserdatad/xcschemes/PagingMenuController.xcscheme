@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D5CC1E3A79FF2E3FA6F75FF4"
-               BuildableName = "FillableLoaders.framework"
-               BlueprintName = "FillableLoaders"
+               BlueprintIdentifier = "D05F7FBC84D741E9836F5B75"
+               BuildableName = "PagingMenuController.framework"
+               BlueprintName = "PagingMenuController"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

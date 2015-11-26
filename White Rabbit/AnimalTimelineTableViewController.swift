@@ -255,10 +255,12 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         flag["type"] = type
         flag["reportedBy"] = PFUser.currentUser()
         
+        self.showLoader()
         flag.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            self.hideLoader()
             if(success) {
                 NSLog("finished saving flag")
-                self.displayAlert("Thanks for letting us know!  We;ll take a look right away.")
+                self.displayAlert("Thanks for letting us know!  We'll take a look right away.")
             } else {
                 NSLog("error saving flag")
                 self.view.dodo.error((error?.localizedDescription)!)
@@ -287,9 +289,11 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     
     func deleteEntry(indexPath: NSIndexPath?) {
         let object = self.objectAtIndexPath(indexPath)
+        self.showLoader()
         object?.deleteInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
             if(success) {
                 NSLog("finished deleting")
+                self.hideLoader()
                 self.loadObjects()
             }
         })
@@ -305,10 +309,12 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             } else if self.isEditingCover {
                 object.setValue(imageFile, forKey: "coverPhoto")
             }
+            self.showLoader()
             object.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                 NSLog("finished saving profile photo")
                 self.dismissViewControllerAnimated(true, completion: nil)
                 self.animalDetailController?.loadAnimal()
+                self.hideLoader()
             })
         }
         self.isEditingProfile = false

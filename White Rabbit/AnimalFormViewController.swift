@@ -396,7 +396,9 @@ class AnimalFormViewController : FormViewController {
             animal.setObject(self.userObject!, forKey: "owner")
         }
         
+        self.showLoader()
         animal.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            self.hideLoader()
             if success {
                 NSLog("Finished saving")
                 

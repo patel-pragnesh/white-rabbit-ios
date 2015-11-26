@@ -192,7 +192,9 @@ class PhotoSaveViewController: FormViewController {
             timelineEntry["type"] = "image"
         }
         
+        self.showLoader()
         timelineEntry.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            self.hideLoader()
             if(success) {
                 NSLog("finished saving post")
 //                self.uploadIndicator.hidden = true

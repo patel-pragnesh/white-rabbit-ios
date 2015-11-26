@@ -3,4 +3,13 @@ framework module CLImageEditor {
 
   export *
   module * { export * }
+
+  private header "CLSplashTool.h"
+  private header "CLStickerTool.h"
+  private header "CLFontPickerView.h"
+  private header "CLPickerDrum.h"
+  private header "CLPickerView.h"
+  private header "CLTextLabel.h"
+  private header "CLTextSettingView.h"
+  private header "CLTextTool.h"
 }
