@@ -80,6 +80,7 @@ static NSString* const kCLRotateToolFlipVerticalIconName = @"flipVerticalIconAss
     
     _rotateSlider = [self sliderWithValue:0 minimumValue:-1 maximumValue:1];
     _rotateSlider.superview.center = CGPointMake(self.editor.view.width/2, self.editor.menuView.top-30);
+    _rotateSlider.hidden = YES;
     
     _menuScroll = [[UIScrollView alloc] initWithFrame:self.editor.menuView.frame];
     _menuScroll.backgroundColor = self.editor.menuView.backgroundColor;
@@ -222,6 +223,7 @@ static NSString* const kCLRotateToolFlipVerticalIconName = @"flipVerticalIconAss
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, slider.height)];
     container.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
     container.layer.cornerRadius = slider.height/2;
+    container.hidden = YES;
     
     slider.continuous = YES;
     [slider addTarget:self action:@selector(sliderDidChange:) forControlEvents:UIControlEventValueChanged];

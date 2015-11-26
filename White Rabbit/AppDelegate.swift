@@ -176,7 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIViewController {
     func showLoader() {
-        let filename = Int.random(1, upper: 6)
+        let filename = Int.random(1, upper: 7)
         
         GiFHUD.setGif("gif/" + String(filename) + ".gif")
         GiFHUD.show()
@@ -253,6 +253,15 @@ extension UIViewController {
         let editor = CLImageEditor(image: image)
         editor.delegate = delegate
         
+        let stickerTool = editor.toolInfo.subToolInfoWithToolName("CLStickerTool", recursive: false)
+//        stickerTool.optionalInfo["stickerPath"] = "/edit_stickers/"
+        
+        stickerTool.optionalInfo["flipHorizontalIconAssetsName"] = "button_stickers"
+        stickerTool.available = true
+        
+        let splashTool = editor.toolInfo.subToolInfoWithToolName("CLSplashTool", recursive: false)
+        splashTool.available = false
+        
         let curveTool = editor.toolInfo.subToolInfoWithToolName("CLToneCurveTool", recursive: false)
         curveTool.available = false
         let blurTool = editor.toolInfo.subToolInfoWithToolName("CLBlurTool", recursive: false)
@@ -271,6 +280,7 @@ extension UIViewController {
         
         
         let filterTool = editor.toolInfo.subToolInfoWithToolName("CLFilterTool", recursive: false)
+//        filterTool.optionalInfo["flipHorizontalIconAssetsName"] = "button_filter"
         filterTool.available = true
         let invertFilter = filterTool.subToolInfoWithToolName("CLDefaultInvertFilter", recursive: false)
         invertFilter.available = false
@@ -280,6 +290,7 @@ extension UIViewController {
         rotateTool.dockedNumber = -1
         
         let cropTool = editor.toolInfo.subToolInfoWithToolName("CLClippingTool", recursive: false)
+        cropTool.optionalInfo["flipHorizontalIconAssetsName"] = "button_crop"
         cropTool.available = true
         cropTool.dockedNumber = -2
         cropTool.optionalInfo["swapButtonHidden"] = true
@@ -289,6 +300,7 @@ extension UIViewController {
         }
         cropTool.optionalInfo["ratios"] = ratios
         
+        editor.modalTransitionStyle = .CoverVertical
         self.presentViewController(editor, animated: true, completion: nil)
     }
     
@@ -428,7 +440,12 @@ extension PFQueryTableViewController {
                         //                        label.textColor = labelTextColor
                         //                        label.shadowColor = labelShadowColor
                     }
+                    
+                    
                     if loadingViewSubview is UIActivityIndicatorView {
+//                        let view  = UIActivityIndicatorView()
+//                        view.addSubview(GiFHUD.instance.imageView!)
+                        
                         let indicator:UIActivityIndicatorView = loadingViewSubview as! UIActivityIndicatorView
                         indicator.activityIndicatorViewStyle = activityIndicatorViewStyle
                     }

@@ -135,7 +135,9 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func logout() {
+        self.showLoader()
         PFUser.logOutInBackgroundWithBlock() { (error: NSError?) -> Void in
+            self.hideLoader()
             if error != nil {
                 NSLog("logout fail: \(error)")
             } else {

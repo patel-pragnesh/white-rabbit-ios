@@ -153,14 +153,17 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     func takePhoto() {
         let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in
             if image != nil {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
+                self.modalTransitionStyle = .PartialCurl
+                self.dismissViewControllerAnimated(false, completion: { () -> Void in
                 })
+                self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
             } else {
                 self.dismissViewControllerAnimated(true, completion: {})
             }
         }
-        presentViewController(cameraViewController, animated: false, completion: nil)
+//        self.modalTransitionStyle = .FlipHorizontal
+        cameraViewController.modalTransitionStyle = .CoverVertical
+        presentViewController(cameraViewController, animated: true, completion: nil)
     }
     
     func chooseImage() {

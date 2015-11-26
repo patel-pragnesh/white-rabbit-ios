@@ -46,6 +46,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
             let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
             menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
                 print("Did select item at index: \(indexPath)")
+                self.showLoader()
                 self.setCurrentView(items[indexPath])
             }
             menuView.menuTitleColor = UIColor.whiteColor()
@@ -127,6 +128,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
         }
 //        self.loader = self.showLoader()
         self.loadObjects()
+        self.hideLoader()
     }
     
     func showAddAminalView() {
@@ -143,13 +145,8 @@ class AnimalsTableViewController: PFQueryTableViewController {
             self.setUpNavigationBar()
         }
         
-        self.showLoader()
-            
         self.tableView.reloadData()
         self.tableView.reloadInputViews()
-
-        self.hideLoader()
-
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

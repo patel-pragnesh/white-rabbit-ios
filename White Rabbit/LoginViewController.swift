@@ -42,6 +42,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginWithUsername(sender: AnyObject) {
+        self.showLoader()
         PFUser.logInWithUsernameInBackground((usernameField.text?.lowercaseString)!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
             if error != nil {
                 self.view.dodo.error((error?.localizedDescription)!)
@@ -50,11 +51,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 NSLog("finished logging in by username")
                 self.goToHome()
             }
+            self.hideLoader()
         }
     
     }
     
     @IBAction func loginWithFacebook(sender: UIButton) {
+        self.showLoader()
         PFFacebookUtils.logInInBackgroundWithReadPermissions(self.permissions, block: { (user: PFUser?, error: NSError?) -> Void in
             if user == nil {
                 NSLog("Uh oh. The user cancelled the Facebook login.")
@@ -67,6 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.goToHome()
                 self.saveUserDataFromFacebook()
             }
+            self.hideLoader()
         })
     }
     
