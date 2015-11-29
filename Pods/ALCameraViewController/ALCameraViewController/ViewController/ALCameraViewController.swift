@@ -56,8 +56,8 @@ public class ALCameraViewController: UIViewController {
     var onCompletion: ALCameraViewCompletion?
     var allowCropping = false
     
-    var verticalPadding: CGFloat = 30
-    var horizontalPadding: CGFloat = 30
+    var verticalPadding: CGFloat = 0
+    var horizontalPadding: CGFloat = 0
     
     public init(croppingEnabled: Bool, completion: ALCameraViewCompletion) {
         super.init(nibName: nil, bundle: nil)
@@ -196,6 +196,7 @@ public class ALCameraViewController: UIViewController {
         libraryButton.sizeToFit()
         
         view.addSubview(cameraButton)
+//        view.addSubview(libraryButton)
         view.addSubview(closeButton)
         view.addSubview(swapButton)
         

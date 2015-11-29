@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E716FFA26FD40A93D84B705 /* Pods_White_Rabbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30804D5EB7EC46A17D7896EE /* Pods_White_Rabbit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		83F0FD66D0E8946888451B37 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD857B0520D3DDE97FB034 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		83F0FD66D0E8946888451B37 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD857B0520D3DDE97FB034 /* Pods.framework */; };
 		ED008E221BBA260800CAA0D0 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED008E211BBA260800CAA0D0 /* TagListView.framework */; };
 		ED008E241BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */; };
 		ED1C8CB61BC7931D0046A34B /* InstagramKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1C8CB51BC7931D0046A34B /* InstagramKit.framework */; };
@@ -29,6 +29,9 @@
 		EDCD406A1C05FB82008A8E57 /* GiFHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD40691C05FB82008A8E57 /* GiFHUD.swift */; };
 		EDCD406E1C0601F9008A8E57 /* gif in Resources */ = {isa = PBXBuildFile; fileRef = EDCD406D1C0601F9008A8E57 /* gif */; };
 		EDCD40721C06F5D0008A8E57 /* CLImageEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EDCD40711C06F5D0008A8E57 /* CLImageEditor.bundle */; };
+		EDCD40761C081B1B008A8E57 /* IPDFCameraViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCD40751C081B1B008A8E57 /* IPDFCameraViewController.framework */; };
+		EDCD407B1C0A243F008A8E57 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCD407A1C0A243F008A8E57 /* ParseCrashReporting.framework */; };
+		EDCD407D1C0AADD6008A8E57 /* DocumentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCD407C1C0AADD5008A8E57 /* DocumentCell.xib */; };
 		EDCF6EC41BD4A31300C46D90 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */; };
 		EDCF6EC51BD4A31300C46D90 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */; };
 		EDCF6ECB1BD4A33600C46D90 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCF6EC81BD4A33500C46D90 /* Parse.framework */; };
@@ -115,6 +118,9 @@
 		EDCD40691C05FB82008A8E57 /* GiFHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiFHUD.swift; sourceTree = "<group>"; };
 		EDCD406D1C0601F9008A8E57 /* gif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gif; sourceTree = "<group>"; };
 		EDCD40711C06F5D0008A8E57 /* CLImageEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLImageEditor.bundle; sourceTree = "<group>"; };
+		EDCD40751C081B1B008A8E57 /* IPDFCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IPDFCameraViewController.framework; path = "Pods/../build/Debug-iphoneos/IPDFCameraViewController.framework"; sourceTree = "<group>"; };
+		EDCD407A1C0A243F008A8E57 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "Pods/../build/Debug-iphoneos/ParseCrashReporting.framework"; sourceTree = "<group>"; };
+		EDCD407C1C0AADD5008A8E57 /* DocumentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentCell.xib; sourceTree = "<group>"; };
 		EDCF6EC21BD4A31300C46D90 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "Pods/../build/Debug-iphoneos/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		EDCF6EC31BD4A31300C46D90 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "Pods/../build/Debug-iphoneos/ParseUI.framework"; sourceTree = "<group>"; };
 		EDCF6EC81BD4A33500C46D90 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
@@ -170,6 +176,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCD407B1C0A243F008A8E57 /* ParseCrashReporting.framework in Frameworks */,
+				EDCD40761C081B1B008A8E57 /* IPDFCameraViewController.framework in Frameworks */,
 				EDD845511BF5C14D008A5C2E /* CLImageEditor.framework in Frameworks */,
 				ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */,
 				EDFD64FC1BDAD48300344BDC /* FillableLoaders.framework in Frameworks */,
@@ -258,9 +266,9 @@
 				EDFD64E81BD9E43600344BDC /* Care */,
 				EDFD64E91BD9E43E00344BDC /* Locations */,
 				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
+				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
 				EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */,
 				EDCD406D1C0601F9008A8E57 /* gif */,
-				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
 				EDCD40691C05FB82008A8E57 /* GiFHUD.swift */,
 				EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
@@ -293,6 +301,8 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDCD407A1C0A243F008A8E57 /* ParseCrashReporting.framework */,
+				EDCD40751C081B1B008A8E57 /* IPDFCameraViewController.framework */,
 				EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */,
 				EDD845501BF5C14D008A5C2E /* CLImageEditor.framework */,
 				ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */,
@@ -346,6 +356,7 @@
 				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
 				EDF3DCEC1C0056AB00A10DF7 /* PhotoSaveViewController.swift */,
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
+				EDCD407C1C0AADD5008A8E57 /* DocumentCell.xib */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
 				ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */,
 				EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */,
@@ -494,6 +505,7 @@
 			files = (
 				EDE6D43E1BA7B2BC00C7AC8C /* LaunchScreen.storyboard in Resources */,
 				EDCD40721C06F5D0008A8E57 /* CLImageEditor.bundle in Resources */,
+				EDCD407D1C0AADD6008A8E57 /* DocumentCell.xib in Resources */,
 				EDCD406E1C0601F9008A8E57 /* gif in Resources */,
 				EDE6D43B1BA7B2BC00C7AC8C /* Assets.xcassets in Resources */,
 				EDE6D4391BA7B2BC00C7AC8C /* Main.storyboard in Resources */,

@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "470191246.029924"
+            timestampString = "470427248.063008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "setUpNavigationBarImage(_:height:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "470191246.029924"
+            timestampString = "470427248.063008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "setUpNavigationBarImage(_:height:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/PhotoSaveViewController.swift"
-            timestampString = "470158388.359029"
+            timestampString = "470479864.109851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "saveImageData()"
             landmarkType = "5">
          </BreakpointContent>

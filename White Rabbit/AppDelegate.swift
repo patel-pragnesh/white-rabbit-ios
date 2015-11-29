@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import ParseCrashReporting
 import Bolts
 import FBSDKCoreKit
 import FBSDKLoginKit
@@ -35,16 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+
         Parse.enableLocalDatastore()
-        
+        ParseCrashReporting.enable()
+
         // Initialize Parse.
         Parse.setApplicationId("IWr9xzTirLbjXH80mbTCtT9lWB73ggQe3PhA6nPg", clientKey: "Yxdst3hz76abMoAwG7FLh0NwDmPvYHFDUPao9WJJ")
+
 
         // Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
         
         self.client = CDAClient(spaceKey:"8mu31kgi73w0", accessToken:"3bd31581398aa28d0b9c05aa86573763aa4dfd4119eb020625cd0989fee99836")
         
@@ -462,5 +466,37 @@ public extension Int {
         let limit = UInt32(upper - lower + 1)
         return lower + Int(arc4random_uniform(limit))
     }
+}
+
+extension Array {
+    func forEach(doThis: (element: Element) -> Void) {
+        for e in self {
+            doThis(element: e)
+        }
+    }
     
+    func slice(args: Int...) -> Array {
+        var s = args[0]
+        var e = self.count - 1
+        if args.count > 1 { e = args[1] }
+        
+        if e < 0 {
+            e += self.count
+        }
+        
+        if s < 0 {
+            s += self.count
+        }
+        
+        let count = (s < e ? e-s : s-e)+1
+        let inc = s < e ? 1 : -1
+        var ret = Array()
+        
+        var idx = s
+        for var i=0;i<count;i++  {
+            ret.append(self[idx])
+            idx += inc
+        }
+        return ret
+    }
 }

@@ -8,6 +8,7 @@ pod 'FBSDKLoginKit'
 #, :podspec => 'https://gist.githubusercontent.com/nlutsenko/cf1775dcae07eca6be43/raw/58b919433be07b791dd1036249185b22ecc3de3f/FBSDKLoginKit.podspec'
 pod 'Parse'
 pod 'ParseUI'
+pod 'ParseCrashReporting'
 pod 'ParseFacebookUtilsV4'
 pod 'ContentfulDeliveryAPI'
 pod 'TagListView'
@@ -28,7 +29,7 @@ pod 'XLPagerTabStrip'
 pod 'Dollar'
 pod 'PagingMenuController'
 #pod 'CameraKit'
-#pod 'IPDFCameraViewController'
+pod 'IPDFCameraViewController'
 
 target 'White Rabbit' do
 end

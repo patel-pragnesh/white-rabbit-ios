@@ -10,13 +10,48 @@ import UIKit
 import Dodo
 import Eureka
 
-class PhotoSaveViewController: FormViewController {
+public class DocumentCell: Cell<Set<PFObject>>, CellType {
+    
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var documentsStackView: UIStackView!
+    
+    @IBAction func addButtonPressed(sender: AnyObject) {
+        
+    }
+    
+    public override func setup() {
+        height = { 120 }
+        row.title = nil
+        super.setup()
+        selectionStyle = .None
+//        for subview in contentView.subviews {
+//            if let button = subview as? UIButton {
+//                button.setImage(UIImage(named: "checkedDay"), forState: UIControlState.Selected)
+//                button.setImage(UIImage(named: "uncheckedDay"), forState: UIControlState.Normal)
+//                button.adjustsImageWhenHighlighted = false
+//            }
+//        }
+    }
+}
 
-//    @IBOutlet weak var imageView: UIImageView!
-//    @IBOutlet weak var captionTextField: UITextView!
+public final class DocumentsRow: Row<Set<PFObject>, DocumentCell>, RowType {
+    var documents: [PFObject!] = [PFObject!]()
+    var documentViews: [UIButton!] = [UIButton!]()
     
-//    let captionPlaceholder = "Enter caption here..."
+    public func addDocumentView(imageView: UIButton) {
+        let cell = self.cell as DocumentCell
+        cell.documentsStackView.addSubview(imageView)
+        self.documentViews.append(imageView)
+    }
     
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        displayValueFor = nil
+        cellProvider = CellProvider<DocumentCell>(nibName: "DocumentCell")
+    }
+}
+
+class PhotoSaveViewController: FormViewController {
     var animalDetailController : AnimalDetailViewController?
     
     var image : UIImage?
@@ -28,7 +63,6 @@ class PhotoSaveViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         if(type == "medical") {
             self.setUpNavigationBar("Medical Entry")
             self.generateMedicalForm()
@@ -36,15 +70,8 @@ class PhotoSaveViewController: FormViewController {
             self.setUpNavigationBar("Photo Entry")
             self.generateForm()
         }
-
         
-//        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
         self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "closeView", height: 25, width: 25)
-        
-        
-//        captionTextField.delegate = self
-//        captionTextField.text = self.captionPlaceholder
-//        captionTextField.textColor = UIColor.lightGrayColor()
     }
     
     
@@ -55,7 +82,7 @@ class PhotoSaveViewController: FormViewController {
                 $0.value = self.pickedImageDate != nil ? self.pickedImageDate : NSDate()
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_date")
-            }
+                }
             <<< ImageRow("photo") {
                 $0.title = "Photo"
                 $0.value = self.image
@@ -63,26 +90,24 @@ class PhotoSaveViewController: FormViewController {
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_cover_photo")
                     cell.height = { 200 }
-            }
+                }
             <<< TextAreaRow("text") {
                 $0.title = "Caption"
-//                $0.value = self.pickedImageDate
                 $0.placeholder = "Enter caption here..."
                 }.cellSetup { cell, row in
-//                    cell.imageView?.image = UIImage(named: "form_username")
-        }
+                }
             
         form +++= Section("Share")
             <<< SwitchRow("facebook") {
                 $0.title = "Share to Facebook"
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_facebook")
-        }
+                }
             <<< SwitchRow("twitter") {
                 $0.title = "Share to Twitter"
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_twitter")
-        }
+                }
     }
     
     func generateMedicalForm() {
@@ -92,36 +117,41 @@ class PhotoSaveViewController: FormViewController {
                 $0.value = self.pickedImageDate != nil ? self.pickedImageDate : NSDate()
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_date")
-            }
+                }
             <<< PushRow<String>("text") {
-                //            <<< PushSelectorCell<BreedsTableViewCell>("BreedCell") {
                 $0.title = "Type"
                 $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
-                
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_medical_type")
-            }
+                }
             <<< PushRow<String>("location") {
                 $0.title = "Location"
                 $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
-                
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_location")
-            }
+                }
             <<< TextAreaRow("details") {
                 $0.title = "Details"
-                //                $0.value = self.pickedImageDate
                 $0.placeholder = "Enter details here..."
                 }.cellSetup { cell, row in
-            }
-            <<< PushRow<String>("documents") {
-                $0.title = "Documents"
-                $0.options = ["Add Document"]
-                
+                }
+            <<< DocumentsRow("documents") {
+                    $0.title = "Documents"
+                }.onCellSelection { cell, row in
+//                    let cell = cell as! DocumentCell
+//                    self.showAddDocumentView()
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_documents")
-        }
+                    cell.addButton.addTarget(self, action: "showAddDocumentView", forControlEvents: UIControlEvents.TouchUpInside)
+                }
 
+    }
+    
+    func showAddDocumentView() {
+        let docView: DocumentCaptureViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DocumentCapture") as! DocumentCaptureViewController
+        docView.formViewController = self
+        self.presentViewController(docView, animated: true, completion: { () -> Void in
+        })
     }
     
     
@@ -192,14 +222,22 @@ class PhotoSaveViewController: FormViewController {
             timelineEntry["type"] = "image"
         }
         
+        
         self.showLoader()
         timelineEntry.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             self.hideLoader()
             if(success) {
                 NSLog("finished saving post")
-//                self.uploadIndicator.hidden = true
-//                self.uploadIndicator.stopAnimating()
-//                self.clearImagePreview()
+                
+                NSLog("saved post: " + timelineEntry.objectId!)
+                
+                let documentsRow = self.form.rowByTag("documents") as? DocumentsRow
+                documentsRow?.documents.forEach({ (element) -> Void in
+                    let document = element
+                    document["entry"] = timelineEntry
+                    document.saveInBackground()
+                })
+                
                 self.closeView()
             } else {
                 NSLog("error uploading file: \(error?.localizedDescription)")

@@ -9,3 +9,4 @@
 #import <InstagramKit/InstagramKit.h>
 #import <MMMarkdown/MMMarkdown.h>
 #import <CLImageEditor/CLImageEditor.h>
+#import <IPDFCameraViewController/IPDFCameraViewController.h>
