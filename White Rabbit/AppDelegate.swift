@@ -177,6 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+private var currentPreview: UIImageView?
 
 extension UIViewController {
     func showLoader() {
@@ -318,6 +319,69 @@ extension UIViewController {
         displayAlert("Alert", message: message, buttonText: "OK")
     }
     
+    private struct GlobalViews {
+        private var currentPreview: UIImageView?
+    }
+    
+    func showFullScreen(sender: UIButton!) {
+        NSLog("fullscreening image")
+        let image = sender.imageView?.image
+        NSLog("fullscreening image \(image)")
+        self.showImageFullScreen(image!)
+    }
+    
+    func showImageFullScreen(image: UIImage) {
+        let captureImageView: UIImageView = UIImageView(image: image)
+        captureImageView.backgroundColor = UIColor(white: 0.0, alpha: 0.7)
+        captureImageView.frame = CGRectOffset(self.view.bounds, 0, -self.view.bounds.size.height)
+        captureImageView.alpha = 1.0
+        captureImageView.contentMode = .ScaleAspectFit
+        captureImageView.userInteractionEnabled = true
+        
+        self.view.addSubview(captureImageView)
+        
+        let dismissTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissPreview:")
+        captureImageView.addGestureRecognizer(dismissTap)
+        
+        currentPreview = captureImageView
+        
+        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.7, options: .AllowUserInteraction, animations: { () -> Void in
+            captureImageView.frame = self.view.bounds
+            }, completion: nil)
+    }
+    
+    func dismissPreview(sender: AnyObject) {
+        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {() -> Void in
+                if (currentPreview != nil) {
+                    currentPreview!.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height)
+                } else if (sender is UIImageView) {
+                } else if (sender is UITapGestureRecognizer || sender is UIButton){
+                    sender.view!.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height)
+                }
+            }, completion: {(finished: Bool) -> Void in
+                if (sender is UIImageView) {
+                    sender.removeFromSuperview()
+                } else if (currentPreview != nil) {
+                    currentPreview!.removeFromSuperview()
+                } else if (sender is UITapGestureRecognizer || sender is UIButton){
+                    sender.view!.removeFromSuperview()
+
+                    NSLog("Don't know what to dismiss.")
+                }
+        })
+    }
+ 
+    
+    //    func dismissPreview(dismissTap: UITapGestureRecognizer) {
+    //        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {() -> Void in
+    //            dismissTap.view!.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height)
+    //            }, completion: {(finished: Bool) -> Void in
+    //                self.currentImage = nil
+    //                dismissTap.view!.removeFromSuperview()
+    //        })
+    //    }
+
+    
     func openUrl(url:String!) {
         NSLog("opening url: \(url)")
         
@@ -332,8 +396,10 @@ extension UIViewController {
             openUrl(webUrl)
         }
     }
-}
 
+    
+    
+}
 
 public extension UITextField {
     @IBInspectable public var leftSpacer:CGFloat {

@@ -141,8 +141,8 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     }
     
     func showMedicalaEntryView() {
-        let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("PhotoSaveNavigation") as! UINavigationController
-        let detailScene =  nav.topViewController as! PhotoSaveViewController
+        let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("TimelineEntryFormNavigation") as! UINavigationController
+        let detailScene =  nav.topViewController as! TimelineEntryFormViewController
         detailScene.animalObject = self.currentAnimalObject
         detailScene.animalDetailController = self
         detailScene.type = "medical"
@@ -196,8 +196,8 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     }
     
     func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
-        let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("PhotoSaveNavigation") as! UINavigationController
-        let detailScene =  nav.topViewController as! PhotoSaveViewController
+        let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("TimelineEntryFormNavigation") as! UINavigationController
+        let detailScene =  nav.topViewController as! TimelineEntryFormViewController
         detailScene.animalObject = self.currentAnimalObject
         detailScene.animalDetailController = self
         detailScene.type = "image"

@@ -11,13 +11,55 @@ import IPDFCameraViewController
 import Dollar
 import Eureka
 
+public class DocumentCell: Cell<Set<PFObject>>, CellType {
+    
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var documentsStackView: UIScrollView!
+    
+    public override func setup() {
+        height = { 120 }
+        row.title = nil
+        super.setup()
+    }
+}
+
+public final class DocumentsRow: Row<Set<PFObject>, DocumentCell>, RowType {
+    var documents: [PFObject!] = [PFObject!]()
+    var documentViews: [UIButton!] = [UIButton!]()
+        
+    public func addDocumentView(imageView: UIButton) {
+        let cell = self.cell as DocumentCell
+        cell.documentsStackView.addSubview(imageView)
+        
+        //        imageView.addTarget(self, action: "selectedImage:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.documentViews.append(imageView)
+    }
+    
+    public func removeDocumentView(index: Int) {
+        self.documentViews[index].removeFromSuperview()
+        self.documentViews.removeAtIndex(index)
+        self.documents.removeAtIndex(index)
+    }
+    
+    func selectedImage(sender: NSObject) {
+        NSLog("Image tapped")
+    }
+    
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        //        displayValueFor = nil
+        cellProvider = CellProvider<DocumentCell>(nibName: "DocumentCell")
+    }
+}
+
 class DocumentCaptureViewController: UIViewController {
 
     @IBOutlet weak var flashButton: UIButton!
 
     @IBOutlet var cameraViewController: IPDFCameraViewController!
     
-    var formViewController: PhotoSaveViewController?
+    var formViewController: TimelineEntryFormViewController?
     
     var document: PFObject?
     
@@ -54,13 +96,22 @@ class DocumentCaptureViewController: UIViewController {
         let imageView: UIButton = UIButton(frame: CGRectMake(CGFloat(minX), CGFloat(minY), CGFloat(previewWidth), CGFloat(height)))
         imageView.setImage(image, forState: .Normal)
         imageView.tag = index
-        imageView.addTarget(self, action: "removeImage:", forControlEvents: .TouchUpInside)
+        imageView.userInteractionEnabled = true
+        imageView.addTarget(self, action: "showFullScreen:", forControlEvents: .TouchUpInside)
+
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "removeImage:")
+        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+        imageView.addGestureRecognizer(swipeUp)
+
         
-        let removeImageButton: UIButton = UIButton(frame: CGRectMake(CGFloat(previewWidth - 10), -10, 20, 20))
-        removeImageButton.setImage(UIImage(named: "image_close"), forState: .Normal)
-        removeImageButton.tag = index
-        removeImageButton.addTarget(self, action: "removeImage:", forControlEvents: .TouchUpInside)
-        imageView.addSubview(removeImageButton)
+//        let removeImageButton: UIButton = UIButton(frame: CGRectMake(CGFloat(previewWidth - 10), -10, 20, 20))
+//        removeImageButton.setImage(UIImage(named: "image_close"), forState: .Normal)
+//        removeImageButton.tag = index
+        
+//        removeImageButton.addGestureRecognizer(swipeUp)
+        
+//        removeImageButton.addTarget(self, action: "removeImage:", forControlEvents: .TouchUpInside)
+//        imageView.addSubview(removeImageButton)
 
         self.adjustBar.addSubview(imageView)
         previewImages.append(imageView)
@@ -84,16 +135,16 @@ class DocumentCaptureViewController: UIViewController {
         }
     }
     
-    func removeImage(sender:UIButton!) {
+    func removeImage(sender:UIGestureRecognizer!) {
         NSLog("removing image")
         
-        self.selectedImages.removeAtIndex(sender.tag)
-        self.previewImages[sender.tag].removeFromSuperview()
-        self.previewImages.removeAtIndex(sender.tag)
+        self.selectedImages.removeAtIndex(sender.view!.tag)
+        self.previewImages[sender.view!.tag].removeFromSuperview()
+        self.previewImages.removeAtIndex(sender.view!.tag)
         
         NSLog("preview images count: \(self.previewImages.count)")
         NSLog("selected images count: \(self.selectedImages.count)")
-        self.restackImagePreviews(sender.tag)
+        self.restackImagePreviews(sender.view!.tag)
     }
     
     @IBAction func closeView(sender: AnyObject) {
@@ -103,30 +154,8 @@ class DocumentCaptureViewController: UIViewController {
     @IBAction func captureDocument(sender: AnyObject) {
         self.cameraViewController.captureImageWithCompletionHander { (object: AnyObject!) -> Void in
             let image = object as! UIImage
-            
             self.currentImage = image
-            
-            let captureImageView: UIImageView = UIImageView(image: image)
-            captureImageView.backgroundColor = UIColor(white: 0.0, alpha: 0.7)
-            captureImageView.frame = CGRectOffset(self.view.bounds, 0, -self.view.bounds.size.height)
-            captureImageView.alpha = 1.0
-            captureImageView.contentMode = .ScaleAspectFit
-            captureImageView.userInteractionEnabled = true
-            
-            let addDocumentButton: UIButton = UIButton(frame: CGRectMake(captureImageView.frame.width / 2 - 75, captureImageView.frame.height - 200, 150, 150))
-            addDocumentButton.addTarget(self, action: "savePage", forControlEvents: .TouchUpInside)
-            addDocumentButton.setImage(UIImage(named: "document_add_button"), forState: .Normal)
-            
-            captureImageView.addSubview(addDocumentButton)
-            self.view.addSubview(captureImageView)
-            
-            let dismissTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissPreview:")
-            captureImageView.addGestureRecognizer(dismissTap)
-            self.currentPreview = captureImageView
-            UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.7, options: .AllowUserInteraction, animations: {() -> Void in
-                captureImageView.frame = self.view.bounds
-                }, completion: nil)
-            
+            self.showImageFullScreen(image, showAddButton: true)
         }
         
     }
@@ -149,7 +178,7 @@ class DocumentCaptureViewController: UIViewController {
                 let row = self.formViewController!.form.rowByTag("documents") as! DocumentsRow
                 row.documents.append(document)
                 
-                let index = 0
+                let index = (self.formViewController?.getDocuments().count)! - 1
                 let minX = ((index * self.previewWidth) + ((index + 1) * (self.previewPadding / 2)))
                 let minY = self.previewPadding / 2
                 let height = row.cell.documentsStackView.frame.height - CGFloat(self.previewPadding)
@@ -157,8 +186,15 @@ class DocumentCaptureViewController: UIViewController {
                 let imageView: UIButton = UIButton(frame: CGRectMake(CGFloat(minX), CGFloat(minY), CGFloat(self.previewWidth), CGFloat(height)))
                 imageView.setImage(self.selectedImages[0], forState: .Normal)
                 imageView.tag = index
-                imageView.addTarget(self, action: "removeDocument:", forControlEvents: .TouchUpInside)
+//                imageView.userInteractionEnabled = true
                 
+//                let swipeUp = UISwipeGestureRecognizer(target: self, action: "removeDocument:")
+//                swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+//                imageView.addGestureRecognizer(swipeUp)
+                
+//                imageView.addTarget(self, action: "removeDocument:", forControlEvents: .TouchUpInside)
+                imageView.addTarget(self.formViewController, action: "showFullScreen:", forControlEvents: .TouchUpInside)
+
                 row.addDocumentView(imageView)
                 
                 self.closeView(self)
@@ -167,6 +203,45 @@ class DocumentCaptureViewController: UIViewController {
         } else {
             self.closeView(self)
         }
+    }
+    
+    func removeDocument(sender:UIButton!) {
+        NSLog("removing document")
+        
+        let row = self.formViewController!.form.rowByTag("documents") as! DocumentsRow
+        row.removeDocumentView(sender.tag)
+    }
+        
+    func showImageFullScreen(image: UIImage, showAddButton: Bool) {
+        let captureImageView: UIImageView = UIImageView(image: image)
+        captureImageView.backgroundColor = UIColor(white: 0.0, alpha: 0.7)
+        captureImageView.frame = CGRectOffset(self.view.bounds, 0, -self.view.bounds.size.height)
+        captureImageView.alpha = 1.0
+        captureImageView.contentMode = .ScaleAspectFit
+        captureImageView.userInteractionEnabled = true
+        
+        if(showAddButton) {
+            let addDocumentButton: UIButton = UIButton(frame: CGRectMake(captureImageView.frame.width / 2 - 75, captureImageView.frame.height - 200, 150, 150))
+            addDocumentButton.addTarget(self, action: "savePage", forControlEvents: .TouchUpInside)
+            addDocumentButton.setImage(UIImage(named: "document_add_button"), forState: .Normal)
+            captureImageView.addSubview(addDocumentButton)
+        }
+
+//        let closeDocumentButton: UIButton = UIButton(frame: CGRectMake(30 , 30, 50, 50))
+//        closeDocumentButton.addTarget(self, action: "dismissPreview:", forControlEvents: .TouchUpInside)
+//        closeDocumentButton.setImage(UIImage(named: "close_white"), forState: .Normal)
+//        captureImageView.addSubview(closeDocumentButton)
+        
+        self.view.addSubview(captureImageView)
+        
+        let dismissTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissPreview:")
+        captureImageView.addGestureRecognizer(dismissTap)
+        
+        self.currentPreview = captureImageView
+        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.7, options: .AllowUserInteraction, animations: {() -> Void in
+            captureImageView.frame = self.view.bounds
+            }, completion: nil)
+        
     }
     
     func saveDocument(image: UIImage) {
@@ -195,22 +270,22 @@ class DocumentCaptureViewController: UIViewController {
 
     
     func savePage() {
-        self.dismissPreview()
+        self.dismissPreview(self.currentPreview!)
         
         self.selectedImages.append(self.currentImage)
         self.addImagePreview(self.currentImage!, index: (self.selectedImages.count - 1))
     }
     
-    func dismissPreview() {
-        self.currentPreview!.removeFromSuperview()
-    }
+//    func dismissPreview() {
+//        self.currentPreview!.removeFromSuperview()
+//    }
     
-    func dismissPreview(dismissTap: UITapGestureRecognizer) {
-        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {() -> Void in
-            dismissTap.view!.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height)
-            }, completion: {(finished: Bool) -> Void in
-                self.currentImage = nil
-                dismissTap.view!.removeFromSuperview()
-        })
-    }
+//    func dismissPreview(dismissTap: UITapGestureRecognizer) {
+//        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {() -> Void in
+//            dismissTap.view!.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height)
+//            }, completion: {(finished: Bool) -> Void in
+//                self.currentImage = nil
+//                dismissTap.view!.removeFromSuperview()
+//        })
+//    }
 }

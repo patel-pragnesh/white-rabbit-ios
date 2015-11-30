@@ -58,7 +58,7 @@
 		EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */; };
 		EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */; };
 		EDF3DCEB1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */; };
-		EDF3DCED1C0056AC00A10DF7 /* PhotoSaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCEC1C0056AB00A10DF7 /* PhotoSaveViewController.swift */; };
+		EDF3DCED1C0056AC00A10DF7 /* TimelineEntryFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCEC1C0056AB00A10DF7 /* TimelineEntryFormViewController.swift */; };
 		EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */; };
 		EDFBB5931BED40AA00EAE4A8 /* UserFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */; };
 		EDFD64E41BD9E02300344BDC /* ContentfulDeliveryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFD64E21BD9E02300344BDC /* ContentfulDeliveryAPI.framework */; };
@@ -158,7 +158,7 @@
 		EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
 		EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActionButton.framework; path = "Pods/../build/Debug-iphoneos/ActionButton.framework"; sourceTree = "<group>"; };
 		EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryDetailViewController.swift; sourceTree = "<group>"; };
-		EDF3DCEC1C0056AB00A10DF7 /* PhotoSaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSaveViewController.swift; sourceTree = "<group>"; };
+		EDF3DCEC1C0056AB00A10DF7 /* TimelineEntryFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryFormViewController.swift; sourceTree = "<group>"; };
 		EDF423981BD9A6F10087583A /* CareMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareMenuTableViewController.swift; sourceTree = "<group>"; };
 		EDF4239C1BD9DF7D0087583A /* ContentfulDeliveryAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContentfulDeliveryAPI.framework; path = "Pods/../build/Debug-iphoneos/ContentfulDeliveryAPI.framework"; sourceTree = "<group>"; };
 		EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFormViewController.swift; sourceTree = "<group>"; };
@@ -354,12 +354,12 @@
 				ED406EA81BAEEEA3001FE8B3 /* AnimalDetailViewController.swift */,
 				ED31F48A1BCE0D5C00D9E492 /* AnimalFormViewController.swift */,
 				ED008E231BBBCF9F00CAA0D0 /* AnimalTimelineTableViewController.swift */,
-				EDF3DCEC1C0056AB00A10DF7 /* PhotoSaveViewController.swift */,
+				EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */,
+				EDF3DCEC1C0056AB00A10DF7 /* TimelineEntryFormViewController.swift */,
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDCD407C1C0AADD5008A8E57 /* DocumentCell.xib */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
 				ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */,
-				EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */,
 			);
 			name = Animals;
 			sourceTree = "<group>";
@@ -602,7 +602,7 @@
 				EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */,
 				ED274C2D1BABFF0A00A31375 /* LocationsMapViewController.swift in Sources */,
 				EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */,
-				EDF3DCED1C0056AC00A10DF7 /* PhotoSaveViewController.swift in Sources */,
+				EDF3DCED1C0056AC00A10DF7 /* TimelineEntryFormViewController.swift in Sources */,
 				EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */,
 				ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */,
 				EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */,

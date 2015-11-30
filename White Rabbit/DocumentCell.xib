@@ -19,47 +19,47 @@
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LH-ds-gsi">
                         <rect key="frame" x="340" y="44" width="31" height="31"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="31" id="16g-Ee-UvK"/>
                             <constraint firstAttribute="width" secondItem="1LH-ds-gsi" secondAttribute="height" multiplier="1:1" id="4xz-oN-7Ij"/>
                             <constraint firstAttribute="height" constant="30" id="kcd-aw-7qs"/>
                         </constraints>
                         <state key="normal" image="plus_black"/>
-                        <connections>
-                            <action selector="addButtonPressed:" destination="piA-L5-eiN" eventType="touchUpInside" id="0YL-3A-VTz"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Documents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1N-My-7np">
-                        <rect key="frame" x="46" y="49.5" width="88" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RN8-Y2-22N">
-                        <rect key="frame" x="144" y="0.0" width="188" height="120"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="120" id="Id2-37-Wmo"/>
-                            <constraint firstAttribute="width" constant="188" id="o6B-4w-GkF"/>
-                        </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Id2-37-Wmo"/>
-                                <exclude reference="o6B-4w-GkF"/>
+                                <exclude reference="16g-Ee-UvK"/>
                             </mask>
                         </variation>
-                    </stackView>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Documents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxI-NY-aCp">
+                        <rect key="frame" x="48" y="49" width="88" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFq-Ve-r9h">
+                        <rect key="frame" x="144" y="-1" width="188" height="119.5"/>
+                    </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="1LH-ds-gsi" firstAttribute="leading" secondItem="RN8-Y2-22N" secondAttribute="trailing" constant="8" id="7lN-Jc-ia5"/>
-                    <constraint firstItem="RN8-Y2-22N" firstAttribute="height" secondItem="Yr6-3E-keb" secondAttribute="height" id="Ak9-7L-vYD"/>
-                    <constraint firstItem="RN8-Y2-22N" firstAttribute="leading" secondItem="i1N-My-7np" secondAttribute="trailing" constant="10" id="Ccd-CE-IGU"/>
+                    <constraint firstItem="JxI-NY-aCp" firstAttribute="centerY" secondItem="Yr6-3E-keb" secondAttribute="centerY" id="0Uh-6K-jyb"/>
+                    <constraint firstItem="JxI-NY-aCp" firstAttribute="leading" secondItem="Yr6-3E-keb" secondAttribute="leadingMargin" constant="40" id="50p-Xr-kPi"/>
+                    <constraint firstItem="EFq-Ve-r9h" firstAttribute="leading" secondItem="JxI-NY-aCp" secondAttribute="trailing" constant="8" id="6rr-6e-BOF"/>
+                    <constraint firstItem="1LH-ds-gsi" firstAttribute="leading" secondItem="EFq-Ve-r9h" secondAttribute="trailing" constant="8" id="KNi-8P-teL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1LH-ds-gsi" secondAttribute="trailing" constant="3" id="LMc-dt-0Ar"/>
+                    <constraint firstItem="EFq-Ve-r9h" firstAttribute="height" secondItem="Yr6-3E-keb" secondAttribute="height" id="ODD-rn-dTo"/>
                     <constraint firstItem="1LH-ds-gsi" firstAttribute="centerY" secondItem="Yr6-3E-keb" secondAttribute="centerY" id="VK6-eO-Cfa"/>
-                    <constraint firstItem="i1N-My-7np" firstAttribute="centerY" secondItem="Yr6-3E-keb" secondAttribute="centerY" id="Wym-hE-Apr"/>
+                    <constraint firstItem="EFq-Ve-r9h" firstAttribute="top" secondItem="Yr6-3E-keb" secondAttribute="topMargin" constant="-9" id="WpG-10-N2e"/>
                     <constraint firstAttribute="trailingMargin" secondItem="1LH-ds-gsi" secondAttribute="trailing" id="iNR-m5-dTd"/>
-                    <constraint firstItem="i1N-My-7np" firstAttribute="leading" secondItem="Yr6-3E-keb" secondAttribute="leadingMargin" constant="38" id="zht-wN-tBc"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="iNR-m5-dTd"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addButton" destination="1LH-ds-gsi" id="Equ-GX-JoT"/>
-                <outlet property="documentsStackView" destination="RN8-Y2-22N" id="ew5-ak-OWy"/>
+                <outlet property="documentsStackView" destination="EFq-Ve-r9h" id="jrW-Bv-yRh"/>
             </connections>
             <point key="canvasLocation" x="296" y="222"/>
         </tableViewCell>

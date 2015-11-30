@@ -1,5 +1,5 @@
 //
-//  PhotoSaveViewController.swift
+//  TimelineEntryFormViewController.swift
 //  White Rabbit
 //
 //  Created by Michael Bina on 11/20/15.
@@ -10,48 +10,7 @@ import UIKit
 import Dodo
 import Eureka
 
-public class DocumentCell: Cell<Set<PFObject>>, CellType {
-    
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var documentsStackView: UIStackView!
-    
-    @IBAction func addButtonPressed(sender: AnyObject) {
-        
-    }
-    
-    public override func setup() {
-        height = { 120 }
-        row.title = nil
-        super.setup()
-        selectionStyle = .None
-//        for subview in contentView.subviews {
-//            if let button = subview as? UIButton {
-//                button.setImage(UIImage(named: "checkedDay"), forState: UIControlState.Selected)
-//                button.setImage(UIImage(named: "uncheckedDay"), forState: UIControlState.Normal)
-//                button.adjustsImageWhenHighlighted = false
-//            }
-//        }
-    }
-}
-
-public final class DocumentsRow: Row<Set<PFObject>, DocumentCell>, RowType {
-    var documents: [PFObject!] = [PFObject!]()
-    var documentViews: [UIButton!] = [UIButton!]()
-    
-    public func addDocumentView(imageView: UIButton) {
-        let cell = self.cell as DocumentCell
-        cell.documentsStackView.addSubview(imageView)
-        self.documentViews.append(imageView)
-    }
-    
-    required public init(tag: String?) {
-        super.init(tag: tag)
-        displayValueFor = nil
-        cellProvider = CellProvider<DocumentCell>(nibName: "DocumentCell")
-    }
-}
-
-class PhotoSaveViewController: FormViewController {
+class TimelineEntryFormViewController: FormViewController {
     var animalDetailController : AnimalDetailViewController?
     
     var image : UIImage?
@@ -63,6 +22,9 @@ class PhotoSaveViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView?.scrollEnabled = false
+        self.tableView?.frame = CGRectMake((self.tableView?.frame.minX)!, (self.tableView?.frame.minY)! - 35, (self.tableView?.frame.width)!, (self.tableView?.frame.height)! + 35)
+        
         if(type == "medical") {
             self.setUpNavigationBar("Medical Entry")
             self.generateMedicalForm()
@@ -71,7 +33,7 @@ class PhotoSaveViewController: FormViewController {
             self.generateForm()
         }
         
-        self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "closeView", height: 25, width: 25)
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("close_white", action: "closeView:", height: 25, width: 25)
     }
     
     
@@ -137,9 +99,6 @@ class PhotoSaveViewController: FormViewController {
                 }
             <<< DocumentsRow("documents") {
                     $0.title = "Documents"
-                }.onCellSelection { cell, row in
-//                    let cell = cell as! DocumentCell
-//                    self.showAddDocumentView()
                 }.cellSetup { cell, row in
                     cell.imageView?.image = UIImage(named: "form_documents")
                     cell.addButton.addTarget(self, action: "showAddDocumentView", forControlEvents: UIControlEvents.TouchUpInside)
@@ -154,55 +113,17 @@ class PhotoSaveViewController: FormViewController {
         })
     }
     
-    
-//    func textViewDidBeginEditing(textView: UITextView) {
-//        
-//        if captionTextField.textColor == UIColor.lightGrayColor() {
-//            captionTextField.text = ""
-//            captionTextField.textColor = UIColor.blackColor()
-//        }
-//    }
-//    
-//    func textViewDidEndEditing(textView: UITextView) {
-//        if captionTextField.text == "" {
-//            captionTextField.text = self.captionPlaceholder
-//            captionTextField.textColor = UIColor.lightGrayColor()
-//        }
-//    }
-//    
-//    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-//        if(text == "\n") {
-//            textView.resignFirstResponder()
-//            return false
-//        }
-//        return true
-//    }
-//    
-//    func textViewShouldReturn(textField: UITextField) -> Bool {
-//        self.captionTextField.endEditing(true)
-//        return false
-//    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func saveButtonPressed(sender: AnyObject) {
         self.saveImageData()
     }
 
-    
     func saveImageData() {
-//        uploadIndicator.hidden = false
-//        uploadIndicator.startAnimating()
-
         let timelineEntry = PFObject(className: "AnimalTimelineEntry")
         timelineEntry["animal"] = self.animalObject
         
         if let imageValue = self.form.rowByTag("photo")?.baseValue as? UIImage {
             let imageData = UIImageJPEGRepresentation(imageValue, 0.5)
-            let fileName:String = (String)(PFUser.currentUser()!.username!) + "-" + (String)(NSDate().description.replace(" ", withString:"_").replace(":", withString:"-").replace("+", withString:"~")) + ".jpg"
+            let fileName:String = (String)(PFUser.currentUser()!.objectId!) + "-" + (String)(NSDate().description.replace(" ", withString:"_").replace(":", withString:"-").replace("+", withString:"~")) + ".jpg"
             let imageFile:PFFile = PFFile(name: fileName, data: imageData!)!
             
             timelineEntry["image"] = imageFile
@@ -221,7 +142,10 @@ class PhotoSaveViewController: FormViewController {
         } else {
             timelineEntry["type"] = "image"
         }
-        
+
+        if(self.hasDocuments()) {
+            timelineEntry["hasDocuments"] = true
+        }
         
         self.showLoader()
         timelineEntry.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
@@ -231,23 +155,40 @@ class PhotoSaveViewController: FormViewController {
                 
                 NSLog("saved post: " + timelineEntry.objectId!)
                 
-                let documentsRow = self.form.rowByTag("documents") as? DocumentsRow
-                documentsRow?.documents.forEach({ (element) -> Void in
-                    let document = element
-                    document["entry"] = timelineEntry
-                    document.saveInBackground()
-                })
-                
-                self.closeView()
+                if(self.hasDocuments()) {
+                    self.getDocuments().forEach({ (element) -> Void in
+                        let document = element
+                        document["entry"] = timelineEntry
+                        document.saveInBackground()
+                    })
+                }
+                    
+                self.closeView(false)
             } else {
                 NSLog("error uploading file: \(error?.localizedDescription)")
                 self.view.dodo.error((error?.localizedDescription)!)
-                self.closeView()
+                self.closeView(true)
             }
         }
     }
+    
+    func hasDocuments() -> Bool {
+        return (type == "medical" && self.getDocuments().count > 0)
+    }
+    
+    func getDocuments() -> [PFObject!] {
+        let documentsRow = self.form.rowByTag("documents") as? DocumentsRow
+        return documentsRow!.documents
+    }
 
-    func closeView() {
+    func closeView(deleteDocuments: Bool) {
+        if (deleteDocuments && self.hasDocuments()) {
+            self.getDocuments().forEach({ (element) -> Void in
+                let document = element
+                document.deleteInBackground()
+            })
+        }
+        
         if (self.animalDetailController != nil) {
             self.dismissViewControllerAnimated(true) { () -> Void in
                 self.animalDetailController!.reloadTimeline()
