@@ -93,7 +93,7 @@ DEPENDENCIES:
   - Dodo
   - Dollar
   - DynamicColor
-  - Eureka
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `master`)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - InstagramKit
@@ -108,6 +108,16 @@ DEPENDENCIES:
   - TagListView
   - Timepiece
   - XLPagerTabStrip
+
+EXTERNAL SOURCES:
+  Eureka:
+    :branch: master
+    :git: https://github.com/xmartlabs/Eureka.git
+
+CHECKOUT OPTIONS:
+  Eureka:
+    :commit: 52b0d459615307cdf4ec14cf71d6fbe11f11696b
+    :git: https://github.com/xmartlabs/Eureka.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60

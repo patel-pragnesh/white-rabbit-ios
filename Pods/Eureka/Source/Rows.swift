@@ -40,8 +40,9 @@ public protocol FormatterConformance: class {
     var useFormatterDuringInput: Bool { get set }
 }
 
-public class FieldRow<T: Any, Cell: CellType where Cell: BaseCell, Cell: TextFieldCell, Cell.Value == T>: Row<T, Cell>, FieldRowConformance {
+public class FieldRow<T: Any, Cell: CellType where Cell: BaseCell, Cell: TextFieldCell, Cell.Value == T>: Row<T, Cell>, FieldRowConformance, KeyboardReturnHandler {
     
+    public var keyboardReturnType : KeyboardReturnTypeConfiguration?
     public var textFieldPercentage : CGFloat?
     public var placeholder : String?
     public var placeholderColor : UIColor?
@@ -392,7 +393,7 @@ public class _SwitchRow: Row<Bool, SwitchCell> {
     }
 }
 
-public class _PushRow<T: Equatable> : SelectorRow<T, SelectorViewController<T>>, PresenterRowType {
+public class _PushRow<T: Equatable> : SelectorRow<T, SelectorViewController<T>> {
     
     public required init(tag: String?) {
         super.init(tag: tag)
@@ -429,7 +430,6 @@ public class AreaRow<T: Equatable, Cell: CellType where Cell: BaseCell, Cell: Ar
             }
         }
     }
-
 }
 
 public class OptionsRow<T: Equatable, Cell: CellType where Cell: BaseCell, Cell.Value == T> : Row<T, Cell> {
@@ -515,7 +515,7 @@ public class _AlertRow<T: Equatable>: OptionsRow<T, AlertSelectorCell<T>>, Prese
     }
 }
 
-public class _ImageRow : SelectorRow<UIImage, ImagePickerController>, PresenterRowType {
+public class _ImageRow : SelectorRow<UIImage, ImagePickerController> {
     public required init(tag: String?) {
         super.init(tag: tag)
         presentationMode = .PresentModally(controllerProvider: ControllerProvider.Callback { return ImagePickerController() }, completionCallback: { vc in vc.dismissViewControllerAnimated(true, completion: nil) })
@@ -526,7 +526,7 @@ public class _ImageRow : SelectorRow<UIImage, ImagePickerController>, PresenterR
         super.customUpdateCell()
         cell.accessoryType = .None
         if let image = self.value {
-            let imageView = UIImageView(frame: CGRectMake(0, 0, 200, 200))
+            let imageView = UIImageView(frame: CGRectMake(0, 0, 44, 44))
             imageView.contentMode = .ScaleAspectFill
             imageView.image = image
             imageView.clipsToBounds = true
@@ -538,7 +538,7 @@ public class _ImageRow : SelectorRow<UIImage, ImagePickerController>, PresenterR
     }
 }
 
-public class _MultipleSelectorRow<T: Hashable> : GenericMultipleSelectorRow<T, MultipleSelectorViewController<T>>, PresenterRowType {
+public class _MultipleSelectorRow<T: Hashable> : GenericMultipleSelectorRow<T, MultipleSelectorViewController<T>> {
     public required init(tag: String?) {
         super.init(tag: tag)
         self.displayValueFor = {
