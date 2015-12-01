@@ -147,6 +147,7 @@ class AnimalFormViewController : FormViewController {
                 }
             }.cellSetup { cell, row in
                 cell.imageView?.image = UIImage(named: "form_birthdate")
+                row.maximumDate = NSDate()
             }
             <<< DateRow(DECEASED_TAG) {
                 $0.title = "Deceased Date"
@@ -159,6 +160,7 @@ class AnimalFormViewController : FormViewController {
                 }
             }.cellSetup { cell, row in
                 cell.imageView?.image = UIImage(named: "form_date")
+                row.maximumDate = NSDate()
             }
             <<< SegmentedRow<String>(GENDER_TAG) {
                 $0.title = "Gender"

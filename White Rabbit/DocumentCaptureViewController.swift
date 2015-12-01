@@ -73,6 +73,8 @@ class DocumentCaptureViewController: UIViewController {
     
     @IBOutlet weak var adjustBar: UIView!
     
+    @IBOutlet weak var savePagesButton : UIButton!
+    
     @IBAction func flashButtonPressed(sender: AnyObject) {
         self.cameraViewController.enableTorch = !self.cameraViewController.enableTorch
     }
@@ -113,6 +115,8 @@ class DocumentCaptureViewController: UIViewController {
 //        removeImageButton.addTarget(self, action: "removeImage:", forControlEvents: .TouchUpInside)
 //        imageView.addSubview(removeImageButton)
 
+        self.savePagesButton.enabled = true
+        
         self.adjustBar.addSubview(imageView)
         previewImages.append(imageView)
     }
@@ -160,7 +164,7 @@ class DocumentCaptureViewController: UIViewController {
         
     }
     
-    @IBAction func saveDocuments(sender: AnyObject) {
+    @IBAction func savePages(sender: AnyObject) {
         if(self.selectedImages.count > 0) {
             
             let document = PFObject(className: "Document")
@@ -186,11 +190,11 @@ class DocumentCaptureViewController: UIViewController {
                 let imageView: UIButton = UIButton(frame: CGRectMake(CGFloat(minX), CGFloat(minY), CGFloat(self.previewWidth), CGFloat(height)))
                 imageView.setImage(self.selectedImages[0], forState: .Normal)
                 imageView.tag = index
-//                imageView.userInteractionEnabled = true
+                imageView.userInteractionEnabled = true
                 
-//                let swipeUp = UISwipeGestureRecognizer(target: self, action: "removeDocument:")
-//                swipeUp.direction = UISwipeGestureRecognizerDirection.Up
-//                imageView.addGestureRecognizer(swipeUp)
+                let swipeUp = UISwipeGestureRecognizer(target: self, action: "removeDocument:")
+                swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+                imageView.addGestureRecognizer(swipeUp)
                 
 //                imageView.addTarget(self, action: "removeDocument:", forControlEvents: .TouchUpInside)
                 imageView.addTarget(self.formViewController, action: "showFullScreen:", forControlEvents: .TouchUpInside)
@@ -205,11 +209,11 @@ class DocumentCaptureViewController: UIViewController {
         }
     }
     
-    func removeDocument(sender:UIButton!) {
+    func removeDocument(sender:UIGestureRecognizer!) {
         NSLog("removing document")
         
         let row = self.formViewController!.form.rowByTag("documents") as! DocumentsRow
-        row.removeDocumentView(sender.tag)
+        row.removeDocumentView(sender.view!.tag)
     }
         
     func showImageFullScreen(image: UIImage, showAddButton: Bool) {
@@ -275,17 +279,4 @@ class DocumentCaptureViewController: UIViewController {
         self.selectedImages.append(self.currentImage)
         self.addImagePreview(self.currentImage!, index: (self.selectedImages.count - 1))
     }
-    
-//    func dismissPreview() {
-//        self.currentPreview!.removeFromSuperview()
-//    }
-    
-//    func dismissPreview(dismissTap: UITapGestureRecognizer) {
-//        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {() -> Void in
-//            dismissTap.view!.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height)
-//            }, completion: {(finished: Bool) -> Void in
-//                self.currentImage = nil
-//                dismissTap.view!.removeFromSuperview()
-//        })
-//    }
 }

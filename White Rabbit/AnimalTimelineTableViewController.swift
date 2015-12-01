@@ -22,6 +22,7 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     @IBOutlet weak var shelterButton: UIButton!
     @IBOutlet weak var largeIcon: UIImageView!
     
+    @IBOutlet weak var documentsButton: UIButton!
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
@@ -66,6 +67,9 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
         self.moreButton.hidden = true
     }
 
+    @IBAction func documentsButtonPressed(sender: AnyObject) {
+    }
+    
     @IBAction func heartButtonPressed(sender: AnyObject) {
         parentTable?.likeEntry(self.indexPath!)
     }
@@ -425,27 +429,27 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
 
             
             switch object?["type"] as! String {
-            case "medical":
-                cell!.largeIcon.image = UIImage(named: "timeline_medical")
-                cell!.largeIcon.hidden = false
-                break
-            case "adopted":
-                cell!.largeIcon.image = UIImage(named: "timeline_adopted")
-                cell!.largeIcon.hidden = false
-                break
-            case "birth":
-                cell!.largeIcon.image = UIImage(named: "timeline_born")
-                cell!.largeIcon.hidden = false
-                break
-            case "birthday":
-                cell!.largeIcon.image = UIImage(named: "timeline_birthday")
-                cell!.largeIcon.hidden = false
-                break
-            default:
-                cell!.largeIcon.image = UIImage()
-                cell!.largeIcon.hidden = true
-                break
-        }
+                case "medical":
+                    cell!.largeIcon.image = UIImage(named: "timeline_medical")
+                    cell!.largeIcon.hidden = false
+                    break
+                case "adopted":
+                    cell!.largeIcon.image = UIImage(named: "timeline_adopted")
+                    cell!.largeIcon.hidden = false
+                    break
+                case "birth":
+                    cell!.largeIcon.image = UIImage(named: "timeline_born")
+                    cell!.largeIcon.hidden = false
+                    break
+                case "birthday":
+                    cell!.largeIcon.image = UIImage(named: "timeline_birthday")
+                    cell!.largeIcon.hidden = false
+                    break
+                default:
+                    cell!.largeIcon.image = UIImage()
+                    cell!.largeIcon.hidden = true
+                    break
+            }
 
             cell!.eventTextLabel.text = text
             cell!.eventTextLabel.hidden = false            
@@ -459,6 +463,12 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             cell!.shelterButton.hidden = false
         } else {
             cell!.shelterButton.setTitle("", forState: .Normal)
+        }
+        
+        if(object?.objectForKey("hasDocuments") != nil && object?.objectForKey("hasDocuments") as! Bool) {
+            cell!.documentsButton.hidden = false
+        } else {
+            cell!.documentsButton.hidden = true
         }
 
         

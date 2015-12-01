@@ -42,34 +42,35 @@ class TimelineEntryFormViewController: FormViewController {
             <<< DateRow("date") {
                 $0.title = "Date"
                 $0.value = self.pickedImageDate != nil ? self.pickedImageDate : NSDate()
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_date")
-                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_date")
+                row.maximumDate = NSDate()
+            }
             <<< ImageRow("photo") {
                 $0.title = "Photo"
                 $0.value = self.image
                 $0.disabled = true
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_cover_photo")
-                    cell.height = { 200 }
-                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_cover_photo")
+                cell.height = { 200 }
+            }
             <<< TextAreaRow("text") {
                 $0.title = "Caption"
                 $0.placeholder = "Enter caption here..."
-                }.cellSetup { cell, row in
-                }
+            }.cellSetup { cell, row in
+            }
             
         form +++= Section("Share")
             <<< SwitchRow("facebook") {
                 $0.title = "Share to Facebook"
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_facebook")
-                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_facebook")
+            }
             <<< SwitchRow("twitter") {
                 $0.title = "Share to Twitter"
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_twitter")
-                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_twitter")
+            }
     }
     
     func generateMedicalForm() {
@@ -77,32 +78,33 @@ class TimelineEntryFormViewController: FormViewController {
             <<< DateRow("date") {
                 $0.title = "Date"
                 $0.value = self.pickedImageDate != nil ? self.pickedImageDate : NSDate()
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_date")
-                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_date")
+                row.maximumDate = NSDate()
+            }
             <<< PushRow<String>("text") {
                 $0.title = "Type"
                 $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_medical_type")
-                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_medical_type")
+            }
             <<< PushRow<String>("location") {
                 $0.title = "Location"
                 $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_location")
-                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_location")
+            }
             <<< TextAreaRow("details") {
                 $0.title = "Details"
                 $0.placeholder = "Enter details here..."
-                }.cellSetup { cell, row in
-                }
+            }.cellSetup { cell, row in
+            }
             <<< DocumentsRow("documents") {
-                    $0.title = "Documents"
-                }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_documents")
-                    cell.addButton.addTarget(self, action: "showAddDocumentView", forControlEvents: UIControlEvents.TouchUpInside)
-                }
+                $0.title = "Documents"
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_documents")
+                cell.addButton.addTarget(self, action: "showAddDocumentView", forControlEvents: UIControlEvents.TouchUpInside)
+            }
 
     }
     
