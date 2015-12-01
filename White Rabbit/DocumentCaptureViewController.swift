@@ -16,6 +16,9 @@ public class DocumentCell: Cell<Set<PFObject>>, CellType {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var documentsStackView: UIScrollView!
     
+    @IBOutlet weak var documentsView: UIView!
+    @IBOutlet weak var documentsWidthConstraint: NSLayoutConstraint!
+    
     public override func setup() {
         height = { 120 }
         row.title = nil
@@ -26,10 +29,18 @@ public class DocumentCell: Cell<Set<PFObject>>, CellType {
 public final class DocumentsRow: Row<Set<PFObject>, DocumentCell>, RowType {
     var documents: [PFObject!] = [PFObject!]()
     var documentViews: [UIButton!] = [UIButton!]()
-        
+    
+    let previewPadding = 10
+    let previewWidth = 75
+    
     public func addDocumentView(imageView: UIButton) {
         let cell = self.cell as DocumentCell
-        cell.documentsStackView.addSubview(imageView)
+        
+        let frameWidth = (documents.count * (self.previewWidth + self.previewPadding)) - self.previewPadding
+        NSLog("setting: \(CGFloat(frameWidth) - (cell.documentsView.superview?.frame.width)!)")
+        cell.documentsWidthConstraint.constant = CGFloat(frameWidth) - (cell.documentsView.superview?.frame.width)!
+
+        cell.documentsView.addSubview(imageView)
         
         //        imageView.addTarget(self, action: "selectedImage:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -72,6 +83,9 @@ class DocumentCaptureViewController: UIViewController {
     let previewWidth = 75
     
     @IBOutlet weak var adjustBar: UIView!
+    @IBOutlet weak var documentsView: UIView!
+    
+    @IBOutlet weak var documentsWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var savePagesButton : UIButton!
     
@@ -91,11 +105,9 @@ class DocumentCaptureViewController: UIViewController {
     }
     
     func addImagePreview(image: UIImage, index: Int) {
-        let minX = ((index * previewWidth) + ((index + 1) * (previewPadding / 2)))
-        let minY = previewPadding / 2
-        let height = self.adjustBar.frame.height - CGFloat(previewPadding)
+        let frame = self.getImageThumbnailFrame(image, index: index, parentFrame: self.documentsView.frame, previewWidth: self.previewWidth, previewPadding: self.previewPadding)
         
-        let imageView: UIButton = UIButton(frame: CGRectMake(CGFloat(minX), CGFloat(minY), CGFloat(previewWidth), CGFloat(height)))
+        let imageView: UIButton = UIButton(frame: frame)
         imageView.setImage(image, forState: .Normal)
         imageView.tag = index
         imageView.userInteractionEnabled = true
@@ -109,16 +121,18 @@ class DocumentCaptureViewController: UIViewController {
 //        let removeImageButton: UIButton = UIButton(frame: CGRectMake(CGFloat(previewWidth - 10), -10, 20, 20))
 //        removeImageButton.setImage(UIImage(named: "image_close"), forState: .Normal)
 //        removeImageButton.tag = index
-        
-//        removeImageButton.addGestureRecognizer(swipeUp)
-        
 //        removeImageButton.addTarget(self, action: "removeImage:", forControlEvents: .TouchUpInside)
 //        imageView.addSubview(removeImageButton)
 
         self.savePagesButton.enabled = true
         
-        self.adjustBar.addSubview(imageView)
+        self.documentsView.addSubview(imageView)
+        self.documentsView.userInteractionEnabled = true
         previewImages.append(imageView)
+        
+        let frameWidth = (previewImages.count * (self.previewWidth + self.previewPadding)) - self.previewPadding
+        NSLog("setting: \(CGFloat(frameWidth) - (self.documentsView.superview?.frame.width)!)")
+        documentsWidthConstraint.constant = CGFloat(frameWidth) - (self.documentsView.superview?.frame.width)!
     }
     
     
@@ -133,7 +147,7 @@ class DocumentCaptureViewController: UIViewController {
         
         imagesToRestack.forEach { (element) -> Void in
             let imageButton = element
-            imageButton.frame = CGRectMake(imageButton.frame.minX - CGFloat(self.previewWidth + self.previewPadding), imageButton.frame.minY, imageButton.frame.width, imageButton.frame.height)
+            imageButton.frame = CGRectMake(imageButton.frame.minX - CGFloat(self.previewWidth + (self.previewPadding / 2)), imageButton.frame.minY, imageButton.frame.width, imageButton.frame.height)
             imageButton.tag = imageButton.tag - 1
             
         }
@@ -182,13 +196,14 @@ class DocumentCaptureViewController: UIViewController {
                 let row = self.formViewController!.form.rowByTag("documents") as! DocumentsRow
                 row.documents.append(document)
                 
-                let index = (self.formViewController?.getDocuments().count)! - 1
-                let minX = ((index * self.previewWidth) + ((index + 1) * (self.previewPadding / 2)))
-                let minY = self.previewPadding / 2
-                let height = row.cell.documentsStackView.frame.height - CGFloat(self.previewPadding)
+                let image = self.selectedImages[0]
                 
-                let imageView: UIButton = UIButton(frame: CGRectMake(CGFloat(minX), CGFloat(minY), CGFloat(self.previewWidth), CGFloat(height)))
-                imageView.setImage(self.selectedImages[0], forState: .Normal)
+                let index = (self.formViewController?.getDocuments().count)! - 1
+                
+                let frame = self.getImageThumbnailFrame(image, index: index, parentFrame: row.cell.documentsStackView.frame, previewWidth: self.previewWidth, previewPadding: self.previewPadding)
+                
+                let imageView: UIButton = UIButton(frame: frame)
+                imageView.setImage(image, forState: .Normal)
                 imageView.tag = index
                 imageView.userInteractionEnabled = true
                 

@@ -254,6 +254,24 @@ extension UIViewController {
         self.slideMenuController()?.openLeft()
     }
     
+    func getImageThumbnailFrame(image: UIImage, index: Int, parentFrame: CGRect, previewWidth: Int, previewPadding: Int) -> CGRect {
+        let extra = ((index + 1) * (previewPadding / 2))
+        var minX:CGFloat = CGFloat(((index * previewWidth) + extra))
+        var width = CGFloat(previewWidth)
+        let fullHeight = parentFrame.height - CGFloat(previewPadding)
+        var height = image.size.height / (image.size.width / CGFloat(width))
+        var minY = CGFloat(previewPadding / 2) + ((fullHeight - height) / 2)
+        
+        if(height > fullHeight) {
+            height = parentFrame.height - CGFloat(previewPadding)
+            width = image.size.width / (image.size.height / height)
+            minY = CGFloat(previewPadding / 2)
+            minX = CGFloat(minX) + ((CGFloat(previewWidth) - width) / 2)
+        }
+        
+        return CGRectMake(CGFloat(minX), CGFloat(minY), CGFloat(width), CGFloat(height))
+    }
+    
     func showEditor(image : UIImage, delegate: CLImageEditorDelegate, var ratios: [AnyObject]?) {
         let editor = CLImageEditor(image: image)
         editor.delegate = delegate

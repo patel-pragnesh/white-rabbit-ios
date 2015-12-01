@@ -14,12 +14,16 @@ class TimelineEntryDetailViewController: UIViewController {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var documentsView: UIView!
     
+    @IBOutlet weak var documentsWidthConstraint: NSLayoutConstraint!
+    
     var entryObject : PFObject?
     
     var documents : [[UIImage!]] = [[UIImage!]]()
     
     let previewPadding = 20
     let previewWidth = 125
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,47 +50,50 @@ class TimelineEntryDetailViewController: UIViewController {
         }
         
         if(entryObject?.objectForKey("hasDocuments") != nil && entryObject?.objectForKey("hasDocuments") as! Bool) {
-
-            let documentQuery = PFQuery(className: "Document")
-            documentQuery.whereKey("entry", equalTo: entryObject!)
-
-            documentQuery.findObjectsInBackgroundWithBlock({ (documents: [PFObject]?, error: NSError?) -> Void in
-                if(error == nil) {
-                    documents?.forEach({ (element: PFObject) -> Void in
-                        let document = PFObject(withoutDataWithClassName: "Document", objectId: element.objectId)
-                        
-                        let index = self.documents.count
-                        self.documents.append([UIImage!]())
-                        
-                        let pagesQuery = PFQuery(className: "DocumentPage")
-                        pagesQuery.whereKey("document", equalTo: document)
-                        
-                        pagesQuery.findObjectsInBackgroundWithBlock({ (pages: [PFObject]?, error: NSError?) -> Void in
-                            if(error == nil) {
-                                
-                                pages?.forEach({ (pageObject: PFObject) -> Void in
-                                    let page = pageObject.objectForKey("page") as? PFFile
-                                  
-                                    page!.getDataInBackgroundWithBlock({
-                                        (imageData: NSData?, error: NSError?) -> Void in
-                                        if(error == nil) {
-                                            let image = UIImage(data:imageData!)
-                                            
-                                            self.documents[index].append(image)
-                                            self.updateDocumentsView()
-                                        }
-                                    })
-                                })
-                                
-                            }
-                        })
-                    })
-                } else {
-                    self.view.dodo.error((error?.localizedDescription)!)
-                }
-            })
-        
+            
+            self.loadDocuments()
         }
+    }
+    
+    func loadDocuments() {
+        let documentQuery = PFQuery(className: "Document")
+        documentQuery.whereKey("entry", equalTo: entryObject!)
+        
+        documentQuery.findObjectsInBackgroundWithBlock({ (documents: [PFObject]?, error: NSError?) -> Void in
+            if(error == nil) {
+                documents?.forEach({ (element: PFObject) -> Void in
+                    let document = PFObject(withoutDataWithClassName: "Document", objectId: element.objectId)
+                    
+                    let index = self.documents.count
+                    self.documents.append([UIImage!]())
+                    
+                    let pagesQuery = PFQuery(className: "DocumentPage")
+                    pagesQuery.whereKey("document", equalTo: document)
+                    
+                    pagesQuery.findObjectsInBackgroundWithBlock({ (pages: [PFObject]?, error: NSError?) -> Void in
+                        if(error == nil) {
+                            
+                            pages?.forEach({ (pageObject: PFObject) -> Void in
+                                let page = pageObject.objectForKey("page") as? PFFile
+                                
+                                page!.getDataInBackgroundWithBlock({
+                                    (imageData: NSData?, error: NSError?) -> Void in
+                                    if(error == nil) {
+                                        let image = UIImage(data:imageData!)
+                                        
+                                        self.documents[index].append(image)
+                                        self.updateDocumentsView()
+                                    }
+                                })
+                            })
+                            
+                        }
+                    })
+                })
+            } else {
+                self.view.dodo.error((error?.localizedDescription)!)
+            }
+        })
     }
     
     func updateDocumentsView() {
@@ -100,15 +107,14 @@ class TimelineEntryDetailViewController: UIViewController {
                 index++
             }
         }
+        let frameWidth = (self.documents.count * (self.previewWidth + self.previewPadding)) - self.previewPadding
+        documentsWidthConstraint.constant = CGFloat(frameWidth) - self.view.bounds.width
     }
     
     func addDocumentView(image: UIImage, index: Int) {
-//        let index = self.documents.count - 1
-        let minX = ((index * self.previewWidth) + ((index + 1) * (self.previewPadding / 2)))
-        let minY = self.previewPadding / 2
-        let height = self.documentsView.frame.height - CGFloat(self.previewPadding)
+         let frame = self.getImageThumbnailFrame(image, index: index, parentFrame: self.documentsView.frame, previewWidth: self.previewWidth, previewPadding: self.previewPadding)
         
-        let imageView: UIButton = UIButton(frame: CGRectMake(CGFloat(minX), CGFloat(minY), CGFloat(self.previewWidth), CGFloat(height)))
+        let imageView: UIButton = UIButton(frame: frame)
         imageView.setImage(image, forState: .Normal)
 
         imageView.addTarget(self, action: "showFullScreen:", forControlEvents: .TouchUpInside)

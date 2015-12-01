@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/DocumentCaptureViewController.swift"
-            timestampString = "470582845.882037"
+            timestampString = "470669010.175612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "removeImage(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/DocumentCaptureViewController.swift"
-            timestampString = "470582845.882037"
+            timestampString = "470669010.175612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "removeImage(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "470577489.365457"
+            timestampString = "470665470.514784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "dismissPreview(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "470577504.900605"
+            timestampString = "470665470.514784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "dismissPreview(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,91 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "470653704.984497"
+            timestampString = "470666442.039844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "470651668.406494"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "White_Rabbit.TimelineEntryDetailViewController.(viewDidLoad (White_Rabbit.TimelineEntryDetailViewController) -&gt; () -&gt; ()).(closure #2)"
-                  moduleName = "White Rabbit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryDetailViewController.swift"
-                  timestampString = "470649881.704832"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "128">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "White_Rabbit.TimelineEntryDetailViewController.(viewDidLoad (White_Rabbit.TimelineEntryDetailViewController) -&gt; () -&gt; ()).(closure #2).(closure #1)"
-                  moduleName = "White Rabbit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryDetailViewController.swift"
-                  timestampString = "470649881.7053"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "470651668.406494"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "470654427.99703"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "updateDocumentsView()"
             landmarkType = "5">
             <Locations>
@@ -522,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "470654427.99703"
+            timestampString = "470666442.039844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "updateDocumentsView()"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,12 +458,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "470654295.309276"
+            timestampString = "470666442.039844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "updateDocumentsView()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -554,13 +474,90 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "470654295.309276"
+            timestampString = "470659055.868529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "updateDocumentsView()"
-            landmarkType = "5">
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "TimelineEntryDetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.TimelineEntryDetailViewController.entryObject.getter : Swift.Optional&lt;__ObjC.PFObject&gt;"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryDetailViewController.swift"
+                  timestampString = "470659055.990024"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.TimelineEntryDetailViewController.entryObject.setter : Swift.Optional&lt;__ObjC.PFObject&gt;"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryDetailViewController.swift"
+                  timestampString = "470659055.990352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.TimelineEntryDetailViewController.entryObject.materializeForSet : Swift.Optional&lt;__ObjC.PFObject&gt;"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryDetailViewController.swift"
+                  timestampString = "470659055.990531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.TimelineEntryDetailViewController.init (White_Rabbit.TimelineEntryDetailViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; White_Rabbit.TimelineEntryDetailViewController"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryDetailViewController.swift"
+                  timestampString = "470659055.990681"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "260">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.TimelineEntryDetailViewController.init (White_Rabbit.TimelineEntryDetailViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;White_Rabbit.TimelineEntryDetailViewController&gt;"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryDetailViewController.swift"
+                  timestampString = "470659055.990854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

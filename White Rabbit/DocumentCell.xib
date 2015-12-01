@@ -31,13 +31,29 @@
                         </variation>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Documents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxI-NY-aCp">
-                        <rect key="frame" x="48" y="49" width="88" height="21"/>
+                        <rect key="frame" x="48" y="49.5" width="88" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFq-Ve-r9h">
                         <rect key="frame" x="144" y="-1" width="188" height="119.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0QY-fx-YB9">
+                                <rect key="frame" x="0.0" y="0.0" width="188" height="119.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="0QY-fx-YB9" firstAttribute="centerX" secondItem="EFq-Ve-r9h" secondAttribute="centerX" id="4aZ-HQ-EcL"/>
+                            <constraint firstAttribute="bottom" secondItem="0QY-fx-YB9" secondAttribute="bottom" id="59d-8p-8OW"/>
+                            <constraint firstItem="0QY-fx-YB9" firstAttribute="width" relation="greaterThanOrEqual" secondItem="EFq-Ve-r9h" secondAttribute="width" id="5hS-BH-po6"/>
+                            <constraint firstItem="0QY-fx-YB9" firstAttribute="centerY" secondItem="EFq-Ve-r9h" secondAttribute="centerY" id="BJR-l9-Uhp"/>
+                            <constraint firstItem="0QY-fx-YB9" firstAttribute="leading" secondItem="EFq-Ve-r9h" secondAttribute="leading" id="O7b-W3-g4b"/>
+                            <constraint firstAttribute="trailing" secondItem="0QY-fx-YB9" secondAttribute="trailing" id="QIq-W6-QUh"/>
+                            <constraint firstItem="0QY-fx-YB9" firstAttribute="top" secondItem="EFq-Ve-r9h" secondAttribute="top" constant="1" id="WYB-Mg-VqF"/>
+                            <constraint firstItem="0QY-fx-YB9" firstAttribute="height" secondItem="EFq-Ve-r9h" secondAttribute="height" constant="-1" id="kdH-I7-P0C"/>
+                        </constraints>
                     </scrollView>
                 </subviews>
                 <constraints>
@@ -60,6 +76,8 @@
             <connections>
                 <outlet property="addButton" destination="1LH-ds-gsi" id="Equ-GX-JoT"/>
                 <outlet property="documentsStackView" destination="EFq-Ve-r9h" id="jrW-Bv-yRh"/>
+                <outlet property="documentsView" destination="0QY-fx-YB9" id="VSg-cn-Je4"/>
+                <outlet property="documentsWidthConstraint" destination="5hS-BH-po6" id="iUh-xA-x7z"/>
             </connections>
             <point key="canvasLocation" x="296" y="222"/>
         </tableViewCell>
