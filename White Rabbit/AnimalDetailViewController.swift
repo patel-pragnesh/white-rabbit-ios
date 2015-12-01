@@ -151,7 +151,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     }
     
     func takePhoto() {
-        let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in
+        let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true, allowsLibraryAccess: false) { image in
             if image != nil {
                 self.modalTransitionStyle = .PartialCurl
                 self.dismissViewControllerAnimated(false, completion: { () -> Void in

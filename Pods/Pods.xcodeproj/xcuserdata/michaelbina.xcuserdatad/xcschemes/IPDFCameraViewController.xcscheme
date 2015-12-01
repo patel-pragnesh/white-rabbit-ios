@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C1F1C8358018B956924963FA'
+               BlueprintIdentifier = '55802C0C8AA1DFF5584711B3'
                BlueprintName = 'IPDFCameraViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'IPDFCameraViewController.framework'>
