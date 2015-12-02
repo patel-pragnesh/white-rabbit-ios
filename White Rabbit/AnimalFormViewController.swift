@@ -182,17 +182,17 @@ class AnimalFormViewController : FormViewController {
 ////                cell.textLabel!.frame = CGRectMake(cell.textLabel!.frame.origin.x + 100, cell.textLabel!.frame.origin.y, cell.textLabel!.frame.size.width, cell.textLabel!.frame.size.height);
 //            }
 
-        form +++= Section("Photos")
-            <<< ImageRow(PROFILE_PHOTO_TAG) {
-                $0.title = "Profile Photo"
-            }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_profile_photo")
-            }
-            <<< ImageRow(COVER_PHOTO_TAG) {
-                $0.title = "Cover Photo"
-            }.cellSetup { cell, row in
-                    cell.imageView?.image = UIImage(named: "form_cover_photo")
-        }
+//        form +++= Section("Photos")
+//            <<< ImageRow(PROFILE_PHOTO_TAG) {
+//                $0.title = "Profile Photo"
+//            }.cellSetup { cell, row in
+//                    cell.imageView?.image = UIImage(named: "form_profile_photo")
+//            }
+//            <<< ImageRow(COVER_PHOTO_TAG) {
+//                $0.title = "Cover Photo"
+//            }.cellSetup { cell, row in
+//                    cell.imageView?.image = UIImage(named: "form_cover_photo")
+//        }
 
         
         form +++= Section("Details")
