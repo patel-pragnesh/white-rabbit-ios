@@ -465,7 +465,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             let viewControllers = [timelineViewController, aboutViewController]
             
             let options = PagingMenuOptions()
-            options.menuHeight = 45
+            options.menuHeight = 50
             options.menuPosition = .Top
             options.selectedFont = UIFont(name: "Avenir", size: 18)!
             options.font = UIFont(name: "Avenir", size: 18)!

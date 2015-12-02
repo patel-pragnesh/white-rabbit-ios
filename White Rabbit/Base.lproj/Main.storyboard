@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C47a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RlW-pc-oHP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C47a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U4T-oD-cIv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -419,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkV-CO-Qfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4122" y="-1864.5"/>
+            <point key="canvasLocation" x="5040" y="-1864.5"/>
         </scene>
         <!--Timeline Entry Form View Controller-->
         <scene sceneID="OCe-gU-iW7">
@@ -921,7 +921,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMs-Vs-66k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4948.5" y="-2071.5"/>
+            <point key="canvasLocation" x="5866.5" y="-2071.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
@@ -1307,7 +1307,8 @@
                                                         <exclude reference="ZZU-QO-pDB"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="65" width="165" height="165"/>
                                                     <mask key="constraints">
                                                         <include reference="5gm-lM-sOL"/>
                                                         <include reference="VqF-cw-QSg"/>
@@ -1330,7 +1331,8 @@
                                                         <exclude reference="6qT-Ko-ZlY"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="20" y="285" width="360" height="21"/>
                                                     <mask key="constraints">
                                                         <exclude reference="6qT-Ko-ZlY"/>
                                                     </mask>
@@ -1341,6 +1343,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="20" y="239" width="360" height="36"/>
+                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1395,7 +1400,8 @@
                                                 <exclude reference="xfX-mz-5KK"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="336"/>
                                             <mask key="subviews">
                                                 <include reference="Yoh-TX-8h6"/>
                                                 <include reference="Jht-s0-FfW"/>
@@ -1439,7 +1445,8 @@
                                         <exclude reference="OV2-iZ-P6V"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="336"/>
                                     <mask key="subviews">
                                         <include reference="S3q-uT-zUx"/>
                                     </mask>
@@ -1831,7 +1838,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="801F9D31-DFFE-4B0E-A6FC-729D20201F56"/>
+                                <state key="normal" image="B424C32D-99CE-4CAE-930D-44E9F7ADB771"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -1899,7 +1906,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cw-Nj-mbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1167" y="-2328.75"/>
+            <point key="canvasLocation" x="-1443" y="-2691.75"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="P6D-gm-Odj">
@@ -1918,7 +1925,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNZ-Nv-Ji5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="547.5" y="-2368.5"/>
+            <point key="canvasLocation" x="271.5" y="-2731.5"/>
         </scene>
         <!--Add Animal-->
         <scene sceneID="oqi-bW-ldC">
@@ -1937,7 +1944,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhh-hW-okU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3744" y="-2549.25"/>
+            <point key="canvasLocation" x="4662" y="-2549.25"/>
         </scene>
         <!--Animals-->
         <scene sceneID="svv-l2-QU2">
@@ -2028,7 +2035,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="seM-ch-5CU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1455" y="-1786.5"/>
+            <point key="canvasLocation" x="1515" y="-1398"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="Ojq-4v-G5Q">
@@ -2564,6 +2571,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7k-Hr-Vgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1660.5" y="-936"/>
+        </scene>
+        <!--Animals Tab View Controller-->
+        <scene sceneID="Vva-pF-4P4">
+            <objects>
+                <viewController id="TB1-Rj-IsI" customClass="AnimalsTabViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t1C-qA-ufP"/>
+                        <viewControllerLayoutGuide type="bottom" id="y6o-Me-8iM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="huk-ni-4pn">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rN-u8-Aic">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <connections>
+                                    <segue destination="leo-bc-zjQ" kind="embed" id="ITB-Gp-adN"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4rN-u8-Aic" firstAttribute="top" secondItem="t1C-qA-ufP" secondAttribute="bottom" id="D9a-pS-Sv8">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-5"/>
+                            </constraint>
+                            <constraint firstItem="4rN-u8-Aic" firstAttribute="height" secondItem="huk-ni-4pn" secondAttribute="height" id="HKK-H6-MoR">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-58"/>
+                            </constraint>
+                            <constraint firstItem="4rN-u8-Aic" firstAttribute="centerX" secondItem="huk-ni-4pn" secondAttribute="centerX" id="fNr-tx-gkV"/>
+                            <constraint firstItem="4rN-u8-Aic" firstAttribute="width" secondItem="huk-ni-4pn" secondAttribute="width" id="jh4-Ei-Gdc"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="4rN-u8-Aic"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="D9a-pS-Sv8"/>
+                                <exclude reference="HKK-H6-MoR"/>
+                                <exclude reference="fNr-tx-gkV"/>
+                                <exclude reference="jh4-Ei-Gdc"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="4rN-u8-Aic"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="D9a-pS-Sv8"/>
+                                <include reference="HKK-H6-MoR"/>
+                                <include reference="fNr-tx-gkV"/>
+                                <include reference="jh4-Ei-Gdc"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="CKQ-oo-hNn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qn4-lO-CDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1419" y="-2083.5"/>
         </scene>
         <!--Animal Detail View Controller-->
         <scene sceneID="N75-VS-JUf">
@@ -3111,7 +3176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uH-eJ-MnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2280" y="-1792.5"/>
+            <point key="canvasLocation" x="3198" y="-1792.5"/>
         </scene>
         <!--Profile Tabs-->
         <scene sceneID="vL9-we-q7H">
@@ -3221,7 +3286,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fpB-RN-Owp">
             <objects>
-                <navigationController storyboardIdentifier="AnimalsNavigation" automaticallyAdjustsScrollViewInsets="NO" id="RlW-pc-oHP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RlW-pc-oHP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tif-17-PQS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3234,7 +3299,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1u-j0-bfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504" y="-1599.75"/>
+            <point key="canvasLocation" x="480" y="-1386.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nr0-Hh-Y3n">
@@ -3252,7 +3317,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfh-3Q-7g4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3003" y="-2562"/>
+            <point key="canvasLocation" x="3921" y="-2562"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j6P-aI-D7r">
@@ -3306,7 +3371,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rB9-ns-Vw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-264" y="-2368.5"/>
+            <point key="canvasLocation" x="-540" y="-2731.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jzd-ga-qWB">
@@ -3326,9 +3391,40 @@
             </objects>
             <point key="canvasLocation" x="4939.5" y="-1398"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oel-Vp-lA6">
+            <objects>
+                <navigationController storyboardIdentifier="AnimalsNavigation" automaticallyAdjustsScrollViewInsets="NO" id="U4T-oD-cIv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gbH-tA-ukK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TB1-Rj-IsI" kind="relationship" relationship="rootViewController" id="gTq-fi-R9B"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wmA-Av-ARd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="501" y="-2083.5"/>
+        </scene>
+        <!--Paging Menu Controller-->
+        <scene sceneID="CbA-Qo-ve8">
+            <objects>
+                <viewController id="leo-bc-zjQ" customClass="PagingMenuController" customModule="PagingMenuController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OsF-Wf-D3Q">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TxH-uN-GlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2209.5" y="-2088"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="801F9D31-DFFE-4B0E-A6FC-729D20201F56" width="46" height="33">
+        <image name="B424C32D-99CE-4CAE-930D-44E9F7ADB771" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3537,10 +3633,10 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="O0A-Z3-mt3"/>
         <segue reference="fNE-Ea-jwQ"/>
         <segue reference="cFe-LM-3wY"/>
+        <segue reference="S6X-JG-rYm"/>
+        <segue reference="P6Y-Yv-4xu"/>
         <segue reference="rZ8-6v-l2a"/>
-        <segue reference="to2-Xz-uJJ"/>
     </inferredMetricsTieBreakers>
 </document>

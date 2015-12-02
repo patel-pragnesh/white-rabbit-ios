@@ -42,21 +42,21 @@ class AnimalsTableViewController: PFQueryTableViewController {
         self.stylePFLoadingView()
         
         if self.shelter == nil {
-            let items = ["Mine", "Featured", "Adoptable"]
-            let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
-            menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-                print("Did select item at index: \(indexPath)")
-                self.setCurrentView(items[indexPath])
-            }
-            menuView.menuTitleColor = UIColor.whiteColor()
-            menuView.cellTextLabelColor = UIColor.whiteColor()
-            menuView.cellBackgroundColor = UIColor.darkGrayColor()
-            self.navigationItem.titleView = menuView
-            menuView.reloadInputViews()
+//            let items = ["Mine", "Featured", "Adoptable"]
+//            let menuView = BTNavigationDropdownMenu(title: items.first!, items: items, nav: self.navigationController!)
+//            menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+//                print("Did select item at index: \(indexPath)")
+//                self.setCurrentView(items[indexPath])
+//            }
+//            menuView.menuTitleColor = UIColor.whiteColor()
+//            menuView.cellTextLabelColor = UIColor.whiteColor()
+//            menuView.cellBackgroundColor = UIColor.darkGrayColor()
+//            self.navigationItem.titleView = menuView
+//            menuView.reloadInputViews()
             
-            self.setCurrentUser()
+//            self.setCurrentUser()
             
-            self.setUpMenuBarController()
+//            self.setUpMenuBarController()
         } else {
             //            let shelterName = self.shelter!["name"] as? String
             //            self.setUpNavigationBar(shelterName!)
@@ -137,12 +137,14 @@ class AnimalsTableViewController: PFQueryTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.shelter != nil {
-            let shelterName = self.shelter!["name"] as? String
-            self.setUpNavigationBar(shelterName!)
-        } else {
-            self.setUpNavigationBar()
-        }
+//        if self.shelter != nil {
+//            let shelterName = self.shelter!["name"] as? String
+//            self.setUpNavigationBar(shelterName!)
+//        } else {
+//            self.setUpNavigationBar()
+//        }
+//        self.setUpMenuBarController("Animals")
+//        self.setUpNavigationBar("Animals")
         
         self.tableView.reloadData()
         self.tableView.reloadInputViews()

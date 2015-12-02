@@ -154,14 +154,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         homeController.checkForUser(false)
-        let user = homeController.currentUser as PFUser?
+//        let user = homeController.currentUser as PFUser?
         let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
-        let tableController = animalsController?.childViewControllers.first as! AnimalsTableViewController
-        if(user != nil) {
-            tableController.owner = user!
-        } else {
-            tableController.featured = true
-        }
+        let tabController = animalsController?.childViewControllers.first as! AnimalsTabViewController
         homeController.mainViewController = animalsController
         
         let slideMenuController = SlideMenuController(mainViewController: animalsController!, leftMenuViewController: homeController)
