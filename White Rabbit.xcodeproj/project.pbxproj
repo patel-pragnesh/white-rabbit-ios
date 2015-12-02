@@ -414,10 +414,10 @@
 				3B50B96BD6F51FAC1F64C503 /* Check Pods Manifest.lock */,
 				EDE6D42C1BA7B2BC00C7AC8C /* Sources */,
 				EDE6D42D1BA7B2BC00C7AC8C /* Frameworks */,
+				EDCD40681C058A0B008A8E57 /* ShellScript */,
 				EDE6D42E1BA7B2BC00C7AC8C /* Resources */,
 				B0DEA932E6AC70B4C47A64ED /* Embed Pods Frameworks */,
 				179C0C5D301C904085EF5821 /* Copy Pods Resources */,
-				EDCD40681C058A0B008A8E57 /* ShellScript */,
 			);
 			buildRules = (
 			);

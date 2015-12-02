@@ -131,7 +131,7 @@ class AnimalFormViewController : FormViewController {
                     $0.value = self.animalObject?.objectForKey(self.NAME_TAG) as? String
                 }
             }.cellSetup { cell, row in
-                cell.imageView?.image = UIImage(named: "form_user")
+                cell.imageView?.image = UIImage(named: "form_cat_name")
             }
             <<< TwitterRow(USERNAME_TAG) {
                 $0.title = "Username"
