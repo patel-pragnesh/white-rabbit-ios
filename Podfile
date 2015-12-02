@@ -28,6 +28,7 @@ pod 'XLPagerTabStrip'
 pod 'Dollar'
 pod 'PagingMenuController'
 pod 'IPDFCameraViewController'
+pod 'IDMPhotoBrowser'
 
 target 'White Rabbit' do
 end

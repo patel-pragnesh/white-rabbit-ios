@@ -1830,7 +1830,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="EC4131C3-6B8D-4587-B03F-0CB70CD80C5A"/>
+                                <state key="normal" image="A1F36878-F67F-4DF9-9390-E7AA8D0A13E6"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -2093,7 +2093,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Cn4-pD-NKd">
+                                        <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Cn4-pD-NKd" userLabel="Location Button">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ibx-S1-3vx"/>
@@ -2443,10 +2443,10 @@
                                     <outlet property="flagButton" destination="6nH-6L-XUJ" id="NAL-Ry-YcS"/>
                                     <outlet property="heartButton" destination="qLQ-wK-ZoR" id="QkK-ln-ND2"/>
                                     <outlet property="largeIcon" destination="iNU-qH-Zwz" id="3jq-gO-456"/>
+                                    <outlet property="locationButton" destination="Cn4-pD-NKd" id="PZw-L0-2CV"/>
                                     <outlet property="monthLabel" destination="X1L-pc-jWA" id="wFH-wk-2M8"/>
                                     <outlet property="moreButton" destination="ENu-NR-863" id="eO6-Ir-FQS"/>
                                     <outlet property="shareButton" destination="rJS-pd-oud" id="kv7-I2-6bT"/>
-                                    <outlet property="shelterButton" destination="Cn4-pD-NKd" id="NOf-Wo-afn"/>
                                     <outlet property="timelineImageView" destination="HHO-5e-p6H" id="abV-7A-4ge"/>
                                     <outlet property="yearLabel" destination="dGK-zE-sen" id="4gy-MA-QfD"/>
                                     <segue destination="y76-MA-4KC" kind="show" identifier="TimelineToEntryDetail" id="lnd-rz-1k5"/>
@@ -2521,7 +2521,8 @@
                                         <exclude reference="hJO-Qy-eS1"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="160" y="28" width="240" height="58"/>
                                     <mask key="constraints">
                                         <exclude reference="LSr-be-aQ7"/>
                                         <include reference="hJO-Qy-eS1"/>
@@ -3307,7 +3308,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EC4131C3-6B8D-4587-B03F-0CB70CD80C5A" width="46" height="33">
+        <image name="A1F36878-F67F-4DF9-9390-E7AA8D0A13E6" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

@@ -74,6 +74,8 @@ class TimelineEntryFormViewController: FormViewController {
     }
     
     func generateMedicalForm() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
         form +++= Section("")
             <<< DateRow("date") {
                 $0.title = "Date"
@@ -84,13 +86,13 @@ class TimelineEntryFormViewController: FormViewController {
             }
             <<< PushRow<String>("text") {
                 $0.title = "Type"
-                $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
+                $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Microchip", "Medical History", "Document"]
             }.cellSetup { cell, row in
                 cell.imageView?.image = UIImage(named: "form_medical_type")
             }
             <<< PushRow<String>("location") {
                 $0.title = "Location"
-                $0.options = ["Vet Visit", "Vaccine", "Spay/Neuter", "Document"]
+                $0.options = appDelegate.vetsArray! + appDelegate.sheltersArray!
             }.cellSetup { cell, row in
                 cell.imageView?.image = UIImage(named: "form_location")
             }
@@ -120,6 +122,8 @@ class TimelineEntryFormViewController: FormViewController {
     }
 
     func saveImageData() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
         let timelineEntry = PFObject(className: "AnimalTimelineEntry")
         timelineEntry["animal"] = self.animalObject
         
@@ -136,6 +140,14 @@ class TimelineEntryFormViewController: FormViewController {
         }
         if let dateValue = self.form.rowByTag("date")?.baseValue as? NSDate {
             timelineEntry["date"] = dateValue
+        }
+        
+        if let locationValue = self.form.rowByTag("location")?.baseValue as? String {
+            var location = appDelegate.vetByName![locationValue]
+            if(location == nil) {
+                location = appDelegate.shelterByName![locationValue]
+            }
+            timelineEntry["location"] = location!
         }
         
         timelineEntry["createdBy"] = PFUser.currentUser()

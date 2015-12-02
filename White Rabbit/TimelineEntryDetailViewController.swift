@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IDMPhotoBrowser
 
 class TimelineEntryDetailViewController: UIViewController {
 
@@ -116,10 +117,17 @@ class TimelineEntryDetailViewController: UIViewController {
         
         let imageView: UIButton = UIButton(frame: frame)
         imageView.setImage(image, forState: .Normal)
+        imageView.tag = index
 
-        imageView.addTarget(self, action: "showFullScreen:", forControlEvents: .TouchUpInside)
+        imageView.addTarget(self, action: "showBrowser:", forControlEvents: .TouchUpInside)
         
         self.documentsView.addSubview(imageView)
+    }
+    
+    func showBrowser(sender: UIButton!) {
+        let images: [UIImage!] = documents[sender.tag]
+        
+        self.showImagesBrowser(images, animatedFromView: sender)
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -128,12 +136,6 @@ class TimelineEntryDetailViewController: UIViewController {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Right:
                 self.goBack()
-            case UISwipeGestureRecognizerDirection.Down:
-                print("Swiped down")
-            case UISwipeGestureRecognizerDirection.Left:
-                print("Swiped left")
-            case UISwipeGestureRecognizerDirection.Up:
-                print("Swiped up")
             default:
                 break
             }

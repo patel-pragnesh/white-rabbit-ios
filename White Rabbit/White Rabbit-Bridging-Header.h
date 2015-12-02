@@ -10,3 +10,4 @@
 #import <MMMarkdown/MMMarkdown.h>
 #import <CLImageEditor/CLImageEditor.h>
 #import <IPDFCameraViewController/IPDFCameraViewController.h>
+#import <IDMPhotoBrowser/IDMPhotoBrowser.h>

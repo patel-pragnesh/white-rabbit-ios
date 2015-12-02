@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'EC21CA6DA65B2696B607F6B1'
+               BlueprintIdentifier = '863190502BE3BD821A75F145'
                BlueprintName = 'ContentfulDeliveryAPI'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'ContentfulDeliveryAPI.framework'>

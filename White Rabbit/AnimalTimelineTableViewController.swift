@@ -19,8 +19,9 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var timelineImageView: UIImageView!
-    @IBOutlet weak var shelterButton: UIButton!
     @IBOutlet weak var largeIcon: UIImageView!
+    
+    @IBOutlet weak var locationButton: UIButton!
     
     @IBOutlet weak var documentsButton: UIButton!
     @IBOutlet weak var heartButton: UIButton!
@@ -457,12 +458,12 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             cell!.eventTextLabel.hidden = true
         }
         
-        if let shelter = object?.objectForKey("shelter") as? PFObject {
-            cell!.shelterButton.titleLabel?.textAlignment = .Center
-            cell!.shelterButton.setTitle(shelter.valueForKey("name") as? String, forState: .Normal)
-            cell!.shelterButton.hidden = false
+        if let location = object?.objectForKey("location") as? PFObject {
+            cell!.locationButton.titleLabel?.textAlignment = .Center
+            cell!.locationButton.setTitle(location.valueForKey("name") as? String, forState: .Normal)
+            cell!.locationButton.hidden = false
         } else {
-            cell!.shelterButton.setTitle("", forState: .Normal)
+            cell!.locationButton.setTitle("", forState: .Normal)
         }
         
         if(object?.objectForKey("hasDocuments") != nil && object?.objectForKey("hasDocuments") as! Bool) {

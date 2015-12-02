@@ -19,6 +19,7 @@ import SlideMenuControllerSwift
 import BTNavigationDropdownMenu
 import ContentfulDeliveryAPI
 import FillableLoaders
+import IDMPhotoBrowser
 
 
 @UIApplicationMain
@@ -33,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var breedByName: [String: PFObject]?
     var sheltersArray: [String]?
     var shelterByName: [String: PFObject]?
+    var vetsArray: [String]?
+    var vetByName: [String: PFObject]?
 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -58,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loadTraits()
         loadBreeds()
         loadShelters()
+        loadVets()
         
         return true
     }
@@ -96,6 +100,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.shelterByName![name] = object
                 }
                 NSLog("Finished loading shelters: %@", self.shelterByName!)
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
+    }
+    
+    func loadVets() {
+        let vetsQuery = PFQuery(className:"Location")
+        vetsQuery.whereKey("type", equalTo: "vet")
+        
+        self.vetsArray = [String]()
+        self.vetByName = [String:PFObject]()
+        
+        vetsQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let name = object["name"] as! String
+                    self.vetsArray?.append(name)
+                    self.vetByName![name] = object
+                }
+                NSLog("Finished loading vets: %@", self.vetByName!)
             } else {
                 NSLog("Error: %@", error!)
             }
@@ -345,28 +370,28 @@ extension UIViewController {
         NSLog("fullscreening image")
         let image = sender.imageView?.image
         NSLog("fullscreening image \(image)")
-        self.showImageFullScreen(image!)
+        self.showImageFullScreen(image!, animatedFromView: sender)
     }
     
-    func showImageFullScreen(image: UIImage) {
-        let captureImageView: UIImageView = UIImageView(image: image)
-        captureImageView.backgroundColor = UIColor(white: 0.0, alpha: 0.7)
-        captureImageView.frame = CGRectOffset(self.view.bounds, 0, -self.view.bounds.size.height)
-        captureImageView.alpha = 1.0
-        captureImageView.contentMode = .ScaleAspectFit
-        captureImageView.userInteractionEnabled = true
-        
-        self.view.addSubview(captureImageView)
-        
-        let dismissTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissPreview:")
-        captureImageView.addGestureRecognizer(dismissTap)
-        
-        currentPreview = captureImageView
-        
-        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.7, options: .AllowUserInteraction, animations: { () -> Void in
-            captureImageView.frame = self.view.bounds
-            }, completion: nil)
+    func showImageFullScreen(image: UIImage, animatedFromView: UIView) {
+        self.showImagesBrowser([image], animatedFromView: animatedFromView)
     }
+    
+    func showImagesBrowser(images: [UIImage!], animatedFromView: UIView) {
+        var idmImages = Array<IDMPhoto>()
+        images.forEach { (image) -> Void in
+            let idmPhoto : IDMPhoto = IDMPhoto(image: image)
+            idmImages.append(idmPhoto)
+        }
+        let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: idmImages, animatedFromView: animatedFromView)
+        browser.displayActionButton = true
+        browser.displayArrowButton = true
+        browser.displayCounterLabel = false
+        browser.usePopAnimation = true
+        browser.doneButtonImage = UIImage(named: "close_white")
+        self.presentViewController(browser, animated: true, completion: nil)
+    }
+    
     
     func dismissPreview(sender: AnyObject) {
         UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {() -> Void in
