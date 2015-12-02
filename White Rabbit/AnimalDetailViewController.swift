@@ -12,6 +12,7 @@ import Darwin
 import ALCameraViewController
 import CLImageEditor
 import AssetsLibrary
+import PagingMenuController
 
 class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate {
 
@@ -452,6 +453,35 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             NSLog("trait objects before: \(self.traitObjects)")
             traitSelector.selectedTraitObjects = self.traitObjects
             traitSelector.animalViewController = self
+        }  else if(segue.identifier == "AnimalDetailProfileTabsEmbed") {
+            
+            let timelineViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
+            timelineViewController.animalObject = self.currentAnimalObject
+            timelineViewController.animalDetailController = self
+            self.timelineTableController = timelineViewController
+            
+            let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalAbout") as! AnimalAboutViewController
+            
+            let viewControllers = [timelineViewController, aboutViewController]
+            
+            let options = PagingMenuOptions()
+            options.menuHeight = 45
+            options.menuPosition = .Top
+            options.selectedFont = UIFont(name: "Avenir", size: 18)!
+            options.font = UIFont(name: "Avenir", size: 18)!
+            options.menuDisplayMode = .SegmentedControl
+//            options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: 50.0), centerItem: false, scrollingMode: PagingMenuOptions.MenuScrollingMode.ScrollEnabledAndBouces)
+            options.menuItemMode = .Underline(height: 2.0, color: UIColor.lightGrayColor(), horizontalPadding: 0.0, verticalPadding: 0.0)
+            
+            
+            let profileTabs = segue.destinationViewController as! PagingMenuController
+//            profileTabs.delegate = self
+            profileTabs.setup(viewControllers: viewControllers, options: options)
+
+            
+//            animalTimeline.animalObject = self.currentAnimalObject
+//            animalTimeline.animalDetailController = self
+//            self.timelineTableController = animalTimeline
         } else if(segue.identifier == "AnimalDetailToTimeline" || segue.identifier == "AnimalDetailTimelineEmbed") {
             let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
             animalTimeline.animalObject = self.currentAnimalObject
