@@ -1838,7 +1838,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="B424C32D-99CE-4CAE-930D-44E9F7ADB771"/>
+                                <state key="normal" image="2CAE51BC-72A8-4A48-A475-4ABFCE048B62"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -2035,7 +2035,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="seM-ch-5CU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1515" y="-1398"/>
+            <point key="canvasLocation" x="879" y="-1452"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="Ojq-4v-G5Q">
@@ -2492,7 +2492,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-E0-izx" customClass="TagListView" customModule="TagListView">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCQ-bE-C9j">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="63" y="34" width="43" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loves" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyh-61-jMg">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="63" y="154" width="45" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-8G-aqZ">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="63" y="266" width="45" height="21"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="traits_black" translatesAutoresizingMaskIntoConstraints="NO" id="YHe-l1-GES">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="28" width="35" height="31"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loves_black" translatesAutoresizingMaskIntoConstraints="NO" id="Zpl-G7-ccM">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="152" width="34" height="30"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hates_black" translatesAutoresizingMaskIntoConstraints="NO" id="pYe-6K-Zch">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="262" width="35" height="31"/>
+                                </variation>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-E0-izx" userLabel="Traits Tags" customClass="TagListView" customModule="TagListView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2518,55 +2563,101 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="125" y="28" width="240" height="58"/>
+                                    <rect key="frame" x="20" y="67" width="360" height="58"/>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCQ-bE-C9j">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBE-vr-HvF" userLabel="Loves Tags" customClass="TagListView" customModule="TagListView">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="27" y="28" width="43" height="21"/>
+                                    <rect key="frame" x="20" y="190" width="360" height="58"/>
                                 </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loves" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyh-61-jMg">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-q1-AQu" customClass="TagListView" customModule="TagListView">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="25" y="89" width="45" height="21"/>
+                                    <rect key="frame" x="20" y="301" width="360" height="58"/>
                                 </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-8G-aqZ">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="25" y="150" width="45" height="21"/>
-                                </variation>
-                            </label>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="y4o-E0-izx"/>
                                 <exclude reference="TCQ-bE-C9j"/>
                                 <exclude reference="jyh-61-jMg"/>
                                 <exclude reference="dLt-8G-aqZ"/>
+                                <exclude reference="YHe-l1-GES"/>
+                                <exclude reference="Zpl-G7-ccM"/>
+                                <exclude reference="pYe-6K-Zch"/>
+                                <exclude reference="y4o-E0-izx"/>
+                                <exclude reference="HBE-vr-HvF"/>
+                                <exclude reference="0zn-q1-AQu"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="y4o-E0-izx"/>
                                 <include reference="TCQ-bE-C9j"/>
                                 <include reference="jyh-61-jMg"/>
                                 <include reference="dLt-8G-aqZ"/>
+                                <include reference="YHe-l1-GES"/>
+                                <include reference="Zpl-G7-ccM"/>
+                                <include reference="pYe-6K-Zch"/>
+                                <include reference="y4o-E0-izx"/>
+                                <include reference="HBE-vr-HvF"/>
+                                <include reference="0zn-q1-AQu"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="hatesTags" destination="0zn-q1-AQu" id="3LX-sM-mRq"/>
+                        <outlet property="lovesTags" destination="HBE-vr-HvF" id="0yV-BJ-fcI"/>
+                        <outlet property="traitTags" destination="y4o-E0-izx" id="mK7-O5-cPe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7k-Hr-Vgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3424,7 +3515,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="B424C32D-99CE-4CAE-930D-44E9F7ADB771" width="46" height="33">
+        <image name="2CAE51BC-72A8-4A48-A475-4ABFCE048B62" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3616,9 +3707,11 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="flag_grey" width="19" height="24"/>
         <image name="flash_white" width="19" height="42"/>
         <image name="form_email" width="18" height="15"/>
+        <image name="hates_black" width="47" height="42"/>
         <image name="heart_grey" width="28" height="24"/>
         <image name="instagram_button" width="50" height="50"/>
         <image name="instagram_white" width="29" height="30"/>
+        <image name="loves_black" width="47" height="42"/>
         <image name="mail_white" width="36" height="24"/>
         <image name="map_grey" width="22" height="21"/>
         <image name="more_grey" width="26" height="6"/>
@@ -3629,6 +3722,7 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="shelters_white" width="28" height="28"/>
         <image name="timeline_dot" width="14" height="13"/>
         <image name="timeline_line" width="5" height="639"/>
+        <image name="traits_black" width="51" height="44"/>
         <image name="twitter_button" width="50" height="50"/>
         <image name="youtube_button" width="50" height="50"/>
     </resources>

@@ -18,7 +18,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var breedButton: UIButton!
-    @IBOutlet weak var traitTags: TagListView!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var coverPhoto: UIImageView!
@@ -34,7 +33,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     
     var currentAnimalObject : PFObject?
     var breedObject : PFObject?
-    var traitObjects : [PFObject?] = []
     var shelterObject : PFObject?
     
     var currentUserIsOwner = false
@@ -105,7 +103,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         self.currentAnimalObject?.saveInBackgroundWithBlock({
             (success: Bool, error: NSError?) -> Void in
             self.hideLoader()
-            self.addTraitTags()
         })
     }
     
@@ -379,26 +376,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         
         return ageString
     }
-    
-    func addTraitTags() {
-        if let animalObject = currentAnimalObject {
-            let traitsRelation = animalObject["traits"] as! PFRelation
-            let traitsQuery = traitsRelation.query() as PFQuery?
-
-            self.traitTags.removeAllTags()
-            traitsQuery?.findObjectsInBackgroundWithBlock({
-                (objects: [PFObject]?, error: NSError?) -> Void in
-                if error == nil {
-                    for object in objects! {
-                        let name = object.objectForKey("name") as! String
-                        self.traitTags.addTag(name)
-                        self.traitObjects.append(object)
-                    }
-                }
-            })
-        }
-    }
-    
+        
     @IBAction func openInstagramProfile(sender: AnyObject) {
         let instagramUsername = self.currentAnimalObject?.objectForKey("instagramUsername") as? String
         
@@ -448,11 +426,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             let editScene =  nav.topViewController as! AnimalFormViewController
             editScene.detailController = self
             editScene.animalObject = self.currentAnimalObject
-        } else if(segue.identifier == "AnimalToTraitSelector") {
-            let traitSelector = segue.destinationViewController as! TraitSelectorTableViewController
-            NSLog("trait objects before: \(self.traitObjects)")
-            traitSelector.selectedTraitObjects = self.traitObjects
-            traitSelector.animalViewController = self
         }  else if(segue.identifier == "AnimalDetailProfileTabsEmbed") {
             
             let timelineViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
@@ -461,6 +434,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             self.timelineTableController = timelineViewController
             
             let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalAbout") as! AnimalAboutViewController
+            aboutViewController.animalObject = self.currentAnimalObject
             
             let viewControllers = [timelineViewController, aboutViewController]
             

@@ -27,6 +27,9 @@ class AnimalFormViewController : FormViewController {
     let TRAITS_TAG = "traits"
     let BREED_TAG = "breed"
     let SHELTER_TAG = "shelter"
+
+    let LOVES_TAG = "loves"
+    let HATES_TAG = "hates"
     
     let ADOPTABLE_TAG = "adoptable"
     let FEATURED_TAG = "featured"
@@ -222,7 +225,30 @@ class AnimalFormViewController : FormViewController {
             }.cellSetup { cell, row in
                 cell.imageView?.image = UIImage(named: "form_traits")
             }
-
+            <<< MultipleSelectorRow<String>(LOVES_TAG) {
+                $0.title = "Loves"
+                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor"]
+                if self.isEditMode() {
+//                    NSLog("selected traits are: \(self.selectedTraitStrings)")
+//                    
+//                    $0.value = self.selectedTraitStrings
+                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_traits")
+            }
+            <<< MultipleSelectorRow<String>(HATES_TAG) {
+                $0.title = "Hates"
+                $0.options = ["Being pet below the waist","Shower time"]
+                if self.isEditMode() {
+                    //                    NSLog("selected traits are: \(self.selectedTraitStrings)")
+                    //
+                    //                    $0.value = self.selectedTraitStrings
+                }
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_traits")
+            }
+        
+        
         form +++= Section("Social")
             <<< TwitterRow(INSTAGRAM_TAG) {
                 $0.title = "Instagram"
@@ -260,7 +286,6 @@ class AnimalFormViewController : FormViewController {
                     cell.textField.placeholder = "page_id"
                     cell.imageView?.image = UIImage(named: "form_facebook")
         }
-
         
             form +++= Section("Flags")
                 <<< SwitchRow(ADOPTABLE_TAG) {
@@ -396,6 +421,14 @@ class AnimalFormViewController : FormViewController {
         
         if !self.isEditMode() {
             animal.setObject(self.userObject!, forKey: "owner")
+        }
+        
+        if let lovesValue = self.form.rowByTag(self.LOVES_TAG)?.baseValue as? Set<String> {
+            animal.setObject(lovesValue.reverse(), forKey: LOVES_TAG)
+        }
+
+        if let hatesValue = self.form.rowByTag(self.HATES_TAG)?.baseValue as? Set<String> {
+            animal.setObject(hatesValue.reverse(), forKey: HATES_TAG)
         }
         
         self.showLoader()
