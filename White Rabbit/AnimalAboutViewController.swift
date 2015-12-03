@@ -15,6 +15,8 @@ class AnimalAboutViewController: UIViewController {
     @IBOutlet weak var lovesTags: TagListView!
     @IBOutlet weak var hatesTags: TagListView!
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var animalObject : PFObject?
     var traitObjects : [PFObject?] = []
     
@@ -60,7 +62,7 @@ class AnimalAboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         traitTags.textFont = UIFont.systemFontOfSize(15)
         lovesTags.textFont = UIFont.systemFontOfSize(15)
         hatesTags.textFont = UIFont.systemFontOfSize(15)

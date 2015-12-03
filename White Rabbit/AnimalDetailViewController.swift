@@ -61,8 +61,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
-        //        traitTags.textFont = UIFont.systemFontOfSize(15)
-        
         self.loadAnimal()
     }
     

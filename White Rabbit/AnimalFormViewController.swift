@@ -227,14 +227,14 @@ class AnimalFormViewController : FormViewController {
             }
             <<< MultipleSelectorRow<String>(LOVES_TAG) {
                 $0.title = "Loves"
-                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor","Exploring the neighbors yard","Chasing racoons out of the house","Licking and kneading only the softest blankets","Drinking straight from the faucet","Napping in the sink","Bundling up under all the blankets when it's cold","Lazers!","Laying on warm concrete","Sitting on your laptop keyboard"]
+                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor","Exploring the neighbors yard","Chasing racoons out of the house","Licking and kneading only the softest blankets","Drinking straight from the faucet","Napping in the sink","Lazers!","Laying on warm concrete","Sitting on your laptop keyboard"]
                 if self.isEditMode() {
                     let loves = self.animalObject?.objectForKey(self.LOVES_TAG) as? [String]
                     var lovesSet : Set<String> = Set<String>()
-                    for love in loves! {
-                        lovesSet.insert(love)
-                    }
                     if(loves != nil) {
+                        for love in loves! {
+                            lovesSet.insert(love)
+                        }
                         $0.value = lovesSet
                     }
                 }
@@ -247,10 +247,10 @@ class AnimalFormViewController : FormViewController {
                 if self.isEditMode() {
                     let hates = self.animalObject?.objectForKey(self.HATES_TAG) as? [String]
                     var hatesSet : Set<String> = Set<String>()
-                    for hate in hates! {
-                        hatesSet.insert(hate)
-                    }
                     if(hates != nil) {
+                        for hate in hates! {
+                            hatesSet.insert(hate)
+                        }
                         $0.value = hatesSet
                     }
                 }
