@@ -227,7 +227,7 @@ class AnimalFormViewController : FormViewController {
             }
             <<< MultipleSelectorRow<String>(LOVES_TAG) {
                 $0.title = "Loves"
-                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor"]
+                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor","Exploring the neighbors yard","Chasing racoons out of the house","Licking and kneading only the softest blankets","Drinking straight from the faucet","Napping in the sink","Bundling up under all the blankets when it's cold","Lazers!","Laying on warm concrete"]
                 if self.isEditMode() {
 //                    NSLog("selected traits are: \(self.selectedTraitStrings)")
 //                    
@@ -238,7 +238,7 @@ class AnimalFormViewController : FormViewController {
             }
             <<< MultipleSelectorRow<String>(HATES_TAG) {
                 $0.title = "Hates"
-                $0.options = ["Being pet below the waist","Shower time"]
+                $0.options = ["Being pet below the waist","Shower time","Not being fed","Belly rubs","Your ugly face"]
                 if self.isEditMode() {
                     //                    NSLog("selected traits are: \(self.selectedTraitStrings)")
                     //

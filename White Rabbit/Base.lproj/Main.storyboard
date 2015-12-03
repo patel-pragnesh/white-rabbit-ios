@@ -1838,7 +1838,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="2CAE51BC-72A8-4A48-A475-4ABFCE048B62"/>
+                                <state key="normal" image="196B5AFB-3642-4A72-9123-9E826216D775"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -2488,175 +2488,264 @@
                         <viewControllerLayoutGuide type="top" id="guf-iX-Smy"/>
                         <viewControllerLayoutGuide type="bottom" id="HNT-vB-IoH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FiO-TQ-3F9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rvY-vJ-fNX">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCQ-bE-C9j">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="63" y="34" width="43" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOe-tW-ljH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7q-Wi-GUx">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="traits_black" translatesAutoresizingMaskIntoConstraints="NO" id="guT-wO-MjN">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="4rF-hU-Fcb"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="4rF-hU-Fcb"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="4rF-hU-Fcb"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sme-WI-xFO" userLabel="Traits Tags" customClass="TagListView" customModule="TagListView">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loves" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mF5-hE-Zck">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loves_black" translatesAutoresizingMaskIntoConstraints="NO" id="EP4-1N-hCF">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="low-gf-NhK" userLabel="Loves Tags" customClass="TagListView" customModule="TagListView">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTI-ei-cS9">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hates_black" translatesAutoresizingMaskIntoConstraints="NO" id="xL6-LB-5Eh">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-eX-uJK" userLabel="Hates Tags" customClass="TagListView" customModule="TagListView">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Sme-WI-xFO" firstAttribute="top" secondItem="guT-wO-MjN" secondAttribute="bottom" constant="8" id="0o3-Dj-EL3"/>
+                                    <constraint firstItem="low-gf-NhK" firstAttribute="leading" secondItem="EP4-1N-hCF" secondAttribute="leading" id="0ox-NC-Ivw"/>
+                                    <constraint firstItem="E7q-Wi-GUx" firstAttribute="leading" secondItem="guT-wO-MjN" secondAttribute="trailing" constant="8" id="494-7A-mzv"/>
+                                    <constraint firstItem="cTI-ei-cS9" firstAttribute="centerY" secondItem="xL6-LB-5Eh" secondAttribute="centerY" id="6Ln-oy-L8P"/>
+                                    <constraint firstItem="cTI-ei-cS9" firstAttribute="leading" secondItem="xL6-LB-5Eh" secondAttribute="trailing" constant="8" id="80C-g2-CO0"/>
+                                    <constraint firstItem="Sme-WI-xFO" firstAttribute="leading" secondItem="guT-wO-MjN" secondAttribute="leading" id="BfG-cI-yIq"/>
+                                    <constraint firstItem="d2Q-eX-uJK" firstAttribute="leading" secondItem="xL6-LB-5Eh" secondAttribute="leading" id="Bw3-GK-L04"/>
+                                    <constraint firstItem="d2Q-eX-uJK" firstAttribute="top" secondItem="xL6-LB-5Eh" secondAttribute="bottom" constant="8" id="Hlf-6f-yj7"/>
+                                    <constraint firstItem="EP4-1N-hCF" firstAttribute="leading" secondItem="guT-wO-MjN" secondAttribute="leading" id="NwV-KG-mOR"/>
+                                    <constraint firstItem="xL6-LB-5Eh" firstAttribute="leading" secondItem="EP4-1N-hCF" secondAttribute="leading" id="PLY-fi-6aE"/>
+                                    <constraint firstItem="EP4-1N-hCF" firstAttribute="top" secondItem="Sme-WI-xFO" secondAttribute="bottom" constant="27" id="R5L-vt-aGx">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="24"/>
+                                    </constraint>
+                                    <constraint firstItem="guT-wO-MjN" firstAttribute="top" secondItem="TOe-tW-ljH" secondAttribute="top" constant="28" id="UkA-tQ-AK6"/>
+                                    <constraint firstItem="mF5-hE-Zck" firstAttribute="centerY" secondItem="EP4-1N-hCF" secondAttribute="centerY" id="Wgt-qK-juh"/>
+                                    <constraint firstItem="E7q-Wi-GUx" firstAttribute="centerY" secondItem="guT-wO-MjN" secondAttribute="centerY" id="bDq-oa-kvA"/>
+                                    <constraint firstItem="low-gf-NhK" firstAttribute="top" secondItem="EP4-1N-hCF" secondAttribute="bottom" constant="8" id="bH1-o2-Rk3"/>
+                                    <constraint firstItem="guT-wO-MjN" firstAttribute="leading" secondItem="TOe-tW-ljH" secondAttribute="leading" constant="20" id="du0-7S-NjT"/>
+                                    <constraint firstItem="mF5-hE-Zck" firstAttribute="leading" secondItem="EP4-1N-hCF" secondAttribute="trailing" constant="9" id="kg1-95-Y04"/>
+                                    <constraint firstItem="xL6-LB-5Eh" firstAttribute="top" secondItem="low-gf-NhK" secondAttribute="bottom" constant="14" id="w4k-mH-Z3D">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="24"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="E7q-Wi-GUx"/>
+                                        <exclude reference="guT-wO-MjN"/>
+                                        <exclude reference="Sme-WI-xFO"/>
+                                        <exclude reference="mF5-hE-Zck"/>
+                                        <exclude reference="EP4-1N-hCF"/>
+                                        <exclude reference="low-gf-NhK"/>
+                                        <exclude reference="cTI-ei-cS9"/>
+                                        <exclude reference="xL6-LB-5Eh"/>
+                                        <exclude reference="d2Q-eX-uJK"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="UkA-tQ-AK6"/>
+                                        <exclude reference="du0-7S-NjT"/>
+                                        <exclude reference="0o3-Dj-EL3"/>
+                                        <exclude reference="BfG-cI-yIq"/>
+                                        <exclude reference="494-7A-mzv"/>
+                                        <exclude reference="bDq-oa-kvA"/>
+                                        <exclude reference="NwV-KG-mOR"/>
+                                        <exclude reference="R5L-vt-aGx"/>
+                                        <exclude reference="Wgt-qK-juh"/>
+                                        <exclude reference="kg1-95-Y04"/>
+                                        <exclude reference="0ox-NC-Ivw"/>
+                                        <exclude reference="bH1-o2-Rk3"/>
+                                        <exclude reference="PLY-fi-6aE"/>
+                                        <exclude reference="w4k-mH-Z3D"/>
+                                        <exclude reference="6Ln-oy-L8P"/>
+                                        <exclude reference="80C-g2-CO0"/>
+                                        <exclude reference="Bw3-GK-L04"/>
+                                        <exclude reference="Hlf-6f-yj7"/>
+                                    </mask>
                                 </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loves" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyh-61-jMg">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="63" y="154" width="45" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-8G-aqZ">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="63" y="266" width="45" height="21"/>
-                                </variation>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="traits_black" translatesAutoresizingMaskIntoConstraints="NO" id="YHe-l1-GES">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="28" width="35" height="31"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loves_black" translatesAutoresizingMaskIntoConstraints="NO" id="Zpl-G7-ccM">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="152" width="34" height="30"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hates_black" translatesAutoresizingMaskIntoConstraints="NO" id="pYe-6K-Zch">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="262" width="35" height="31"/>
-                                </variation>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-E0-izx" userLabel="Traits Tags" customClass="TagListView" customModule="TagListView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
-                                        <real key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="67" width="360" height="58"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBE-vr-HvF" userLabel="Loves Tags" customClass="TagListView" customModule="TagListView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
-                                        <real key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="190" width="360" height="58"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-q1-AQu" customClass="TagListView" customModule="TagListView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
-                                        <real key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="301" width="360" height="58"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="E7q-Wi-GUx"/>
+                                        <include reference="guT-wO-MjN"/>
+                                        <include reference="Sme-WI-xFO"/>
+                                        <include reference="mF5-hE-Zck"/>
+                                        <include reference="EP4-1N-hCF"/>
+                                        <include reference="low-gf-NhK"/>
+                                        <include reference="cTI-ei-cS9"/>
+                                        <include reference="xL6-LB-5Eh"/>
+                                        <include reference="d2Q-eX-uJK"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="UkA-tQ-AK6"/>
+                                        <include reference="du0-7S-NjT"/>
+                                        <include reference="0o3-Dj-EL3"/>
+                                        <include reference="BfG-cI-yIq"/>
+                                        <include reference="494-7A-mzv"/>
+                                        <include reference="bDq-oa-kvA"/>
+                                        <include reference="NwV-KG-mOR"/>
+                                        <include reference="R5L-vt-aGx"/>
+                                        <include reference="Wgt-qK-juh"/>
+                                        <include reference="kg1-95-Y04"/>
+                                        <include reference="0ox-NC-Ivw"/>
+                                        <include reference="bH1-o2-Rk3"/>
+                                        <include reference="PLY-fi-6aE"/>
+                                        <include reference="w4k-mH-Z3D"/>
+                                        <include reference="6Ln-oy-L8P"/>
+                                        <include reference="80C-g2-CO0"/>
+                                        <include reference="Bw3-GK-L04"/>
+                                        <include reference="Hlf-6f-yj7"/>
+                                    </mask>
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TOe-tW-ljH" firstAttribute="centerY" secondItem="rvY-vJ-fNX" secondAttribute="centerY" id="9uq-3s-VPa"/>
+                            <constraint firstItem="TOe-tW-ljH" firstAttribute="leading" secondItem="rvY-vJ-fNX" secondAttribute="leadingMargin" constant="-8" id="J0d-un-zpa"/>
+                            <constraint firstItem="TOe-tW-ljH" firstAttribute="centerX" secondItem="rvY-vJ-fNX" secondAttribute="centerX" id="UpG-am-5jB"/>
+                            <constraint firstAttribute="trailing" secondItem="TOe-tW-ljH" secondAttribute="trailing" id="ZPu-d1-9ze"/>
+                            <constraint firstItem="TOe-tW-ljH" firstAttribute="bottom" secondItem="HNT-vB-IoH" secondAttribute="top" id="neN-12-5Pv"/>
+                            <constraint firstItem="TOe-tW-ljH" firstAttribute="top" secondItem="rvY-vJ-fNX" secondAttribute="top" id="u9X-nC-CbJ"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="TCQ-bE-C9j"/>
-                                <exclude reference="jyh-61-jMg"/>
-                                <exclude reference="dLt-8G-aqZ"/>
-                                <exclude reference="YHe-l1-GES"/>
-                                <exclude reference="Zpl-G7-ccM"/>
-                                <exclude reference="pYe-6K-Zch"/>
-                                <exclude reference="y4o-E0-izx"/>
-                                <exclude reference="HBE-vr-HvF"/>
-                                <exclude reference="0zn-q1-AQu"/>
+                                <exclude reference="TOe-tW-ljH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="9uq-3s-VPa"/>
+                                <exclude reference="J0d-un-zpa"/>
+                                <exclude reference="UpG-am-5jB"/>
+                                <exclude reference="ZPu-d1-9ze"/>
+                                <exclude reference="neN-12-5Pv"/>
+                                <exclude reference="u9X-nC-CbJ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="TCQ-bE-C9j"/>
-                                <include reference="jyh-61-jMg"/>
-                                <include reference="dLt-8G-aqZ"/>
-                                <include reference="YHe-l1-GES"/>
-                                <include reference="Zpl-G7-ccM"/>
-                                <include reference="pYe-6K-Zch"/>
-                                <include reference="y4o-E0-izx"/>
-                                <include reference="HBE-vr-HvF"/>
-                                <include reference="0zn-q1-AQu"/>
+                                <include reference="TOe-tW-ljH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="9uq-3s-VPa"/>
+                                <include reference="J0d-un-zpa"/>
+                                <include reference="UpG-am-5jB"/>
+                                <include reference="ZPu-d1-9ze"/>
+                                <include reference="neN-12-5Pv"/>
+                                <include reference="u9X-nC-CbJ"/>
                             </mask>
                         </variation>
-                    </view>
+                    </scrollView>
                     <connections>
-                        <outlet property="hatesTags" destination="0zn-q1-AQu" id="3LX-sM-mRq"/>
-                        <outlet property="lovesTags" destination="HBE-vr-HvF" id="0yV-BJ-fcI"/>
-                        <outlet property="traitTags" destination="y4o-E0-izx" id="mK7-O5-cPe"/>
+                        <outlet property="hatesTags" destination="d2Q-eX-uJK" id="WDe-LO-FtX"/>
+                        <outlet property="lovesTags" destination="low-gf-NhK" id="n6c-3q-iUX"/>
+                        <outlet property="traitTags" destination="Sme-WI-xFO" id="cJl-0N-xKC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7k-Hr-Vgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3259,7 +3348,6 @@
                         <outlet property="profileThumb" destination="1k1-Qg-kEW" id="a0a-E1-0WX"/>
                         <outlet property="shelterButton" destination="7Rv-6F-JHL" id="Hx2-b3-AUP"/>
                         <outlet property="timelineView" destination="Feg-HI-Mve" id="rcl-TU-IfM"/>
-                        <outlet property="traitTags" destination="y4o-E0-izx" id="uwa-1U-MCT"/>
                         <outlet property="twitterButton" destination="5td-DT-3Wg" id="ocw-xM-0Hp"/>
                         <outlet property="youtubeButton" destination="zcE-lC-Vkd" id="WBP-ui-S9b"/>
                         <segue destination="CdW-CM-oLe" kind="presentation" identifier="AnimalDetailToEditAnimal" id="to2-Xz-uJJ"/>
@@ -3515,7 +3603,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2CAE51BC-72A8-4A48-A475-4ABFCE048B62" width="46" height="33">
+        <image name="196B5AFB-3642-4A72-9123-9E826216D775" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3707,11 +3795,11 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="flag_grey" width="19" height="24"/>
         <image name="flash_white" width="19" height="42"/>
         <image name="form_email" width="18" height="15"/>
-        <image name="hates_black" width="47" height="42"/>
+        <image name="hates_black" width="24" height="21"/>
         <image name="heart_grey" width="28" height="24"/>
         <image name="instagram_button" width="50" height="50"/>
         <image name="instagram_white" width="29" height="30"/>
-        <image name="loves_black" width="47" height="42"/>
+        <image name="loves_black" width="24" height="21"/>
         <image name="mail_white" width="36" height="24"/>
         <image name="map_grey" width="22" height="21"/>
         <image name="more_grey" width="26" height="6"/>
@@ -3722,7 +3810,7 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="shelters_white" width="28" height="28"/>
         <image name="timeline_dot" width="14" height="13"/>
         <image name="timeline_line" width="5" height="639"/>
-        <image name="traits_black" width="51" height="44"/>
+        <image name="traits_black" width="26" height="22"/>
         <image name="twitter_button" width="50" height="50"/>
         <image name="youtube_button" width="50" height="50"/>
     </resources>

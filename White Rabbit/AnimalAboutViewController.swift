@@ -35,13 +35,47 @@ class AnimalAboutViewController: UIViewController {
         })
     }
     
+    func addLovesTags() {
+        let loves = animalObject!["loves"] as? [String]
+
+        self.lovesTags.removeAllTags()
+
+        if loves != nil {
+            for love in loves! {
+                self.lovesTags.addTag(love)
+            }
+        }
+    }
+    
+    func addHatesTags() {
+        let hates = animalObject!["hates"] as? [String]
+        
+        self.hatesTags.removeAllTags()
+        if hates != nil {
+            for hate in hates! {
+                self.hatesTags.addTag(hate)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         traitTags.textFont = UIFont.systemFontOfSize(15)
-        
+        lovesTags.textFont = UIFont.systemFontOfSize(15)
+        hatesTags.textFont = UIFont.systemFontOfSize(15)
+
         self.addTraitTags()
-        // Do any additional setup after loading the view.
+        self.addLovesTags()
+        self.addHatesTags()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.addTraitTags()
+        self.addLovesTags()
+        self.addHatesTags()
     }
 
     override func didReceiveMemoryWarning() {
