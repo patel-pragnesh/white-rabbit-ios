@@ -1838,7 +1838,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="196B5AFB-3642-4A72-9123-9E826216D775"/>
+                                <state key="normal" image="20A9C7E9-C898-42F0-8B82-0FCD7A309465"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -2766,7 +2766,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rN-u8-Aic">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <connections>
-                                    <segue destination="leo-bc-zjQ" kind="embed" id="ITB-Gp-adN"/>
+                                    <segue destination="leo-bc-zjQ" kind="embed" id="q6Q-SP-QBQ"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -2805,10 +2805,13 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="CKQ-oo-hNn"/>
+                    <connections>
+                        <segue destination="CdW-CM-oLe" kind="presentation" identifier="AnimalTabToAddAnimal" id="hO3-K4-7mD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qn4-lO-CDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1419" y="-2083.5"/>
+            <point key="canvasLocation" x="1428" y="-2188.5"/>
         </scene>
         <!--Animal Detail View Controller-->
         <scene sceneID="N75-VS-JUf">
@@ -3478,7 +3481,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1u-j0-bfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="-1386.75"/>
+            <point key="canvasLocation" x="120" y="-1452"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nr0-Hh-Y3n">
@@ -3603,7 +3606,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="196B5AFB-3642-4A72-9123-9E826216D775" width="46" height="33">
+        <image name="20A9C7E9-C898-42F0-8B82-0FCD7A309465" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -3815,10 +3818,10 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="S6X-JG-rYm"/>
+        <segue reference="rZ8-6v-l2a"/>
+        <segue reference="hO3-K4-7mD"/>
         <segue reference="fNE-Ea-jwQ"/>
         <segue reference="cFe-LM-3wY"/>
-        <segue reference="S6X-JG-rYm"/>
-        <segue reference="P6Y-Yv-4xu"/>
-        <segue reference="rZ8-6v-l2a"/>
     </inferredMetricsTieBreakers>
 </document>

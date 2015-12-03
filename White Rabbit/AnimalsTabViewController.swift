@@ -22,6 +22,12 @@ class AnimalsTabViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.setUpMenuBarController("Cats")
+
+        self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25, width: 25)
+    }
+    
+    func showAddAminalView() {
+        self.performSegueWithIdentifier("AnimalTabToAddAnimal", sender: self)
     }
     
     func loadTabs() {
@@ -37,14 +43,35 @@ class AnimalsTabViewController: UIViewController {
         featuredAnimalsViewController.owner = nil
         featuredAnimalsViewController.adoptable = false
         featuredAnimalsViewController.title = "Featured"
-
-        let adoptableAnimalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsTable") as! AnimalsTableViewController
-        adoptableAnimalsViewController.featured = false
-        adoptableAnimalsViewController.owner = nil
-        adoptableAnimalsViewController.adoptable = true
-        adoptableAnimalsViewController.title = "Adoptable"
         
-        let viewControllers = [myAnimalsViewController, featuredAnimalsViewController, adoptableAnimalsViewController]
+        var viewControllers = [myAnimalsViewController, featuredAnimalsViewController]
+
+        let shelter = PFUser.currentUser()?.valueForKey("shelter") as? PFObject
+        if shelter != nil {
+            do {
+                try shelter!.fetch()
+            } catch _ {
+                NSLog("couldnt fetch")
+            }
+
+            let shelterAnimalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsTable") as! AnimalsTableViewController
+            shelterAnimalsViewController.featured = false
+            shelterAnimalsViewController.owner = nil
+            shelterAnimalsViewController.adoptable = false
+            shelterAnimalsViewController.shelter = shelter
+            shelterAnimalsViewController.title = shelter?.valueForKey("name") as? String
+            
+            viewControllers.append(shelterAnimalsViewController)
+        } else {
+            let adoptableAnimalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsTable") as! AnimalsTableViewController
+            adoptableAnimalsViewController.featured = false
+            adoptableAnimalsViewController.owner = nil
+            adoptableAnimalsViewController.adoptable = true
+            adoptableAnimalsViewController.title = "Adoptable"
+            
+            viewControllers.append(adoptableAnimalsViewController)
+        }
+        
         
         let options = PagingMenuOptions()
         options.menuHeight = 50

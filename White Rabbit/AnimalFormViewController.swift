@@ -227,25 +227,35 @@ class AnimalFormViewController : FormViewController {
             }
             <<< MultipleSelectorRow<String>(LOVES_TAG) {
                 $0.title = "Loves"
-                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor","Exploring the neighbors yard","Chasing racoons out of the house","Licking and kneading only the softest blankets","Drinking straight from the faucet","Napping in the sink","Bundling up under all the blankets when it's cold","Lazers!","Laying on warm concrete"]
+                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor","Exploring the neighbors yard","Chasing racoons out of the house","Licking and kneading only the softest blankets","Drinking straight from the faucet","Napping in the sink","Bundling up under all the blankets when it's cold","Lazers!","Laying on warm concrete","Sitting on your laptop keyboard"]
                 if self.isEditMode() {
-//                    NSLog("selected traits are: \(self.selectedTraitStrings)")
-//                    
-//                    $0.value = self.selectedTraitStrings
+                    let loves = self.animalObject?.objectForKey(self.LOVES_TAG) as? [String]
+                    var lovesSet : Set<String> = Set<String>()
+                    for love in loves! {
+                        lovesSet.insert(love)
+                    }
+                    if(loves != nil) {
+                        $0.value = lovesSet
+                    }
                 }
             }.cellSetup { cell, row in
-                cell.imageView?.image = UIImage(named: "form_traits")
+                cell.imageView?.image = UIImage(named: "form_loves")
             }
             <<< MultipleSelectorRow<String>(HATES_TAG) {
                 $0.title = "Hates"
-                $0.options = ["Being pet below the waist","Shower time","Not being fed","Belly rubs","Your ugly face"]
+                $0.options = ["Being pet below the waist","Shower time","Not being fed","Belly rubs","Being picked up"]
                 if self.isEditMode() {
-                    //                    NSLog("selected traits are: \(self.selectedTraitStrings)")
-                    //
-                    //                    $0.value = self.selectedTraitStrings
+                    let hates = self.animalObject?.objectForKey(self.HATES_TAG) as? [String]
+                    var hatesSet : Set<String> = Set<String>()
+                    for hate in hates! {
+                        hatesSet.insert(hate)
+                    }
+                    if(hates != nil) {
+                        $0.value = hatesSet
+                    }
                 }
             }.cellSetup { cell, row in
-                cell.imageView?.image = UIImage(named: "form_traits")
+                cell.imageView?.image = UIImage(named: "form_hates")
             }
         
         
@@ -311,12 +321,16 @@ class AnimalFormViewController : FormViewController {
                     }
                 }
         
+        let isAdmin = PFUser.currentUser()!.valueForKey("admin")
+        if(isAdmin != nil && isAdmin as! Bool) {
+                form +++= Section("Admin")
                 <<< SwitchRow(FEATURED_TAG) {
                     $0.title = "Featured"
                     $0.value = false
                     if self.isEditMode() {
                         $0.value = self.animalObject?.objectForKey(self.FEATURED_TAG) as? Bool
                     }
+                }
         }
         
         if(self.isEditMode()) {
