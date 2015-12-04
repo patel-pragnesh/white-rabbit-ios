@@ -58,6 +58,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginWithFacebook(sender: UIButton) {
         self.showLoader()
+        PFFacebookUtils.facebookLoginManager().loginBehavior = FBSDKLoginBehavior.SystemAccount
+        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(self.permissions, block: { (user: PFUser?, error: NSError?) -> Void in
             if user == nil {
                 NSLog("Uh oh. The user cancelled the Facebook login.")
