@@ -110,7 +110,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-White RabbitTests/SlideMenuControllerSwift.framework"
   install_framework "Pods-White RabbitTests/TagListView.framework"
   install_framework "Pods-White RabbitTests/Timepiece.framework"
-  install_framework "Pods-White RabbitTests/XLPagerTabStrip.framework"
   install_framework "Pods-White RabbitTests/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -140,6 +139,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-White RabbitTests/SlideMenuControllerSwift.framework"
   install_framework "Pods-White RabbitTests/TagListView.framework"
   install_framework "Pods-White RabbitTests/Timepiece.framework"
-  install_framework "Pods-White RabbitTests/XLPagerTabStrip.framework"
   install_framework "Pods-White RabbitTests/pop.framework"
 fi

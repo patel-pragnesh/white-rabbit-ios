@@ -110,7 +110,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SlideMenuControllerSwift.framework"
   install_framework "Pods/TagListView.framework"
   install_framework "Pods/Timepiece.framework"
-  install_framework "Pods/XLPagerTabStrip.framework"
   install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -140,6 +139,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SlideMenuControllerSwift.framework"
   install_framework "Pods/TagListView.framework"
   install_framework "Pods/Timepiece.framework"
-  install_framework "Pods/XLPagerTabStrip.framework"
   install_framework "Pods/pop.framework"
 fi

@@ -86,7 +86,6 @@ PODS:
   - SlideMenuControllerSwift (2.0.4)
   - TagListView (0.4)
   - Timepiece (0.4.2)
-  - XLPagerTabStrip (2.0.0)
 
 DEPENDENCIES:
   - ALCameraViewController
@@ -99,7 +98,7 @@ DEPENDENCIES:
   - Dodo
   - Dollar
   - DynamicColor
-  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `master`)
+  - Eureka (from `https://github.com/michaelbina/Eureka.git`, branch `master`)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - IDMPhotoBrowser
@@ -114,17 +113,16 @@ DEPENDENCIES:
   - SlideMenuControllerSwift
   - TagListView
   - Timepiece
-  - XLPagerTabStrip
 
 EXTERNAL SOURCES:
   Eureka:
     :branch: master
-    :git: https://github.com/xmartlabs/Eureka.git
+    :git: https://github.com/michaelbina/Eureka.git
 
 CHECKOUT OPTIONS:
   Eureka:
-    :commit: 52b0d459615307cdf4ec14cf71d6fbe11f11696b
-    :git: https://github.com/xmartlabs/Eureka.git
+    :commit: caac7608b4a7aafe301307594f4d978798395944
+    :git: https://github.com/michaelbina/Eureka.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -154,6 +152,5 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 27a2aaaa8089749c053ab344a2cb13af1bf60322
   TagListView: 849eca7c99d9c1fc4f5406bd564aa3e90f05632c
   Timepiece: cf53bb908bf542acc0e3d5f69cabfed869df4ebd
-  XLPagerTabStrip: 2c69b8e3208432a94e713c198ce597faad5a87bb
 
 COCOAPODS: 0.39.0

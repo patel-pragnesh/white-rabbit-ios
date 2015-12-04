@@ -159,11 +159,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>XLPagerTabStrip.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -182,12 +177,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23D4B5C9CC657B68134305BFEB076270</key>
+		<key>229DB0DD56C5919EAD01414C9685BD33</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2418ED6304641CC9AF89156D6EAB3F1D</key>
+		<key>23D4B5C9CC657B68134305BFEB076270</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -202,12 +197,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3EBB97988EA73CAED65A10806B0BB121</key>
+		<key>327C128EB77DAE399708B33910836DB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4161AAC1FE01989A9C1DA79C51B5ACE0</key>
+		<key>3EBB97988EA73CAED65A10806B0BB121</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -227,17 +222,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55F8C52C98FD20EBEAF3878000718767</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>57ADC05E440A960212657DE6DA1FEDD5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>586339926F48DED019FAA9297B8454DD</key>
+		<key>5B168E95904F3298636B587DF62819C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -252,7 +242,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6ABDAC142D0BAA158632343A2A9C9603</key>
+		<key>6433FB19979B23AFA2586C10614C0B50</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -267,12 +257,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74B0009A83E49073DB91BE4CC735800F</key>
+		<key>7FAF436F06547913B23D7395753E1EE2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7FAF436F06547913B23D7395753E1EE2</key>
+		<key>8132B00A8AD8663739AD83D01B53FBED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -297,7 +287,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7B82A5E562C28215EC2B5C146A9780C</key>
+		<key>B0A4C4AAA3D05369D3EF02AA6CFD5539</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -312,12 +302,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF4360F957F4683C600C607F32A09BAA</key>
+		<key>E302B5BAE6B298CC94540449CC239363</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E302B5BAE6B298CC94540449CC239363</key>
+		<key>E5FD846C00E60BB0BAD26056961BF724</key>
 		<dict>
 			<key>primary</key>
 			<true/>
