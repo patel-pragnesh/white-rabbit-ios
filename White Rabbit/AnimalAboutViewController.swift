@@ -15,10 +15,31 @@ class AnimalAboutViewController: UIViewController {
     @IBOutlet weak var lovesTags: TagListView!
     @IBOutlet weak var hatesTags: TagListView!
 
+    @IBOutlet weak var breedTitle: UILabel!
+    @IBOutlet weak var breedLogo: UIImageView!
+    @IBOutlet weak var afterBreedConstraint: NSLayoutConstraint!
+    @IBOutlet weak var coatTitle: UILabel!
+    @IBOutlet weak var coatLogo: UIImageView!
+    @IBOutlet weak var afterCoatConstraint: NSLayoutConstraint!
+    @IBOutlet weak var traitTitle: UILabel!
+    @IBOutlet weak var traitLogo: UIImageView!
+    @IBOutlet weak var lovesTitle: UILabel!
+    @IBOutlet weak var lovesLogo: UIImageView!
+    @IBOutlet weak var hatesTitle: UILabel!
+    @IBOutlet weak var hatesLogo: UIImageView!
+    
+    @IBOutlet weak var coatLabel: UILabel!
+
+    @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var animalObject : PFObject?
     var traitObjects : [PFObject?] = []
+    
+    func setInPast() {
+        self.lovesTitle.text = "Loved"
+        self.hatesTitle.text = "Hated"
+    }
     
     func addTraitTags() {
         let traitsRelation = animalObject!["traits"] as! PFRelation
@@ -67,6 +88,38 @@ class AnimalAboutViewController: UIViewController {
         lovesTags.textFont = UIFont.systemFontOfSize(15)
         hatesTags.textFont = UIFont.systemFontOfSize(15)
 
+        if let breed = animalObject!["breed"] as? PFObject {
+            do {
+                try breed.fetch()
+            } catch _ {
+                
+            }
+            
+            let name = breed.valueForKey("name") as! String
+            self.breedLabel.text = name
+        } else {
+//            breedLabel.hidden = true
+//            breedLogo.hidden = true
+//            breedTitle.hidden = true
+//            afterBreedConstraint.constant = -20.0
+        }
+        
+        if let coat = animalObject!["coat"] as? PFObject {
+            do {
+                try coat.fetch()
+            } catch _ {
+                
+            }
+            
+            let name = coat.valueForKey("name") as! String
+            self.coatLabel.text = name
+        } else {
+//            coatLabel.hidden = true
+//            coatLogo.hidden = true
+//            coatTitle.hidden = true
+//            afterCoatConstraint.constant = -20.0
+        }
+        
         self.addTraitTags()
         self.addLovesTags()
         self.addHatesTags()

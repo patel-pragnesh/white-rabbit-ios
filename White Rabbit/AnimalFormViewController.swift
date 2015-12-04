@@ -10,7 +10,6 @@ import UIKit
 import Eureka
 import Parse
 
-//class AnimalFormViewController: XLFormViewController {
 class AnimalFormViewController : FormViewController {
     
     @IBOutlet var formView: UIView!
@@ -26,6 +25,7 @@ class AnimalFormViewController : FormViewController {
 
     let TRAITS_TAG = "traits"
     let BREED_TAG = "breed"
+    let COAT_TAG = "coat"
     let SHELTER_TAG = "shelter"
 
     let LOVES_TAG = "loves"
@@ -193,7 +193,7 @@ class AnimalFormViewController : FormViewController {
 //            }
 //            <<< ImageRow(COVER_PHOTO_TAG) {
 //                $0.title = "Cover Photo"
-//            }.cellSetup { cell, row in
+//            }.cellSetup { cell, row
 //                    cell.imageView?.image = UIImage(named: "form_cover_photo")
 //        }
 
@@ -213,6 +213,24 @@ class AnimalFormViewController : FormViewController {
             }.cellSetup { cell, row in
                 cell.imageView?.image = UIImage(named: "form_breed")
             }
+
+            <<< PushRow<String>(COAT_TAG) {
+                $0.title = "Coat"
+                $0.options = appDelegate.coatsArray!
+
+                if self.isEditMode() {
+                    let coatObject = self.animalObject?.objectForKey(self.COAT_TAG) as? PFObject
+                    if(coatObject != nil) {
+                        $0.value = coatObject!.objectForKey("name") as? String
+                    }
+                }
+                
+                }.cellSetup { cell, row in
+                    cell.imageView?.image = UIImage(named: "form_coat")
+            }
+            
+            
+        form +++= Section("Personality")
             <<< MultipleSelectorRow<String>(TRAITS_TAG) {
                 $0.title = "Traits"
                 $0.options = appDelegate.traitsArray!
@@ -227,7 +245,7 @@ class AnimalFormViewController : FormViewController {
             }
             <<< MultipleSelectorRow<String>(LOVES_TAG) {
                 $0.title = "Loves"
-                $0.options = ["Cozying up under the covers when it's cold","Licking water off the shower floor","Exploring the neighbors yard","Chasing racoons out of the house","Licking and kneading only the softest blankets","Drinking straight from the faucet","Napping in the sink","Lazers!","Laying on warm concrete","Sitting on your laptop keyboard"]
+                $0.options = appDelegate.lovesArray!
                 if self.isEditMode() {
                     let loves = self.animalObject?.objectForKey(self.LOVES_TAG) as? [String]
                     var lovesSet : Set<String> = Set<String>()
@@ -243,7 +261,7 @@ class AnimalFormViewController : FormViewController {
             }
             <<< MultipleSelectorRow<String>(HATES_TAG) {
                 $0.title = "Hates"
-                $0.options = ["Being pet below the waist","Shower time","Not being fed","Belly rubs","Being picked up"]
+                $0.options = appDelegate.hatesArray!
                 if self.isEditMode() {
                     let hates = self.animalObject?.objectForKey(self.HATES_TAG) as? [String]
                     var hatesSet : Set<String> = Set<String>()
@@ -375,7 +393,6 @@ class AnimalFormViewController : FormViewController {
 
         NSLog("saving animal")
         var animal = PFObject(className: "Animal")
-        let wasEditMode = self.isEditMode()
         if self.isEditMode() {
             animal = self.animalObject!
         }
@@ -383,16 +400,17 @@ class AnimalFormViewController : FormViewController {
         if let nameValue = self.form.rowByTag(self.NAME_TAG)?.baseValue as? String {
             animal.setObject(nameValue, forKey: NAME_TAG)
         }
-//        if let profilePhotoValue = self.form.rowByTag(self.PROFILE_PHOTO_TAG)?.baseValue as? NSFile {
-//            animal.setObject(birthDateValue, forKey: BIRTHDATE_TAG)
-//        }
         
         if let breedValue = self.form.rowByTag(self.BREED_TAG)?.baseValue as? String {
             let breed = appDelegate.breedByName![breedValue]
-            NSLog("XBreed: \(breed?.valueForKey("objectId"))")
             animal.setObject(breed!, forKey: BREED_TAG)
         }
-        
+
+        if let coatValue = self.form.rowByTag(self.COAT_TAG)?.baseValue as? String {
+            let coat = appDelegate.coatByName![coatValue]
+            animal.setObject(coat!, forKey: COAT_TAG)
+        }
+
         if let birthDateValue = self.form.rowByTag(self.BIRTHDATE_TAG)?.baseValue as? NSDate {
             animal.setObject(birthDateValue, forKey: BIRTHDATE_TAG)
         }
@@ -460,12 +478,8 @@ class AnimalFormViewController : FormViewController {
                             traitObjects.append(trait)
                         }
                         self.saveTraits(traitObjects)
-                        //            animal.setObject(breed!, forKey: BREED_TAG)
                     }
                 
-//                if(wasEditMode) {
-//                    self.navigationController!.popViewControllerAnimated(true)
-//                } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 
                     if self.detailController != nil {

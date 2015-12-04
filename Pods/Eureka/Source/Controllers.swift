@@ -29,6 +29,7 @@ public class SelectorViewController<T:Equatable> : FormViewController, TypedRowC
     
     public var row: RowOf<T>!
     public var completionCallback : ((UIViewController) -> ())?
+    public var imageByName: [String: UIImage]?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -51,13 +52,22 @@ public class SelectorViewController<T:Equatable> : FormViewController, TypedRowC
             form.first! <<< CheckRow(){ [weak self] in
                                 $0.title = self?.row.displayValueFor?(o)
                                 $0.value = self?.row.value == o
+                
+                                if(self?.imageByName != nil) {
+                                    $0.cell.imageView!.image = self?.imageByName![(self?.row.displayValueFor?(o))!]
+                                }
+                                $0.cell.frame = CGRectMake($0.cell.frame.minX, $0.cell.frame.minY, $0.cell.frame.width, 100.0)
+                                $0.cell.textLabel?.font = UIFont(name: "Avenir", size: 24)!
+
                             }
                             .onCellSelection { [weak self] _, _ in
                                 self?.row.value = o
                                 self?.completionCallback?(self!)
                             }
+            
         }
-        form.first?.header = HeaderFooterView<UITableViewHeaderFooterView>(title: row.title)
+        self.navigationItem.title = row.title
+//        form.first?.header = HeaderFooterView<UITableViewHeaderFooterView>(title: row.title)
     }
 }
 
@@ -101,7 +111,8 @@ public class MultipleSelectorViewController<T:Hashable> : FormViewController, Ty
                                 }
                             }
         }
-        form.first?.header = HeaderFooterView<UITableViewHeaderFooterView>(title: row.title)
+        self.navigationItem.title = row.title
+//        form.first?.header = HeaderFooterView<UITableViewHeaderFooterView>(title: row.title)
     }
     
 }

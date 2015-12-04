@@ -14,7 +14,7 @@ import CLImageEditor
 import AssetsLibrary
 import PagingMenuController
 
-class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate {
+class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate, PagingMenuControllerDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var breedButton: UIButton!
@@ -447,13 +447,15 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             
             
             let profileTabs = segue.destinationViewController as! PagingMenuController
-//            profileTabs.delegate = self
+            profileTabs.delegate = self
             profileTabs.setup(viewControllers: viewControllers, options: options)
+            
+            // Check
+            if(self.currentAnimalObject?.valueForKey("deceasedDate") != nil) {
+                aboutViewController.setInPast()
+            }
 
             
-//            animalTimeline.animalObject = self.currentAnimalObject
-//            animalTimeline.animalDetailController = self
-//            self.timelineTableController = animalTimeline
         } else if(segue.identifier == "AnimalDetailToTimeline" || segue.identifier == "AnimalDetailTimelineEmbed") {
             let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
             animalTimeline.animalObject = self.currentAnimalObject
@@ -470,6 +472,27 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
                 self.instagramTableController = insta
             }
         }
+    }
+
+    func willMoveToMenuPage(page: Int) {
+        NSLog("moved to \(page)")
+        if(currentUserIsOwner || currentUserIsShelterCaregiver || currentUserIsAdmin) {
+            if(page == 1) {
+                self.addMenu!.hidden = true
+                for view in self.addMenu!.items! {
+                    view.hidden = true
+                }
+            } else {
+                self.addMenu!.hidden = false
+                for view in self.addMenu!.items! {
+                    view.hidden = false
+                }
+            }
+        }
+    }
+    
+    func didMoveToMenuPage(page: Int) {
+
     }
 
     

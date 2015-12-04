@@ -9,7 +9,7 @@
 import UIKit
 import PagingMenuController
 
-class AnimalsTabViewController: UIViewController {
+class AnimalsTabViewController: UIViewController, PagingMenuControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +22,8 @@ class AnimalsTabViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.setUpMenuBarController("Cats")
-
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25, width: 25)
+        
     }
     
     func showAddAminalView() {
@@ -59,8 +59,13 @@ class AnimalsTabViewController: UIViewController {
             shelterAnimalsViewController.owner = nil
             shelterAnimalsViewController.adoptable = false
             shelterAnimalsViewController.shelter = shelter
-            shelterAnimalsViewController.title = shelter?.valueForKey("name") as? String
-            
+            let shelterName = shelter?.valueForKey("name") as? String
+            if(shelterName != nil) {
+                shelterAnimalsViewController.title = shelterName
+            } else {
+                shelterAnimalsViewController.title = "Adoptable"
+            }
+
             viewControllers.append(shelterAnimalsViewController)
         } else {
             let adoptableAnimalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsTable") as! AnimalsTableViewController
@@ -76,7 +81,8 @@ class AnimalsTabViewController: UIViewController {
         let options = PagingMenuOptions()
         options.menuHeight = 50
         options.menuPosition = .Top
-        options.menuDisplayMode = .SegmentedControl
+//        options.menuDisplayMode = .SegmentedControl
+        options.menuDisplayMode = .Infinite(widthMode: PagingMenuOptions.MenuItemWidthMode.Flexible)
         options.selectedFont = UIFont(name: "Avenir", size: 18)!
         options.font = UIFont(name: "Avenir", size: 18)!
         options.textColor = UIColor.lightGrayColor()
@@ -91,6 +97,11 @@ class AnimalsTabViewController: UIViewController {
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
     }
 
-
+    func willMoveToMenuPage(page: Int) {
+        
+    }
+    
+    func didMoveToMenuPage(page: Int) {
+    }
 
 }

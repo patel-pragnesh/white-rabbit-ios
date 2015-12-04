@@ -36,6 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var shelterByName: [String: PFObject]?
     var vetsArray: [String]?
     var vetByName: [String: PFObject]?
+    
+    var lovesArray: [String]?
+    var loveByName: [String: PFObject]?
+    var hatesArray: [String]?
+    var hateByName: [String: PFObject]?
+
+    var coatsArray: [String]?
+    var coatByName: [String: PFObject]?
+    var coatImagesByName: [String: UIImage]?
 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -62,9 +71,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loadBreeds()
         loadShelters()
         loadVets()
+        loadLoves()
+        loadHates()
+        loadCoats()
         
         return true
     }
+    
+
+    func loadCoats() {
+        let coatQuery = PFQuery(className:"Coat")
+        self.coatsArray = [String]()
+        self.coatByName = [String:PFObject]()
+        self.coatImagesByName = [String:UIImage]()
+        
+        coatQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let name = object["name"] as! String
+                    self.coatsArray?.append(name)
+                    self.coatByName![name] = object
+                    
+                    if let imageFile = object["image"] as? PFFile {
+                        imageFile.getDataInBackgroundWithBlock({
+                            (imageData: NSData?, error: NSError?) -> Void in
+                            if(error == nil) {
+                                self.coatImagesByName![name] = UIImage(data:imageData!)
+                            }
+                        })
+                    }
+                }
+                NSLog("Finished loading coats: %@", self.coatByName!)
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
+    }
+    
     
     func loadTraits() {
         let traitQuery = PFQuery(className:"Trait")
@@ -79,6 +122,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.traitByName![name] = object
                 }
                 NSLog("Finished loading traits: %@", self.traitByName!)
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
+    }
+    
+    func loadLoves() {
+        let loveQuery = PFQuery(className:"Love")
+        self.lovesArray = [String]()
+//        self.loveByName = [String:PFObject]()
+        
+        loveQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let name = object["text"] as! String
+                    self.lovesArray?.append(name)
+//                    self.loveByName![name] = object
+                }
+//                NSLog("Finished loading loves: %@", self.loveByName!)
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
+    }
+    
+    func loadHates() {
+        let hateQuery = PFQuery(className:"Hate")
+        self.hatesArray = [String]()
+//        self.hateByName = [String:PFObject]()
+        
+        hateQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    let name = object["text"] as! String
+                    self.hatesArray?.append(name)
+//                    self.hateByName![name] = object
+                }
+//                NSLog("Finished loading hates: %@", self.hateByName!)
             } else {
                 NSLog("Error: %@", error!)
             }
