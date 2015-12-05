@@ -1742,17 +1742,17 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.074509803921568626" green="0.34509803921568627" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <state key="normal" title="Login with Instagram">
+                                <state key="normal" title="Login with Twitter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="20" y="559" width="330" height="50"/>
                                 </variation>
                                 <connections>
-                                    <action selector="loginWithFacebook:" destination="l2e-vY-91n" eventType="touchUpInside" id="ohl-Bj-dUd"/>
+                                    <action selector="loginWithTwitter:" destination="l2e-vY-91n" eventType="touchUpInside" id="Bko-7r-O7G"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram_white" translatesAutoresizingMaskIntoConstraints="NO" id="cKN-kS-gf1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter_white" translatesAutoresizingMaskIntoConstraints="NO" id="cKN-kS-gf1">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="52" y="577" width="17" height="17"/>
@@ -1829,7 +1829,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="8A3EBE97-ACF8-4C0E-918B-1E79350484B4"/>
+                                <state key="normal" image="F418FFE4-F483-4863-A32C-52AB44718036"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -3810,7 +3810,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="8A3EBE97-ACF8-4C0E-918B-1E79350484B4" width="46" height="33">
+        <image name="F418FFE4-F483-4863-A32C-52AB44718036" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4007,7 +4007,6 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="hates_black" width="24" height="21"/>
         <image name="heart_grey" width="28" height="24"/>
         <image name="instagram_button" width="50" height="50"/>
-        <image name="instagram_white" width="29" height="30"/>
         <image name="loves_black" width="24" height="21"/>
         <image name="mail_white" width="36" height="24"/>
         <image name="map_grey" width="22" height="21"/>
@@ -4021,6 +4020,7 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="timeline_line" width="5" height="639"/>
         <image name="traits_black" width="26" height="22"/>
         <image name="twitter_button" width="50" height="50"/>
+        <image name="twitter_white" width="33" height="29"/>
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>

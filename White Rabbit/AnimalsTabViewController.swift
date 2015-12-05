@@ -46,28 +46,28 @@ class AnimalsTabViewController: UIViewController, PagingMenuControllerDelegate {
         
         var viewControllers = [myAnimalsViewController, featuredAnimalsViewController]
 
-        let shelter = PFUser.currentUser()?.valueForKey("shelter") as? PFObject
-        if shelter != nil {
-            do {
-                try shelter!.fetch()
-            } catch _ {
-                NSLog("couldnt fetch")
-            }
-
-            let shelterAnimalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsTable") as! AnimalsTableViewController
-            shelterAnimalsViewController.featured = false
-            shelterAnimalsViewController.owner = nil
-            shelterAnimalsViewController.adoptable = false
-            shelterAnimalsViewController.shelter = shelter
-            let shelterName = shelter?.valueForKey("name") as? String
-            if(shelterName != nil) {
-                shelterAnimalsViewController.title = shelterName
-            } else {
-                shelterAnimalsViewController.title = "Adoptable"
-            }
-
-            viewControllers.append(shelterAnimalsViewController)
-        } else {
+//        let shelter = PFUser.currentUser()?.valueForKey("shelter") as? PFObject
+//        if shelter != nil {
+//            do {
+//                try shelter!.fetch()
+//            } catch _ {
+//                NSLog("couldnt fetch")
+//            }
+//
+//            let shelterAnimalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsTable") as! AnimalsTableViewController
+//            shelterAnimalsViewController.featured = false
+//            shelterAnimalsViewController.owner = nil
+//            shelterAnimalsViewController.adoptable = false
+//            shelterAnimalsViewController.shelter = shelter
+//            let shelterName = shelter?.valueForKey("name") as? String
+//            if(shelterName != nil) {
+//                shelterAnimalsViewController.title = shelterName
+//            } else {
+//                shelterAnimalsViewController.title = "Adoptable"
+//            }
+//
+//            viewControllers.append(shelterAnimalsViewController)
+//        } else {
             let adoptableAnimalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsTable") as! AnimalsTableViewController
             adoptableAnimalsViewController.featured = false
             adoptableAnimalsViewController.owner = nil
@@ -75,7 +75,7 @@ class AnimalsTabViewController: UIViewController, PagingMenuControllerDelegate {
             adoptableAnimalsViewController.title = "Adoptable"
             
             viewControllers.append(adoptableAnimalsViewController)
-        }
+//        }
         
         
         let options = PagingMenuOptions()

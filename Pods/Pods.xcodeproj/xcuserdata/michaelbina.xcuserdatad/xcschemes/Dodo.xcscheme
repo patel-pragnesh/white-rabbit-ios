@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BA605EDC0CB18B6DFEFFAD67'
+               BlueprintIdentifier = '2A9AFFC43494C66369E565BA'
                BlueprintName = 'Dodo'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Dodo.framework'>

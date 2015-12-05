@@ -6,6 +6,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <ParseTwitterUtils/ParseTwitterUtils.h>
 #import <InstagramKit/InstagramKit.h>
 #import <MMMarkdown/MMMarkdown.h>
 #import <CLImageEditor/CLImageEditor.h>

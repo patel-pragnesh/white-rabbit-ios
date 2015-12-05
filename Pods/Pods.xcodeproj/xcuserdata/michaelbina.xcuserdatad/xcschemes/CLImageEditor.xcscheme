@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A96B6F02124C75D5478B06A7'
+               BlueprintIdentifier = '90B5CCDA12B7ABBC43811A02'
                BlueprintName = 'CLImageEditor'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'CLImageEditor.framework'>

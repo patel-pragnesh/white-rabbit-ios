@@ -119,7 +119,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.nameLabel.text = (currentUser?.valueForKey("firstName") as? String)! + " " + (currentUser?.valueForKey("lastName") as? String)!
 
         self.profileImageButton.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
-        
 
         let imageFile = currentUser?.valueForKey("profilePhoto") as? PFFile
         if imageFile != nil {

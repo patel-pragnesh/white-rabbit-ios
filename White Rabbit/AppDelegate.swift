@@ -15,6 +15,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import CLImageEditor
 import ParseFacebookUtilsV4
+import ParseTwitterUtils
 import SlideMenuControllerSwift
 import BTNavigationDropdownMenu
 import ContentfulDeliveryAPI
@@ -51,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Parse.enableLocalDatastore()
         ParseCrashReporting.enable()
+        PFUser.enableRevocableSessionInBackground()
 
         // Initialize Parse.
         Parse.setApplicationId("IWr9xzTirLbjXH80mbTCtT9lWB73ggQe3PhA6nPg", clientKey: "Yxdst3hz76abMoAwG7FLh0NwDmPvYHFDUPao9WJJ")
@@ -60,7 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
-        
+        PFTwitterUtils.initializeWithConsumerKey("C16iyeaMoc91iPOQnBTnQkXgm", consumerSecret: "gvedI21p7UaJxEJKxyTttbkUydE37cnq3RBSUFB86erwjHAkt1")
+
         
         self.client = CDAClient(spaceKey:"8mu31kgi73w0", accessToken:"3bd31581398aa28d0b9c05aa86573763aa4dfd4119eb020625cd0989fee99836")
         
@@ -235,9 +238,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         homeController.checkForUser(false)
-//        let user = homeController.currentUser as PFUser?
         let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
-        let tabController = animalsController?.childViewControllers.first as! AnimalsTabViewController
         homeController.mainViewController = animalsController
         
         let slideMenuController = SlideMenuController(mainViewController: animalsController!, leftMenuViewController: homeController)
@@ -291,6 +292,18 @@ extension UIViewController {
     func hideLoader() {
         GiFHUD.dismiss()
     }
+    
+//    func getCurrentUser() -> PFObject {
+//        let userQuery : PFQuery = PFUser.query()!
+//        userQuery.includeKey("shelter")
+//        
+//        do {
+//            let user: PFObject = try userQuery.getObjectWithId((PFUser.currentUser()?.objectId)!)
+//            return user
+//        } catch _ {
+//        }
+////        return nil
+//    }
     
     func getNavBarItem(imageId : String, action : Selector, height : CGFloat, width: CGFloat) -> UIBarButtonItem! {
         let editImage = UIImage(named: imageId)

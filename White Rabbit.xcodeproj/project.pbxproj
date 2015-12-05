@@ -27,6 +27,7 @@
 		ED49D6501C0EFAD30050049F /* AnimalsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */; };
 		ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */; };
 		ED692D671BACECED00C52562 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* LocationDetailViewController.swift */; };
+		ED7D77801C11D85700732F94 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7D777F1C11D85700732F94 /* ParseTwitterUtils.framework */; };
 		ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */; };
 		ED8F90461BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */; };
 		EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */; };
@@ -115,6 +116,7 @@
 		ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTabViewController.swift; sourceTree = "<group>"; };
 		ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GKImagePicker.framework; path = "Pods/../build/Debug-iphoneos/GKImagePicker.framework"; sourceTree = "<group>"; };
 		ED692D661BACECED00C52562 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
+		ED7D777F1C11D85700732F94 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseTwitterUtils.framework; path = "Pods/../build/Debug-iphoneos/ParseTwitterUtils.framework"; sourceTree = "<group>"; };
 		ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTableViewController.swift; sourceTree = "<group>"; };
 		ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTNavigationDropdownMenu.framework; path = "Pods/../build/Debug-iphoneos/BTNavigationDropdownMenu.framework"; sourceTree = "<group>"; };
 		ED9760C51BAA231300EE3BBF /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7D77801C11D85700732F94 /* ParseTwitterUtils.framework in Frameworks */,
 				ED49D6471C0EAAD70050049F /* DACircularProgress.framework in Frameworks */,
 				ED49D6481C0EAAD70050049F /* pop.framework in Frameworks */,
 				ED49D6441C0EAACF0050049F /* IDMPhotoBrowser.framework in Frameworks */,
@@ -314,6 +317,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED7D777F1C11D85700732F94 /* ParseTwitterUtils.framework */,
 				ED49D6451C0EAAD70050049F /* DACircularProgress.framework */,
 				ED49D6461C0EAAD70050049F /* pop.framework */,
 				ED49D6431C0EAACF0050049F /* IDMPhotoBrowser.framework */,

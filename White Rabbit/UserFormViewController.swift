@@ -73,28 +73,29 @@ class UserFormViewController : FormViewController {
                     cell.imageView?.image = UIImage(named: "form_password")
         }
 
-            <<< PushRow<String>(SHELTER_TAG) {
-                $0.title = "Shelter"
-                $0.options = appDelegate.sheltersArray!
-                $0.hidden = .Function(["admin"], { form -> Bool in
-                    return self.isEditMode() && !(self.userObject?.valueForKey(self.ADMIN_TAG) as! Bool)
-                })
-                if self.isEditMode() {
-                    let shelterObject = self.userObject?.objectForKey(self.SHELTER_TAG) as? PFObject
-                    if(shelterObject != nil) {
-                        $0.value = shelterObject!.objectForKey("name") as? String
-                    }
-                }
-        }
+//            <<< PushRow<String>(SHELTER_TAG) {
+//                $0.title = "Shelter"
+//                $0.options = appDelegate.sheltersArray!
+//                $0.hidden = .Function(["admin"], { form -> Bool in
+//                    return self.isEditMode() && !(self.userObject?.valueForKey(self.ADMIN_TAG) as! Bool)
+//                })
+//                if self.isEditMode() {
+//                    let shelterObject = self.userObject?.objectForKey(self.SHELTER_TAG) as? PFObject
+//                    if(shelterObject != nil) {
+//                        $0.value = shelterObject!.objectForKey("name") as? String
+//                    }
+//                }
+//        }
         
         if(self.isEditMode()) {
             form +++= Section("")
                 <<< ButtonRow("remove") {
                         $0.title = "Delete Account"
-                        $0.hidden = .Function(["admin"], { form -> Bool in
-                            return !(self.userObject?.valueForKey(self.ADMIN_TAG) as! Bool)
-                        })
-                    }.onCellSelection { cell, row in print("Removing user")
+//                        $0.hidden = .Function(["admin"], { form -> Bool in
+//                            return !(self.userObject?.valueForKey(self.ADMIN_TAG) as! Bool)
+//                        })
+                    }.onCellSelection { cell, row in
+                    NSLog("Deleting user")
                     self.removeUser()
                 }
                 <<< ButtonRow("logout") { $0.title = "Log Out" }.onCellSelection { cell, row in print("Cell was selected")
