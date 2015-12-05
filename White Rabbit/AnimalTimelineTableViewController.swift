@@ -25,14 +25,19 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     
     @IBOutlet weak var documentsButton: UIButton!
     @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var heartFilledButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var flagButton: UIButton!
+
+    @IBOutlet weak var lovesCountLabel: UILabel!
     
     var indexPath: NSIndexPath?
     var parentTable: AnimalTimelineTableViewController?
     var type: String?
+    
+    var lovesCount : Int32 = 0
     
     var entryObject : PFObject?
     
@@ -49,7 +54,6 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
         if self.type == "image" {
             self.showAllButtons()
         }
-
     }
 
     func showAllButtons() {
@@ -62,17 +66,58 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     
     func hideAllButtons() {
         self.heartButton.hidden = true
+        self.heartFilledButton.hidden = true
         self.commentButton.hidden = true
         self.shareButton.hidden = true
         self.flagButton.hidden = true
         self.moreButton.hidden = true
+        self.lovesCountLabel.hidden = true
+    }
+    
+    func setLikeCount(count: Int32) {
+        self.lovesCount = count
+        var text: String = "\(count) love"
+        if(count != 1) {
+            text = "\(text)s"
+        }
+        self.lovesCountLabel.hidden = false
+        self.lovesCountLabel.text = text
+    }
+    
+    func incrementLikeCount() {
+        self.setLikeCount(self.lovesCount + 1)
     }
 
+    func decrementLikeCount() {
+        self.setLikeCount(self.lovesCount - 1)
+    }
+
+    
+    func setEntryLiked() {
+        self.heartButton.hidden = true
+        self.heartFilledButton.hidden = false
+    }
+
+    func setEntryUnliked() {
+        self.heartButton.hidden = false
+        self.heartFilledButton.hidden = true
+    }
+    
     @IBAction func documentsButtonPressed(sender: AnyObject) {
     }
     
     @IBAction func heartButtonPressed(sender: AnyObject) {
-        parentTable?.likeEntry(self.indexPath!)
+        parentTable?.likeEntryWithBlock(self.indexPath!, completionBlock: { (result, error) -> Void in
+            self.heartButton.hidden = true
+            self.heartFilledButton.hidden = false
+        })
+    }
+    
+    @IBAction func heartFilledButtonPressed(sender: AnyObject) {
+        parentTable?.unlikeEntryWithBlock(self.indexPath!, completionBlock: { (result, error) -> Void in
+            self.heartButton.hidden = false
+            self.heartFilledButton.hidden = true
+        })
     }
     
     @IBAction func commentButtonPressed(sender: AnyObject) {
@@ -115,8 +160,8 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         gestureRecognizer.minimumPressDuration = 1.0
         self.tableView.addGestureRecognizer(gestureRecognizer)
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handlePress:")
-        self.tableView.addGestureRecognizer(tapRecognizer)
+//        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handlePress:")
+//        self.tableView.addGestureRecognizer(tapRecognizer)
 
         let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
         doubleTapRecognizer.numberOfTapsRequired = 2
@@ -124,19 +169,56 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
 
     }
     
-    func likeEntry(indexPath: NSIndexPath?) {
-        NSLog("Entry has been liked!")
+    func likeEntryWithBlock(indexPath: NSIndexPath?, completionBlock: (result: Bool, error: NSError?) -> Void) {
+        let entry: PFObject? = self.objectAtCell(indexPath)
+        let relation: PFRelation = entry!.relationForKey("likes")
+        relation.addObject(PFUser.currentUser()!)
+        entry?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            completionBlock(result: success, error: error)
+            if let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell {
+                cell.incrementLikeCount()
+            }
+        })
+    }
+    
+    func unlikeEntryWithBlock(indexPath: NSIndexPath?, completionBlock: (result: Bool, error: NSError?) -> Void) {
+        let entry: PFObject? = self.objectAtCell(indexPath)
+        let relation: PFRelation = entry!.relationForKey("likes")
+        relation.removeObject(PFUser.currentUser()!)
+        entry?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            completionBlock(result: success, error: error)
+            if let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell {
+                cell.decrementLikeCount()
+            }
+        })
+    }
+    
+    func likeCountWithBlock(indexPath: NSIndexPath?, entry: PFObject, completionBlock: ((count: Int32, error: NSError?) -> Void)?) {
+        let relation: PFRelation = entry.relationForKey("likes")
+        relation.query().countObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
+    func isEntryLikedWithBlock(indexPath: NSIndexPath?, entry: PFObject, completionBlock: (result: Bool, error: NSError?) -> Void) {
+        let relation: PFRelation = entry.relationForKey("likes")
+        let query: PFQuery = relation.query()
+        query.whereKey("objectId", equalTo: PFUser.currentUser()!.objectId!)
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            completionBlock(result: objects!.count > 0, error: error)
+        }
     }
     
     func handleDoubleTap(gestureRecognizer : UILongPressGestureRecognizer) {
         let p = gestureRecognizer.locationInView(self.tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(p)
-        
+        let cell = tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell
+
         if (indexPath == nil) {
             NSLog("tap on table view but not on a row");
         } else {
             NSLog("gestureRecognizer.state = %d", gestureRecognizer.state.rawValue);
-            self.likeEntry(indexPath)
+            self.likeEntryWithBlock(indexPath, completionBlock: { (result, error) -> Void in
+                cell?.setEntryLiked()
+            })
         }
     }
     
@@ -382,14 +464,12 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         cell!.entryObject = object
         cell!.type = object?["type"] as? String
         
-        
         let animal = object?["animal"] as? PFObject
         let owner = animal?.valueForKey("owner") as? PFUser
         let currentUser = PFUser.currentUser()
         
         let currentUserIsOwner = (currentUser?.objectId == owner?.objectId)
 
-        cell!.hideAllButtons()
         if(cell!.type == "image") {
             cell!.showAllButtons()
 
@@ -404,6 +484,22 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
                 cell!.flagButton.hidden = false
                 cell!.flagButton.enabled = true
             }
+            
+            NSLog("setting up row: \(indexPath.row)")
+            
+            self.isEntryLikedWithBlock(cell!.indexPath, entry: object!, completionBlock: { (result, error) -> Void in
+                if(result) {
+                    cell!.setEntryLiked()
+                } else {
+                    cell!.setEntryUnliked()
+                }
+            })
+            
+            self.likeCountWithBlock(cell!.indexPath, entry: object!, completionBlock: { (count, error) -> Void in
+                cell!.setLikeCount(count)
+            })
+        } else {
+            cell!.hideAllButtons()
         }
         
         
@@ -411,7 +507,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         
         cell!.timelineImageView.hidden = true
         if let imageFile = object?["image"] as? PFFile {
-            NSLog("setting cell image")
             imageFile.getDataInBackgroundWithBlock({
                 (imageData: NSData?, error: NSError?) -> Void in
                 if(error == nil) {
@@ -426,9 +521,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
 
         // Extract values from the PFObject to display in the table cell
         if let text = object?["text"] as? String {
-            NSLog("setting cell text to: \(text)")
-
-            
             switch object?["type"] as! String {
                 case "medical":
                     cell!.largeIcon.image = UIImage(named: "timeline_medical")
@@ -483,7 +575,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
 
         dateFormatter.dateFormat = "yyyy"
         cell!.yearLabel.text = dateFormatter.stringFromDate(date!)
-
+        
         return cell
     }
     

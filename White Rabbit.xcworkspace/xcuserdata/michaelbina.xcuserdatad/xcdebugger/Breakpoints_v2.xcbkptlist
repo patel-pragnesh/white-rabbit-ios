@@ -170,12 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
-            timestampString = "470672939.306793"
+            timestampString = "471007731.325867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "moreButtonPressed(_:)"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "shareButtonPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -733,6 +733,22 @@
             startingLineNumber = "148"
             endingLineNumber = "148"
             landmarkName = "saveUserDataFromTwitter(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
+            timestampString = "471009671.032898"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "unlikeEntryWithBlock(_:completionBlock:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
