@@ -76,9 +76,9 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     
     func setLikeCount(count: Int32) {
         self.lovesCount = count
-        var text: String = "\(count) love"
-        if(count != 1) {
-            text = "\(text)s"
+        var text: String = "\(count) loves"
+        if(count == 1) {
+            text = String(text.characters.dropLast())
         }
         self.lovesCountLabel.hidden = false
         self.lovesCountLabel.text = text
