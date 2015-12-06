@@ -12,6 +12,21 @@ import Parse
 import ParseUI
 import BTNavigationDropdownMenu
 
+
+class LocationsTableViewCell: PFTableViewCell {
+    @IBOutlet weak var logo: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.frame.size.height = 200
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+}
+
 class LocationsTableViewController: PFQueryTableViewController {
     
     var selectedType: String = "shelter"
@@ -66,6 +81,10 @@ class LocationsTableViewController: PFQueryTableViewController {
         return query
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.mapViewController?.performSegueWithIdentifier("LocationToLocationDetail", sender: self)
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("LocationCell", forIndexPath: indexPath) as? LocationsTableViewCell
@@ -99,7 +118,7 @@ class LocationsTableViewController: PFQueryTableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller
         
-        if(segue.identifier == "LocationToLocationDetail") {
+//        if(segue.identifier == "LocationToLocationDetail") {
             let detailScene = segue.destinationViewController as! LocationDetailViewController
             
             // Pass the selected object to the destination view controller.
@@ -110,21 +129,6 @@ class LocationsTableViewController: PFQueryTableViewController {
                 NSLog("Viewing shelter detail for object: %@\n", object)
                 detailScene.currentLocationObject = object
             }
-        }
+//        }
     }
 }
-
-class LocationsTableViewCell: PFTableViewCell {
-    @IBOutlet weak var logo: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.frame.size.height = 200
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-}
-

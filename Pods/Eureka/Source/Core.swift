@@ -1149,7 +1149,7 @@ public class RowOf<T: Equatable>: BaseRow {
     }
     
     public var dataProvider: DataProvider<T>?
-        
+    
     public var displayValueFor : (T? -> String?)? = {
         if let t = $0 {
             return String(t)
@@ -1555,6 +1555,14 @@ public struct DataProvider<T: Equatable> {
     
     init(arrayData: [T]){
         self.arrayData = arrayData
+    }
+}
+
+public struct ImagesDataProvider<T: Equatable> {
+    internal var imagesData: [String: UIImage]?
+    
+    init(imagesData: [String: UIImage]){
+        self.imagesData = imagesData
     }
 }
 

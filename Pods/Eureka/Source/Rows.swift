@@ -399,6 +399,11 @@ public class _PushRow<T: Equatable> : SelectorRow<T, SelectorViewController<T>> 
         super.init(tag: tag)
         presentationMode = .Show(controllerProvider: ControllerProvider.Callback { return SelectorViewController<T>(){ _ in } }, completionCallback: { vc in vc.navigationController?.popViewControllerAnimated(true) })
     }
+    
+    public required init(tag: String?, imageByName: [String: UIImage]) {
+        super.init(tag: tag)
+        presentationMode = .Show(controllerProvider: ControllerProvider.Callback { return SelectorViewController<T>(imageByName: imageByName){ _ in } }, completionCallback: { vc in vc.navigationController?.popViewControllerAnimated(true) })
+    }
 }
 
 public class AreaRow<T: Equatable, Cell: CellType where Cell: BaseCell, Cell: AreaCell, Cell.Value == T>: Row<T, Cell>, TextAreaConformance {
@@ -1006,6 +1011,10 @@ public final class ImageRow : _ImageRow, RowType {
 public final class PushRow<T: Equatable> : _PushRow<T>, RowType {
     public required init(tag: String?) {
         super.init(tag: tag)
+    }
+
+    public required init(tag: String?, imageByName: [String: UIImage]) {
+        super.init(tag: tag, imageByName: imageByName)
     }
 }
 

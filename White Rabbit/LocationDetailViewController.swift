@@ -23,6 +23,11 @@ class LocationDetailViewController: UIViewController {
     
     var currentLocationObject: PFObject?
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setUpNavigationBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,9 +44,12 @@ class LocationDetailViewController: UIViewController {
             address1Label.text = object["address"] as? String
             cityStateZipLabel.text = (object["city"] as! String) + ", " + (object["state"] as! String) + " " + (object["zip"] != nil ? (object["zip"] as! String) : "")
             
-            phoneNumberButton.setTitle(object["phone"] as? String, forState: .Normal)
-            websiteButton.setTitle(object["website"] as? String, forState: .Normal)
-
+            if(object["phone"] != nil) {
+                phoneNumberButton.setTitle("  " + (object["phone"] as? String)!, forState: .Normal)
+            }
+            if(object["website"] != nil) {
+                websiteButton.setTitle(object["website"] as? String, forState: .Reserved)
+            }
             
             let imageFile = object["logo"] as? PFFile
             imageFile?.getDataInBackgroundWithBlock({
@@ -59,7 +67,7 @@ class LocationDetailViewController: UIViewController {
     }
     
     @IBAction func openWebsite(sender: UIButton) {
-        openUrl(sender.titleForState(.Normal))
+        openUrl(sender.titleForState(.Reserved))
     }
         
     @IBAction func callPhoneNumber(sender: UIButton) {

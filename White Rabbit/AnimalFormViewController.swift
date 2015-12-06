@@ -200,13 +200,11 @@ class AnimalFormViewController : FormViewController {
         
         form +++= Section("Details")
             <<< PushRow<String>(BREED_TAG) {
-        //            <<< PushSelectorCell<BreedsTableViewCell>("BreedCell") {
                 $0.title = "Breed"
                 $0.options = appDelegate.breedsArray!
                 if self.isEditMode() {
-                    let breedObject = self.animalObject?.objectForKey(self.BREED_TAG) as? PFObject
-                    if(breedObject != nil) {
-                        $0.value = breedObject!.objectForKey("name") as? String
+                    if let breedObject = self.animalObject?.objectForKey(self.BREED_TAG) as? PFObject {
+                        $0.value = breedObject.objectForKey("name") as? String
                     }
                 }
 
@@ -219,9 +217,8 @@ class AnimalFormViewController : FormViewController {
                 $0.options = appDelegate.coatsArray!
 
                 if self.isEditMode() {
-                    let coatObject = self.animalObject?.objectForKey(self.COAT_TAG) as? PFObject
-                    if(coatObject != nil) {
-                        $0.value = coatObject!.objectForKey("name") as? String
+                    if let coatObject = self.animalObject?.objectForKey(self.COAT_TAG) as? PFObject {
+                        $0.value = coatObject.objectForKey("name") as? String
                     }
                 }
                 

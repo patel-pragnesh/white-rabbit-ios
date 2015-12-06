@@ -26,6 +26,7 @@
 		ED49D64E1C0EEDE90050049F /* AnimalAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */; };
 		ED49D6501C0EFAD30050049F /* AnimalsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */; };
 		ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */; };
+		ED682E851C13256D005D80A7 /* TimelineEntryCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED682E841C13256D005D80A7 /* TimelineEntryCommentsViewController.swift */; };
 		ED692D671BACECED00C52562 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* LocationDetailViewController.swift */; };
 		ED7D77801C11D85700732F94 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7D777F1C11D85700732F94 /* ParseTwitterUtils.framework */; };
 		ED8756581BC8E04C00998D82 /* InstagramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */; };
@@ -115,6 +116,7 @@
 		ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalAboutViewController.swift; sourceTree = "<group>"; };
 		ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTabViewController.swift; sourceTree = "<group>"; };
 		ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GKImagePicker.framework; path = "Pods/../build/Debug-iphoneos/GKImagePicker.framework"; sourceTree = "<group>"; };
+		ED682E841C13256D005D80A7 /* TimelineEntryCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryCommentsViewController.swift; sourceTree = "<group>"; };
 		ED692D661BACECED00C52562 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		ED7D777F1C11D85700732F94 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseTwitterUtils.framework; path = "Pods/../build/Debug-iphoneos/ParseTwitterUtils.framework"; sourceTree = "<group>"; };
 		ED8756571BC8E04C00998D82 /* InstagramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTableViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */,
 				EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */,
 				EDF3DCEC1C0056AB00A10DF7 /* TimelineEntryFormViewController.swift */,
+				ED682E841C13256D005D80A7 /* TimelineEntryCommentsViewController.swift */,
 				EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */,
 				EDCD407C1C0AADD5008A8E57 /* DocumentCell.xib */,
 				EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */,
@@ -619,6 +622,7 @@
 				EDFD64EB1BD9E57400344BDC /* CareSectionViewController.swift in Sources */,
 				EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */,
 				EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */,
+				ED682E851C13256D005D80A7 /* TimelineEntryCommentsViewController.swift in Sources */,
 				ED323F981BAAB84D00576C04 /* BreedDetailViewController.swift in Sources */,
 				ED406EA91BAEEEA3001FE8B3 /* AnimalDetailViewController.swift in Sources */,
 				EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */,

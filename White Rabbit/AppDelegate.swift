@@ -313,6 +313,15 @@ extension UIViewController {
         editButton.addTarget(self, action: action, forControlEvents: .TouchUpInside)
         return UIBarButtonItem(customView: editButton)
     }
+    
+    func getNavBarItem(imageId : String, height : CGFloat, width: CGFloat) -> UIBarButtonItem! {
+        let editImage = UIImage(named: imageId)
+        let editButton = UIButton(type: .Custom)
+        editButton.setImage(editImage, forState: .Normal)
+        editButton.frame = CGRectMake(0, 0, width, height)
+        return UIBarButtonItem(customView: editButton)
+    }
+
 
     func setUpNavigationBar() {
         self.setUpNavigationBar("")
@@ -335,7 +344,16 @@ extension UIViewController {
         
         self.navigationItem.title = title
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
+
+        if (self.navigationItem.backBarButtonItem != nil) {
+        }
+        
+    }
+    
+    func goBack() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func removeNavigationBar() {

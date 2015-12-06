@@ -42,7 +42,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
 //        self.setUpNavigationBarImage(UIImage(named: "locations_header")!, height: 220)
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -103,6 +103,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller
         if(segue.identifier == "MapToLocationDetail") {
+            NSLog("performing maptolocation")
             let detailScene = segue.destinationViewController as! LocationDetailViewController
 
             let annotationView = sender as! MKAnnotationView

@@ -141,11 +141,7 @@ class TimelineEntryDetailViewController: UIViewController {
             }
         }
     }
-    
-    func goBack() {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
+        
     func showShareActionSheet() {
         let image = self.imageView.image
         let activityVC = UIActivityViewController(activityItems: ["http://ftwtrbt.com", image!], applicationActivities: nil)

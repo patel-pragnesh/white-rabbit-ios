@@ -227,10 +227,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         }
     }
     
-    func goBack() {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
     func checkOwner() {
         let owner = currentAnimalObject!["owner"] as? PFUser
         let currentUser = PFUser.currentUser()

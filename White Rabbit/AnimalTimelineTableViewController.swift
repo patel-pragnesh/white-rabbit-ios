@@ -38,6 +38,7 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     var type: String?
     
     var lovesCount : Int32 = 0
+    var isLiked : Bool = false
     
     var entryObject : PFObject?
     
@@ -85,20 +86,34 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     }
     
     func incrementLikeCount() {
+        self.isLiked = true
         self.setLikeCount(self.lovesCount + 1)
     }
 
     func decrementLikeCount() {
+        self.isLiked = false
         self.setLikeCount(self.lovesCount - 1)
     }
 
     
+    func setHeartsDisabled() {
+        self.heartButton.enabled = false
+        self.heartFilledButton.enabled = false
+    }
+
+    func setHeartsEnabled() {
+        self.heartButton.enabled = true
+        self.heartFilledButton.enabled = true
+    }
+    
     func setEntryLiked() {
+        self.isLiked = true
         self.heartButton.hidden = true
         self.heartFilledButton.hidden = false
     }
 
     func setEntryUnliked() {
+        self.isLiked = false
         self.heartButton.hidden = false
         self.heartFilledButton.hidden = true
     }
@@ -170,27 +185,31 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
     }
     
     func likeEntryWithBlock(indexPath: NSIndexPath?, completionBlock: (result: Bool, error: NSError?) -> Void) {
-        let entry: PFObject? = self.objectAtCell(indexPath)
-        let relation: PFRelation = entry!.relationForKey("likes")
-        relation.addObject(PFUser.currentUser()!)
-        entry?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-            completionBlock(result: success, error: error)
-            if let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell {
+        if let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell {
+            cell.setHeartsDisabled()
+            let entry: PFObject? = self.objectAtCell(indexPath)
+            let relation: PFRelation = entry!.relationForKey("likes")
+            relation.addObject(PFUser.currentUser()!)
+            entry?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                completionBlock(result: success, error: error)
                 cell.incrementLikeCount()
-            }
-        })
+                cell.setHeartsEnabled()
+            })
+        }
     }
     
     func unlikeEntryWithBlock(indexPath: NSIndexPath?, completionBlock: (result: Bool, error: NSError?) -> Void) {
-        let entry: PFObject? = self.objectAtCell(indexPath)
-        let relation: PFRelation = entry!.relationForKey("likes")
-        relation.removeObject(PFUser.currentUser()!)
-        entry?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-            completionBlock(result: success, error: error)
-            if let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell {
+        if let cell = self.tableView.cellForRowAtIndexPath(indexPath!) as? AnimalTimelineTableViewCell {
+            cell.setHeartsDisabled()
+            let entry: PFObject? = self.objectAtCell(indexPath)
+            let relation: PFRelation = entry!.relationForKey("likes")
+            relation.removeObject(PFUser.currentUser()!)
+            entry?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                completionBlock(result: success, error: error)
                 cell.decrementLikeCount()
-            }
-        })
+                cell.setHeartsEnabled()
+            })
+        }
     }
     
     func likeCountWithBlock(indexPath: NSIndexPath?, entry: PFObject, completionBlock: ((count: Int32, error: NSError?) -> Void)?) {
@@ -214,10 +233,13 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
 
         if (indexPath == nil) {
             NSLog("tap on table view but not on a row");
-        } else {
-            NSLog("gestureRecognizer.state = %d", gestureRecognizer.state.rawValue);
+        } else if (!(cell!.isLiked)) {
             self.likeEntryWithBlock(indexPath, completionBlock: { (result, error) -> Void in
                 cell?.setEntryLiked()
+            })
+        } else if(cell!.isLiked) {
+            self.unlikeEntryWithBlock(indexPath, completionBlock: { (result, error) -> Void in
+                cell?.setEntryUnliked()
             })
         }
     }
@@ -450,6 +472,10 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
             query.whereKey("animal", equalTo: animalObject!)
         }
         return query
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        // do nothing
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {

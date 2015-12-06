@@ -44,6 +44,12 @@ public class SelectorViewController<T:Equatable> : FormViewController, TypedRowC
         completionCallback = callback
     }
     
+    convenience public init(imageByName: [String: UIImage], _ callback: (UIViewController) -> ()){
+        self.init()
+        self.completionCallback = callback
+        self.imageByName = imageByName
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         guard let options = row.dataProvider?.arrayData else { return }
@@ -56,6 +62,7 @@ public class SelectorViewController<T:Equatable> : FormViewController, TypedRowC
                                 if(self?.imageByName != nil) {
                                     $0.cell.imageView!.image = self?.imageByName![(self?.row.displayValueFor?(o))!]
                                 }
+//                                $0.cell.imageView!.image = UIImage(named: "form_coat")
                                 $0.cell.frame = CGRectMake($0.cell.frame.minX, $0.cell.frame.minY, $0.cell.frame.width, 100.0)
                                 $0.cell.textLabel?.font = UIFont(name: "Avenir", size: 24)!
 

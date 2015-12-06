@@ -32,7 +32,7 @@
                                     <rect key="frame" x="0.0" y="218" width="400" height="458"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="A1f-6G-4HB" kind="embed" identifier="LocationTableEmbed" id="Sfo-e6-qPG"/>
+                                    <segue destination="mFZ-X5-hje" kind="embed" id="Zih-h5-5Nw"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -110,7 +110,7 @@
                                 <connections>
                                     <outlet property="logo" destination="cgU-Du-gJQ" id="gfd-Oj-ZcQ"/>
                                     <outlet property="name" destination="3yx-gh-FgT" id="xP7-It-thV"/>
-                                    <segue destination="SHO-jO-gC5" kind="showDetail" identifier="LocationToLocationDetail" action="showViewController:sender:" id="J4W-rm-qZ2"/>
+                                    <segue destination="SHO-jO-gC5" kind="show" identifier="LocationToLocationDetail" id="qWn-y1-WCu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -135,7 +135,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcn-Nw-jZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5680.5" y="262.5"/>
+            <point key="canvasLocation" x="5173.5" y="490.5"/>
         </scene>
         <!--Location-->
         <scene sceneID="QHm-Ac-ayr">
@@ -152,16 +152,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3zf-PX-rfR">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="31" y="56" width="103" height="103"/>
+                                    <rect key="frame" x="14" y="78" width="103" height="103"/>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feX-cb-zpa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feX-cb-zpa">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="35" y="7" width="364" height="38"/>
+                                    <rect key="frame" x="131" y="78" width="263" height="38"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address Line 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOv-du-5sW">
@@ -170,7 +170,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="142" y="97" width="253" height="21"/>
+                                    <rect key="frame" x="54" y="232" width="253" height="21"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State Zip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItF-dD-Gzd">
@@ -179,54 +179,65 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="142" y="120" width="253" height="21"/>
+                                    <rect key="frame" x="54" y="255" width="253" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7N-qD-BaV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7N-qD-BaV">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Website"/>
+                                <state key="normal" image="web_button_black"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="142" y="37" width="253" height="30"/>
+                                    <rect key="frame" x="131" y="124" width="32" height="32"/>
                                 </variation>
                                 <connections>
                                     <action selector="openWebsite:" destination="SHO-jO-gC5" eventType="touchUpInside" id="lYQ-fX-JVJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDh-dB-k45">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6l7-Nf-yM5" userLabel="Facebook Button">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Phone"/>
+                                <state key="normal" image="facebook_button_black"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="142" y="60" width="220" height="30"/>
+                                    <rect key="frame" x="170" y="124" width="32" height="32"/>
+                                </variation>
+                                <connections>
+                                    <action selector="openWebsite:" destination="SHO-jO-gC5" eventType="touchUpInside" id="SNl-W9-7hj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3BT-Oc-nJ6" userLabel="Twitter Button">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="twitter_button_black"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="210" y="124" width="32" height="32"/>
+                                </variation>
+                                <connections>
+                                    <action selector="openWebsite:" destination="SHO-jO-gC5" eventType="touchUpInside" id="1sJ-mw-aVA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDh-dB-k45">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title=" Phone" image="phone_button_black">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="14" y="189" width="195" height="35"/>
                                 </variation>
                                 <connections>
                                     <action selector="callPhoneNumber:" destination="SHO-jO-gC5" eventType="touchUpInside" id="iNW-ek-m7p"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lj-ry-wPq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SG-mf-Khe" userLabel="Directions Button">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Directions"/>
+                                <state key="normal" image="location_button_black"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="142" y="140" width="71" height="30"/>
+                                    <rect key="frame" x="14" y="228" width="32" height="32"/>
                                 </variation>
                                 <connections>
-                                    <action selector="openDirections:" destination="SHO-jO-gC5" eventType="touchUpInside" id="VlN-Kc-D56"/>
-                                    <action selector="openWebsite:" destination="SHO-jO-gC5" eventType="touchUpInside" id="SnR-Q3-Wg0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUp-It-Bsj">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="back_black"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="8" y="13" width="16" height="27"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="mFZ-X5-hje" kind="show" id="cFe-LM-3wY"/>
+                                    <action selector="openDirections:" destination="SHO-jO-gC5" eventType="touchUpInside" id="EnA-BB-Adl"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nca-0k-SfG">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="178" width="400" height="336"/>
+                                    <rect key="frame" x="0.0" y="289" width="400" height="380"/>
                                 </variation>
                                 <connections>
                                     <segue destination="4AR-Rn-9P6" kind="embed" identifier="ShelterToAnimalsTable" id="O0A-Z3-mt3"/>
@@ -241,9 +252,10 @@
                                 <exclude reference="eOv-du-5sW"/>
                                 <exclude reference="ItF-dD-Gzd"/>
                                 <exclude reference="l7N-qD-BaV"/>
+                                <exclude reference="6l7-Nf-yM5"/>
+                                <exclude reference="3BT-Oc-nJ6"/>
                                 <exclude reference="gDh-dB-k45"/>
-                                <exclude reference="0lj-ry-wPq"/>
-                                <exclude reference="vUp-It-Bsj"/>
+                                <exclude reference="4SG-mf-Khe"/>
                                 <exclude reference="Nca-0k-SfG"/>
                             </mask>
                         </variation>
@@ -254,19 +266,20 @@
                                 <include reference="eOv-du-5sW"/>
                                 <include reference="ItF-dD-Gzd"/>
                                 <include reference="l7N-qD-BaV"/>
+                                <include reference="6l7-Nf-yM5"/>
+                                <include reference="3BT-Oc-nJ6"/>
                                 <include reference="gDh-dB-k45"/>
-                                <include reference="0lj-ry-wPq"/>
-                                <include reference="vUp-It-Bsj"/>
+                                <include reference="4SG-mf-Khe"/>
                                 <include reference="Nca-0k-SfG"/>
                             </mask>
                         </variation>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="622"/>
+                    <size key="freeformSize" width="400" height="800"/>
                     <connections>
                         <outlet property="address1Label" destination="eOv-du-5sW" id="c9k-hk-vvy"/>
                         <outlet property="cityStateZipLabel" destination="ItF-dD-Gzd" id="X6q-2d-Weq"/>
-                        <outlet property="directionsButton" destination="0lj-ry-wPq" id="v5A-nH-7pK"/>
+                        <outlet property="directionsButton" destination="4SG-mf-Khe" id="XvM-xQ-Aat"/>
                         <outlet property="logoImage" destination="3zf-PX-rfR" id="al0-WT-YwA"/>
                         <outlet property="nameLabel" destination="feX-cb-zpa" id="Z1H-oJ-DX3"/>
                         <outlet property="phoneNumberButton" destination="gDh-dB-k45" id="BMc-TV-hyC"/>
@@ -275,7 +288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHM-Wu-RYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6766.5" y="288.75"/>
+            <point key="canvasLocation" x="6331.5" y="609.75"/>
         </scene>
         <!--Instagram Table View Controller-->
         <scene sceneID="EnM-DC-CYd">
@@ -1209,7 +1222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-498" y="-1398"/>
+            <point key="canvasLocation" x="-690" y="-1470"/>
         </scene>
         <!--Cat Breeds-->
         <scene sceneID="WN4-Jr-78m">
@@ -1392,7 +1405,8 @@
                                                 <exclude reference="rdm-yT-CZ6"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="336"/>
                                             <mask key="subviews">
                                                 <include reference="Yoh-TX-8h6"/>
                                                 <include reference="Jht-s0-FfW"/>
@@ -1435,7 +1449,8 @@
                                         <exclude reference="OV2-iZ-P6V"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="336"/>
                                     <mask key="subviews">
                                         <include reference="S3q-uT-zUx"/>
                                     </mask>
@@ -1510,6 +1525,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-8U-lPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2358" y="-73.5"/>
+        </scene>
+        <!--Timeline Entry Comments View Controller-->
+        <scene sceneID="ld5-a4-I5I">
+            <objects>
+                <tableViewController id="4gB-Yg-SNT" customClass="TimelineEntryCommentsViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="D9U-Rd-S4w">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="0tV-Py-IoX" customClass="TimelineEntryCommentViewCell" customModule="White_Rabbit" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0tV-Py-IoX" id="HRt-kP-Py8">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aKb-J3-mUi">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-jI-WVu">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="66" y="8" width="326" height="81.5"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="aKb-J3-mUi"/>
+                                            <exclude reference="pZI-jI-WVu"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="aKb-J3-mUi"/>
+                                            <include reference="pZI-jI-WVu"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="profilePhoto" destination="aKb-J3-mUi" id="0dn-tO-p3i"/>
+                                    <outlet property="textLabel" destination="pZI-jI-WVu" id="fZb-TI-zox"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4gB-Yg-SNT" id="rcB-KU-xdv"/>
+                            <outlet property="delegate" destination="4gB-Yg-SNT" id="p54-NA-nQP"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GOy-Id-cuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3531" y="-23.25"/>
         </scene>
         <!--Care-->
         <scene sceneID="gyq-CO-Tgj">
@@ -1827,7 +1900,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="294FB8D4-811D-4EFD-AEA1-8FC0D4964BB8"/>
+                                <state key="normal" image="641B6890-D4CB-4C36-A94C-F160ACD7EEF0"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -3659,27 +3732,6 @@
             </objects>
             <point key="canvasLocation" x="-1641" y="490.5"/>
         </scene>
-        <!--Locations-->
-        <scene sceneID="8ft-al-eKd">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="A1f-6G-4HB" userLabel="Locations" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nx6-Ct-nkM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Btg-MO-but">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="mFZ-X5-hje" kind="relationship" relationship="rootViewController" id="AiU-lc-cH8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3tA-TJ-sBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4762.5" y="262.5"/>
-        </scene>
         <!--MAP-->
         <scene sceneID="gGX-Gt-6rT">
             <objects>
@@ -3845,7 +3897,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="294FB8D4-811D-4EFD-AEA1-8FC0D4964BB8" width="46" height="33">
+        <image name="641B6890-D4CB-4C36-A94C-F160ACD7EEF0" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4019,7 +4071,6 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="LoginImage" width="750" height="1328"/>
         <image name="add_button" width="63" height="63"/>
         <image name="avatar_blank" width="186" height="186"/>
-        <image name="back_black" width="20" height="32"/>
         <image name="blank_cover" width="750" height="358"/>
         <image name="breed_black" width="25" height="23"/>
         <image name="breeds_white" width="22" height="21"/>
@@ -4035,6 +4086,7 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="documents_button_gray" width="31" height="39"/>
         <image name="empty_profile_grey" width="71" height="71"/>
         <image name="facebook_button" width="50" height="50"/>
+        <image name="facebook_button_black" width="32" height="32"/>
         <image name="facebook_white" width="19" height="36"/>
         <image name="flag_grey" width="19" height="24"/>
         <image name="flash_white" width="19" height="42"/>
@@ -4043,12 +4095,14 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="heart_filled_grey" width="28" height="24"/>
         <image name="heart_grey" width="28" height="24"/>
         <image name="instagram_button" width="50" height="50"/>
+        <image name="location_button_black" width="32" height="32"/>
         <image name="loves_black" width="24" height="21"/>
         <image name="mail_white" width="36" height="24"/>
         <image name="map_grey" width="22" height="21"/>
         <image name="more_grey" width="26" height="6"/>
         <image name="next_button" width="63" height="63"/>
         <image name="password_grey" width="40" height="44"/>
+        <image name="phone_button_black" width="32" height="32"/>
         <image name="save_button" width="63" height="63"/>
         <image name="share_grey" width="20" height="26"/>
         <image name="shelters_white" width="28" height="28"/>
@@ -4056,14 +4110,15 @@ AAA+AAAAAAAAAAAAAAAAAAAmXw
         <image name="timeline_line" width="5" height="639"/>
         <image name="traits_black" width="26" height="22"/>
         <image name="twitter_button" width="50" height="50"/>
+        <image name="twitter_button_black" width="32" height="32"/>
         <image name="twitter_white" width="33" height="29"/>
+        <image name="web_button_black" width="32" height="32"/>
         <image name="youtube_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cFe-LM-3wY"/>
-        <segue reference="fNE-Ea-jwQ"/>
         <segue reference="O0A-Z3-mt3"/>
-        <segue reference="rZ8-6v-l2a"/>
-        <segue reference="to2-Xz-uJJ"/>
+        <segue reference="fNE-Ea-jwQ"/>
+        <segue reference="P6Y-Yv-4xu"/>
+        <segue reference="bme-G7-25h"/>
     </inferredMetricsTieBreakers>
 </document>
