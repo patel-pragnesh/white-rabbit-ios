@@ -175,11 +175,13 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         gestureRecognizer.minimumPressDuration = 1.0
         self.tableView.addGestureRecognizer(gestureRecognizer)
         
-//        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handlePress:")
-//        self.tableView.addGestureRecognizer(tapRecognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handlePress:")
+        self.tableView.addGestureRecognizer(tapRecognizer)
 
         let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
         doubleTapRecognizer.numberOfTapsRequired = 2
+        tapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
+        
         self.tableView.addGestureRecognizer(doubleTapRecognizer)
 
     }

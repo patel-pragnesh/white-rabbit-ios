@@ -11,11 +11,12 @@ import MapKit
 import CoreLocation
 import BTNavigationDropdownMenu
 
-class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var tableView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     
+    var currentLocation : PFGeoPoint?
     let locationManager = CLLocationManager()
     var selectedType: String = "shelter"
     let items = ["Shelter", "Vet", "Supplies", "Grooming"]
@@ -44,31 +45,44 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
         
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
-        self.mapView.delegate = self
+//        self.locationManager.delegate = self
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        self.locationManager.requestWhenInUseAuthorization()
+//        self.locationManager.startUpdatingLocation()
+
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil {
+                NSLog("got geolocation")
+                
+                self.locationsTableController?.currentLocation = geoPoint
+                self.locationsTableController?.loadObjects()
+                
+                self.currentLocation = geoPoint
+                let center = CLLocationCoordinate2D(latitude: (geoPoint?.latitude)!, longitude: (geoPoint?.longitude)!)
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                self.mapView.setRegion(region, animated: true)
+                
+                self.initializeMap()
+            }
+        }
         
-        initializeMap()
+        self.mapView.delegate = self
     }
         
     func initializeMap() {
-//        let initialLocation = CLLocation(latitude: 34.044467, longitude: -118.442708)
-//        let regionRadius: CLLocationDistance = 1000
         self.mapView.showsUserLocation = true
 
         self.populateLocations()
-//        self.centerMapOnLocation(initialLocation, regionRadius: regionRadius)
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-        self.mapView.setRegion(region, animated: true)
-        self.locationManager.stopUpdatingLocation()
-    }
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let location = locations.last
+//        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+//        self.mapView.setRegion(region, animated: true)
+//        self.locationManager.stopUpdatingLocation()
+//    }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation{
@@ -111,19 +125,20 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
             
             detailScene.currentLocationObject = annotation?.parseObject
         } else if(segue.identifier == "LocationTableEmbed") {
-            let tableNav = segue.destinationViewController as! UINavigationController
-            let tableScene = tableNav.topViewController as! LocationsTableViewController
-//            let tableScene = segue.destinationViewController as! LocationsTableViewController
+//            let tableNav = segue.destinationViewController as! UINavigationController
+//            let tableScene = tableNav.topViewController as! LocationsTableViewController
+            let tableScene = segue.destinationViewController as! LocationsTableViewController
             tableScene.mapViewController = self
             tableScene.selectedType = self.selectedType
-            tableScene.loadObjects()
+            tableScene.currentLocation = self.currentLocation
+//            tableScene.loadObjects()
             self.locationsTableController = tableScene
         }
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        NSLog("Errors: " + error.localizedDescription)
-    }
+//    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+//        NSLog("Errors: " + error.localizedDescription)
+//    }
     
     func populateLocations(){
         let query : PFQuery = self.queryForTable()
@@ -157,6 +172,9 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         let query = PFQuery(className: "Location")
         query.orderByAscending("name")
         query.whereKey("type", equalTo: self.selectedType)
+        if(self.currentLocation != nil) {
+            query.whereKey("geo", nearGeoPoint:self.currentLocation!)
+        }
         return query
     }
     

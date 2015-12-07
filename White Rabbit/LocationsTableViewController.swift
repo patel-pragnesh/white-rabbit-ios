@@ -32,6 +32,7 @@ class LocationsTableViewController: PFQueryTableViewController {
     var selectedType: String = "shelter"
     let items = ["Shelter", "Vet", "Supplies", "Grooming"]
     var mapViewController : LocationsMapViewController?
+    var currentLocation : PFGeoPoint?
     
     required init(coder aDecoder:NSCoder) {
         NSLog("initializing required shelters table view controller")
@@ -77,13 +78,16 @@ class LocationsTableViewController: PFQueryTableViewController {
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.whereKey("type", equalTo: self.selectedType)
-        query.orderByAscending("name")
+//        query.orderByAscending("name")
+        if(self.currentLocation != nil) {
+            query.whereKey("geo", nearGeoPoint:self.currentLocation!)
+        }
         return query
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.mapViewController?.performSegueWithIdentifier("LocationToLocationDetail", sender: self)
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        self.performSegueWithIdentifier("LocationToLocationDetail", sender: self)
+//    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         

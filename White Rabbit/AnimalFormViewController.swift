@@ -449,7 +449,7 @@ class AnimalFormViewController : FormViewController {
         }
         
         if !self.isEditMode() {
-            animal.setObject(self.userObject!, forKey: "owner")
+            animal.setObject(PFUser.currentUser()!, forKey: "owner")
         }
         
         if let lovesValue = self.form.rowByTag(self.LOVES_TAG)?.baseValue as? Set<String> {
