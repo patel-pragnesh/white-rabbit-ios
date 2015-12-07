@@ -420,6 +420,9 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             let editScene =  nav.topViewController as! AnimalFormViewController
             editScene.detailController = self
             editScene.animalObject = self.currentAnimalObject
+        } else if(segue.identifier == "AnimalDetailToLocation") {
+            let locationViewController = segue.destinationViewController as! LocationDetailViewController
+            locationViewController.currentLocationObject = self.shelterObject
         }  else if(segue.identifier == "AnimalDetailProfileTabsEmbed") {
             
             let timelineViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalTimelineTable") as! AnimalTimelineTableViewController
