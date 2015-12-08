@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/HomeViewController.swift"
-            timestampString = "470264791.735593"
+            timestampString = "471186327.023492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "checkForUser(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471106235.413084"
+            timestampString = "471187986.539851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "setUpNavigationBarImage(_:height:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471106235.413084"
+            timestampString = "471187986.539851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "setUpNavigationBarImage(_:height:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
-            timestampString = "471014730.982024"
+            timestampString = "471256627.556908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "shareButtonPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471106235.413084"
+            timestampString = "471187986.539851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
             landmarkName = "dismissPreview(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471106235.413084"
+            timestampString = "471187986.539851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "518"
-            endingLineNumber = "518"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
             landmarkName = "dismissPreview(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -743,11 +743,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
-            timestampString = "471109322.265621"
+            timestampString = "471256627.556908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "unlikeEntryWithBlock(_:completionBlock:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -759,11 +759,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
-            timestampString = "471013862.073419"
+            timestampString = "471256627.556908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "decrementLikeCount()"
             landmarkType = "5">
          </BreakpointContent>
@@ -775,11 +775,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
-            timestampString = "471013862.073419"
+            timestampString = "471256627.556908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "setLikeCount(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -791,11 +791,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
-            timestampString = "471013862.073419"
+            timestampString = "471256627.556908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "incrementLikeCount()"
             landmarkType = "5">
          </BreakpointContent>
@@ -871,11 +871,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471106099.373713"
+            timestampString = "471180830.056495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "setUpNavigationBar(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -942,6 +942,54 @@
             endingLineNumber = "130"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "White Rabbit/PostsTableViewController.swift"
+            timestampString = "471261067.05571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:object:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.PostsTableViewController.tableView (White_Rabbit.PostsTableViewController)(__ObjC.UITableView, cellForRowAtIndexPath : __ObjC.NSIndexPath, object : Swift.Optional&lt;__ObjC.PFObject&gt;) -&gt; Swift.Optional&lt;__ObjC.PFTableViewCell&gt;"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/PostsTableViewController.swift"
+                  timestampString = "471184709.281981"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "2608">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.PostsTableViewController.(tableView (White_Rabbit.PostsTableViewController) -&gt; (__ObjC.UITableView, cellForRowAtIndexPath : __ObjC.NSIndexPath, object : Swift.Optional&lt;__ObjC.PFObject&gt;) -&gt; Swift.Optional&lt;__ObjC.PFTableViewCell&gt;).(closure #2)"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/PostsTableViewController.swift"
+                  timestampString = "471184709.28234"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

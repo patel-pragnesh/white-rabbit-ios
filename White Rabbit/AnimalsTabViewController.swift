@@ -23,7 +23,6 @@ class AnimalsTabViewController: UIViewController, PagingMenuControllerDelegate {
         super.viewDidAppear(animated)
         self.setUpMenuBarController("Cats")
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("add_white", action: "showAddAminalView", height: 25, width: 25)
-        
     }
     
     func showAddAminalView() {

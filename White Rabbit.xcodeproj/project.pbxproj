@@ -62,7 +62,6 @@
 		EDE6D4791BA7B43500C7AC8C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */; };
 		EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */; };
 		EDF00D751BADF71700FE4B48 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */; };
-		EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */; };
 		EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */; };
 		EDF3DCEB1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */; };
 		EDF3DCED1C0056AC00A10DF7 /* TimelineEntryFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF3DCEC1C0056AB00A10DF7 /* TimelineEntryFormViewController.swift */; };
@@ -168,7 +167,6 @@
 		EDE6D4781BA7B43500C7AC8C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
-		EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
 		EDF3DCE81BFD7C1700A10DF7 /* ActionButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActionButton.framework; path = "Pods/../build/Debug-iphoneos/ActionButton.framework"; sourceTree = "<group>"; };
 		EDF3DCEA1BFF003200A10DF7 /* TimelineEntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryDetailViewController.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 				EDFD64E91BD9E43E00344BDC /* Locations */,
 				EDFBB5921BED40AA00EAE4A8 /* UserFormViewController.swift */,
 				EDF00D741BADF71700FE4B48 /* PostsTableViewController.swift */,
-				EDF00D761BADFC2100FE4B48 /* PostsTableViewCell.swift */,
 				EDCD406D1C0601F9008A8E57 /* gif */,
 				EDCD40691C05FB82008A8E57 /* GiFHUD.swift */,
 				EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */,
@@ -629,7 +626,6 @@
 				ED274C2D1BABFF0A00A31375 /* LocationsMapViewController.swift in Sources */,
 				EDE6D47B1BA7B75800C7AC8C /* LoginViewController.swift in Sources */,
 				EDF3DCED1C0056AC00A10DF7 /* TimelineEntryFormViewController.swift in Sources */,
-				EDF00D771BADFC2100FE4B48 /* PostsTableViewCell.swift in Sources */,
 				ED323F941BAAAB1900576C04 /* BreedsTableViewController.swift in Sources */,
 				EDF423991BD9A6F10087583A /* CareMenuTableViewController.swift in Sources */,
 				EDE6D4361BA7B2BC00C7AC8C /* HomeViewController.swift in Sources */,

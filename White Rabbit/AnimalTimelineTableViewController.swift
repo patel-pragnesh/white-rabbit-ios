@@ -16,6 +16,7 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     
     @IBOutlet weak var eventTextLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var timelineImageView: UIImageView!
@@ -549,6 +550,14 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
 
         // Extract values from the PFObject to display in the table cell
         if let text = object?["text"] as? String {
+            
+            cell!.eventTextLabel.text = text
+            cell!.eventTextLabel.hidden = false
+            
+            cell!.captionLabel.text = ""
+            cell!.captionLabel.hidden = true
+
+            
             switch object?["type"] as! String {
                 case "medical":
                     cell!.largeIcon.image = UIImage(named: "timeline_medical")
@@ -566,15 +575,22 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
                     cell!.largeIcon.image = UIImage(named: "timeline_birthday")
                     cell!.largeIcon.hidden = false
                     break
+                case "image":
+                    cell!.captionLabel.text = text
+                    if(text != "") {
+                        cell!.captionLabel.hidden = false
+                    }
+                    cell!.eventTextLabel.hidden = true
+                    break
                 default:
                     cell!.largeIcon.image = UIImage()
                     cell!.largeIcon.hidden = true
                     break
             }
 
-            cell!.eventTextLabel.text = text
-            cell!.eventTextLabel.hidden = false            
         } else {
+            cell!.captionLabel.text = ""
+            cell!.captionLabel.hidden = true
             cell!.eventTextLabel.hidden = true
         }
         

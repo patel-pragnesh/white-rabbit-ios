@@ -238,10 +238,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         homeController.checkForUser(false)
-        let animalsController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
-        homeController.mainViewController = animalsController
+//        let mainController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
+        let mainController = storyboard?.instantiateViewControllerWithIdentifier("PostsNavigation")
+        homeController.mainViewController = mainController
         
-        let slideMenuController = SlideMenuController(mainViewController: animalsController!, leftMenuViewController: homeController)
+        let slideMenuController = SlideMenuController(mainViewController: mainController!, leftMenuViewController: homeController)
         
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
@@ -346,10 +347,6 @@ extension UIViewController {
         
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
-
-        if (self.navigationItem.backBarButtonItem != nil) {
-        }
-        
     }
     
     func goBack() {
@@ -370,6 +367,8 @@ extension UIViewController {
         var frame = nav!.frame
         frame.size.height = height
         nav!.frame = frame
+        
+        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
     }
     
     func setUpMenuBarController() {

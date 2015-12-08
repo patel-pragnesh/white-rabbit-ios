@@ -26,9 +26,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     
     var mainViewController: UIViewController!
+    var animalsViewController: UIViewController!
     var locationsViewController: UIViewController!
     var breedsViewController: UIViewController!
     var careViewController: UIViewController!
+    var postsViewController: UIViewController!
     var userFormController: UINavigationController!
     
     
@@ -43,9 +45,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         checkForUser(true)
         
+        self.animalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
         self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsMapView")
         self.breedsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BreedsTable")
         self.careViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CareNavigation")
+        self.postsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PostsNavigation")
         self.userFormController = self.storyboard?.instantiateViewControllerWithIdentifier("UserNavigation") as! UINavigationController
         let userForm = self.userFormController.topViewController as! UserFormViewController
         userForm.userObject = self.currentUser
@@ -63,7 +67,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func showView(sender: UIButton!) {
         switch sender.currentTitle! {
             case "  Cats":
-                self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
+                self.slideMenuController()?.changeMainViewController(self.animalsViewController, close: true)
                 break
             case "  Locations":
                 self.slideMenuController()?.changeMainViewController(self.locationsViewController, close: true)
