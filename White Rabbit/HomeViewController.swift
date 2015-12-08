@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var careButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
+    @IBOutlet weak var feedButton: UIButton!
     
     
     var mainViewController: UIViewController!
@@ -55,7 +56,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         userForm.userObject = self.currentUser
         userForm.menuController = self
 
-        
+        self.feedButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.animalsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.locationsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
         self.breedsButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
@@ -66,6 +67,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func showView(sender: UIButton!) {
         switch sender.currentTitle! {
+            case "  Feed":
+                self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
             case "  Cats":
                 self.slideMenuController()?.changeMainViewController(self.animalsViewController, close: true)
                 break
@@ -88,6 +91,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.setUpMenuBarController("Feed")
         
         checkForUser(true)
     }

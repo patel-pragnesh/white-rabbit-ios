@@ -19,6 +19,11 @@ class PostsTableViewCell: PFTableViewCell {
     
 }
 
+class PostsNavigation : UINavigationController {
+    override func viewDidLoad() {
+    }
+}
+
 
 class PostsTableViewController: PFQueryTableViewController {
 
@@ -52,9 +57,12 @@ class PostsTableViewController: PFQueryTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.setUpMenuBarController("Feed")
         self.stylePFLoadingView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setUpMenuBarController("Feed")
     }
     
     override func queryForTable() -> PFQuery {

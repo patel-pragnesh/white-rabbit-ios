@@ -330,16 +330,17 @@ extension UIViewController {
     
     func setUpNavigationBar(title: String) {
         let nav = self.navigationController?.navigationBar
-        nav!.barStyle = UIBarStyle.BlackTranslucent
+        nav?.barStyle = UIBarStyle.BlackTranslucent
         //nav?.barTintColor = UIColor.blueColor()
-        nav!.tintColor = UIColor.whiteColor()
+        nav?.tintColor = UIColor.whiteColor()
         
-        nav!.setBackgroundImage(nil, forBarMetrics: .Default)
-        var frame = nav!.frame
-        frame.size.height = 40
-        nav!.frame = frame
+        nav?.setBackgroundImage(nil, forBarMetrics: .Default)
+        if var frame = nav?.frame {
+            frame.size.height = 40
+            nav?.frame = frame
+        }
         
-        nav!.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir", size: 19)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
+        nav?.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir", size: 19)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
         
 //        self.navigationItem.toggleBoldface(self)
         
