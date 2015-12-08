@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-White RabbitTests/AFNetworking.framework"
   install_framework "Pods-White RabbitTests/ALCameraViewController.framework"
+  install_framework "Pods-White RabbitTests/ActiveLabel.framework"
   install_framework "Pods-White RabbitTests/BTNavigationDropdownMenu.framework"
   install_framework "Pods-White RabbitTests/Bolts.framework"
   install_framework "Pods-White RabbitTests/CLImageEditor.framework"
@@ -109,6 +110,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-White RabbitTests/ParseTwitterUtils.framework"
   install_framework "Pods-White RabbitTests/ParseUI.framework"
   install_framework "Pods-White RabbitTests/SlideMenuControllerSwift.framework"
+  install_framework "Pods-White RabbitTests/SwiftDate.framework"
   install_framework "Pods-White RabbitTests/TagListView.framework"
   install_framework "Pods-White RabbitTests/Timepiece.framework"
   install_framework "Pods-White RabbitTests/pop.framework"
@@ -116,6 +118,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-White RabbitTests/AFNetworking.framework"
   install_framework "Pods-White RabbitTests/ALCameraViewController.framework"
+  install_framework "Pods-White RabbitTests/ActiveLabel.framework"
   install_framework "Pods-White RabbitTests/BTNavigationDropdownMenu.framework"
   install_framework "Pods-White RabbitTests/Bolts.framework"
   install_framework "Pods-White RabbitTests/CLImageEditor.framework"
@@ -139,6 +142,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-White RabbitTests/ParseTwitterUtils.framework"
   install_framework "Pods-White RabbitTests/ParseUI.framework"
   install_framework "Pods-White RabbitTests/SlideMenuControllerSwift.framework"
+  install_framework "Pods-White RabbitTests/SwiftDate.framework"
   install_framework "Pods-White RabbitTests/TagListView.framework"
   install_framework "Pods-White RabbitTests/Timepiece.framework"
   install_framework "Pods-White RabbitTests/pop.framework"

@@ -10,6 +10,7 @@ pod 'ParseUI'
 pod 'ParseCrashReporting'
 pod 'ParseFacebookUtilsV4'
 pod 'ParseTwitterUtils'
+pod 'SwiftDate', '~> 2.0'
 pod 'ContentfulDeliveryAPI'
 pod 'TagListView'
 pod 'Timepiece'
@@ -29,6 +30,7 @@ pod 'Dollar'
 pod 'PagingMenuController'
 pod 'IPDFCameraViewController'
 pod 'IDMPhotoBrowser'
+pod 'ActiveLabel'
 
 target 'White Rabbit' do
 end

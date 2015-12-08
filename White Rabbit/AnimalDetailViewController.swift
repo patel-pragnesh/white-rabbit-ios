@@ -34,6 +34,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     var currentAnimalObject : PFObject?
     var breedObject : PFObject?
     var shelterObject : PFObject?
+    var username : String?
     
     var currentUserIsOwner = false
     var currentUserIsAdmin = false
@@ -41,6 +42,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     
     var addMenu : SphereMenu?
     
+    var aboutViewController : AnimalAboutViewController?
     var timelineTableController : AnimalTimelineTableViewController?
     var instagramTableController : InstagramTableViewController?
     
@@ -61,7 +63,34 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
-        self.loadAnimal()
+        if(self.currentAnimalObject != nil) {
+            self.loadAnimal()
+        } else if(self.username != nil) {
+            self.loadAnimalFromUsername()
+        }
+    }
+    
+    func loadAnimalFromUsername() {
+        let animalQuery = PFQuery(className: "Animal")
+        animalQuery.whereKey("username", equalTo: self.username!)
+        animalQuery.includeKey("breed")
+        animalQuery.includeKey("shelter")
+        self.showLoader()
+        animalQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if(error == nil) {
+                let animal = objects![0]
+                self.currentAnimalObject = animal
+                self.loadAnimal()
+                
+                self.aboutViewController?.animalObject = animal
+                self.aboutViewController?.loadAnimal()
+                
+                self.timelineTableController?.animalObject = animal
+                self.timelineTableController?.loadObjects()
+                self.hideLoader()
+            }
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -431,6 +460,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             self.timelineTableController = timelineViewController
             
             let aboutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalAbout") as! AnimalAboutViewController
+            self.aboutViewController = aboutViewController
             aboutViewController.animalObject = self.currentAnimalObject
             
             let viewControllers = [timelineViewController, aboutViewController]
@@ -441,35 +471,22 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             options.selectedFont = UIFont(name: "Avenir", size: 18)!
             options.font = UIFont(name: "Avenir", size: 18)!
             options.menuDisplayMode = .SegmentedControl
-//            options.menuDisplayMode = .Standard(widthMode: PagingMenuOptions.MenuItemWidthMode.Fixed(width: 50.0), centerItem: false, scrollingMode: PagingMenuOptions.MenuScrollingMode.ScrollEnabledAndBouces)
             options.menuItemMode = .Underline(height: 2.0, color: UIColor.lightGrayColor(), horizontalPadding: 0.0, verticalPadding: 0.0)
-            
             
             let profileTabs = segue.destinationViewController as! PagingMenuController
             profileTabs.delegate = self
             profileTabs.setup(viewControllers: viewControllers, options: options)
             
-            // Check
             if(self.currentAnimalObject?.valueForKey("deceasedDate") != nil) {
                 aboutViewController.setInPast()
             }
 
             
-        } else if(segue.identifier == "AnimalDetailToTimeline" || segue.identifier == "AnimalDetailTimelineEmbed") {
+        } else if(segue.identifier == "AnimalDetailTimelineEmbed") {
             let animalTimeline = segue.destinationViewController as! AnimalTimelineTableViewController
             animalTimeline.animalObject = self.currentAnimalObject
             animalTimeline.animalDetailController = self
             self.timelineTableController = animalTimeline
-        } else if (segue.identifier == "AnimalDetailInstagramEmbed") {
-            if(self.instagramUsername != nil) {
-                NSLog("showing insta view")
-                
-                self.timelineView.hidden = true
-            } else {
-                NSLog("Insta wasn't set yet")
-                let insta = segue.destinationViewController as! InstagramTableViewController
-                self.instagramTableController = insta
-            }
         }
     }
 

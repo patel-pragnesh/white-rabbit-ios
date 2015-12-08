@@ -33,6 +33,8 @@
 		ED8F90461BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8F90451BD3A0C0006D56AB /* BTNavigationDropdownMenu.framework */; };
 		EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */; };
 		EDC1FCC31BD325E8005FDAED /* DocumentCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */; };
+		EDC941731C16F618006ADB1F /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC941721C16F618006ADB1F /* SwiftDate.framework */; };
+		EDC941751C16FFF3006ADB1F /* ActiveLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC941741C16FFF3006ADB1F /* ActiveLabel.framework */; };
 		EDCD406A1C05FB82008A8E57 /* GiFHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD40691C05FB82008A8E57 /* GiFHUD.swift */; };
 		EDCD406E1C0601F9008A8E57 /* gif in Resources */ = {isa = PBXBuildFile; fileRef = EDCD406D1C0601F9008A8E57 /* gif */; };
 		EDCD40721C06F5D0008A8E57 /* CLImageEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EDCD40711C06F5D0008A8E57 /* CLImageEditor.bundle */; };
@@ -128,6 +130,8 @@
 		ED9760D21BAA2A6B00EE3BBF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		EDA8B01D1BB94BB10066546E /* TraitSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitSelectorTableViewController.swift; sourceTree = "<group>"; };
 		EDC1FCC21BD325E8005FDAED /* DocumentCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCaptureViewController.swift; sourceTree = "<group>"; };
+		EDC941721C16F618006ADB1F /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = "Pods/../build/Debug-iphoneos/SwiftDate.framework"; sourceTree = "<group>"; };
+		EDC941741C16FFF3006ADB1F /* ActiveLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveLabel.framework; path = "Pods/../build/Debug-iphoneos/ActiveLabel.framework"; sourceTree = "<group>"; };
 		EDCD40691C05FB82008A8E57 /* GiFHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiFHUD.swift; sourceTree = "<group>"; };
 		EDCD406D1C0601F9008A8E57 /* gif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gif; sourceTree = "<group>"; };
 		EDCD40711C06F5D0008A8E57 /* CLImageEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLImageEditor.bundle; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDC941751C16FFF3006ADB1F /* ActiveLabel.framework in Frameworks */,
+				EDC941731C16F618006ADB1F /* SwiftDate.framework in Frameworks */,
 				ED7D77801C11D85700732F94 /* ParseTwitterUtils.framework in Frameworks */,
 				ED49D6471C0EAAD70050049F /* DACircularProgress.framework in Frameworks */,
 				ED49D6481C0EAAD70050049F /* pop.framework in Frameworks */,
@@ -316,6 +322,8 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDC941741C16FFF3006ADB1F /* ActiveLabel.framework */,
+				EDC941721C16F618006ADB1F /* SwiftDate.framework */,
 				ED7D777F1C11D85700732F94 /* ParseTwitterUtils.framework */,
 				ED49D6451C0EAAD70050049F /* DACircularProgress.framework */,
 				ED49D6461C0EAAD70050049F /* pop.framework */,

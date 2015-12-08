@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-White RabbitUITests/AFNetworking.framework"
   install_framework "Pods-White RabbitUITests/ALCameraViewController.framework"
+  install_framework "Pods-White RabbitUITests/ActiveLabel.framework"
   install_framework "Pods-White RabbitUITests/BTNavigationDropdownMenu.framework"
   install_framework "Pods-White RabbitUITests/Bolts.framework"
   install_framework "Pods-White RabbitUITests/CLImageEditor.framework"
@@ -109,6 +110,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-White RabbitUITests/ParseTwitterUtils.framework"
   install_framework "Pods-White RabbitUITests/ParseUI.framework"
   install_framework "Pods-White RabbitUITests/SlideMenuControllerSwift.framework"
+  install_framework "Pods-White RabbitUITests/SwiftDate.framework"
   install_framework "Pods-White RabbitUITests/TagListView.framework"
   install_framework "Pods-White RabbitUITests/Timepiece.framework"
   install_framework "Pods-White RabbitUITests/pop.framework"
@@ -116,6 +118,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-White RabbitUITests/AFNetworking.framework"
   install_framework "Pods-White RabbitUITests/ALCameraViewController.framework"
+  install_framework "Pods-White RabbitUITests/ActiveLabel.framework"
   install_framework "Pods-White RabbitUITests/BTNavigationDropdownMenu.framework"
   install_framework "Pods-White RabbitUITests/Bolts.framework"
   install_framework "Pods-White RabbitUITests/CLImageEditor.framework"
@@ -139,6 +142,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-White RabbitUITests/ParseTwitterUtils.framework"
   install_framework "Pods-White RabbitUITests/ParseUI.framework"
   install_framework "Pods-White RabbitUITests/SlideMenuControllerSwift.framework"
+  install_framework "Pods-White RabbitUITests/SwiftDate.framework"
   install_framework "Pods-White RabbitUITests/TagListView.framework"
   install_framework "Pods-White RabbitUITests/Timepiece.framework"
   install_framework "Pods-White RabbitUITests/pop.framework"

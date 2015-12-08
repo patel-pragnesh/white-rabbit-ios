@@ -473,6 +473,8 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         query.includeKey("animal")
         if(self.animalObject != nil) {
             query.whereKey("animal", equalTo: animalObject!)
+        } else {
+            query.whereKeyDoesNotExist("animal")
         }
         return query
     }

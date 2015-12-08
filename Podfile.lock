@@ -1,4 +1,5 @@
 PODS:
+  - ActiveLabel (0.2.2)
   - AFNetworking (2.6.3):
     - AFNetworking/NSURLConnection (= 2.6.3)
     - AFNetworking/NSURLSession (= 2.6.3)
@@ -87,10 +88,12 @@ PODS:
     - Parse (~> 1.9)
   - pop (1.0.8)
   - SlideMenuControllerSwift (2.0.4)
+  - SwiftDate (2.0.2)
   - TagListView (0.4)
   - Timepiece (0.4.2)
 
 DEPENDENCIES:
+  - ActiveLabel
   - ALCameraViewController
   - BTNavigationDropdownMenu
   - CLImageEditor
@@ -115,6 +118,7 @@ DEPENDENCIES:
   - ParseTwitterUtils
   - ParseUI
   - SlideMenuControllerSwift
+  - SwiftDate (~> 2.0)
   - TagListView
   - Timepiece
 
@@ -129,6 +133,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/michaelbina/Eureka.git
 
 SPEC CHECKSUMS:
+  ActiveLabel: cecbc4ddf9f798bbacfa361960c9ccaeadb9d6e1
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   ALCameraViewController: d8a0b0a63652c09116de4267d6735b50e7f2efdd
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
@@ -155,6 +160,7 @@ SPEC CHECKSUMS:
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   SlideMenuControllerSwift: 27a2aaaa8089749c053ab344a2cb13af1bf60322
+  SwiftDate: b4f4d0962afe48365ad2800c9850a6626deb9359
   TagListView: 849eca7c99d9c1fc4f5406bd564aa3e90f05632c
   Timepiece: cf53bb908bf542acc0e3d5f69cabfed869df4ebd
 

@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-White Rabbit/AFNetworking.framework"
   install_framework "Pods-White Rabbit/ALCameraViewController.framework"
+  install_framework "Pods-White Rabbit/ActiveLabel.framework"
   install_framework "Pods-White Rabbit/BTNavigationDropdownMenu.framework"
   install_framework "Pods-White Rabbit/Bolts.framework"
   install_framework "Pods-White Rabbit/CLImageEditor.framework"
@@ -109,6 +110,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-White Rabbit/ParseTwitterUtils.framework"
   install_framework "Pods-White Rabbit/ParseUI.framework"
   install_framework "Pods-White Rabbit/SlideMenuControllerSwift.framework"
+  install_framework "Pods-White Rabbit/SwiftDate.framework"
   install_framework "Pods-White Rabbit/TagListView.framework"
   install_framework "Pods-White Rabbit/Timepiece.framework"
   install_framework "Pods-White Rabbit/pop.framework"
@@ -116,6 +118,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-White Rabbit/AFNetworking.framework"
   install_framework "Pods-White Rabbit/ALCameraViewController.framework"
+  install_framework "Pods-White Rabbit/ActiveLabel.framework"
   install_framework "Pods-White Rabbit/BTNavigationDropdownMenu.framework"
   install_framework "Pods-White Rabbit/Bolts.framework"
   install_framework "Pods-White Rabbit/CLImageEditor.framework"
@@ -139,6 +142,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-White Rabbit/ParseTwitterUtils.framework"
   install_framework "Pods-White Rabbit/ParseUI.framework"
   install_framework "Pods-White Rabbit/SlideMenuControllerSwift.framework"
+  install_framework "Pods-White Rabbit/SwiftDate.framework"
   install_framework "Pods-White Rabbit/TagListView.framework"
   install_framework "Pods-White Rabbit/Timepiece.framework"
   install_framework "Pods-White Rabbit/pop.framework"

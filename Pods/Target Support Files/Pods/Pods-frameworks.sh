@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/ALCameraViewController.framework"
+  install_framework "Pods/ActiveLabel.framework"
   install_framework "Pods/BTNavigationDropdownMenu.framework"
   install_framework "Pods/Bolts.framework"
   install_framework "Pods/CLImageEditor.framework"
@@ -109,6 +110,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/ParseTwitterUtils.framework"
   install_framework "Pods/ParseUI.framework"
   install_framework "Pods/SlideMenuControllerSwift.framework"
+  install_framework "Pods/SwiftDate.framework"
   install_framework "Pods/TagListView.framework"
   install_framework "Pods/Timepiece.framework"
   install_framework "Pods/pop.framework"
@@ -116,6 +118,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/ALCameraViewController.framework"
+  install_framework "Pods/ActiveLabel.framework"
   install_framework "Pods/BTNavigationDropdownMenu.framework"
   install_framework "Pods/Bolts.framework"
   install_framework "Pods/CLImageEditor.framework"
@@ -139,6 +142,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/ParseTwitterUtils.framework"
   install_framework "Pods/ParseUI.framework"
   install_framework "Pods/SlideMenuControllerSwift.framework"
+  install_framework "Pods/SwiftDate.framework"
   install_framework "Pods/TagListView.framework"
   install_framework "Pods/Timepiece.framework"
   install_framework "Pods/pop.framework"

@@ -87,50 +87,55 @@ class AnimalAboutViewController: UIViewController {
         traitTags.textFont = UIFont.systemFontOfSize(15)
         lovesTags.textFont = UIFont.systemFontOfSize(15)
         hatesTags.textFont = UIFont.systemFontOfSize(15)
-
-        if let breed = animalObject!["breed"] as? PFObject {
-            do {
-                try breed.fetch()
-            } catch _ {
-                
-            }
-            
-            let name = breed.valueForKey("name") as! String
-            self.breedLabel.text = name
-        } else {
-//            breedLabel.hidden = true
-//            breedLogo.hidden = true
-//            breedTitle.hidden = true
-//            afterBreedConstraint.constant = -20.0
-        }
         
-        if let coat = animalObject!["coat"] as? PFObject {
-            do {
-                try coat.fetch()
-            } catch _ {
-                
-            }
-            
-            let name = coat.valueForKey("name") as! String
-            self.coatLabel.text = name
-        } else {
-//            coatLabel.hidden = true
-//            coatLogo.hidden = true
-//            coatTitle.hidden = true
-//            afterCoatConstraint.constant = -20.0
-        }
-        
-        self.addTraitTags()
-        self.addLovesTags()
-        self.addHatesTags()
+        self.loadAnimal()
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
-        self.addTraitTags()
-        self.addLovesTags()
-        self.addHatesTags()
+        
+        self.loadAnimal()
+    }
+    
+    func loadAnimal() {
+        if(self.animalObject != nil) {
+            if let breed = animalObject!["breed"] as? PFObject {
+                do {
+                    try breed.fetch()
+                } catch _ {
+                    
+                }
+                
+                let name = breed.valueForKey("name") as! String
+                self.breedLabel.text = name
+            } else {
+                //            breedLabel.hidden = true
+                //            breedLogo.hidden = true
+                //            breedTitle.hidden = true
+                //            afterBreedConstraint.constant = -20.0
+            }
+            
+            if let coat = animalObject!["coat"] as? PFObject {
+                do {
+                    try coat.fetch()
+                } catch _ {
+                    
+                }
+                
+                let name = coat.valueForKey("name") as! String
+                self.coatLabel.text = name
+            } else {
+                //            coatLabel.hidden = true
+                //            coatLogo.hidden = true
+                //            coatTitle.hidden = true
+                //            afterCoatConstraint.constant = -20.0
+            }
+            
+            self.addTraitTags()
+            self.addLovesTags()
+            self.addHatesTags()
+        }
     }
 
     override func didReceiveMemoryWarning() {

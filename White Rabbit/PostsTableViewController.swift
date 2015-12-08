@@ -9,14 +9,15 @@
 import UIKit
 import Parse
 import ParseUI
+import SwiftDate
+import ActiveLabel
 
 class PostsTableViewCell: PFTableViewCell {
     @IBOutlet weak var usernameLink: UIButton!
     @IBOutlet weak var largeImageView: UIImageView!
     @IBOutlet weak var profilePhotoThumbnailView: UIButton!
-    @IBOutlet weak var captionLabel: UILabel!
-    
-    
+    @IBOutlet weak var captionLabel: ActiveLabel!
+    @IBOutlet weak var timeLabel: UILabel!
 }
 
 class PostsNavigation : UINavigationController {
@@ -28,6 +29,8 @@ class PostsNavigation : UINavigationController {
 class PostsTableViewController: PFQueryTableViewController {
 
     var selectedIndexPath : NSIndexPath?
+    
+    var hashtag : String?
     
     required init(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)!
@@ -62,20 +65,27 @@ class PostsTableViewController: PFQueryTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.setUpMenuBarController("Feed")
+        if(self.hashtag != nil) {
+            self.setUpNavigationBar("#\(self.hashtag!)")
+        } else {
+            self.setUpMenuBarController("Feed")
+        }
     }
     
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
         query.orderByDescending("createdAt")
         query.whereKey("type", equalTo: "image")
+        if(self.hashtag != nil) {
+            query.whereKey("text", containsString: "#\(self.hashtag!)")
+        }
         query.includeKey("animal")
         return query
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedIndexPath = indexPath
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        self.selectedIndexPath = indexPath
+//    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
@@ -85,6 +95,17 @@ class PostsTableViewController: PFQueryTableViewController {
             cell = PostsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "PostCell")
         }
         
+        cell!.captionLabel.handleHashtagTap { (hashtag: String) -> () in
+            let postsView = self.storyboard?.instantiateViewControllerWithIdentifier("PostsView") as! PostsTableViewController
+            postsView.hashtag = hashtag
+            self.navigationController?.pushViewController(postsView, animated: true)
+        }
+        
+        cell!.captionLabel.handleMentionTap { (handle: String) -> () in
+            let animalView = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalDetailView") as! AnimalDetailViewController
+            animalView.username = handle
+            self.navigationController?.pushViewController(animalView, animated: true)
+        }
         
         // Extract values from the PFObject to display in the table cell
         // cell!.name.text = object?["name"] as? String
@@ -98,10 +119,17 @@ class PostsTableViewController: PFQueryTableViewController {
             }
         })
         
+        if let date = object!.valueForKey("createdAt") as? NSDate {
+            let formatted = date.toRelativeString(fromDate: NSDate(), abbreviated: true, maxUnits:1)
+            cell!.timeLabel.text = formatted
+        }
+        
         if let text = object?["text"] as? String {
             cell!.captionLabel.text = text
+            cell!.captionLabel.hidden = false
         } else {
-            cell!.captionLabel.text = ""            
+            cell!.captionLabel.text = ""
+            cell!.captionLabel.hidden = true
         }
         
         
