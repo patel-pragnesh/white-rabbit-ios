@@ -88,6 +88,7 @@ class AnimalsTableViewController: PFQueryTableViewController {
         }
         query.orderByAscending("name")
         query.includeKey("breed")
+        query.includeKey("owner")
         return query
     }
     

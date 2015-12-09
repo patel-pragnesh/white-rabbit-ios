@@ -185,7 +185,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         tapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
         
         self.tableView.addGestureRecognizer(doubleTapRecognizer)
-
     }
     
     func likeEntryWithBlock(indexPath: NSIndexPath?, completionBlock: (result: Bool, error: NSError?) -> Void) {
@@ -477,6 +476,11 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         } else {
             query.whereKeyDoesNotExist("animal")
         }
+        
+//        if(PFUser.currentUser()?.objectId != self.animalObject!.valueForKey("owner")!.objectId) {
+//            query.whereKey("private", equalTo: false)
+//        }
+        
         return query
     }
     

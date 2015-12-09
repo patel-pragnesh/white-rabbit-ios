@@ -45,7 +45,7 @@ class PostsTableViewController: PFQueryTableViewController {
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentSize.height - scrollView.contentOffset.y < (self.view.bounds.size.height) {
+        if scrollView.contentSize.height - scrollView.contentOffset.y - 600 < (self.view.bounds.size.height) {
             if !self.loading {
                 self.loadNextPage()
             }
@@ -79,6 +79,7 @@ class PostsTableViewController: PFQueryTableViewController {
         if(self.hashtag != nil) {
             query.whereKey("text", containsString: "#\(self.hashtag!)")
         }
+        query.whereKey("private", equalTo: false)
         query.includeKey("animal")
         return query
     }

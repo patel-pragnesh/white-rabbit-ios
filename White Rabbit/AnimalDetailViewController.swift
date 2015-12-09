@@ -52,9 +52,15 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     
     var isSettingProfilePhoto : Bool = false
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.checkOwner()
         
         self.addButton.hidden = true
         self.timelineView.hidden = false
@@ -75,6 +81,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     func loadAnimalFromUsername() {
         let animalQuery = PFQuery(className: "Animal")
         animalQuery.whereKey("username", equalTo: self.username!)
+        animalQuery.includeKey("owner")
         animalQuery.includeKey("breed")
         animalQuery.includeKey("shelter")
         self.showLoader()
@@ -330,8 +337,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     func loadAnimal() {
         if let object = currentAnimalObject {
             //            NSLog("Viewing detail for object: %@\n", object)
-            
-            self.checkOwner()
             
             if(currentUserIsOwner || currentUserIsShelterCaregiver || currentUserIsAdmin) {
                 self.createAddMenu()
