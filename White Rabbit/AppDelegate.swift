@@ -22,6 +22,7 @@ import ContentfulDeliveryAPI
 import FillableLoaders
 import IDMPhotoBrowser
 import ActiveLabel
+import ALCameraViewController
 
 
 @UIApplicationMain
@@ -385,6 +386,57 @@ extension UIViewController {
     
     func showMenu() {
         self.slideMenuController()?.openLeft()
+    }
+    
+    
+    func takePhoto(delegate: protocol<CLImageEditorDelegate>) {
+        let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in
+            if image != nil {
+                self.dismissViewControllerAnimated(false, completion: { () -> Void in
+                })
+                self.showEditor(image!, delegate: delegate, ratios: [["value1": 1, "value2": 1]])
+            } else {
+                self.dismissViewControllerAnimated(true, completion: {})
+            }
+        }
+        cameraViewController.modalTransitionStyle = .CoverVertical
+        presentViewController(cameraViewController, animated: true, completion: nil)
+    }
+    
+    func chooseImage(delegate: protocol<UIImagePickerControllerDelegate, UINavigationControllerDelegate>) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .PhotoLibrary
+        picker.delegate = delegate
+        self.presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func showProfilePhotoActionSheet(sender: AnyObject, delegate: protocol<UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate>) {
+        
+        let optionMenu = UIAlertController(title: nil, message: "Change Profile Photo", preferredStyle: .ActionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Take a photo", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Setting profile photo")
+            self.takePhoto(delegate)
+        })
+        
+        let imagePickerAction = UIAlertAction(title: "Choose a photo", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Setting cover photo")
+            self.chooseImage(delegate)
+        })
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        optionMenu.addAction(cameraAction)
+        optionMenu.addAction(imagePickerAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
     }
     
     func openHashTagFeed(hashtag:String) -> () {

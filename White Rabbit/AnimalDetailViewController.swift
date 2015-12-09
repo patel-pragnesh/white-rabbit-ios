@@ -21,7 +21,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var coverPhoto: UIImageView!
-    @IBOutlet weak var profileThumb: UIImageView!
+    @IBOutlet weak var profileThumb: UIButton!
     @IBOutlet weak var instagramButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var youtubeButton: UIButton!
@@ -49,6 +49,8 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     var instagramUsername : String?
     
     var pickedImageDate : NSDate?
+    
+    var isSettingProfilePhoto : Bool = false
     
     
     override func viewDidLoad() {
@@ -146,6 +148,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     }
     
     func sphereDidSelected(index: Int) {
+        self.isSettingProfilePhoto = false
         switch index {
             case 0:
                 NSLog("camera selected")
@@ -199,40 +202,89 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        
-        let library = ALAssetsLibrary()
-        library.assetForURL(url,
-            resultBlock: {
-                (asset: ALAsset!) -> Void in
-                if asset != nil {
-                    let date = asset.valueForProperty(ALAssetPropertyDate)
-                    self.pickedImageDate = date as? NSDate
-                }
-            }, failureBlock: { (error: NSError!) -> Void in
-                print(error)
+        if(self.isSettingProfilePhoto) {
+            
+            self.dismissViewControllerAnimated(true) { () -> Void in
+                let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+                self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
             }
-        )
+            
+        } else {
+            let url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+            
+            let library = ALAssetsLibrary()
+            library.assetForURL(url,
+                resultBlock: {
+                    (asset: ALAsset!) -> Void in
+                    if asset != nil {
+                        let date = asset.valueForProperty(ALAssetPropertyDate)
+                        self.pickedImageDate = date as? NSDate
+                    }
+                }, failureBlock: { (error: NSError!) -> Void in
+                    print(error)
+                }
+            )
+            
+            self.dismissViewControllerAnimated(true) { () -> Void in
+                let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+                self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
+            }
+        }
         
-        self.dismissViewControllerAnimated(true) { () -> Void in
-            let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
+
+    }
+
+    func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
+        
+        if(self.isSettingProfilePhoto) {
+            self.dismissViewControllerAnimated(true) { () -> Void in
+                self.setProfilePhoto(image)
+                self.isSettingProfilePhoto = false
+            }
+        } else {
+            let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("TimelineEntryFormNavigation") as! UINavigationController
+            let detailScene =  nav.topViewController as! TimelineEntryFormViewController
+            detailScene.animalObject = self.currentAnimalObject
+            detailScene.animalDetailController = self
+            detailScene.type = "image"
+            detailScene.image = image
+            detailScene.pickedImageDate = self.pickedImageDate
+            
+            self.dismissViewControllerAnimated(false) { () -> Void in
+                self.presentViewController(nav, animated: true, completion: nil)
+            }
         }
     }
     
-    func imageEditor(editor: CLImageEditor!, didFinishEdittingWithImage image: UIImage!) {
-        let nav = self.navigationController?.storyboard?.instantiateViewControllerWithIdentifier("TimelineEntryFormNavigation") as! UINavigationController
-        let detailScene =  nav.topViewController as! TimelineEntryFormViewController
-        detailScene.animalObject = self.currentAnimalObject
-        detailScene.animalDetailController = self
-        detailScene.type = "image"
-        detailScene.image = image
-        detailScene.pickedImageDate = self.pickedImageDate
-        
-        self.dismissViewControllerAnimated(false) { () -> Void in
-            self.presentViewController(nav, animated: true, completion: nil)
+    @IBAction func profileImagePressed(sender: AnyObject) {
+        if(currentUserIsOwner || currentUserIsShelterCaregiver || currentUserIsAdmin) {
+            self.isSettingProfilePhoto = true
+            self.showProfilePhotoActionSheet(sender, delegate: self)
         }
     }
+    
+    func setProfilePhoto(image: UIImage!) {
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        let fileName:String = (String)(PFUser.currentUser()!.username!) + "-" + (String)(NSDate().description.replace(" ", withString:"_").replace(":", withString:"-").replace("+", withString:"~")) + ".jpg"
+        let imageFile:PFFile = PFFile(name: fileName, data: imageData!)!
+        
+        self.currentAnimalObject!["profilePhoto"] = imageFile
+        
+        self.showLoader()
+        self.currentAnimalObject!.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            self.hideLoader()
+            if(success) {
+                NSLog("finished saving post")
+                self.loadAnimal()
+            } else {
+                NSLog("error uploading file: \(error?.localizedDescription)")
+                self.view.dodo.error((error?.localizedDescription)!)
+            }
+        }
+    }
+
+    
+    
     
     func showEditAminalView() {
         self.performSegueWithIdentifier("AnimalDetailToEditAnimal", sender: self)
@@ -297,25 +349,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
                 ageLabel.text = "Age Unknown"
             }
             
-//            let instagramUsername = object["instagramUsername"] as? String
-//            if(instagramUsername != nil && instagramUsername != "") {
-//                NSLog("setting instagram: \(instagramUsername)")
-//                self.instagramUsername = instagramUsername!
-//                
-//                self.instagramTableController?.userName = instagramUsername!
-//                self.instagramTableController?.loadMedia()
-//                //                self.instagramTableController?.loadView()
-//                
-//                self.instagramView.hidden = false
-//                self.timelineView.hidden = true
-//                
-//            } else {
-//                self.instagramView.hidden = true
-//                self.timelineView.hidden = false
-//            }
-            
-            //            self.navigationItem.title = object["username"] as? String
-            
             if let coverPhotoFile = object["coverPhoto"] as? PFFile {
                 coverPhotoFile.getDataInBackgroundWithBlock({
                     (imageData: NSData?, error: NSError?) -> Void in
@@ -327,15 +360,17 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
             }
             
             if let profilePhotoFile = object["profilePhoto"] as? PFFile {
+                
+//                self.profileThumb.imageView!.setImageWithURL(NSURL(string: profilePhotoFile.url!)!)
                 profilePhotoFile.getDataInBackgroundWithBlock({
                     (imageData: NSData?, error: NSError?) -> Void in
                     if(error == nil) {
                         let image = UIImage(data:imageData!)
-                        self.profileThumb.image = image?.circle
+                        self.profileThumb.setImage(image?.circle, forState: .Normal)
                     }
                 })
             } else if(currentUserIsOwner || currentUserIsShelterCaregiver || currentUserIsAdmin) {
-                self.profileThumb.image = UIImage(named: "avatar_blank_add")
+                self.profileThumb.imageView!.image = UIImage(named: "avatar_blank_add")
             }
             
             self.breedObject = object.objectForKey("breed") as? PFObject

@@ -142,60 +142,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
 
     @IBAction func profileImagePressed(sender: AnyObject) {
-        self.showProfilePhotoActionSheet(sender)
+        self.showProfilePhotoActionSheet(sender, delegate: self)
     }
-    
-    func showProfilePhotoActionSheet(sender: AnyObject) {
         
-        let optionMenu = UIAlertController(title: nil, message: "Change Profile Photo", preferredStyle: .ActionSheet)
-        
-        let cameraAction = UIAlertAction(title: "Take a photo", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("Setting profile photo")
-            self.takePhoto()
-        })
-        
-        let imagePickerAction = UIAlertAction(title: "Choose a photo", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("Setting cover photo")
-            self.chooseImage()
-        })
-        
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
-        })
-        
-        optionMenu.addAction(cameraAction)
-        optionMenu.addAction(imagePickerAction)
-        optionMenu.addAction(cancelAction)
-        
-        self.presentViewController(optionMenu, animated: true, completion: nil)
-    }
-    
-    
-    func takePhoto() {
-        let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in
-            if image != nil {
-                self.dismissViewControllerAnimated(false, completion: { () -> Void in
-                })
-                self.showEditor(image!, delegate: self, ratios: [["value1": 1, "value2": 1]])
-            } else {
-                self.dismissViewControllerAnimated(true, completion: {})
-            }
-        }
-        cameraViewController.modalTransitionStyle = .CoverVertical
-        presentViewController(cameraViewController, animated: true, completion: nil)
-    }
-    
-    func chooseImage() {
-        let picker = UIImagePickerController()
-        picker.sourceType = .PhotoLibrary
-        picker.delegate = self
-        self.presentViewController(picker, animated: true, completion: nil)
-    }
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
         self.dismissViewControllerAnimated(true) { () -> Void in
