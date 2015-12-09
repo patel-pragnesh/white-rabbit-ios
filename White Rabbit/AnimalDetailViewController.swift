@@ -326,9 +326,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
                 })
             }
             
-            //            profileThumb.layer.cornerRadius = profileThumb.frame.size.width / 2
-            //            profileThumb.clipsToBounds = true
-            
             if let profilePhotoFile = object["profilePhoto"] as? PFFile {
                 profilePhotoFile.getDataInBackgroundWithBlock({
                     (imageData: NSData?, error: NSError?) -> Void in
@@ -337,9 +334,9 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
                         self.profileThumb.image = image?.circle
                     }
                 })
+            } else if(currentUserIsOwner || currentUserIsShelterCaregiver || currentUserIsAdmin) {
+                self.profileThumb.image = UIImage(named: "avatar_blank_add")
             }
-            
-//            self.addTraitTags()
             
             self.breedObject = object.objectForKey("breed") as? PFObject
             if self.breedObject != nil {

@@ -2062,7 +2062,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-KJ-sZG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="B91EB190-CD1D-48CC-8967-751F8264E1EB"/>
+                                <state key="normal" image="703C86C3-C6EF-4A1B-B6B4-8A2F0158C755"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="325" y="20" width="25" height="25"/>
                                 </variation>
@@ -2434,7 +2434,8 @@
                                                     <exclude reference="v8A-EB-weq"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="95" y="308" width="274" height="20"/>
                                                 <mask key="constraints">
                                                     <include reference="v8A-EB-weq"/>
                                                 </mask>
@@ -2517,9 +2518,7 @@
                                             <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                         </constraint>
                                         <constraint firstItem="RWE-nT-RtJ" firstAttribute="leading" secondItem="iNU-qH-Zwz" secondAttribute="trailing" constant="23.5" id="YLV-vD-JA4"/>
-                                        <constraint firstItem="pQ4-KH-A2H" firstAttribute="width" secondItem="HHO-5e-p6H" secondAttribute="width" id="aMl-gI-Ca8">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="-10"/>
-                                        </constraint>
+                                        <constraint firstItem="pQ4-KH-A2H" firstAttribute="width" secondItem="HHO-5e-p6H" secondAttribute="width" id="aMl-gI-Ca8"/>
                                         <constraint firstItem="HHO-5e-p6H" firstAttribute="leading" secondItem="X1L-pc-jWA" secondAttribute="trailing" constant="7" id="adT-gH-3HF">
                                             <variation key="heightClass=regular-widthClass=compact" constant="4"/>
                                         </constraint>
@@ -4128,7 +4127,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="B91EB190-CD1D-48CC-8967-751F8264E1EB" width="46" height="33">
+        <image name="703C86C3-C6EF-4A1B-B6B4-8A2F0158C755" width="46" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
