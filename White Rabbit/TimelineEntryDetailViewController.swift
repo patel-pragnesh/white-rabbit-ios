@@ -8,11 +8,12 @@
 
 import UIKit
 import IDMPhotoBrowser
+import ActiveLabel
 
 class TimelineEntryDetailViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var textLabel: ActiveLabel!
     @IBOutlet weak var documentsView: UIView!
     
     @IBOutlet weak var documentsWidthConstraint: NSLayoutConstraint!
@@ -28,16 +29,17 @@ class TimelineEntryDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.setUpNavigationBar()
         
-        self.navigationItem.rightBarButtonItem = self.getNavBarItem("share_white", action: "showShareActionSheet", height: 40, width: 30)
-        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
+//        self.navigationItem.rightBarButtonItem = self.getNavBarItem("share_white", action: "showShareActionSheet", height: 40, width: 30)
+//        self.navigationItem.leftBarButtonItem = self.getNavBarItem("back_white", action: "goBack", height: 25, width: 25)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
+        self.textLabel.handleHashtagTap(self.openHashTagFeed)
+        self.textLabel.handleMentionTap(self.openAnimalDetail)
+
         self.textLabel.text = entryObject?["text"] as? String
         
         if let imageFile = entryObject?["image"] as? PFFile {
@@ -54,6 +56,11 @@ class TimelineEntryDetailViewController: UIViewController {
             
             self.loadDocuments()
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setUpNavigationBar()
     }
     
     func loadDocuments() {

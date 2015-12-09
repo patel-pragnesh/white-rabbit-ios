@@ -96,16 +96,11 @@ class PostsTableViewController: PFQueryTableViewController {
         }
         
         cell!.captionLabel.handleHashtagTap { (hashtag: String) -> () in
-            let postsView = self.storyboard?.instantiateViewControllerWithIdentifier("PostsView") as! PostsTableViewController
-            postsView.hashtag = hashtag
-            self.navigationController?.pushViewController(postsView, animated: true)
+            if(hashtag != self.hashtag) {
+                self.openHashTagFeed(hashtag)
+            }
         }
-        
-        cell!.captionLabel.handleMentionTap { (handle: String) -> () in
-            let animalView = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalDetailView") as! AnimalDetailViewController
-            animalView.username = handle
-            self.navigationController?.pushViewController(animalView, animated: true)
-        }
+        cell!.captionLabel.handleMentionTap(self.openAnimalDetail)
         
         // Extract values from the PFObject to display in the table cell
         // cell!.name.text = object?["name"] as? String

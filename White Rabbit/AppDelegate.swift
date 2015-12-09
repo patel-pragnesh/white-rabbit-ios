@@ -387,6 +387,18 @@ extension UIViewController {
         self.slideMenuController()?.openLeft()
     }
     
+    func openHashTagFeed(hashtag:String) -> () {
+        let postsView = self.storyboard?.instantiateViewControllerWithIdentifier("PostsView") as! PostsTableViewController
+        postsView.hashtag = hashtag
+        self.navigationController?.pushViewController(postsView, animated: true)
+    }
+    
+    func openAnimalDetail(username: String) -> () {
+        let animalView = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalDetailView") as! AnimalDetailViewController
+        animalView.username = username
+        self.navigationController?.pushViewController(animalView, animated: true)
+    }
+    
     func getImageThumbnailFrame(image: UIImage, index: Int, parentFrame: CGRect, previewWidth: Int, previewPadding: Int) -> CGRect {
         let extra = ((index + 1) * (previewPadding / 2))
         var minX:CGFloat = CGFloat(((index * previewWidth) + extra))

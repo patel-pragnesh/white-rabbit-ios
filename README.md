@@ -26,7 +26,10 @@ White Rabbit iOS App
 * [InstagramKit]()
 * [SlideMenuControllerSwift]()
 * [IDMPhotoBrowser](https://github.com/ideaismobile/IDMPhotoBrowser)
-* [PagingMenuController ](https://github.com/kitasuke/PagingMenuController)
+* [PagingMenuController](https://github.com/kitasuke/PagingMenuController)
+* [ActiveLabel](https://github.com/optonaut/ActiveLabel.swift)
+* [SwiftDate](https://github.com/malcommac/SwiftDate)
+
 
 ## Frameworks|Tools To Consider
 
@@ -45,6 +48,9 @@ White Rabbit iOS App
 * [](https://github.com/fdzsergio/SFFocusViewLayout)
 * [](https://github.com/toygar/VideoSplash)
 * [](https://github.com/goktugyil/EZSwipeController)
-* []()
-* []()
+* [](https://github.com/PureLayout/PureLayout)
 * [](https://github.com/Ramotion/animated-tab-bar)
+* []()
+* []()
+* []()
+* []()
