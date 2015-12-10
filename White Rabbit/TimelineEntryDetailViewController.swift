@@ -10,26 +10,41 @@ import UIKit
 import IDMPhotoBrowser
 import ActiveLabel
 
-class TimelineEntryDetailViewController: UIViewController {
+class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: ActiveLabel!
     @IBOutlet weak var documentsView: UIView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var usernameLink: UIButton!
+    @IBOutlet weak var profilePhotoButton: UIButton!
+    
+    @IBOutlet weak var commentToolbar: UIToolbar!
+    @IBOutlet weak var commentField: UITextField!
+    @IBOutlet weak var commentToolbarBottomContraint: NSLayoutConstraint!
     
     @IBOutlet weak var documentsWidthConstraint: NSLayoutConstraint!
     
     var entryObject : PFObject?
-    
-    var documents : [[UIImage!]] = [[UIImage!]]()
+    var commentsView : TimelineEntryCommentsViewController?
+
+    var documents : [[UIImage!]]?
     
     let previewPadding = 20
     let previewWidth = 125
     
-    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasHidden:", name: UIKeyboardDidHideNotification, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.commentField.delegate = self
+
         self.navigationItem.rightBarButtonItem = self.getNavBarItem("share_white", action: "showShareActionSheet", height: 45, width: 35)
         self.setUpNavigationBar()
 
@@ -52,8 +67,26 @@ class TimelineEntryDetailViewController: UIViewController {
             })
         }
         
+        if let date = entryObject!.valueForKey("createdAt") as? NSDate {
+            let formatted = date.toRelativeString(fromDate: NSDate(), abbreviated: true, maxUnits:1)
+            self.timeLabel.text = formatted
+        }
+        
+        let animalObject = entryObject?.objectForKey("animal") as? PFObject
+        self.usernameLink.setTitle(animalObject!.valueForKey("username") as? String, forState: .Normal)
+        
+        if let profilePhotoFile = animalObject!["profilePhoto"] as? PFFile {
+            profilePhotoFile.getDataInBackgroundWithBlock({
+                (imageData: NSData?, error: NSError?) -> Void in
+                if(error == nil) {
+                    let image = UIImage(data:imageData!)
+                    self.profilePhotoButton.setImage(image?.circle, forState: .Normal)
+                }
+            })
+        }
+        
+        
         if(entryObject?.objectForKey("hasDocuments") != nil && entryObject?.objectForKey("hasDocuments") as! Bool) {
-            
             self.loadDocuments()
         }
     }
@@ -64,6 +97,8 @@ class TimelineEntryDetailViewController: UIViewController {
     }
     
     func loadDocuments() {
+        self.documents = [[UIImage!]]()
+
         let documentQuery = PFQuery(className: "Document")
         documentQuery.whereKey("entry", equalTo: entryObject!)
         
@@ -72,8 +107,8 @@ class TimelineEntryDetailViewController: UIViewController {
                 documents?.forEach({ (element: PFObject) -> Void in
                     let document = PFObject(withoutDataWithClassName: "Document", objectId: element.objectId)
                     
-                    let index = self.documents.count
-                    self.documents.append([UIImage!]())
+                    let index = self.documents!.count
+                    self.documents!.append([UIImage!]())
                     
                     let pagesQuery = PFQuery(className: "DocumentPage")
                     pagesQuery.whereKey("document", equalTo: document)
@@ -89,7 +124,7 @@ class TimelineEntryDetailViewController: UIViewController {
                                     if(error == nil) {
                                         let image = UIImage(data:imageData!)
                                         
-                                        self.documents[index].append(image)
+                                        self.documents![index].append(image)
                                         self.updateDocumentsView()
                                     }
                                 })
@@ -109,13 +144,13 @@ class TimelineEntryDetailViewController: UIViewController {
             view.removeFromSuperview()
         }
         var index = 0
-        self.documents.forEach { (document) -> Void in
+        self.documents!.forEach { (document) -> Void in
             if document.count > 0 {
                 self.addDocumentView(document[0], index: index)
                 index++
             }
         }
-        let frameWidth = (self.documents.count * (self.previewWidth + self.previewPadding)) - self.previewPadding
+        let frameWidth = (self.documents!.count * (self.previewWidth + self.previewPadding)) - self.previewPadding
         documentsWidthConstraint.constant = CGFloat(frameWidth) - self.view.bounds.width
     }
     
@@ -132,8 +167,7 @@ class TimelineEntryDetailViewController: UIViewController {
     }
     
     func showBrowser(sender: UIButton!) {
-        let images: [UIImage!] = documents[sender.tag]
-        
+        let images: [UIImage!] = documents![sender.tag]
         self.showImagesBrowser(images, animatedFromView: sender)
     }
     
@@ -154,8 +188,62 @@ class TimelineEntryDetailViewController: UIViewController {
         let activityVC = UIActivityViewController(activityItems: ["http://ftwtrbt.com", image!], applicationActivities: nil)
         self.presentViewController(activityVC, animated: true, completion: nil)
     }
+    
+    func addComment(text: String) {
+        let comment = PFObject(className: "Comment")
+        comment.setObject(self.entryObject!, forKey: "entry")
+        comment.setObject(self.entryObject!.objectForKey("animal")!, forKey: "animal")
+        comment.setValue(text, forKey: "text")
+        comment.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if(error == nil) {
+                self.commentsView?.loadObjects()
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.sendWasPressed()
+        return true
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+        var info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        
+        UIView.animateWithDuration(0, animations: { () -> Void in
+            self.commentToolbarBottomContraint.constant = keyboardFrame.size.height
+        })
+    }
+    
+    func keyboardWasHidden(notification: NSNotification) {
+        UIView.animateWithDuration(0, animations: { () -> Void in
+            self.commentToolbarBottomContraint.constant = 0
+        })
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        self.commentField.resignFirstResponder()
+    }
+    
+    @IBAction func sendWasPressed() {
+        if(self.commentField.text == "") {
+            self.commentField.resignFirstResponder()
+        } else {
+            self.addComment(self.commentField.text!)
+            self.commentField.resignFirstResponder()
+            self.commentField.text = ""
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "EntryDetailCommentsEmbed") {
+            let commentsView = segue.destinationViewController as! TimelineEntryCommentsViewController
+            commentsView.entryObject = self.entryObject
+            self.commentsView = commentsView
+        }
     }
 }
