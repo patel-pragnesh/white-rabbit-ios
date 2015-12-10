@@ -60,8 +60,6 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.checkOwner()
-        
         self.addButton.hidden = true
         self.timelineView.hidden = false
         
@@ -336,6 +334,8 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
     
     func loadAnimal() {
         if let object = currentAnimalObject {
+            self.checkOwner()
+
             //            NSLog("Viewing detail for object: %@\n", object)
             
             if(currentUserIsOwner || currentUserIsShelterCaregiver || currentUserIsAdmin) {

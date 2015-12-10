@@ -17,7 +17,9 @@ class PostsTableViewCell: PFTableViewCell {
     @IBOutlet weak var largeImageView: UIImageView!
     @IBOutlet weak var profilePhotoThumbnailView: UIButton!
     @IBOutlet weak var captionLabel: ActiveLabel!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UIButton!
+    
+    var entryObject : PFObject?
 }
 
 class PostsNavigation : UINavigationController {
@@ -37,11 +39,26 @@ class PostsTableViewController: PFQueryTableViewController {
     }
     
     @IBAction func usernamePressed(sender: AnyObject) {
+        self.setSelectedIndexPathFromSender(sender)
+        self.performSegueWithIdentifier("PostsToAnimalDetail", sender: sender)
+    }
+    
+    func showEntryDetail(gestureRecognizer: UITapGestureRecognizer) {
+        let tappedImageView = gestureRecognizer.view!
+        self.setSelectedIndexPathFromSender(tappedImageView)
+        self.performSegueWithIdentifier("PostsToEntryDetail", sender: tappedImageView)
+    }
+    
+    func objectAtCell(indexPath: NSIndexPath?) -> PFObject? {
+        let cell = tableView.cellForRowAtIndexPath(indexPath!) as? PostsTableViewCell
+        let object = cell?.entryObject
+        return object
+    }
+    
+    func setSelectedIndexPathFromSender(sender: AnyObject) {
         let point = sender.convertPoint(CGPointZero, toView: self.tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(point)
         self.selectedIndexPath = indexPath
-        
-        self.performSegueWithIdentifier("PostsToAnimalDetail", sender: sender)
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -96,6 +113,8 @@ class PostsTableViewController: PFQueryTableViewController {
             cell = PostsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "PostCell")
         }
         
+        cell!.entryObject = object
+        
         cell!.captionLabel.handleHashtagTap { (hashtag: String) -> () in
             if(hashtag != self.hashtag) {
                 self.openHashTagFeed(hashtag)
@@ -112,12 +131,16 @@ class PostsTableViewController: PFQueryTableViewController {
             if(error == nil) {
                 let image = UIImage(data:imageData!)
                 cell!.largeImageView.image = image
+                
+                cell!.largeImageView.userInteractionEnabled = true
+                let tapRecognizer = UITapGestureRecognizer(target: self, action: "showEntryDetail:")
+                cell!.largeImageView.addGestureRecognizer(tapRecognizer)
             }
         })
         
         if let date = object!.valueForKey("createdAt") as? NSDate {
             let formatted = date.toRelativeString(fromDate: NSDate(), abbreviated: true, maxUnits:1)
-            cell!.timeLabel.text = formatted
+            cell!.timeLabel.setTitle(formatted, forState: .Normal)
         }
         
         if let text = object?["text"] as? String {
@@ -150,7 +173,11 @@ class PostsTableViewController: PFQueryTableViewController {
             let detailScene =  segue.destinationViewController as! AnimalDetailViewController
             let entry : PFObject = self.objectAtIndexPath(self.selectedIndexPath)!
             detailScene.currentAnimalObject = entry.valueForKey("animal") as? PFObject
+        } else if(segue.identifier == "PostsToEntryDetail") {
+            let detailScene =  segue.destinationViewController as! TimelineEntryDetailViewController
+            detailScene.entryObject = self.objectAtIndexPath(self.selectedIndexPath)
         }
+
     }
     
 }
