@@ -101,12 +101,6 @@ class AnimalAboutViewController: UIViewController {
     func loadAnimal() {
         if(self.animalObject != nil) {
             if let breed = animalObject!["breed"] as? PFObject {
-                do {
-                    try breed.fetch()
-                } catch _ {
-                    
-                }
-                
                 let name = breed.valueForKey("name") as! String
                 self.breedLabel.text = name
             } else {
@@ -117,12 +111,6 @@ class AnimalAboutViewController: UIViewController {
             }
             
             if let coat = animalObject!["coat"] as? PFObject {
-                do {
-                    try coat.fetch()
-                } catch _ {
-                    
-                }
-                
                 let name = coat.valueForKey("name") as! String
                 self.coatLabel.text = name
             } else {

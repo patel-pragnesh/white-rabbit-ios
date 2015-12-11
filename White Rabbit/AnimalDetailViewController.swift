@@ -81,6 +81,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         animalQuery.whereKey("username", equalTo: self.username!)
         animalQuery.includeKey("owner")
         animalQuery.includeKey("breed")
+        animalQuery.includeKey("coat")
         animalQuery.includeKey("shelter")
         self.showLoader()
         animalQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
