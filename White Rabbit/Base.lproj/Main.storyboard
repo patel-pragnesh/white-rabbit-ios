@@ -564,9 +564,24 @@
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ob-EV-LUC" userLabel="Comment Toolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="6yH-sr-HGz">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                    </constraint>
+                                </constraints>
                                 <items>
-                                    <barButtonItem width="305" style="plain" id="7ZF-Qe-QbQ">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment..." textAlignment="natural" minimumFontSize="17" id="HGY-20-U7h" userLabel="Comment Field">
+                                    <barButtonItem title="Item" width="30" style="plain" id="hFv-Xx-OI6">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rLe-Vx-zy7">
+                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="avatar_blank"/>
+                                            <connections>
+                                                <action selector="commentAnimalProfilePhotoPressed:" destination="y76-MA-4KC" eventType="touchUpInside" id="P7X-B7-w5u"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem width="260" style="plain" id="gpL-fR-if4">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment..." textAlignment="natural" minimumFontSize="17" id="f1w-yG-zdf" userLabel="Comment Field">
                                             <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -579,6 +594,16 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6yH-sr-HGz"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="6yH-sr-HGz"/>
+                                    </mask>
+                                </variation>
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wV3-5y-dPF">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -818,7 +843,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="420" height="800"/>
                     <connections>
-                        <outlet property="commentField" destination="HGY-20-U7h" id="KS9-cv-beV"/>
+                        <outlet property="commentAnimalProfilePhoto" destination="rLe-Vx-zy7" id="JW6-Xs-Fr7"/>
+                        <outlet property="commentField" destination="f1w-yG-zdf" id="jsg-2b-epk"/>
                         <outlet property="commentToolbar" destination="7Ob-EV-LUC" id="0ud-Va-Xau"/>
                         <outlet property="commentToolbarBottomContraint" destination="tRV-Ko-SCf" id="qLT-hy-ZvZ"/>
                         <outlet property="documentsView" destination="Kld-zu-pVx" id="omS-3j-39w"/>

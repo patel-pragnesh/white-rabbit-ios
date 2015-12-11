@@ -19,6 +19,7 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameLink: UIButton!
     @IBOutlet weak var profilePhotoButton: UIButton!
     
+    @IBOutlet weak var commentAnimalProfilePhoto: UIButton!
     @IBOutlet weak var commentToolbar: UIToolbar!
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var commentToolbarBottomContraint: NSLayoutConstraint!
@@ -51,6 +52,11 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
+        self.setAnimalToComment(0)
         
         self.textLabel.handleHashtagTap(self.openHashTagFeed)
         self.textLabel.handleMentionTap(self.openAnimalDetail)
@@ -91,9 +97,56 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func setAnimalToComment(index: Int) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if(appDelegate.myAnimalsArray!.count > 0) {
+            let animalToComment = appDelegate.myAnimalsArray![index]
+            
+            if let profilePhotoFile = animalToComment["profilePhoto"] as? PFFile {
+                profilePhotoFile.getDataInBackgroundWithBlock({
+                    (imageData: NSData?, error: NSError?) -> Void in
+                    if(error == nil) {
+                        let image = UIImage(data:imageData!)
+                        self.commentAnimalProfilePhoto.setImage(image?.circle, forState: .Normal)
+                        self.commentAnimalProfilePhoto.tag = index
+                    }
+                })
+            }
+        }
+    }
+    
+    func showAnimalToCommentSheet() {
+        let optionMenu = UIAlertController(title: nil, message: "Comment as:", preferredStyle: .ActionSheet)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+        for animal in appDelegate.myAnimalsArray! {
+            let username = animal.valueForKey("name") as? String
+            let animalAction = UIAlertAction(title: username, style: .Default, handler: {
+                (alert: UIAlertAction!) -> Void in
+
+                self.setAnimalToComment(appDelegate.myAnimalsArray!.indexOf(animal)!)
+            })
+
+            optionMenu.addAction(animalAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        optionMenu.addAction(cancelAction)
+
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.setUpNavigationBar()
+    }
+    
+    @IBAction func commentAnimalProfilePhotoPressed(sender: AnyObject) {
+        self.showAnimalToCommentSheet()
     }
     
     func loadDocuments() {
@@ -195,7 +248,8 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
             let comment = PFObject(className: "Comment")
             comment.setObject(self.entryObject!, forKey: "entry")
             
-            comment.setObject(appDelegate.myAnimalsArray![0], forKey: "animal")
+            let animalIndex = self.commentAnimalProfilePhoto.tag
+            comment.setObject(appDelegate.myAnimalsArray![animalIndex], forKey: "animal")
             
             comment.setValue(text, forKey: "text")
             comment.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
@@ -228,10 +282,6 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(0, animations: { () -> Void in
             self.commentToolbarBottomContraint.constant = 0
         })
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
-        self.commentField.resignFirstResponder()
     }
     
     @IBAction func sendWasPressed() {

@@ -93,13 +93,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         animalQuery.includeKey("coat")
         animalQuery.includeKey("shelter")
         animalQuery.includeKey("owner")
+        
         self.myAnimalsArray = [PFObject]()
         
         animalQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                for object in objects! {
-                    self.myAnimalsArray?.append(object)
-                }
+                self.myAnimalsArray = objects
             } else {
                 NSLog("Error: %@", error!)
             }
