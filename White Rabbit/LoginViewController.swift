@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.showLoader()
         PFUser.logInWithUsernameInBackground((usernameField.text?.lowercaseString)!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
             if error != nil {
-                self.view.dodo.error((error?.localizedDescription)!)
+                self.showError(error!.localizedDescription)
             }
             if user != nil {
                 NSLog("finished logging in by username")
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        self.showLoader()
         PFTwitterUtils.logInWithBlock { (user: PFUser?, error: NSError?) -> Void in
             if(error != nil) {
-                self.view.dodo.error(error!.localizedDescription)
+                self.showError(error!.localizedDescription)
             }
             
             if let user = user {

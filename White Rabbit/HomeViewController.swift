@@ -174,7 +174,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 self.populateUserInfo()
             } else {
                 NSLog("error uploading file: \(error?.localizedDescription)")
-                self.view.dodo.error((error?.localizedDescription)!)
+                self.showError(error!.localizedDescription)
             }
         }
     }

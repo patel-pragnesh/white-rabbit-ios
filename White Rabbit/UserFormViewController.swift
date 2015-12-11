@@ -173,8 +173,8 @@ class UserFormViewController : FormViewController {
                     NSLog("Finished saving user")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
-                    self.view.dodo.error(error!.localizedDescription)
                     NSLog("%@", error!)
+                    self.showError(error!.localizedDescription)
                 }
                 self.hideLoader()
             })
@@ -191,9 +191,8 @@ class UserFormViewController : FormViewController {
                     NSLog("signed up")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
-                    self.displayAlert(error!.localizedDescription)
-//                    self.view.dodo.error(error!.localizedDescription)
                     NSLog("%@", error!)
+                    self.showError(error!.localizedDescription)
                 }
                 self.hideLoader()
             })

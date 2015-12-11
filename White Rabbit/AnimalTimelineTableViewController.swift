@@ -375,7 +375,7 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
                 self.displayAlert("Thanks for letting us know!  We'll take a look right away.")
             } else {
                 NSLog("error saving flag")
-                self.view.dodo.error((error?.localizedDescription)!)
+                self.showError(error!.localizedDescription)
             }
         }
     }

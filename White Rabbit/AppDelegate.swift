@@ -388,6 +388,10 @@ extension UIViewController {
         self.slideMenuController()?.openLeft()
     }
     
+    func showError(message: String) {
+        self.view.dodo.error(message)
+    }
+    
     
     func takePhoto(delegate: protocol<CLImageEditorDelegate>) {
         let cameraViewController : ALCameraViewController = ALCameraViewController(croppingEnabled: true) { image in

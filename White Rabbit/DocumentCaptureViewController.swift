@@ -275,7 +275,7 @@ class DocumentCaptureViewController: UIViewController {
         page.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if(success) {
             } else {
-                self.view.dodo.error((error?.localizedDescription)!)
+                self.showError(error!.localizedDescription)
             }
         }
         

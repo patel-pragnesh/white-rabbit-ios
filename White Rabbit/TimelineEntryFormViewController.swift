@@ -180,7 +180,7 @@ class TimelineEntryFormViewController: FormViewController {
                 self.closeView(false)
             } else {
                 NSLog("error uploading file: \(error?.localizedDescription)")
-                self.view.dodo.error((error?.localizedDescription)!)
+                self.showError(error!.localizedDescription)
                 self.closeView(true)
             }
         }

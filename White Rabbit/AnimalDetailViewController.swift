@@ -284,7 +284,7 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
                 self.loadAnimal()
             } else {
                 NSLog("error uploading file: \(error?.localizedDescription)")
-                self.view.dodo.error((error?.localizedDescription)!)
+                self.showError(error!.localizedDescription)
             }
         }
     }

@@ -134,7 +134,7 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
                     })
                 })
             } else {
-                self.view.dodo.error((error?.localizedDescription)!)
+                self.showError(error!.localizedDescription)
             }
         })
     }
