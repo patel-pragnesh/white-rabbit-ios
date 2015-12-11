@@ -25,6 +25,7 @@
 		ED49D6481C0EAAD70050049F /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED49D6461C0EAAD70050049F /* pop.framework */; };
 		ED49D64E1C0EEDE90050049F /* AnimalAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */; };
 		ED49D6501C0EFAD30050049F /* AnimalsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */; };
+		ED4FB5781C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */; };
 		ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */; };
 		ED682E851C13256D005D80A7 /* TimelineEntryCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED682E841C13256D005D80A7 /* TimelineEntryCommentsViewController.swift */; };
 		ED692D671BACECED00C52562 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* LocationDetailViewController.swift */; };
@@ -116,6 +117,7 @@
 		ED49D6461C0EAAD70050049F /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = "Pods/../build/Debug-iphoneos/pop.framework"; sourceTree = "<group>"; };
 		ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalAboutViewController.swift; sourceTree = "<group>"; };
 		ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTabViewController.swift; sourceTree = "<group>"; };
+		ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGTableViewRowActionWithImage.framework; path = "Pods/../build/Debug-iphoneos/BGTableViewRowActionWithImage.framework"; sourceTree = "<group>"; };
 		ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GKImagePicker.framework; path = "Pods/../build/Debug-iphoneos/GKImagePicker.framework"; sourceTree = "<group>"; };
 		ED682E841C13256D005D80A7 /* TimelineEntryCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryCommentsViewController.swift; sourceTree = "<group>"; };
 		ED692D661BACECED00C52562 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4FB5781C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework in Frameworks */,
 				EDC941751C16FFF3006ADB1F /* ActiveLabel.framework in Frameworks */,
 				EDC941731C16F618006ADB1F /* SwiftDate.framework in Frameworks */,
 				ED7D77801C11D85700732F94 /* ParseTwitterUtils.framework in Frameworks */,
@@ -322,6 +325,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */,
 				EDC941741C16FFF3006ADB1F /* ActiveLabel.framework */,
 				EDC941721C16F618006ADB1F /* SwiftDate.framework */,
 				ED7D777F1C11D85700732F94 /* ParseTwitterUtils.framework */,

@@ -12,3 +12,4 @@
 #import <CLImageEditor/CLImageEditor.h>
 #import <IPDFCameraViewController/IPDFCameraViewController.h>
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
+#import <BGTableViewRowActionWithImage/BGTableViewRowActionWithImage.h>

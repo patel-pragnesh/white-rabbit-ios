@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/HomeViewController.swift"
-            timestampString = "471262231.909125"
+            timestampString = "471513699.191805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "checkForUser(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/UserFormViewController.swift"
-            timestampString = "470992562.345861"
+            timestampString = "471512310.254057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "saveUser()"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471339138.879882"
+            timestampString = "471513699.191805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
             landmarkName = "setUpNavigationBarImage(_:height:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471339138.879882"
+            timestampString = "471513699.191805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "setUpNavigationBarImage(_:height:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471340390.849074"
+            timestampString = "471527669.291637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "584"
-            endingLineNumber = "584"
+            startingLineNumber = "671"
+            endingLineNumber = "671"
             landmarkName = "dismissPreview(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471340390.849074"
+            timestampString = "471527669.291637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "583"
-            endingLineNumber = "583"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
             landmarkName = "dismissPreview(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -599,11 +599,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryFormViewController.swift"
-            timestampString = "470672156.657162"
+            timestampString = "471512310.254057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "saveImageData()"
             landmarkType = "5">
          </BreakpointContent>
@@ -647,11 +647,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/LoginViewController.swift"
-            timestampString = "470995004.03596"
+            timestampString = "471513554.711126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "loginWithTwitter(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -663,11 +663,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/LoginViewController.swift"
-            timestampString = "470995004.03596"
+            timestampString = "471513554.711126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "saveUserDataFromTwitter(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -679,11 +679,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/LoginViewController.swift"
-            timestampString = "470995004.03596"
+            timestampString = "471513554.711126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "saveUserDataFromTwitter(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -695,11 +695,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/LoginViewController.swift"
-            timestampString = "470995004.03596"
+            timestampString = "471513554.711126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "saveUserDataFromTwitter(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -711,11 +711,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/LoginViewController.swift"
-            timestampString = "470995004.03596"
+            timestampString = "471513554.711126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "saveUserDataFromTwitter(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -855,11 +855,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471339138.879882"
+            timestampString = "471513699.191805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "setUpNavigationBar(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1063,11 +1063,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AppDelegate.swift"
-            timestampString = "471338737.424728"
+            timestampString = "471527669.291637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "chooseImage(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1079,11 +1079,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/AnimalTimelineTableViewController.swift"
-            timestampString = "471416193.549606"
+            timestampString = "471519198.478534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "396"
-            endingLineNumber = "396"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
             landmarkName = "objectAtCell(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1095,11 +1095,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryDetailViewController.swift"
-            timestampString = "471448525.70873"
+            timestampString = "471512917.089022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "keyboardWasShown(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1178,6 +1178,22 @@
                   offsetFromSymbolStart = "0">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "White Rabbit/AppDelegate.swift"
+            timestampString = "471527669.291637"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
+            landmarkName = "flagItem(_:type:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -31,6 +31,7 @@ pod 'PagingMenuController'
 pod 'IPDFCameraViewController'
 pod 'IDMPhotoBrowser'
 pod 'ActiveLabel'
+pod 'BGTableViewRowActionWithImage'
 
 target 'White Rabbit' do
 end

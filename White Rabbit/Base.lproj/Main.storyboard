@@ -677,7 +677,9 @@
                             <constraint firstItem="qNw-y4-uYy" firstAttribute="leading" secondItem="TBw-8p-ugi" secondAttribute="trailing" constant="8" id="4Vo-sp-8aA"/>
                             <constraint firstItem="7Ob-EV-LUC" firstAttribute="top" secondItem="wV3-5y-dPF" secondAttribute="bottom" id="4dN-dY-xfU"/>
                             <constraint firstItem="qNw-y4-uYy" firstAttribute="top" secondItem="TBw-8p-ugi" secondAttribute="top" id="4yK-Db-lJY"/>
-                            <constraint firstItem="wV3-5y-dPF" firstAttribute="width" secondItem="UTM-DJ-hrm" secondAttribute="width" id="54g-kp-giF"/>
+                            <constraint firstItem="wV3-5y-dPF" firstAttribute="width" secondItem="UTM-DJ-hrm" secondAttribute="width" id="54g-kp-giF">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                            </constraint>
                             <constraint firstItem="TBw-8p-ugi" firstAttribute="width" secondItem="TBw-8p-ugi" secondAttribute="height" multiplier="1:1" id="8CK-jD-2DF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TuP-AS-SQd" secondAttribute="trailing" constant="-12" id="9e4-m7-dhS"/>
                             <constraint firstItem="TBw-8p-ugi" firstAttribute="top" secondItem="rLb-Qc-aTL" secondAttribute="bottom" constant="6" id="Bxu-fw-R9U"/>
@@ -699,7 +701,7 @@
                             <constraint firstItem="F9x-iw-w8d" firstAttribute="centerY" secondItem="rLb-Qc-aTL" secondAttribute="centerY" id="TgD-1i-sNN"/>
                             <constraint firstItem="Jpr-JI-3sK" firstAttribute="leading" secondItem="qNw-y4-uYy" secondAttribute="trailing" constant="8" id="Vky-NF-H1j"/>
                             <constraint firstItem="rLb-Qc-aTL" firstAttribute="width" secondItem="UTM-DJ-hrm" secondAttribute="width" multiplier="0.25" id="a0x-bx-M9e">
-                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                             </constraint>
                             <constraint firstItem="TuP-AS-SQd" firstAttribute="top" secondItem="qNw-y4-uYy" secondAttribute="bottom" constant="2.5" id="aMS-uw-0X9"/>
                             <constraint firstItem="wV3-5y-dPF" firstAttribute="leading" secondItem="UTM-DJ-hrm" secondAttribute="leadingMargin" constant="-20" id="g6g-ok-9wQ"/>
@@ -1699,12 +1701,12 @@
         <scene sceneID="ld5-a4-I5I">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="4gB-Yg-SNT" customClass="TimelineEntryCommentsViewController" customModule="White_Rabbit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" id="D9U-Rd-S4w">
+                    <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" canCancelContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" id="D9U-Rd-S4w">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CommentCell" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="CommentCell" focusStyle="custom" rowHeight="63" id="0tV-Py-IoX" customClass="TimelineEntryCommentViewCell" customModule="White_Rabbit" customModuleProvider="target">
+                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="CommentCell" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="CommentCell" focusStyle="custom" rowHeight="63" id="0tV-Py-IoX" customClass="TimelineEntryCommentViewCell" customModule="White_Rabbit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0tV-Py-IoX" id="HRt-kP-Py8">
@@ -1771,30 +1773,16 @@
                                                 </mask>
                                             </variation>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-jI-WVu" customClass="ActiveLabel" customModule="ActiveLabel">
+                                        <label autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-jI-WVu" customClass="ActiveLabel" customModule="ActiveLabel">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ywO-AS-ySR">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="30"/>
-                                                </constraint>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="ywO-AS-ySR"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="ywO-AS-ySR"/>
-                                                </mask>
-                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="m1i-O3-rQn" firstAttribute="top" secondItem="kHy-xr-pPB" secondAttribute="top" id="6Pa-ey-XzI"/>
+                                        <constraint firstItem="pZI-jI-WVu" firstAttribute="top" secondItem="m1i-O3-rQn" secondAttribute="bottom" constant="5.5" id="Hba-Xz-8KD"/>
                                         <constraint firstItem="pZI-jI-WVu" firstAttribute="leading" secondItem="kHy-xr-pPB" secondAttribute="trailing" constant="2" id="KVf-Cu-qkQ">
                                             <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                                         </constraint>
@@ -1806,8 +1794,9 @@
                                         <constraint firstAttribute="topMargin" secondItem="X8L-gf-jgL" secondAttribute="top" id="akM-n7-NnY"/>
                                         <constraint firstItem="X8L-gf-jgL" firstAttribute="leading" secondItem="pZI-jI-WVu" secondAttribute="trailing" constant="-6" id="eG5-iP-A9t"/>
                                         <constraint firstItem="X8L-gf-jgL" firstAttribute="top" secondItem="kHy-xr-pPB" secondAttribute="top" id="fLW-eU-rdg"/>
+                                        <constraint firstItem="pZI-jI-WVu" firstAttribute="trailing" secondItem="X8L-gf-jgL" secondAttribute="trailing" id="hGK-mk-WNl"/>
                                         <constraint firstItem="pZI-jI-WVu" firstAttribute="top" secondItem="kHy-xr-pPB" secondAttribute="bottom" constant="-2" id="p19-SC-NVW">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                                            <variation key="heightClass=regular-widthClass=compact" constant="-15"/>
                                         </constraint>
                                         <constraint firstAttribute="topMargin" secondItem="kHy-xr-pPB" secondAttribute="top" id="vL6-Or-7fa"/>
                                         <constraint firstItem="m1i-O3-rQn" firstAttribute="leading" secondItem="pZI-jI-WVu" secondAttribute="leading" id="xuF-pY-wPX"/>
@@ -1826,8 +1815,10 @@
                                             <exclude reference="vL6-Or-7fa"/>
                                             <exclude reference="6Pa-ey-XzI"/>
                                             <exclude reference="xuF-pY-wPX"/>
+                                            <exclude reference="Hba-Xz-8KD"/>
                                             <exclude reference="KVf-Cu-qkQ"/>
                                             <exclude reference="Kfc-OS-sh1"/>
+                                            <exclude reference="hGK-mk-WNl"/>
                                             <exclude reference="p19-SC-NVW"/>
                                             <exclude reference="Pwm-Z3-4KZ"/>
                                             <exclude reference="akM-n7-NnY"/>
@@ -1849,12 +1840,14 @@
                                             <include reference="vL6-Or-7fa"/>
                                             <include reference="6Pa-ey-XzI"/>
                                             <include reference="xuF-pY-wPX"/>
+                                            <include reference="Hba-Xz-8KD"/>
                                             <include reference="KVf-Cu-qkQ"/>
                                             <exclude reference="Kfc-OS-sh1"/>
-                                            <include reference="p19-SC-NVW"/>
+                                            <include reference="hGK-mk-WNl"/>
+                                            <exclude reference="p19-SC-NVW"/>
                                             <exclude reference="Pwm-Z3-4KZ"/>
                                             <exclude reference="akM-n7-NnY"/>
-                                            <include reference="eG5-iP-A9t"/>
+                                            <exclude reference="eG5-iP-A9t"/>
                                             <include reference="fLW-eU-rdg"/>
                                             <include reference="ybc-fp-5U2"/>
                                             <include reference="zoF-hi-7AF"/>
@@ -1877,13 +1870,13 @@
                     </tableView>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pullToRefreshEnabled" value="NO"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="loadingViewEnabled" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="loadingViewEnabled" value="YES"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="Comment"/>
                     </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOy-Id-cuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5607" y="-281.625"/>
+            <point key="canvasLocation" x="5606.25" y="-281.8125"/>
         </scene>
         <!--Care-->
         <scene sceneID="gyq-CO-Tgj">

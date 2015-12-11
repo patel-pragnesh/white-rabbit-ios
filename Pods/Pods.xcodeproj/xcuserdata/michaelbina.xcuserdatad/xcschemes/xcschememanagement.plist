@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>BGTableViewRowActionWithImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>BTNavigationDropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -182,12 +187,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>08F6A5AF8E89681F880EB03F167AACB7</key>
+		<key>0528270E8E5E49EC0F50E16C15C8D405</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0A5EEE693F354678C3411504C6F9AD11</key>
+		<key>0771FFDF5C4ACC51244B033B88B8D735</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>08F6A5AF8E89681F880EB03F167AACB7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -207,11 +217,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>241DB92020BA059D958E6FF9FD03A00D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2D10513110ECCE460FBE2D3A2B0675C6</key>
 		<dict>
 			<key>primary</key>
@@ -222,17 +227,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>382024D9CA7658C220BF4C2D12D91E62</key>
+		<key>3D76BC7C68914CB6F8D7B7FA4F832F3C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>3EBB97988EA73CAED65A10806B0BB121</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3F452F6F464C673A006B41BC320B4645</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -267,17 +267,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5EDEA4E9FD34786D107A5ABFB1988A63</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>68B26F6A499BCAC8AC62FEC7F39ED551</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6B9DF4776A5114EA56DC8E036C668D15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>734E8D30F3CD753850B867E8B62B4467</key>
+		<key>6DEB1257FFCB1CBE0DB9FC1C561CAC06</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7AFDF2EB5F3BCB430FCECAA51071CD50</key>
+		<key>734E8D30F3CD753850B867E8B62B4467</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -292,17 +302,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>902BA16536371DD57015977C7172E234</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>94624EC6C9739263AA965CFE2D8933F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A68BFA14EEFE54F60CFE9D33BDA61495</key>
+		<key>9F61AB783D8A6AE2E4EC57676B581333</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -327,7 +332,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D33687F5A89D23EA3C25F113023E59FF</key>
+		<key>DCCEA9C736F35F99EFD3B9CE60D7E27D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DE09FB531E378559AD90DA44A054F962</key>
 		<dict>
 			<key>primary</key>
 			<true/>

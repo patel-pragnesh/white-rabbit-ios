@@ -148,7 +148,7 @@ class AnimalTimelineTableViewCell: PFTableViewCell {
     
     @IBAction func flagButtonPressed(sender: AnyObject) {
         if self.flagButton.enabled {
-            parentTable!.showFlagActionSheet(sender, indexPath: self.indexPath!)
+            parentTable!.showFlagActionSheet(sender, indexPath: self.indexPath!, flaggedObject: entryObject!)
         }
     }
     
@@ -331,55 +331,6 @@ class AnimalTimelineTableViewController: PFQueryTableViewController, CLImageEdit
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
-    
-    func showFlagActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
-        
-        let optionMenu = UIAlertController(title: nil, message: "Flag as", preferredStyle: .ActionSheet)
-        let entryObject = self.objectAtCell(indexPath)
-        
-        let inappropriateAction = UIAlertAction(title: "Inappropriate", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.flagItem(entryObject!, type: "inappropriate")
-            print("Marked as inappropriate")
-        })
-        
-        let spamAction = UIAlertAction(title: "Spam", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.flagItem(entryObject!, type: "spam")
-            print("Marked as spam")
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
-        })
-        
-        optionMenu.addAction(inappropriateAction)
-        optionMenu.addAction(spamAction)
-        optionMenu.addAction(cancelAction)
-        
-        self.presentViewController(optionMenu, animated: true, completion: nil)
-    }
-    
-    func flagItem(entryObject: PFObject, type: String) {
-        let flag = PFObject(className: "Flag")
-        flag["entry"] = entryObject
-        flag["type"] = type
-        flag["reportedBy"] = PFUser.currentUser()
-        
-        self.showLoader()
-        flag.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            self.hideLoader()
-            if(success) {
-                NSLog("finished saving flag")
-                self.displayAlert("Thanks for letting us know!  We'll take a look right away.")
-            } else {
-                NSLog("error saving flag")
-                self.showError(error!.localizedDescription)
-            }
-        }
-    }
-
     
     func showShareActionSheet(sender: AnyObject, indexPath: NSIndexPath?) {
         let image = self.imageAtCell(indexPath)!

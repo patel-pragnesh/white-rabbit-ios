@@ -172,7 +172,6 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-        
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Right:
@@ -190,14 +189,24 @@ class TimelineEntryDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addComment(text: String) {
-        let comment = PFObject(className: "Comment")
-        comment.setObject(self.entryObject!, forKey: "entry")
-        comment.setObject(self.entryObject!.objectForKey("animal")!, forKey: "animal")
-        comment.setValue(text, forKey: "text")
-        comment.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if(error == nil) {
-                self.commentsView?.loadObjects()
+        self.showLoader()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if(appDelegate.myAnimalsArray?.count > 0) {
+            let comment = PFObject(className: "Comment")
+            comment.setObject(self.entryObject!, forKey: "entry")
+            
+            comment.setObject(appDelegate.myAnimalsArray![0], forKey: "animal")
+            
+            comment.setValue(text, forKey: "text")
+            comment.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+                if(error == nil) {
+                    self.commentsView?.loadObjects()
+                    self.hideLoader()
+                }
             }
+        } else {
+            self.hideLoader()
+            self.showError("Add a cat to make a comment")
         }
     }
     

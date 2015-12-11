@@ -13,9 +13,6 @@ class AnimalsTabViewController: UIViewController, PagingMenuControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        self.setUpMenuBarController()
-        
         self.loadTabs()
     }
     

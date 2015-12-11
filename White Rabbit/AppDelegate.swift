@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var client: CDAClient?
+
+    var myAnimalsArray: [PFObject]?
     
     var traitsArray: [String]?
     var traitByName: [String: PFObject]?
@@ -83,6 +85,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    func loadMyAnimals() {
+        let animalQuery = PFQuery(className:"Animal")
+        animalQuery.whereKey("owner", equalTo: PFUser.currentUser()!)
+        animalQuery.includeKey("breed")
+        animalQuery.includeKey("coat")
+        animalQuery.includeKey("shelter")
+        animalQuery.includeKey("owner")
+        self.myAnimalsArray = [PFObject]()
+        
+        animalQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for object in objects! {
+                    self.myAnimalsArray?.append(object)
+                }
+            } else {
+                NSLog("Error: %@", error!)
+            }
+        }
+    }
+
 
     func loadCoats() {
         let coatQuery = PFQuery(className:"Coat")
@@ -324,7 +347,10 @@ extension UIViewController {
         editButton.frame = CGRectMake(0, 0, width, height)
         return UIBarButtonItem(customView: editButton)
     }
-
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     func setUpNavigationBar() {
         self.setUpNavigationBar("")
@@ -389,7 +415,12 @@ extension UIViewController {
     }
     
     func showError(message: String) {
-        self.view.dodo.error(message)
+        let parentController: UIViewController? = self.parentViewController
+        if (parentController != nil && parentController!.isKindOfClass(UIViewController)) {
+            parentController!.view.dodo.error(message)
+        } else {
+            self.view.dodo.error(message)
+        }
     }
     
     
@@ -412,6 +443,58 @@ extension UIViewController {
         picker.sourceType = .PhotoLibrary
         picker.delegate = delegate
         self.presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    func showFlagActionSheet(sender: AnyObject, indexPath: NSIndexPath?, flaggedObject: PFObject) {
+        
+        let optionMenu = UIAlertController(title: nil, message: "Flag as", preferredStyle: .ActionSheet)
+        
+        let inappropriateAction = UIAlertAction(title: "Inappropriate", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.flagItem(flaggedObject, type: "inappropriate")
+            print("Marked as inappropriate")
+        })
+        
+        let spamAction = UIAlertAction(title: "Spam", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.flagItem(flaggedObject, type: "spam")
+            print("Marked as spam")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        optionMenu.addAction(inappropriateAction)
+        optionMenu.addAction(spamAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    func flagItem(flaggedObject: PFObject, type: String) {
+        let flag = PFObject(className: "Flag")
+        
+        if(flaggedObject.parseClassName == "AnimalTimelineEntry") {
+            flag["entry"] = flaggedObject
+        } else if(flaggedObject.parseClassName == "Comment") {
+            flag["comment"] = flaggedObject
+        }
+        flag["type"] = type
+        flag["reportedBy"] = PFUser.currentUser()
+        
+        self.showLoader()
+        flag.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            self.hideLoader()
+            if(success) {
+                NSLog("finished saving flag")
+                self.displayAlert("Thanks for letting us know!  We'll take a look right away.")
+            } else {
+                NSLog("error saving flag")
+                self.showError(error!.localizedDescription)
+            }
+        }
     }
     
     func showProfilePhotoActionSheet(sender: AnyObject, delegate: protocol<UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLImageEditorDelegate>) {

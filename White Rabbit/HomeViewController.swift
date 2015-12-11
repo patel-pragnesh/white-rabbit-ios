@@ -102,6 +102,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         if (currentUser != nil) {
             self.currentUser = currentUser
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.loadMyAnimals()
+            
             self.checkAdmin()
             if populate {
                 self.populateUserInfo()
@@ -186,8 +190,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.hideLoader()
             if error != nil {
                 NSLog("logout fail: \(error)")
+                self.showError(error!.localizedDescription)
             } else {
                 NSLog("logout success")
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.myAnimalsArray = nil
+                
                 self.checkForUser(false)
             }
         }

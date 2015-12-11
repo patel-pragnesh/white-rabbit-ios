@@ -28,9 +28,7 @@ class UserFormViewController : FormViewController {
     }
     
     
-    func generateForm() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
+    func generateForm() {        
         form +++= Section("Info")
             <<< NameRow(FIRST_NAME_TAG) {
                 $0.title = "First Name"

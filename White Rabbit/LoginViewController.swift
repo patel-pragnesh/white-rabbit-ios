@@ -20,6 +20,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
         view.dodo.topLayoutGuide = topLayoutGuide
         view.dodo.style.bar.hideOnTap = true
         view.dodo.style.bar.hideAfterDelaySeconds = 3

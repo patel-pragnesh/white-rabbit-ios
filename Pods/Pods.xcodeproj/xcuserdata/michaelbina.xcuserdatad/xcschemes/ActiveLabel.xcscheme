@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'FE03BB2EACA7A2A90B428F19'
+               BlueprintIdentifier = 'D454A2CA7A1148FA5DEACD25'
                BlueprintName = 'ActiveLabel'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'ActiveLabel.framework'>
