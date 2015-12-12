@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '38AB87E7D870AE1A7F1460CF'
+               BlueprintIdentifier = 'DE3621E0386059E30540373B'
                BlueprintName = 'BGTableViewRowActionWithImage'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'BGTableViewRowActionWithImage.framework'>

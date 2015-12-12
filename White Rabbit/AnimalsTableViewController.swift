@@ -12,7 +12,6 @@ import ParseUI
 import BTNavigationDropdownMenu
 
 class AnimalsTableViewCell: PFTableViewCell {
-    
     @IBOutlet weak var coverPhoto: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePhoto: UIImageView!
@@ -28,8 +27,6 @@ class AnimalsTableViewController: PFQueryTableViewController {
     var locationDetailController : LocationDetailViewController?
     
     override init(style: UITableViewStyle, className: String!) {
-        NSLog("initializing animals table view controller: \(className)")
-        
         super.init(style: style, className: className)
     }
     
@@ -37,9 +34,41 @@ class AnimalsTableViewController: PFQueryTableViewController {
         super.init(coder: aDecoder)!
     }
     
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text: String = "Add a cat"
+        let attributes: [String : AnyObject] = [NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0), NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView) -> NSAttributedString {
+        let text: String = "You haven't added a cat yet."
+        let paragraph: NSMutableParagraphStyle = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .ByWordWrapping
+        paragraph.alignment = .Center
+        let attributes: [String : AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(14.0), NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSParagraphStyleAttributeName: paragraph]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView, forState state: UIControlState) -> NSAttributedString {
+        let attributes: [String : AnyObject] = [NSFontAttributeName: UIFont.boldSystemFontOfSize(17.0)]
+        return NSAttributedString(string: "Add a Cat", attributes: attributes)
+    }
+    
+    func buttonImageForEmptyDataSet(scrollView: UIScrollView, forState state: UIControlState) -> UIImage {
+        return UIImage(named: "cat_add_black")!
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView) {
+        self.showAddAminalView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.stylePFLoadingView()
+        
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.tableFooterView = UIView()
         
         if self.shelter == nil {
 //            let items = ["Mine", "Featured", "Adoptable"]
@@ -93,11 +122,6 @@ class AnimalsTableViewController: PFQueryTableViewController {
         query.includeKey("owner")
         return query
     }
-    
-//    override func objectsDidLoad(error: NSError?) {
-//        NSLog("finished loading")
-////        self.loader.removeLoader()
-//    }
     
     func setCurrentUser() {
         let menuViewController = self.slideMenuController()?.leftViewController as! HomeViewController

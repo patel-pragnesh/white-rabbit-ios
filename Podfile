@@ -14,7 +14,6 @@ pod 'SwiftDate', '~> 2.0'
 pod 'ContentfulDeliveryAPI'
 pod 'TagListView'
 pod 'Timepiece'
-pod 'DynamicColor'
 pod 'Dodo'
 pod 'ALCameraViewController'
 pod 'InstagramKit'
@@ -32,6 +31,8 @@ pod 'IPDFCameraViewController'
 pod 'IDMPhotoBrowser'
 pod 'ActiveLabel'
 pod 'BGTableViewRowActionWithImage'
+pod 'ChameleonFramework/Swift'
+pod 'DZNEmptyDataSet'
 
 target 'White Rabbit' do
 end

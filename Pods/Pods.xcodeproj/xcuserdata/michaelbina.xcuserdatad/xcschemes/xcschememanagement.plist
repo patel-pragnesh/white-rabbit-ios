@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ContentfulDeliveryAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,17 +54,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DZNEmptyDataSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Dodo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Dollar.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>DynamicColor.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -187,27 +192,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0528270E8E5E49EC0F50E16C15C8D405</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0771FFDF5C4ACC51244B033B88B8D735</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>08F6A5AF8E89681F880EB03F167AACB7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>0F98F85575B93F19AE698C564B266D98</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>124BA04F2E4A4F5C8CDAA39DB6C7F903</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>156BD896585AFA73541A6D91B3620D75</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16FB872D0D2D4BA0F378AB34D47CF95F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18330767A666C38C0FD82372FC40445F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -227,12 +232,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D76BC7C68914CB6F8D7B7FA4F832F3C</key>
+		<key>3EBB97988EA73CAED65A10806B0BB121</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3EBB97988EA73CAED65A10806B0BB121</key>
+		<key>481AF80CDC88AC2F05E5F896A3FF0D60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -252,6 +257,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>57ADC05E440A960212657DE6DA1FEDD5</key>
 		<dict>
 			<key>primary</key>
@@ -263,16 +273,6 @@
 			<true/>
 		</dict>
 		<key>5D69761C2CD2A1E5C013537B29CAB4CF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5EDEA4E9FD34786D107A5ABFB1988A63</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>68B26F6A499BCAC8AC62FEC7F39ED551</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -302,12 +302,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8BC4850DB2C5BF11848711D975EA5280</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>94624EC6C9739263AA965CFE2D8933F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F61AB783D8A6AE2E4EC57676B581333</key>
+		<key>99318472B6A7C399592BBB7EDA3E6A78</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -327,17 +332,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C859A59B0595995843F2453C6D81E754</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CE9387695D2BA7F9FC4492ACE5896A30</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DCCEA9C736F35F99EFD3B9CE60D7E27D</key>
+		<key>D65EBD1F36312431FC38B2AAD5C47795</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DE09FB531E378559AD90DA44A054F962</key>
+		<key>DCCC4CD0049AC87F7677DDCB9D0D8178</key>
 		<dict>
 			<key>primary</key>
 			<true/>

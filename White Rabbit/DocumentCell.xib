@@ -23,7 +23,7 @@
                             <constraint firstAttribute="width" secondItem="1LH-ds-gsi" secondAttribute="height" multiplier="1:1" id="4xz-oN-7Ij"/>
                             <constraint firstAttribute="height" constant="30" id="kcd-aw-7qs"/>
                         </constraints>
-                        <state key="normal" image="plus_black"/>
+                        <state key="normal" image="add_black"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="16g-Ee-UvK"/>
@@ -83,6 +83,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="plus_black" width="44" height="44"/>
+        <image name="add_black" width="44" height="44"/>
     </resources>
 </document>

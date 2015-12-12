@@ -30,6 +30,9 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
   - BTNavigationDropdownMenu (0.1.8)
+  - ChameleonFramework/Default (2.0.6)
+  - ChameleonFramework/Swift (2.0.6):
+    - ChameleonFramework/Default
   - CLImageEditor (0.1.4):
     - CLImageEditor/Core (= 0.1.4)
   - CLImageEditor/Core (0.1.4)
@@ -45,7 +48,7 @@ PODS:
   - DACircularProgress (2.3.1)
   - Dodo (2.0.13)
   - Dollar (4.0.1)
-  - DynamicColor (2.2.0)
+  - DZNEmptyDataSet (1.7.2)
   - Eureka (1.2.0)
   - FBSDKCoreKit (4.8.0):
     - Bolts (~> 1.1)
@@ -98,6 +101,7 @@ DEPENDENCIES:
   - ALCameraViewController
   - BGTableViewRowActionWithImage
   - BTNavigationDropdownMenu
+  - ChameleonFramework/Swift
   - CLImageEditor
   - CLImageEditor/SplashTool
   - CLImageEditor/StickerTool
@@ -105,7 +109,7 @@ DEPENDENCIES:
   - ContentfulDeliveryAPI
   - Dodo
   - Dollar
-  - DynamicColor
+  - DZNEmptyDataSet
   - Eureka (from `https://github.com/michaelbina/Eureka.git`, branch `master`)
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -141,12 +145,13 @@ SPEC CHECKSUMS:
   BGTableViewRowActionWithImage: 4093bc2f297e6f3aed95096c3df94418acef3cdb
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   BTNavigationDropdownMenu: 23403214197d8fb208dd0ad996e3d236748473c9
+  ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
   CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   ContentfulDeliveryAPI: b1031d673519b68e8048771243741745475b4395
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Dodo: 0d783bc1f55e59d53fb698b3380ad8553079540e
   Dollar: a058e2659e0d3261307c12630dbc2fd8e32f80bf
-  DynamicColor: 9b79f9d462f967c77edb8be9985412a85f4fdacb
+  DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   Eureka: aa7059d2a30e1b206a581f0aabfcf903ece6beae
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4

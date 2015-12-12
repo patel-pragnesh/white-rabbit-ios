@@ -34,6 +34,16 @@ class PostsTableViewController: PFQueryTableViewController {
     
     var hashtag : String?
     
+    override func objectsWillLoad() {
+        super.objectsWillLoad()
+        self.showLoader()
+    }
+    
+    override func objectsDidLoad(error: NSError?) {
+        super.objectsDidLoad(error)
+        self.hideLoader()
+    }
+    
     required init(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)!
     }

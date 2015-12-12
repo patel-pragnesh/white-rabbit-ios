@@ -26,6 +26,8 @@
 		ED49D64E1C0EEDE90050049F /* AnimalAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */; };
 		ED49D6501C0EFAD30050049F /* AnimalsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */; };
 		ED4FB5781C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */; };
+		ED4FB57A1C1C3C4400C3EC73 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4FB5791C1C3C4400C3EC73 /* DZNEmptyDataSet.framework */; };
+		ED4FB57D1C1C45BE00C3EC73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4FB57C1C1C45BE00C3EC73 /* Extensions.swift */; };
 		ED5FEBEE1BE52F2C00272A3E /* GKImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */; };
 		ED682E851C13256D005D80A7 /* TimelineEntryCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED682E841C13256D005D80A7 /* TimelineEntryCommentsViewController.swift */; };
 		ED692D671BACECED00C52562 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED692D661BACECED00C52562 /* LocationDetailViewController.swift */; };
@@ -118,6 +120,8 @@
 		ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalAboutViewController.swift; sourceTree = "<group>"; };
 		ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTabViewController.swift; sourceTree = "<group>"; };
 		ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGTableViewRowActionWithImage.framework; path = "Pods/../build/Debug-iphoneos/BGTableViewRowActionWithImage.framework"; sourceTree = "<group>"; };
+		ED4FB5791C1C3C4400C3EC73 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "Pods/../build/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
+		ED4FB57C1C1C45BE00C3EC73 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED5FEBED1BE52F2C00272A3E /* GKImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GKImagePicker.framework; path = "Pods/../build/Debug-iphoneos/GKImagePicker.framework"; sourceTree = "<group>"; };
 		ED682E841C13256D005D80A7 /* TimelineEntryCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEntryCommentsViewController.swift; sourceTree = "<group>"; };
 		ED692D661BACECED00C52562 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4FB57A1C1C3C4400C3EC73 /* DZNEmptyDataSet.framework in Frameworks */,
 				ED4FB5781C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework in Frameworks */,
 				EDC941751C16FFF3006ADB1F /* ActiveLabel.framework in Frameworks */,
 				EDC941731C16F618006ADB1F /* SwiftDate.framework in Frameworks */,
@@ -283,7 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				EDE6D4331BA7B2BC00C7AC8C /* AppDelegate.swift */,
+				ED4FB57C1C1C45BE00C3EC73 /* Extensions.swift */,
 				EDE6D4371BA7B2BC00C7AC8C /* Main.storyboard */,
+				EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */,
 				EDE6D47A1BA7B75700C7AC8C /* LoginViewController.swift */,
 				EDE6D4351BA7B2BC00C7AC8C /* HomeViewController.swift */,
 				EDFD64E61BD9E41800344BDC /* Animals */,
@@ -297,7 +304,6 @@
 				EDF3DCE61BFD660B00A10DF7 /* SphereMenu.swift */,
 				EDE6D43A1BA7B2BC00C7AC8C /* Assets.xcassets */,
 				EDCD40711C06F5D0008A8E57 /* CLImageEditor.bundle */,
-				EDE6D43C1BA7B2BC00C7AC8C /* LaunchScreen.storyboard */,
 				EDE6D43F1BA7B2BC00C7AC8C /* Info.plist */,
 				ED9760CF1BAA27AE00EE3BBF /* White Rabbit-Bridging-Header.h */,
 			);
@@ -325,6 +331,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED4FB5791C1C3C4400C3EC73 /* DZNEmptyDataSet.framework */,
 				ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */,
 				EDC941741C16FFF3006ADB1F /* ActiveLabel.framework */,
 				EDC941721C16F618006ADB1F /* SwiftDate.framework */,
@@ -629,6 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDFD64EB1BD9E57400344BDC /* CareSectionViewController.swift in Sources */,
+				ED4FB57D1C1C45BE00C3EC73 /* Extensions.swift in Sources */,
 				EDF3DCE71BFD660B00A10DF7 /* SphereMenu.swift in Sources */,
 				EDA8B01E1BB94BB10066546E /* TraitSelectorTableViewController.swift in Sources */,
 				ED682E851C13256D005D80A7 /* TimelineEntryCommentsViewController.swift in Sources */,
