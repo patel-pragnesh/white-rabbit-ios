@@ -12,6 +12,7 @@ import ParseFacebookUtilsV4
 import ParseTwitterUtils
 import SlideMenuControllerSwift
 import ContentfulDeliveryAPI
+import BWWalkthrough
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -61,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UILabel.appearance().substituteFontName = "Avenir"
         
-        loadMainController()
         loadTraits()
         loadBreeds()
         loadShelters()
@@ -69,11 +69,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loadLoves()
         loadHates()
         loadCoats()
-        
+        loadMainController()
+
         NSLog("Finished loading background data")
         
         return true
     }
+    
+    func loadMainController() {
+        //        var storyboard = self.window?.rootViewController?.storyboard
+        //        if(storyboard == nil) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //        }
+        
+        let homeController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        homeController.checkForUser(false)
+        //        let mainController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
+        let mainController = storyboard.instantiateViewControllerWithIdentifier("PostsNavigation")
+        homeController.mainViewController = mainController
+        
+        let slideMenuController = SlideMenuController(mainViewController: mainController, leftMenuViewController: homeController)
+        
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+    }
+
     
     
     func loadMyAnimals() {
@@ -237,24 +257,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func loadMainController() {
-        var storyboard = self.window?.rootViewController?.storyboard
-        if(storyboard == nil) {
-            storyboard = UIStoryboard(name: "Main", bundle: nil)
-        }
-        
-        let homeController = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-        homeController.checkForUser(false)
-//        let mainController = storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
-        let mainController = storyboard?.instantiateViewControllerWithIdentifier("PostsNavigation")
-        homeController.mainViewController = mainController
-        
-        let slideMenuController = SlideMenuController(mainViewController: mainController!, leftMenuViewController: homeController)
-        
-        self.window?.rootViewController = slideMenuController
-        self.window?.makeKeyAndVisible()
-    }
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

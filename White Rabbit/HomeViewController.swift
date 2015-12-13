@@ -44,14 +44,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkForUser(true)
+        let storyboard = self.storyboard!
         
-        self.animalsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AnimalsNavigation")
-        self.locationsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LocationsMapView")
-        self.breedsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BreedsTable")
-        self.careViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CareNavigation")
-        self.postsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PostsNavigation")
-        self.userFormController = self.storyboard?.instantiateViewControllerWithIdentifier("UserNavigation") as! UINavigationController
+        animalsViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalsNavigation")
+        locationsViewController = storyboard.instantiateViewControllerWithIdentifier("LocationsMapView")
+        breedsViewController = storyboard.instantiateViewControllerWithIdentifier("BreedsTable")
+        careViewController = storyboard.instantiateViewControllerWithIdentifier("CareNavigation")
+        postsViewController = storyboard.instantiateViewControllerWithIdentifier("PostsNavigation")
+        userFormController = storyboard.instantiateViewControllerWithIdentifier("UserNavigation") as! UINavigationController
         let userForm = self.userFormController.topViewController as! UserFormViewController
         userForm.userObject = self.currentUser
         userForm.menuController = self
@@ -65,36 +65,35 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.aboutButton.addTarget(self, action: "showView:", forControlEvents: .TouchUpInside)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.setUpMenuBarController("Feed")
+        self.checkForUser(true)
+        
+        super.viewWillAppear(animated)
+    }
+    
     func showView(sender: UIButton!) {
         switch sender.currentTitle! {
             case "  Feed":
-                self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
+                slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
             case "  Cats":
-                self.slideMenuController()?.changeMainViewController(self.animalsViewController, close: true)
+                slideMenuController()?.changeMainViewController(self.animalsViewController, close: true)
                 break
             case "  Locations":
-                self.slideMenuController()?.changeMainViewController(self.locationsViewController, close: true)
+                slideMenuController()?.changeMainViewController(self.locationsViewController, close: true)
                 break
             case "  Breeds":
-                self.slideMenuController()?.changeMainViewController(self.breedsViewController, close: true)
+                slideMenuController()?.changeMainViewController(self.breedsViewController, close: true)
                 break
             case "  Care":
-                self.slideMenuController()?.changeMainViewController(self.careViewController, close: true)
+                slideMenuController()?.changeMainViewController(self.careViewController, close: true)
                 break
             case "Settings":
-                self.slideMenuController()?.changeMainViewController(self.userFormController, close: true)
+                slideMenuController()?.changeMainViewController(self.userFormController, close: true)
                 break
             default:
                 break
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.setUpMenuBarController("Feed")
-        
-        checkForUser(true)
     }
     
     func checkForUser(populate: Bool) {
@@ -111,8 +110,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 self.populateUserInfo()
             }
         } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
             // Navigate to the LoginViewController
-            let lvc = self.storyboard!.instantiateViewControllerWithIdentifier("lvc") as! LoginViewController
+            let lvc = storyboard.instantiateViewControllerWithIdentifier("lvc") as! LoginViewController
             
             self.presentViewController(lvc, animated: true, completion: nil)
             // self.pushViewController(lvc, animated: true)

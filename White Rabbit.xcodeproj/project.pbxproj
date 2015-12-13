@@ -25,6 +25,7 @@
 		ED49D6481C0EAAD70050049F /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED49D6461C0EAAD70050049F /* pop.framework */; };
 		ED49D64E1C0EEDE90050049F /* AnimalAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */; };
 		ED49D6501C0EFAD30050049F /* AnimalsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */; };
+		ED4CBAA71C1D527D00C8ABA1 /* BWWalkthrough.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4CBAA61C1D527D00C8ABA1 /* BWWalkthrough.framework */; };
 		ED4FB5781C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */; };
 		ED4FB57A1C1C3C4400C3EC73 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4FB5791C1C3C4400C3EC73 /* DZNEmptyDataSet.framework */; };
 		ED4FB57D1C1C45BE00C3EC73 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4FB57C1C1C45BE00C3EC73 /* Extensions.swift */; };
@@ -119,6 +120,7 @@
 		ED49D6461C0EAAD70050049F /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = "Pods/../build/Debug-iphoneos/pop.framework"; sourceTree = "<group>"; };
 		ED49D64D1C0EEDE90050049F /* AnimalAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalAboutViewController.swift; sourceTree = "<group>"; };
 		ED49D64F1C0EFAD30050049F /* AnimalsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalsTabViewController.swift; sourceTree = "<group>"; };
+		ED4CBAA61C1D527D00C8ABA1 /* BWWalkthrough.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWWalkthrough.framework; path = "Pods/../build/Debug-iphoneos/BWWalkthrough.framework"; sourceTree = "<group>"; };
 		ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGTableViewRowActionWithImage.framework; path = "Pods/../build/Debug-iphoneos/BGTableViewRowActionWithImage.framework"; sourceTree = "<group>"; };
 		ED4FB5791C1C3C4400C3EC73 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "Pods/../build/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		ED4FB57C1C1C45BE00C3EC73 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4CBAA71C1D527D00C8ABA1 /* BWWalkthrough.framework in Frameworks */,
 				ED4FB57A1C1C3C4400C3EC73 /* DZNEmptyDataSet.framework in Frameworks */,
 				ED4FB5781C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework in Frameworks */,
 				EDC941751C16FFF3006ADB1F /* ActiveLabel.framework in Frameworks */,
@@ -331,6 +334,7 @@
 		EDE6D4651BA7B2E500C7AC8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED4CBAA61C1D527D00C8ABA1 /* BWWalkthrough.framework */,
 				ED4FB5791C1C3C4400C3EC73 /* DZNEmptyDataSet.framework */,
 				ED4FB5771C1ADCC100C3EC73 /* BGTableViewRowActionWithImage.framework */,
 				EDC941741C16FFF3006ADB1F /* ActiveLabel.framework */,

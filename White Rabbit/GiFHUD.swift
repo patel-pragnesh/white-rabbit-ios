@@ -345,18 +345,20 @@ class GiFHUD: UIView {
     }
     
     class func show () {
-        dismiss({
-            
-            if let _ = self.instance.imageView?.animationImages {
-                self.instance.imageView?.startAnimating()
-            } else {
-                self.instance.imageView?.startAnimatingGif()
-            }
-            
-            self.instance.Window.bringSubviewToFront(self.instance)
-            self.instance.shown = true
-            self.instance.fadeIn()
-        })
+        if (!self.instance.shown) {
+            dismiss({
+                
+                if let _ = self.instance.imageView?.animationImages {
+                    self.instance.imageView?.startAnimating()
+                } else {
+                    self.instance.imageView?.startAnimatingGif()
+                }
+                
+                self.instance.Window.bringSubviewToFront(self.instance)
+                self.instance.shown = true
+                self.instance.fadeIn()
+            })
+        }
     }
     
     class func showForSeconds (seconds: Double) {
@@ -407,14 +409,14 @@ class GiFHUD: UIView {
         }
     }
     
-    class func dismiss (complate: ()->Void) {
+    class func dismiss (complete: ()->Void) {
         if (!self.instance.shown) {
-            return complate ()
+            return complete()
         }
         
         self.instance.fadeOut({
             self.instance.overlay().removeFromSuperview()
-            complate ()
+            complete()
         })
         
         if let _ = self.instance.imageView?.animationImages {

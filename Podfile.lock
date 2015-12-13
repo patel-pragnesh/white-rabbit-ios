@@ -30,6 +30,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
   - BTNavigationDropdownMenu (0.1.8)
+  - BWWalkthrough (1.0.1)
   - ChameleonFramework/Default (2.0.6)
   - ChameleonFramework/Swift (2.0.6):
     - ChameleonFramework/Default
@@ -101,6 +102,7 @@ DEPENDENCIES:
   - ALCameraViewController
   - BGTableViewRowActionWithImage
   - BTNavigationDropdownMenu
+  - BWWalkthrough (from `https://github.com/mokumoku/BWWalkthrough.git`, branch `master`)
   - ChameleonFramework/Swift
   - CLImageEditor
   - CLImageEditor/SplashTool
@@ -129,11 +131,17 @@ DEPENDENCIES:
   - Timepiece
 
 EXTERNAL SOURCES:
+  BWWalkthrough:
+    :branch: master
+    :git: https://github.com/mokumoku/BWWalkthrough.git
   Eureka:
     :branch: master
     :git: https://github.com/michaelbina/Eureka.git
 
 CHECKOUT OPTIONS:
+  BWWalkthrough:
+    :commit: ef5156233b9cd3dc75ef773fc0f498d7cf6d7f6e
+    :git: https://github.com/mokumoku/BWWalkthrough.git
   Eureka:
     :commit: caac7608b4a7aafe301307594f4d978798395944
     :git: https://github.com/michaelbina/Eureka.git
@@ -145,6 +153,7 @@ SPEC CHECKSUMS:
   BGTableViewRowActionWithImage: 4093bc2f297e6f3aed95096c3df94418acef3cdb
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   BTNavigationDropdownMenu: 23403214197d8fb208dd0ad996e3d236748473c9
+  BWWalkthrough: 126afec14755946a12ecd431e8ce42b417ca502f
   ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
   CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   ContentfulDeliveryAPI: b1031d673519b68e8048771243741745475b4395

@@ -103,6 +103,10 @@ extension UIViewController {
     }
     
     func showError(message: String) {
+        view.dodo.topLayoutGuide = topLayoutGuide
+        view.dodo.style.bar.hideOnTap = true
+        view.dodo.style.bar.hideAfterDelaySeconds = 3
+        
         let parentController: UIViewController? = self.parentViewController
         if (parentController != nil && parentController!.isKindOfClass(UIViewController)) {
             parentController!.view.dodo.error(message)

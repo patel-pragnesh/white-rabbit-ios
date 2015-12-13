@@ -10,8 +10,9 @@ import UIKit
 import Parse
 import ParseFacebookUtilsV4
 import ParseTwitterUtils
+import BWWalkthrough
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, BWWalkthroughViewControllerDelegate {
     let permissions = ["public_profile", "email", "user_location", "user_friends"]
 
     @IBOutlet weak var usernameField: UITextField!
@@ -22,13 +23,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        
-        view.dodo.topLayoutGuide = topLayoutGuide
-        view.dodo.style.bar.hideOnTap = true
-        view.dodo.style.bar.hideAfterDelaySeconds = 3
-        
+                
         self.usernameField.delegate = self
         self.passwordField.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+
+        if !userDefaults.boolForKey("walkthroughPresented") {
+            showWalkthrough()
+            
+            userDefaults.setBool(true, forKey: "walkthroughPresented")
+            userDefaults.synchronize()
+        }
+    }
+    
+    @IBAction func showWalkthrough(){
+        // Get view controllers and build the walkthrough
+        let storyboard = self.storyboard!
+        let walkthrough = storyboard.instantiateViewControllerWithIdentifier("walk") as! BWWalkthroughViewController
+        let page_zero = storyboard.instantiateViewControllerWithIdentifier("walk0")
+        let page_one = storyboard.instantiateViewControllerWithIdentifier("walk1")
+        let page_two = storyboard.instantiateViewControllerWithIdentifier("walk2")
+        let page_three = storyboard.instantiateViewControllerWithIdentifier("walk3")
+        
+        // Attach the pages to the master
+        walkthrough.delegate = self
+        walkthrough.addViewController(page_one)
+        walkthrough.addViewController(page_two)
+        walkthrough.addViewController(page_three)
+        walkthrough.addViewController(page_zero)
+        
+        walkthrough.modalPresentationStyle = .OverCurrentContext
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.presentViewController(walkthrough, animated: false, completion: nil)
+        })
+    }
+    
+    func walkthroughPageDidChange(pageNumber: Int) {
+    }
+    
+    func walkthroughCloseButtonPressed() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

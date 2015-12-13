@@ -33,6 +33,7 @@ pod 'ActiveLabel'
 pod 'BGTableViewRowActionWithImage'
 pod 'ChameleonFramework/Swift'
 pod 'DZNEmptyDataSet'
+pod 'BWWalkthrough', :git => 'https://github.com/mokumoku/BWWalkthrough.git', :branch => 'master'
 
 target 'White Rabbit' do
 end
