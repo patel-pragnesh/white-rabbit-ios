@@ -66,6 +66,11 @@ class TimelineEntryFormViewController: FormViewController {
             }.cellSetup { cell, row in
                 cell.imageView?.image = UIImage(named: "form_facebook")
             }
+            <<< SwitchRow("instagram") {
+                $0.title = "Share to Instagram"
+            }.cellSetup { cell, row in
+                cell.imageView?.image = UIImage(named: "form_instagram")
+            }
             <<< SwitchRow("twitter") {
                 $0.title = "Share to Twitter"
             }.cellSetup { cell, row in
@@ -127,8 +132,9 @@ class TimelineEntryFormViewController: FormViewController {
         let timelineEntry = PFObject(className: "AnimalTimelineEntry")
         timelineEntry["animal"] = self.animalObject
         
-        if let imageValue = self.form.rowByTag("photo")?.baseValue as? UIImage {
-            let imageData = UIImageJPEGRepresentation(imageValue, 0.5)
+        let imageValue = self.form.rowByTag("photo")?.baseValue as? UIImage
+        if imageValue != nil {
+            let imageData = UIImageJPEGRepresentation(imageValue!, 0.5)
             let fileName:String = (String)(PFUser.currentUser()!.objectId!) + "-" + (String)(NSDate().description.replace(" ", withString:"_").replace(":", withString:"-").replace("+", withString:"~")) + ".jpg"
             let imageFile:PFFile = PFFile(name: fileName, data: imageData!)!
             
@@ -176,12 +182,16 @@ class TimelineEntryFormViewController: FormViewController {
                         document.saveInBackground()
                     })
                 }
-                    
-                self.closeView(false)
+                
+                self.closeView(false, completionBlock: { () in
+                    if self.form.rowByTag("instagram")?.baseValue as! Bool {
+                        self.animalDetailController!.openInInstagram(imageValue!, caption: timelineEntry["text"] as? String)
+                    }
+                })
             } else {
                 NSLog("error uploading file: \(error?.localizedDescription)")
                 self.showError(error!.localizedDescription)
-                self.closeView(true)
+                self.closeView(true, completionBlock: nil)
             }
         }
     }
@@ -195,7 +205,7 @@ class TimelineEntryFormViewController: FormViewController {
         return documentsRow!.documents
     }
 
-    func closeView(deleteDocuments: Bool) {
+    func closeView(deleteDocuments: Bool, completionBlock: (() -> Void)?) {
         if (deleteDocuments && self.hasDocuments()) {
             self.getDocuments().forEach({ (element) -> Void in
                 let document = element
@@ -205,6 +215,9 @@ class TimelineEntryFormViewController: FormViewController {
         
         if (self.animalDetailController != nil) {
             self.dismissViewControllerAnimated(true) { () -> Void in
+                if(completionBlock != nil) {
+                    completionBlock!()
+                }
                 self.animalDetailController!.reloadTimeline()
             }
         } else {

@@ -118,6 +118,29 @@ class AnimalDetailViewController: UIViewController, SphereMenuDelegate, UIImageP
         self.timelineTableController!.loadObjects()
     }
     
+    var docController = UIDocumentInteractionController()
+    func openInInstagram(image: UIImage, caption: String?) {
+        let instagramURL = NSURL(string: "instagram://app")
+        
+        if(UIApplication.sharedApplication().canOpenURL(instagramURL!)) {
+            let documentsFolderPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
+            let fullPath = (documentsFolderPath as NSString).stringByAppendingPathComponent("insta.igo")
+            UIImagePNGRepresentation(image)!.writeToFile(fullPath, atomically: true)
+            let rect = CGRectMake(0, 0, 0, 0)
+            self.docController.UTI = "com.instagram.exclusivegram"
+            let igImageHookFile = NSURL(string: "file://\(fullPath)")
+            self.docController = UIDocumentInteractionController(URL: igImageHookFile!)
+            
+            // unfortunately this doesn't work anymore
+            self.docController.annotation = NSDictionary(object: caption!, forKey:"InstagramCaption")
+            
+            UIPasteboard.generalPasteboard().string = caption!
+            self.docController.presentOpenInMenuFromRect(rect, inView: self.view, animated: true)
+        } else {
+            self.displayAlert("Please install the Instagram app to share on Instagram.")
+        }
+    }
+    
     func saveTraits(traitObjects: [PFObject?]) {
         let relation = self.currentAnimalObject?.relationForKey("traits")
         

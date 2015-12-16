@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryFormViewController.swift"
-            timestampString = "470671806.601478"
+            timestampString = "471865696.574148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "saveImageData()"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryFormViewController.swift"
-            timestampString = "470672046.996546"
+            timestampString = "471865696.574148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "saveImageData()"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,23 +410,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryFormViewController.swift"
-            timestampString = "470672128.216691"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "saveImageData()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "White Rabbit/TimelineEntryFormViewController.swift"
-            timestampString = "470672148.573695"
+            timestampString = "471865696.574148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
@@ -442,11 +426,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "White Rabbit/TimelineEntryFormViewController.swift"
-            timestampString = "471512310.254057"
+            timestampString = "471865696.574148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "saveImageData()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "White Rabbit/TimelineEntryFormViewController.swift"
+            timestampString = "471921859.167371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "saveImageData()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1084,6 +1084,70 @@
             startingLineNumber = "104"
             endingLineNumber = "104"
             landmarkName = "loginWithFacebook(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "White Rabbit/TimelineEntryFormViewController.swift"
+            timestampString = "471921859.167371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "saveImageData()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.TimelineEntryFormViewController.(saveImageData (White_Rabbit.TimelineEntryFormViewController) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryFormViewController.swift"
+                  timestampString = "471863922.115264"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "1376">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "White_Rabbit.TimelineEntryFormViewController.(saveImageData (White_Rabbit.TimelineEntryFormViewController) -&gt; () -&gt; ()).(closure #1).(closure #2)"
+                  moduleName = "White Rabbit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelbina/Library/Mobile%20Documents/com~apple~CloudDocs/Projects/white%20rabbit/dev/ios/White%20Rabbit/TimelineEntryFormViewController.swift"
+                  timestampString = "471863922.11553"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "White Rabbit/AnimalDetailViewController.swift"
+            timestampString = "471921634.270593"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "openInInstagram(_:caption:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
